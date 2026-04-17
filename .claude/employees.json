@@ -1,0 +1,77 @@
+{
+  "version": "1.0",
+  "employees": [
+    {
+      "id": "designer",
+      "name": "Camila",
+      "role": "Designer UI/UX Senior",
+      "seniority": "senior",
+      "tier": "standard",
+      "reports_to": "fundador",
+      "description": "Cria identidade visual, design systems e LPs no Figma com handoff para React/Tailwind.",
+      "specialty": "ui-design-branding",
+      "skills": ["designer", "ui-ux-pro-max", "ui-animation", "image-analysis"],
+      "status": "hired",
+      "hired_at": "2026-04-13",
+      "hired_by": "Gabriela"
+    },
+    {
+      "id": "dev-web",
+      "name": "Felipe",
+      "role": "Dev Web Senior",
+      "seniority": "senior",
+      "tier": "standard",
+      "reports_to": "fundador",
+      "description": "Constrói landing pages e sistemas full stack. React/TS + Supabase + Vercel + Cloudflare.",
+      "specialty": "landing-pages-sistemas",
+      "skills": ["dev-web", "nextjs-supabase-auth", "supabase-postgres-best-practices", "tailwind-css"],
+      "status": "hired",
+      "hired_at": "2026-04-13",
+      "hired_by": "Gabriela"
+    },
+    {
+      "id": "rh",
+      "name": "Gabriela",
+      "role": "Diretora de RH",
+      "seniority": "diretor",
+      "tier": "best",
+      "reports_to": null,
+      "description": "Pesquisa e contrata especialistas alinhados com o contexto da Triforce Auto.",
+      "specialty": "hiring-pipeline",
+      "skills": ["hr"],
+      "status": "hired",
+      "hired_at": "2026-04-13",
+      "hired_by": "fundador"
+    }
+  ,
+    {
+      "id": "copywriter",
+      "name": "Fecchio",
+      "role": "Copywriter Senior",
+      "seniority": "senior",
+      "tier": "standard",
+      "reports_to": "fundador",
+      "description": "Copywriter de resposta direta BR. Escreve LP, VSL, headlines, CTAs e microcopy que convertem.",
+      "specialty": "direct-response-copy-br",
+      "skills": ["copywriter", "direct-response-copy"],
+      "status": "hired",
+      "hired_at": "2026-04-13",
+      "hired_by": "Gabriela"
+    }
+  ,
+    {
+      "id": "code-reviewer",
+      "name": "Marcelo",
+      "role": "Revisor de Código Senior",
+      "seniority": "senior",
+      "tier": "standard",
+      "reports_to": "fundador",
+      "description": "Revisa todo código do Felipe antes de ir para produção. Segurança, qualidade TypeScript, performance, acessibilidade e CI/CD. Não reescreve — questiona e exige melhor.",
+      "specialty": "code-review-security-quality",
+      "skills": ["code-reviewer"],
+      "status": "hired",
+      "hired_at": "2026-04-13",
+      "hired_by": "Gabriela"
+    }
+  ]
+}

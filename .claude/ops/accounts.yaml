@@ -1,0 +1,29 @@
+version: "1.0"
+updated_at: 2026-04-13
+
+accounts:
+  - platform: GitHub
+    function: versionamento de código
+    owner: a_definir
+    status: ativo
+
+  - platform: Vercel
+    function: deploy de front-end
+    owner: a_definir
+    status: ativo
+
+  - platform: Cloudflare
+    function: DNS, CDN, proteção
+    owner: a_definir
+    status: ativo
+
+  - platform: Supabase
+    function: banco de dados, auth
+    owner: a_definir
+    status: ativo
+
+  - platform: pagamentos
+    function: cobrar clientes
+    owner: a_definir
+    status: nao_confirmado
+    notes: "Stripe, Kiwify ou Hotmart — a definir"
