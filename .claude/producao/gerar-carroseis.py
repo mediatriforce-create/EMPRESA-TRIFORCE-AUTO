@@ -1516,6 +1516,79 @@ CARROSEIS = [
             }),
         ]
     },
+    {
+        "slug": "13-agua-das-ias",
+        "cover_photo_query": "data center server cooling water",
+        "slides": [
+            ("cover", {
+                "headline": "Cada pergunta que você faz para uma IA consome água de verdade",
+                "subheadline": "O custo oculto por trás dos data centers que ninguém estava contando",
+            }),
+            ("content", {
+                "num": 2,
+                "layout": "standard",
+                "photo_query": "water bottle glass half liter minimal white",
+                "title": "500 ml por conversa no ChatGPT",
+                "body": "Uma conversa de 20 a 50 perguntas consome <strong>meio litro de água</strong> para resfriar os servidores que processam suas respostas. (UC Riverside / UT Arlington, abr/2023)",
+            }),
+            ("content", {
+                "num": 3,
+                "layout": "heavy",
+                "photo_query": "server farm cooling towers water vapor aerial view",
+                "title": "Antes de responder uma única pergunta, o GPT-3 já gastou muito mais",
+                "body": "Só o treinamento do modelo consumiu <strong>700 mil litros de água</strong> evaporada nos data centers, antes de qualquer usuário digitar a primeira mensagem. (UC Riverside, 2023)",
+            }),
+            ("content", {
+                "num": 4,
+                "layout": "spotlight",
+                "accent": "700 mil litros\npara treinar\num único modelo",
+                "title": "",
+                "body": "",
+            }),
+            ("content", {
+                "num": 5,
+                "layout": "heavy",
+                "photo_query": "microsoft office headquarters corporate building",
+                "title": "A Microsoft consumiu 34% mais água em um único ano",
+                "body": "Em 2023, a empresa usou <strong>2,1 bilhões de galões de água</strong>, alta diretamente ligada à expansão da infraestrutura de IA com a OpenAI. (Microsoft Sustainability Report, 2023)",
+            }),
+            ("content", {
+                "num": 6,
+                "layout": "data",
+                "title": "O crescimento global não para",
+                "body": "Consumo hídrico projetado dos data centers globais (EESI / ISSA, 2023-2024)",
+                "chart": [
+                    {"label": "2023", "val": "560 bi litros", "pct": 30, "color": "rgba(255,255,255,0.55)"},
+                    {"label": "2028 (projeção)", "val": "+300%", "pct": 90, "color": "#FF6B00"},
+                ],
+            }),
+            ("content", {
+                "num": 7,
+                "layout": "standard",
+                "photo_query": "drought cracked earth dry ground aerial view",
+                "title": "66% dos novos data centers dos EUA ficam em zonas de escassez hídrica",
+                "body": "Regiões com pouca água já abrigam a maior parte da nova infraestrutura de IA. Regulações ambientais nessas áreas podem encarecer cloud computing nos próximos anos. (Bloomberg, 2025)",
+            }),
+            ("content", {
+                "num": 8,
+                "layout": "standard",
+                "photo_query": "data center immersion cooling liquid server sustainable technology",
+                "title": "A indústria está respondendo com resfriamento sem água",
+                "body": "A Microsoft lançou um design de data center que consome <strong>zero água</strong> para resfriamento. A pressão regulatória e o custo hídrico estão forçando a inovação. (Microsoft Cloud Blog, dez/2024)",
+            }),
+            ("content", {
+                "num": 9,
+                "layout": "standard",
+                "photo_query": "entrepreneur smartphone coffee shop thinking minimal",
+                "title": "O que isso muda para o seu negócio hoje",
+                "body": "Nada disso significa parar de usar IA. Significa escolher ferramentas com consciência: consolidar perguntas, evitar retrabalho e <strong>ficar de olho</strong> em como os custos de cloud vão se mover nos próximos anos.",
+            }),
+            ("cta", {
+                "main": "Tecnologia que faz sentido<br><span>para quem toca o próprio negócio</span>",
+                "sub": "Curadoria semanal de IA para pequenas empresas brasileiras — @triforceauto",
+            }),
+        ]
+    },
 ]
 
 
@@ -1579,6 +1652,7 @@ COVER_PHOTOS = {
     "12-gemini-31-pro":      "https://images.unsplash.com/photo-1638136264464-2711f0078d1e?w=1080&h=1350&fit=crop&auto=format&q=85",
     "anthropic-padres-claude": "https://gizmodo.com/app/uploads/2026/04/matrix-praying.jpg",
     "mundo-skills-ia":         "https://images.unsplash.com/photo-1655900298997-610bf4254578?w=1080&h=1350&fit=crop&auto=format&q=85",
+    "13-agua-das-ias":         "https://images.unsplash.com/photo-1561233835-f937539b95b9?w=1080&h=1350&fit=crop&auto=format&q=85",
 }
 
 
@@ -1626,6 +1700,8 @@ SLIDE_PHOTO_IDS = {
     "Small barbershop owner at counter smiling at phone AI chat interface on screen natural daylight warm tones candid documentary": "1666855181417-812fa8503f85",
     "small business owner phone messaging customer service warm light": "1551989745-8ac16ba81d78",
     "Futuristic dark control room multiple screens automated workflows empty chair neon blue orange accent lighting high tech cinematic": "1688413399578-14ebdde3666a",
+    "water bottle glass half liter minimal white":              "1548839140-29a749e1cf4d",
+    "microsoft office headquarters corporate building":         "1497366216548-37526078426a",
 }
 
 
