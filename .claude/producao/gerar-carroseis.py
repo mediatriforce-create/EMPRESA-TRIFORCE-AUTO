@@ -1068,6 +1068,36 @@ CARROSEIS = [
 CACHE_DIR = Path(__file__).parent / ".img-cache"
 CACHE_DIR.mkdir(exist_ok=True)
 
+UNSPLASH_ACCESS_KEY = "cG06jiqCb_3v5NuSIKAjRcjQUJmQH6yv3q8GsEMiy-k"
+
+
+def search_unsplash(query: str) -> str | None:
+    """Busca foto no Unsplash por texto e retorna URL do CDN pronta para uso."""
+    import json, urllib.request, urllib.parse
+    params = urllib.parse.urlencode({
+        "query": query,
+        "per_page": 1,
+        "orientation": "portrait",
+        "client_id": UNSPLASH_ACCESS_KEY,
+    })
+    try:
+        req = urllib.request.Request(
+            f"https://api.unsplash.com/search/photos?{params}",
+            headers={"Accept-Version": "v1"}
+        )
+        with urllib.request.urlopen(req, timeout=10) as resp:
+            data = json.loads(resp.read())
+        results = data.get("results", [])
+        if not results:
+            return None
+        raw_url = results[0]["urls"]["raw"]
+        # strip existing params e adiciona os nossos
+        base = raw_url.split("?")[0]
+        return f"{base}?w=1080&h=1350&fit=crop&auto=format&q=85"
+    except Exception as e:
+        print(f"    [unsplash api] erro: {e}")
+        return None
+
 # URLs de logos para os slides internos — baixados pelo Playwright
 LOGO_URLS = {
     "meta.com":      "https://logo.clearbit.com/meta.com?size=256",
@@ -1120,13 +1150,20 @@ SLIDE_PHOTO_IDS = {
 
 
 async def download_slide_photos(browser, carroseis: list) -> dict:
-    """Baixa foto única por slide a partir dos IDs verificados do Unsplash."""
+    """Baixa fotos dos slides — usa dicionário fixo ou busca automática via Unsplash API."""
     photos = {}
     page = await browser.new_page(viewport={"width": 1080, "height": 1350})
 
+    # Coleta todas as photo_queries usadas nos carrosséis
+    queries_needed = set()
+    for c in carroseis:
+        for slide_type, data in c["slides"]:
+            if slide_type == "content" and data.get("photo_query"):
+                queries_needed.add(data["photo_query"])
+
     print("\nBaixando fotos dos slides (Unsplash)...")
 
-    for query, photo_id in SLIDE_PHOTO_IDS.items():
+    for query in queries_needed:
         safe_name = re.sub(r"[^a-z0-9\-]", "_", query)[:50]
         cache_file = CACHE_DIR / f"slide_{safe_name}.jpg"
 
@@ -1135,11 +1172,18 @@ async def download_slide_photos(browser, carroseis: list) -> dict:
             print(f"  [cache] {query}")
             continue
 
-        url = (
-            f"https://images.unsplash.com/photo-{photo_id}"
-            f"?w=1080&h=1350&fit=crop&auto=format&q=85"
-        )
-        print(f"  [fetch] {query}")
+        # Tenta dicionário fixo primeiro, depois API
+        if query in SLIDE_PHOTO_IDS:
+            url = f"https://images.unsplash.com/photo-{SLIDE_PHOTO_IDS[query]}?w=1080&h=1350&fit=crop&auto=format&q=85"
+            print(f"  [dict] {query}")
+        else:
+            print(f"  [api] buscando: {query}")
+            url = search_unsplash(query)
+            if not url:
+                print(f"    sem resultado — pulando")
+                continue
+            print(f"    encontrou: {url[:80]}...")
+
         try:
             resp = await page.goto(url, wait_until="load", timeout=20000)
             if resp and resp.ok:
@@ -1188,12 +1232,16 @@ async def download_logos(browser) -> dict:
 
 
 async def download_cover_photos(browser) -> dict:
-    """Baixa fotos do Unsplash por URL direta e cacheia em disco."""
+    """Baixa fotos de cover — URL direta do dicionário ou busca automática via Unsplash API."""
     cached = {}
     page = await browser.new_page(viewport={"width": 1080, "height": 1350})
 
     print("\nBaixando fotos de cover (Unsplash)...")
-    for slug, url in COVER_PHOTOS.items():
+
+    # Coleta slugs de todos os carrosséis
+    slugs = [c["slug"] for c in CARROSEIS]
+
+    for slug in slugs:
         cache_file = CACHE_DIR / f"cover_{slug}.jpg"
 
         if cache_file.exists() and cache_file.stat().st_size > 30_000:
@@ -1201,8 +1249,21 @@ async def download_cover_photos(browser) -> dict:
             print(f"  [cache] {slug}")
             continue
 
+        # URL fixa no dicionário → usa direto
+        if slug in COVER_PHOTOS:
+            url = COVER_PHOTOS[slug]
+            print(f"  [dict] {slug}")
+        else:
+            # Busca via API usando cover_photo_query do carrossel
+            query = next((c.get("cover_photo_query", slug) for c in CARROSEIS if c["slug"] == slug), slug)
+            print(f"  [api] buscando cover: {query}")
+            url = search_unsplash(query)
+            if not url:
+                print(f"    sem resultado — pulando")
+                continue
+            print(f"    encontrou: {url[:80]}...")
+
         try:
-            print(f"  [fetch] {slug}")
             resp = await page.goto(url, wait_until="load", timeout=25000)
             if resp and resp.ok:
                 body = await resp.body()
