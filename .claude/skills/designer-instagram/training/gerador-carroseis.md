@@ -280,59 +280,152 @@ Exemplo: 1432888498266-38ffec3eaf0a
 
 IDs curtos tipo `ZMlcuVf2URA` (base62) são IDs de página, **não funcionam no CDN**.
 
-### Como encontrar e adicionar novos IDs — workflow com Firecrawl
+### Como encontrar fotos e logos — workflow completo com Firecrawl
 
-Quando o `SLIDE_PHOTO_IDS` não tem uma chave adequada para o tema do slide, use este fluxo:
+**A fonte de fotos não é só o Unsplash.** Use Firecrawl para buscar em qualquer lugar — Unsplash, Pexels, Google Imagens, sites de marca, press kits. Qualquer URL de imagem direta funciona.
 
-**Passo 1 — buscar no Unsplash via Firecrawl search:**
+---
+
+#### OPÇÃO A — Unsplash (fotos de alta qualidade, uso livre)
+
+**Passo 1 — buscar via Firecrawl search:**
 ```bash
-firecrawl search "unsplash person using laptop startup office" --limit 5 -o .firecrawl/unsplash-search.md
+firecrawl search "site:unsplash.com woman focused computer design" --limit 5
+firecrawl search "site:unsplash.com stock market chart falling dark" --limit 5
+firecrawl search "site:unsplash.com wireframe sketch ux design" --limit 5
 ```
 
-Busque em inglês, termos visuais concretos. Evite conceitos abstratos ("technology", "future") — prefira cenas reais ("person coding laptop", "barber cutting hair", "small shop owner").
+Busque em inglês, termos visuais concretos. Prefira cenas reais ("person coding laptop", "barber cutting hair") a conceitos abstratos ("technology", "future").
 
-**Passo 2 — pegar o ID longo da URL da foto:**
-A URL da página de uma foto no Unsplash é `unsplash.com/photos/XXXX-YYYYYYY`.
-O ID da imagem CDN está no formato longo: `1234567890123-abcdef123456`.
+O resultado traz URLs tipo `https://unsplash.com/photos/ABC123xyz` — o `ABC123xyz` é o ID curto.
 
-Para resolver um ID curto (página) para o ID longo (CDN), use:
+**Passo 2 — resolver ID curto → ID longo do CDN:**
 ```python
 import urllib.request
 
 class NoRedirect(urllib.request.HTTPErrorProcessor):
-    def http_response(self, req, resp):
-        return resp
+    def http_response(self, req, resp): return resp
+    https_response = http_response
 
 opener = urllib.request.build_opener(NoRedirect)
-opener.addheaders = [("Referer", "https://unsplash.com/")]
-resp = opener.open(f"https://unsplash.com/photos/{short_id}/download?force=true")
-location = resp.headers.get("Location", "")
-# location = "https://images.unsplash.com/photo-1234567890123-abcdef123456?..."
-long_id = location.split("photo-")[1].split("?")[0]
+opener.addheaders = [("Referer", "https://unsplash.com/"), ("User-Agent", "Mozilla/5.0")]
+
+short_ids = ["ABC123xyz", "DEF456uvw"]  # lista de IDs curtos encontrados
+for short_id in short_ids:
+    resp = opener.open(f"https://unsplash.com/photos/{short_id}/download?force=true")
+    loc = resp.headers.get("Location", "")
+    if "photo-" in loc:
+        long_id = loc.split("photo-")[1].split("?")[0]
+        print(f"{short_id} → {long_id}")
 ```
 
-**Passo 3 — adicionar ao dicionário:**
+**Passo 3 — baixar preview (400×500px) e verificar visualmente:**
+```python
+import urllib.request
+photo_id = "1234567890123-abcdef123456"
+url = f"https://images.unsplash.com/photo-{photo_id}?w=400&h=500&fit=crop&auto=format&q=85"
+urllib.request.urlretrieve(url, ".img-cache/preview_teste.jpg")
+```
+
+Abrir `.img-cache/preview_teste.jpg` com Read tool (imagens) e confirmar que a foto faz sentido. **Se não faz sentido imediato → descarta, busca outra.**
+
+**Passo 4 — adicionar ao dicionário (sem o prefixo photo-):**
 ```python
 SLIDE_PHOTO_IDS = {
     ...
-    "nome-descritivo-da-cena": "1234567890123-abcdef123456",   # sem photo-
+    "nome-descritivo-da-cena": "1234567890123-abcdef123456",
 }
 ```
 
-**Passo 4 — testar antes de rodar tudo:**
+---
+
+#### OPÇÃO B — Pexels (fotos gratuitas, sem precisar de conta)
+
 ```bash
-# Baixar só essa foto para verificar visualmente
-python -c "
-from pathlib import Path
-import urllib.request, base64
-photo_id = '1234567890123-abcdef123456'
-url = f'https://images.unsplash.com/photo-{photo_id}?w=400&h=500&fit=crop&auto=format&q=85'
-urllib.request.urlretrieve(url, '.img-cache/test.jpg')
-print('Foto baixada em .img-cache/test.jpg')
-"
+firecrawl search "site:pexels.com/photo woman designer laptop screen" --limit 5
 ```
 
-Abrir `.img-cache/test.jpg` e confirmar que a foto faz sentido para o slide antes de commitar.
+Pexels serve imagens direto via CDN: `images.pexels.com/photos/{ID}/...`
+O ID numérico na URL da página é o mesmo do CDN.
+
+URL de download: `https://images.pexels.com/photos/{ID}/pexels-photo-{ID}.jpeg?w=1080&h=1350&fit=crop`
+
+Adicionar em `SLIDE_PHOTO_IDS` com prefixo `pexels-`:
+```python
+"pexels-designer-laptop": "12345678",   # ID Pexels
+```
+
+E no `download_slide_photos()`, detectar o prefixo e montar a URL correta:
+```python
+if photo_id.startswith("pexels-"):
+    pid = photo_id.replace("pexels-", "")
+    url = f"https://images.pexels.com/photos/{pid}/pexels-photo-{pid}.jpeg?auto=compress&cs=tinysrgb&w=1080&h=1350&fit=crop"
+else:
+    url = f"https://images.unsplash.com/photo-{photo_id}?w=1080&h=1350&fit=crop&auto=format&q=85"
+```
+
+---
+
+#### OPÇÃO C — Logos de empresa (para slides com badge de marca)
+
+**Via press kit / site oficial (melhor qualidade):**
+```bash
+firecrawl search "anthropic press kit logo PNG" --limit 3
+firecrawl scrape "https://anthropic.com/brand" --only-main-content -o .firecrawl/anthropic-brand.md
+```
+
+Raspar a página de brand/press da empresa, pegar URL do logo SVG ou PNG.
+
+**Via favicon/apple-touch-icon (fallback rápido):**
+```bash
+# Pega o ícone de 180px (qualidade razoável)
+firecrawl scrape "https://n8n.io/apple-touch-icon.png" -o .img-cache/logo_n8n_io.png
+```
+
+Se o logo tiver fundo branco, remover com Pillow:
+```python
+from PIL import Image
+import numpy as np
+
+img = Image.open(".img-cache/logo_empresa.png").convert("RGBA")
+data = np.array(img)
+# pixels brancos → transparente
+branco = (data[:,:,0] > 240) & (data[:,:,1] > 240) & (data[:,:,2] > 240)
+data[branco, 3] = 0
+Image.fromarray(data).save(".img-cache/logo_empresa_transparente.png")
+```
+
+---
+
+#### OPÇÃO D — Qualquer imagem da web via URL direta
+
+Se encontrou uma imagem relevante em qualquer site:
+```bash
+firecrawl scrape "https://exemplo.com/pagina-com-imagem" --format markdown,links -o .firecrawl/pagina.json
+```
+
+Extrair a URL da imagem do JSON, baixar direto:
+```python
+import urllib.request
+urllib.request.urlretrieve("https://cdn.exemplo.com/imagem.jpg", ".img-cache/imagem-custom.jpg")
+```
+
+Embutir como base64 no HTML (já é o que o gerador faz com todas as fotos):
+```python
+import base64
+raw = open(".img-cache/imagem-custom.jpg", "rb").read()
+b64 = f"data:image/jpeg;base64,{base64.b64encode(raw).decode()}"
+```
+
+---
+
+#### Regra de verificação obrigatória antes de commitar
+
+Para cada foto nova:
+1. Baixar preview 400×500px em `.img-cache/preview_{nome}.jpg`
+2. Usar Read tool para ver a imagem
+3. Perguntar: "alguém que vê só essa foto entende o contexto do slide?"
+4. Se sim → commita. Se não → descarta e busca outra.
 
 ### Regra de unicidade por carrossel
 - Cada slide DEVE ter uma `photo_query` diferente

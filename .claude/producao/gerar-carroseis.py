@@ -1014,6 +1014,50 @@ CARROSEIS = [
             }),
         ]
     },
+
+    # ── CARROSSEL 09 — Claude Design ────────────────────────────────────────────
+    {
+        "slug": "09-claude-design",
+        "cover_photo_query": "designer-focused-computer",
+        "slides": [
+            ("cover", {
+                "headline": "A Anthropic lançou Claude Design.\nA Figma caiu 7% no mesmo dia.",
+                "subheadline": "17/04/2026 — o que a ferramenta faz, o que ela ainda não faz, e por que o mercado já sentiu.",
+            }),
+            ("content", {
+                "num": 2,
+                "layout": "standard",
+                "photo_query": "wireframe-sketch-ux-design",
+                "photo_height": "flex",
+                "title": "Não é gerador de imagem. É gerador de layout.",
+                "body": "Você descreve o que quer — ou sobe um sketch, PDF, screenshot existente.<br><br>Claude constrói: protótipos de UI, slides, pitch decks, one-pagers. Exporta em <strong>React, HTML, PDF e PPTX</strong> — direto para produção.",
+            }),
+            ("content", {
+                "num": 3,
+                "layout": "spotlight",
+                "accent": "Você descreve.\nClaude constrói.\nJá conectado ao\nseu GitHub.",
+                "title": "", "body": "Ele lê o código-fonte do seu produto — fontes, componentes, estilos já existentes — e gera protótipos coerentes com o que você já tem em produção. Não é qualquer coisa bonita. É o que combina com o que você já tem.",
+            }),
+            ("content", {
+                "num": 4,
+                "layout": "standard",
+                "photo_query": "stock-market-chart-falling",
+                "photo_height": "flex",
+                "title": "O mercado sentiu antes do lançamento.",
+                "body": "Figma acumulava <strong>-28% em março de 2026</strong> — mínima de 52 semanas em US$ 17,65 dois dias antes do anúncio.<br><br>No dia do lançamento: <strong>mais -7%</strong>.<br><br>O mercado antecipou o impacto antes que a maioria dos designers soubesse que a ferramenta existia.",
+            }),
+            ("content", {
+                "num": 5,
+                "layout": "spotlight",
+                "accent": "40% da sua cota.\nEm 1 hora.\nSem canvas colaborativo.\nSem handoff.",
+                "title": "", "body": "Opus 4.7 consome créditos rápido. Plano Pro ($20/mês) bate no teto antes do fim do dia de trabalho. Sem edição em tempo real com equipe. Sem design tokens versionados. É geração conversacional — não ambiente de design profissional.",
+            }),
+            ("cta", {
+                "main": "IA muda o jogo toda semana.<br><span>A Triforce traz o que importa.</span>",
+                "sub": "Curadoria semanal de IA para pequenas empresas brasileiras — @triforceauto",
+            }),
+        ]
+    },
 ]
 
 
@@ -1042,6 +1086,7 @@ COVER_PHOTOS = {
     "04-claude-vs-chatgpt":   "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=1080&h=1350&fit=crop&auto=format&q=85",
     "05-ia-pequenos-negocios":"https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=1080&h=1350&fit=crop&auto=format&q=85",
     "06-n8n-vai-acabar":     "https://images.unsplash.com/photo-1758876021444-3885d0a2539f?w=1080&h=1350&fit=crop&auto=format&q=85",
+    "09-claude-design":      "https://images.unsplash.com/photo-1569012871812-f38ee64cd54c?w=1080&h=1350&fit=crop&auto=format&q=85",
 }
 
 
@@ -1068,6 +1113,9 @@ SLIDE_PHOTO_IDS = {
     "smartphone-message-notification":    "1511707171634-5f897ff02aa9",
     "n8n-workflow-sticky-notes":          "1758876021444-3885d0a2539f",
     "api-code-integration":               "1623282033815-40b05d96c903",
+    "designer-focused-computer":          "1569012871812-f38ee64cd54c",
+    "wireframe-sketch-ux-design":         "1522542550221-31fd19575a2d",
+    "stock-market-chart-falling":         "1611974789855-9c2a0a7236a3",
 }
 
 

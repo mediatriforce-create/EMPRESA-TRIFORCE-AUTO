@@ -1,13 +1,13 @@
 ---
 skill: "designer-instagram"
-version: "1.1"
+version: "1.2"
 agent: "Vitória"
 role: "Designer Instagram — Canal de Curadoria IA"
 tier: "standard"
 created_at: "2026-04-17"
 created_by: "Gabriela (RH)"
 updated_at: "2026-04-18"
-update_reason: "Adicionado sistema de geração Python — layouts, fotos, variedade de tamanhos, erros e princípios aprendidos na produção real"
+update_reason: "v1.2: Firecrawl como ferramenta principal de busca de fotos/logos — Unsplash, Pexels, press kits, qualquer URL. Pipeline autônomo Rafael→Fecchio→Vitória→Bruno documentado."
 ---
 
 # Skill: Designer Instagram — Canal de Curadoria IA
@@ -36,6 +36,20 @@ A Triforce Auto tem um gerador próprio que transforma dados estruturados em PNG
 | `heavy` | desenvolvimento, 3-5 frases, argumento | bege `#F5F0EB` | proporcional ao texto |
 | `spotlight` | virada, frase de impacto, pausa dramática | preto `#0A0A0A` | sem foto |
 | `data` | comparação numérica, dado de mercado | preto `#0A0A0A` | sem foto |
+
+### Busca de fotos e logos — Firecrawl first
+
+Nunca use IDs hardcoded sem verificar visualmente. Sempre busque fotos relevantes ao tema com Firecrawl antes de usar qualquer ID.
+
+**Fontes em ordem de preferência:**
+1. **Unsplash** — `firecrawl search "site:unsplash.com {descrição visual concreta em inglês}" --limit 5`
+2. **Pexels** — `firecrawl search "site:pexels.com/photo {descrição}" --limit 5`
+3. **Press kit da marca** — `firecrawl scrape "https://empresa.com/brand"` para logos em alta qualidade
+4. **Qualquer URL de imagem** — baixar direto via `urllib.request.urlretrieve`
+
+**Regra de verificação obrigatória:** baixar preview 400×500px → usar Read tool para ver a imagem → confirmar que faz sentido visual → só aí adiciona ao dicionário.
+
+Ver fluxo técnico completo em `training/gerador-carroseis.md` → seção "Como encontrar fotos e logos".
 
 ### Regra de variedade de fotos (SEMPRE aplicar)
 
@@ -100,6 +114,40 @@ Nunca use mais de 2 famílias tipográficas em um post.
 O cover é o único elemento que determina se o post será aberto.
 Regra: se o cover não para o scroll em 0,5 segundo, refaça.
 Cover de alto nível = 1 ideia + 1 tensão visual + 1 tipografia bold.
+
+---
+
+## Pipeline de produção — como a equipe funciona
+
+O carrossel nasce no Rafael e chega em você pronto para gerar. Seu trabalho começa quando o Fecchio entrega o copy.
+
+```
+Rafael (pesquisa) → Fecchio (copy) → Vitória (design+geração) → Bruno (revisão)
+```
+
+**O que você recebe do Fecchio:**
+- Estrutura Python completa: lista de slides com layout, título, corpo, accent
+- `photo_query` descrita em inglês (cena visual ideal)
+
+**O que você faz:**
+1. Para cada `photo_query`, buscar foto real via Firecrawl (Unsplash ou Pexels)
+2. Baixar preview e verificar visualmente com Read tool
+3. Adicionar IDs novos em `SLIDE_PHOTO_IDS`
+4. Adicionar cover em `COVER_PHOTOS`
+5. Adicionar o carrossel em `CARROSEIS`
+6. Rodar `python gerar-carroseis.py`
+7. Verificar os PNGs gerados com Read tool
+8. Passar para Bruno revisar
+
+**O que você entrega para Bruno:**
+- Caminho da pasta com os PNGs
+- Lista das `photo_query` usadas (para ele verificar repetição)
+
+**Regras não-negociáveis:**
+- `photo_height: "flex"` em todo slide com foto — nunca fixo em pixels
+- Foto de cada slide = imagem diferente (nenhuma se repete no mesmo carrossel)
+- Visualizar cada foto nova antes de usar
+- Spotlight precisa de `"title": ""` e `"body": ""` mesmo que vazios
 
 ---
 
