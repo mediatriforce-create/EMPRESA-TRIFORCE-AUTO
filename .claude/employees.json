@@ -114,5 +114,20 @@
       "hired_at": "2026-04-17",
       "hired_by": "Gabriela"
     }
+    ,{
+      "id": "revisor-design",
+      "name": "Bruno",
+      "role": "Revisor de Design de Carrosséis Instagram",
+      "seniority": "senior",
+      "tier": "standard",
+      "reports_to": "fundador",
+      "description": "Revisa os PNGs gerados pela Vitória antes de publicar. Detecta e reporta erros visuais com precisão — fotos repetidas, espaço em branco, foto sem sentido, contraste insuficiente, ritmo ruim. Não redesenha, não reescreve código. Só revisa e dá feedback acionável por slide.",
+      "specialty": "editorial-design-review-social-media",
+      "teams": ["marketing-instagram"],
+      "skills": ["revisor-design", "image-analysis"],
+      "status": "hired",
+      "hired_at": "2026-04-18",
+      "hired_by": "Gabriela"
+    }
   ]
 }

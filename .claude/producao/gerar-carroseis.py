@@ -342,10 +342,8 @@ def content_slide(num, title, body_html, logo_domain=None, logo_b64=None, bg_fil
         # Determina altura da foto: explícito > automático por layout
         if photo_height:
             h = photo_height
-        elif layout == "heavy":
-            h = "320px"   # heavy tem mais texto → foto menor por padrão
         else:
-            h = "flex"    # standard → foto preenche tudo
+            h = "flex"    # padrão absoluto: foto preenche o espaço restante
 
         img = _img_box(logo_b64, bg_file, logo_domain, height=h)
         if layout == "heavy":

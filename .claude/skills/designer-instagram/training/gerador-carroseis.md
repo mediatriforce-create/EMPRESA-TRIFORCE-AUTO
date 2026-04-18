@@ -162,51 +162,63 @@ Bloco secundário (ChatGPT): fundo escuro + número apagado
 
 ---
 
-## Variedade de tamanho de fotos — OBRIGATÓRIO
+## Fotos — Regras absolutas (aprendidas na produção real)
 
-**Todos os slides com a mesma altura de foto = carrossel monótono = feed entediante.**
+### REGRA 1: Nunca repetir fotos no mesmo carrossel
 
-O sistema suporta alturas variadas. Use isso.
+**Cada slide com foto usa uma `photo_query` diferente.** Usar a mesma chave em dois slides = mesma foto aparece duas vezes = leitor percebe = carrossel amador.
 
-### Como definir a altura
+Verifique: antes de fechar o carrossel, liste todas as `photo_query` usadas. Nenhuma pode se repetir. Se não tiver chave nova suficiente no `SLIDE_PHOTO_IDS`, adicione novas entradas antes de rodar.
 
-No slide de conteúdo, adicione `photo_height`:
+### REGRA 2: `photo_height: "flex"` é sempre o padrão — SEMPRE
+
+`flex` significa: a foto ocupa exatamente o espaço que sobrar depois do texto. Se o texto é curto → foto grande. Se o texto é longo → foto menor. **Nunca deixa espaço em branco. Nunca corta.**
+
 ```python
+# CORRETO — foto se adapta ao texto automaticamente
 ("content", {
     "layout": "standard",
-    "photo_height": "flex",    # ou "280px", "380px", "480px", "550px"
-    ...
+    "photo_height": "flex",   # ← sempre isso, salvo exceção justificada
+    "title": "...",
+    "body": "..."
 })
 ```
 
-Se `photo_height` não for especificado, o padrão é:
-- `standard` → `flex` (foto preenche tudo)
-- `heavy` → `flex` (foto preenche tudo)
+Alturas fixas em pixels (`"320px"`, `"420px"`) SÓ se usadas quando você quer deliberadamente comprimir a foto independente do texto — raramente necessário.
 
-### Critério de escolha
+### REGRA 3: Texto longo demais + foto = sem foto
 
-| Texto do slide | Altura recomendada | Resultado |
-|---|---|---|
-| 1 frase curta | `flex` | Foto domina — impacto máximo |
-| 2 frases | `550px` | Foto grande, texto visível |
-| 3 frases médias | `420px` | Equilíbrio visual |
-| 4 frases / `heavy` | `320px` | Texto importa mais |
-| 5+ frases / `heavy` longo | `260px` | Texto domina, foto é contexto |
-| `spotlight` | — sem foto | Slide escuro puro |
-| `data` | — sem foto | Slide de dados puro |
+Se o slide `heavy` tem 5+ frases longas, a foto flex vai virar uma tira de ~150px de altura — parece cortada, é feia. **Solução: remova a foto desse slide.** Use `spotlight` ou `data` para alternar o ritmo visual.
 
-### Ritmo recomendado no carrossel
+**Critério prático:**
+- Título + corpo ocupa mais de 900px de altura → não coloca foto
+- Título + corpo ocupa entre 500–900px → foto flex funciona bem
+- Título + corpo ocupa menos de 500px → foto flex domina o slide (ideal para abertura)
+
+### REGRA 4: Toda foto precisa ter relação visual com o tema
+
+A foto não é decoração. O leitor olha a foto e instantaneamente entende do que o slide fala — antes de ler uma palavra.
+
+❌ **Errado:** slide sobre automação de processos → foto de datacenter genérica
+✅ **Certo:** slide sobre automação de processos → foto de alguém mapeando um fluxo, post-its no quadro, teclado com código
+
+❌ **Errado:** slide sobre IA em pequenos negócios → foto de arranha-céus
+✅ **Certo:** slide sobre IA em pequenos negócios → foto de dono de loja atendendo cliente, café, barbearia
+
+**Antes de escolher a `photo_query`, se pergunte:** "Um leitor que vê só essa foto entende o contexto do slide?"
+
+### Ritmo visual — padrão de 6 slides
 
 ```
-Slide 1 (cover):     foto full — editorial escuro
-Slide 2 (abertura):  foto grande (flex) — impacto, texto curto
-Slide 3 (spotlight): sem foto — pausa dramática
-Slide 4 (argumento): foto média (380–420px) — equilíbrio
-Slide 5 (leitura):   foto pequena (280–320px) — texto domina
-Slide 6 (CTA):       sem foto — escuro como cover
+Slide 1 (cover):       foto full escura — editorial, foto domina
+Slide 2 (standard):    foto flex — texto curto, foto grande, impacto
+Slide 3 (spotlight):   sem foto — pausa dramática, slide escuro
+Slide 4 (data/heavy):  sem foto OU foto flex com texto médio
+Slide 5 (heavy):       foto flex — texto mais longo, foto menor naturalmente
+Slide 6 (CTA):         sem foto — escuro como cover
 ```
 
-O carrossel precisa **respirar**. Variar tamanho de foto = variar ritmo = leitor engajado.
+O carrossel precisa **respirar**. Cover escuro → bege aberto → escuro de pausa → dados → bege argumento → escuro CTA = ritmo profissional.
 
 ---
 
@@ -268,94 +280,158 @@ Exemplo: 1432888498266-38ffec3eaf0a
 
 IDs curtos tipo `ZMlcuVf2URA` (base62) são IDs de página, **não funcionam no CDN**.
 
-### Como adicionar um novo ID
-1. Abrir a foto no Unsplash: `unsplash.com/photos/ZMlcuVf2URA`
-2. A URL da imagem real é exibida ao inspecionar o elemento `<img>` — copiar o ID numérico longo
-3. Adicionar em `SLIDE_PHOTO_IDS` **sem** o prefixo `photo-`
+### Como encontrar e adicionar novos IDs — workflow com Firecrawl
+
+Quando o `SLIDE_PHOTO_IDS` não tem uma chave adequada para o tema do slide, use este fluxo:
+
+**Passo 1 — buscar no Unsplash via Firecrawl search:**
+```bash
+firecrawl search "unsplash person using laptop startup office" --limit 5 -o .firecrawl/unsplash-search.md
+```
+
+Busque em inglês, termos visuais concretos. Evite conceitos abstratos ("technology", "future") — prefira cenas reais ("person coding laptop", "barber cutting hair", "small shop owner").
+
+**Passo 2 — pegar o ID longo da URL da foto:**
+A URL da página de uma foto no Unsplash é `unsplash.com/photos/XXXX-YYYYYYY`.
+O ID da imagem CDN está no formato longo: `1234567890123-abcdef123456`.
+
+Para resolver um ID curto (página) para o ID longo (CDN), use:
+```python
+import urllib.request
+
+class NoRedirect(urllib.request.HTTPErrorProcessor):
+    def http_response(self, req, resp):
+        return resp
+
+opener = urllib.request.build_opener(NoRedirect)
+opener.addheaders = [("Referer", "https://unsplash.com/")]
+resp = opener.open(f"https://unsplash.com/photos/{short_id}/download?force=true")
+location = resp.headers.get("Location", "")
+# location = "https://images.unsplash.com/photo-1234567890123-abcdef123456?..."
+long_id = location.split("photo-")[1].split("?")[0]
+```
+
+**Passo 3 — adicionar ao dicionário:**
+```python
+SLIDE_PHOTO_IDS = {
+    ...
+    "nome-descritivo-da-cena": "1234567890123-abcdef123456",   # sem photo-
+}
+```
+
+**Passo 4 — testar antes de rodar tudo:**
+```bash
+# Baixar só essa foto para verificar visualmente
+python -c "
+from pathlib import Path
+import urllib.request, base64
+photo_id = '1234567890123-abcdef123456'
+url = f'https://images.unsplash.com/photo-{photo_id}?w=400&h=500&fit=crop&auto=format&q=85'
+urllib.request.urlretrieve(url, '.img-cache/test.jpg')
+print('Foto baixada em .img-cache/test.jpg')
+"
+```
+
+Abrir `.img-cache/test.jpg` e confirmar que a foto faz sentido para o slide antes de commitar.
 
 ### Regra de unicidade por carrossel
-- Cada slide DEVE ter uma foto diferente
-- Foto do cover ≠ fotos dos slides internos
-- Fotos tematicamente relevantes por slide (barbeiro para slide de barbearia, academia para personal trainer)
+- Cada slide DEVE ter uma `photo_query` diferente
+- Foto do cover ≠ fotos dos slides internos (IDs diferentes)
+- Fotos tematicamente autoexplicativas: alguém vê a foto sem ler → entende o contexto do slide
 
 ---
 
-## Estrutura completa de um carrossel
+## Estrutura de um carrossel — é flexível, não predefinida
+
+**Não existe sequência obrigatória de slides.** O copy define quantos slides, em que ordem, com que densidade de texto. O design adapta.
+
+A única regra fixa: **último slide é sempre CTA.**
+
+O resto depende do que Fecchio entregou. Um carrossel pode ter 5 slides ou 8. Pode ter dois spotlights seguidos. Pode não ter nenhum dado. Pode ter três heavy consecutivos. Cada conteúdo tem sua estrutura ideal.
+
+### Anatomia de cada tipo de slide
+
+**`cover`** — sempre o primeiro:
+```python
+("cover", {
+    "headline": "Manchete em até 8 palavras fortes",
+    "subheadline": "Uma linha de contexto — o que o leitor vai aprender",
+})
+```
+
+**`content` standard** — texto curto, foto domina:
+```python
+("content", {
+    "num": N,
+    "layout": "standard",
+    "photo_query": "chave-unica-no-SLIDE_PHOTO_IDS",
+    "photo_height": "flex",   # SEMPRE flex — foto preenche o que sobrar
+    "title": "Título direto",
+    "body": "1–2 frases com <strong>destaque</strong>."
+})
+```
+
+**`content` heavy** — texto longo, foto menor:
+```python
+("content", {
+    "num": N,
+    "layout": "heavy",
+    "photo_query": "chave-unica-diferente-das-outras",
+    "photo_height": "flex",   # SEMPRE flex — nunca fixo em pixels
+    "title": "Título",
+    "body": "3–5 frases.<br><br>Segundo parágrafo. <strong>Conclusão.</strong>"
+})
+```
+
+> **Se o texto for muito longo (5+ frases densas):** remova a foto completamente — não passe `photo_query`. O slide fica só texto no bege. Isso é melhor do que foto virar tira de 150px.
+
+**`content` spotlight** — pausa dramática, sem foto:
+```python
+("content", {
+    "num": N,
+    "layout": "spotlight",
+    "accent": "Primeira linha em laranja.\nDemais linhas em branco.\nUma ideia por linha.",
+    "body": "Sub-texto em cinza abaixo da frase principal."  # pode ser ""
+})
+```
+
+**`content` data** — comparação numérica, sem foto:
+```python
+("content", {
+    "num": N,
+    "layout": "data",
+    "title": "Título do dado",
+    "body": "Contexto — fonte, período",
+    "chart": [
+        {"label": "Opção A", "pct": 85, "val": "6×",  "color": "#FF6B00"},
+        {"label": "Opção B", "pct": 15, "val": "1×",  "color": "#555"},
+        {"source": "Fonte — metodologia"},
+    ]
+})
+```
+
+**`cta`** — sempre o último:
+```python
+("cta", {
+    "main": "Frase principal com <span>destaque em laranja</span>.",
+    "sub": "Sub-texto — o que fazer agora."
+})
+```
+
+### Exemplo real de estrutura variável
 
 ```python
-{
-    "slug": "06-novo-topico",
-    "cover_photo_query": "descrição visual do cover",
-    "cover_logo_domain": "empresa.com",   # opcional
-    "slides": [
+# 5 slides — carrossel enxuto
+slides = [cover, standard, spotlight, heavy, cta]
 
-        # ── SLIDE 1: COVER ──────────────────────────────────────
-        ("cover", {
-            "headline": "Manchete em até 8 palavras fortes",
-            "subheadline": "Uma linha de contexto — o que o leitor vai aprender",
-        }),
+# 7 slides — carrossel completo
+slides = [cover, standard, spotlight, heavy, data, heavy, cta]
 
-        # ── SLIDE 2: ABERTURA — standard, foto grande ──────────
-        ("content", {
-            "num": 2,
-            "layout": "standard",
-            "photo_query": "chave-do-SLIDE_PHOTO_IDS",
-            "photo_height": "flex",        # texto curto → foto grande
-            "title": "O que é",
-            "body": "Uma ou duas frases com <strong>destaque inline</strong>."
-        }),
-
-        # ── SLIDE 3: PAUSA DRAMÁTICA — spotlight ───────────────
-        ("content", {
-            "num": 3,
-            "layout": "spotlight",
-            "accent": "Linha em laranja.\nLinhas em branco.\nUma ideia por linha.",
-            "body": "Sub-texto contextual após a frase de impacto."
-        }),
-
-        # ── SLIDE 4: ARGUMENTO — heavy, foto média ─────────────
-        ("content", {
-            "num": 4,
-            "layout": "heavy",
-            "photo_query": "outra-chave-diferente",
-            "photo_height": "360px",       # texto médio → foto média
-            "logo_domain": "empresa.com",  # opcional
-            "title": "Por que isso importa",
-            "body": "Parágrafo de argumento 1.<br><br>Parágrafo 2. <strong>Conclusão forte.</strong>"
-        }),
-
-        # ── SLIDE 5: PROVA COM DADO ─────────────────────────────
-        ("content", {
-            "num": 5,
-            "layout": "data",
-            "title": "O número que prova",
-            "body": "Contexto do dado — fonte, período, metodologia",
-            "chart": [
-                {"stat": "NX", "label": "descrição do stat", "color": "#FF6B00"},
-                {"label": "Opção A", "pct": 85, "val": "NX",  "color": "#FF6B00"},
-                {"label": "Opção B", "pct": 15, "val": "1×",  "color": "#555"},
-                {"source": "Nome da fonte — metodologia resumida"},
-            ]
-        }),
-
-        # ── SLIDE 6: LEITURA DENSA — heavy, foto pequena ───────
-        ("content", {
-            "num": 6,
-            "layout": "heavy",
-            "photo_query": "chave-relevante-diferente",
-            "photo_height": "260px",       # texto longo → foto pequena
-            "title": "O que fazer com isso",
-            "body": "Texto longo com 4+ frases.<br><br>Argumento final. <strong>Chamada para ação implícita.</strong>"
-        }),
-
-        # ── SLIDE 7: CTA ────────────────────────────────────────
-        ("cta", {
-            "main": "Frase principal com <span>destaque em laranja</span>.",
-            "sub": "Sub-texto do CTA — o que fazer agora, como começar."
-        }),
-    ]
-}
+# 6 slides — com dois argumentos
+slides = [cover, standard, heavy, data, heavy, cta]
 ```
+
+O número e a ordem emergem do copy. O design não força.
 
 ---
 
