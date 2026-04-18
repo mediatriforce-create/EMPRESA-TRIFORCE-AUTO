@@ -1,0 +1,15 @@
+{
+  "started_at": "2026-04-17",
+  "empresa": "Triforce Auto",
+  "slug": "triforce-auto",
+  "mode": null,
+  "steps": {
+    "1_identificacao": "in_progress",
+    "2_coleta": "pending",
+    "3_brand": "pending",
+    "4_infraestrutura": "pending",
+    "5_painel": "pending",
+    "6_dashboard": "pending",
+    "7_commit": "pending"
+  }
+}

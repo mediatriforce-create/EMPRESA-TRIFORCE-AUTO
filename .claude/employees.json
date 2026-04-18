@@ -42,8 +42,7 @@
       "status": "hired",
       "hired_at": "2026-04-13",
       "hired_by": "fundador"
-    }
-  ,
+    },
     {
       "id": "copywriter",
       "name": "Fecchio",
@@ -57,8 +56,7 @@
       "status": "hired",
       "hired_at": "2026-04-13",
       "hired_by": "Gabriela"
-    }
-  ,
+    },
     {
       "id": "code-reviewer",
       "name": "Marcelo",
@@ -71,6 +69,48 @@
       "skills": ["code-reviewer"],
       "status": "hired",
       "hired_at": "2026-04-13",
+      "hired_by": "Gabriela"
+    },
+    {
+      "id": "designer-instagram",
+      "name": "Vitória",
+      "role": "Designer Instagram — Canal de Curadoria IA",
+      "seniority": "senior",
+      "tier": "standard",
+      "reports_to": "fundador",
+      "description": "Produz toda a identidade visual do canal de curadoria de IA no Instagram. Cards, carrosséis e reels cover. Sistema modular, batch semanal, entrega pronta para publicar.",
+      "specialty": "instagram-design-ai-content",
+      "skills": ["designer-instagram"],
+      "status": "hired",
+      "hired_at": "2026-04-17",
+      "hired_by": "Gabriela"
+    },
+    {
+      "id": "social-media",
+      "name": "Larissa",
+      "role": "Social Media Estrategista",
+      "seniority": "senior",
+      "tier": "standard",
+      "reports_to": "fundador",
+      "description": "Gerencia o canal de curadoria de IA no Instagram. Planeja calendário editorial mensal, agenda via Later/Buffer, analisa métricas e integra IA para prever tendências e otimizar conteúdo.",
+      "specialty": "instagram-strategy-ai-content",
+      "skills": ["social-media"],
+      "status": "hired",
+      "hired_at": "2026-04-17",
+      "hired_by": "Gabriela"
+    },
+    {
+      "id": "curador-ia",
+      "name": "Rafael",
+      "role": "Pesquisador e Curador de IA Senior",
+      "seniority": "senior",
+      "tier": "standard",
+      "reports_to": "fundador",
+      "description": "Monitora o ecossistema global de IA diariamente, filtra ruído e hype, e transforma notícias técnicas em conteúdo acessível para o canal de curadoria de IA da Triforce Auto no Instagram.",
+      "specialty": "ai-research-content-curation",
+      "skills": ["curador-ia"],
+      "status": "hired",
+      "hired_at": "2026-04-17",
       "hired_by": "Gabriela"
     }
   ]
