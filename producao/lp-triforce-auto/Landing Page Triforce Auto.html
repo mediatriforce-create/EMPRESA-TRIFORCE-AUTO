@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Copy + design + sistema em um pacote só. Seu site no ar em dias, escrito para vender. Preço fixo, sem susto no final. Para clínicas, coaches e infoprodutores.">
+<meta property="og:title" content="Triforce Auto — Seu site no ar em dias. Escrito para vender.">
+<meta property="og:description" content="Copy + design + sistema em um pacote só. Preço fixo. Sem susto no final.">
+<meta property="og:type" content="website">
+<title>Triforce Auto — Seu site no ar em dias. Escrito para vender.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+/*EDITMODE-BEGIN*/
+{
+  "primaryColor": "#FF6B00",
+  "darkMode": true,
+  "bgColor": "#0A0A0A",
+  "textColor": "#F5F0EB",
+  "secondaryBg": "#1A1A1A",
+  "headlineFont": "Syne",
+  "bodyFont": "Inter",
+  "whatsappNumber": "5511999999999",
+  "tweaks": [
+    {"id": "primaryColor", "label": "Cor de destaque", "type": "color", "value": "#FF6B00"},
+    {"id": "darkMode", "label": "Modo escuro", "type": "boolean", "value": true}
+  ]
+}
+/*EDITMODE-END*/
+  :root {
+    --primary: #FF6B00;
+    --bg: #0A0A0A;
+    --bg2: #1A1A1A;
+    --text: #F5F0EB;
+    --text-muted: rgba(245, 240, 235, 0.55);
+    --border: rgba(245, 240, 235, 0.1);
+    --radius: 12px;
+    --font-headline: 'Syne', sans-serif;
+    --font-body: 'Inter', sans-serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    width: 100%;
+    overflow-x: hidden;
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+    background: rgba(10, 10, 10, 0.92);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 24px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .nav-logo {
+    font-family: var(--font-headline);
+    font-size: 1.25rem;
+    color: var(--text);
+    text-decoration: none;
+    letter-spacing: -0.5px;
+  }
+
+  .nav-logo span { color: var(--primary); }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--primary);
+    color: #fff;
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 0.9rem;
+    padding: 10px 22px;
+    border-radius: 8px;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+    white-space: nowrap;
+  }
+
+  .btn:hover { background: #e05d00; transform: translateY(-1px); }
+  .btn:active { transform: translateY(0); }
+
+  .btn-outline {
+    background: transparent;
+    border: 1.5px solid var(--primary);
+    color: var(--primary);
+  }
+
+  .btn-outline:hover { background: var(--primary); color: #fff; }
+
+  .btn-lg {
+    font-size: 1rem;
+    padding: 14px 32px;
+    border-radius: 10px;
+  }
+
+  /* ─── HERO ─── */
+  #hero {
+    padding: 140px 0 96px;
+    text-align: center;
+  }
+
+  .hero-eyebrow {
+    display: inline-block;
+    background: rgba(255, 107, 0, 0.12);
+    color: var(--primary);
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 6px 16px;
+    border-radius: 100px;
+    margin-bottom: 28px;
+    border: 1px solid rgba(255, 107, 0, 0.25);
+  }
+
+  .hero-headline {
+    font-family: var(--font-headline);
+    font-size: clamp(2.4rem, 5.5vw, 4rem);
+    line-height: 1.08;
+    letter-spacing: -2px;
+    max-width: 820px;
+    margin: 0 auto 24px;
+  }
+
+  .hero-headline .accent { color: var(--primary); }
+
+  .hero-sub {
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    color: var(--text-muted);
+    max-width: 620px;
+    margin: 0 auto 40px;
+    line-height: 1.65;
+  }
+
+  .hero-cta-group {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .hero-social-proof {
+    margin-top: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 32px;
+    flex-wrap: wrap;
+  }
+
+  .proof-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .proof-number {
+    font-family: var(--font-headline);
+    font-size: 1.9rem;
+    letter-spacing: -1px;
+    color: var(--primary);
+  }
+
+  .proof-label {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+  }
+
+  .proof-divider {
+    width: 1px;
+    height: 40px;
+    background: var(--border);
+  }
+
+  /* ─── DOR ─── */
+  #dor {
+    padding: 96px 0;
+    background: var(--bg2);
+  }
+
+  .section-title {
+    font-family: var(--font-headline);
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    letter-spacing: -1.5px;
+    line-height: 1.1;
+    margin-bottom: 56px;
+  }
+
+  .dor-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 24px;
+    margin-bottom: 48px;
+  }
+
+  .dor-card {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 32px 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .dor-card-tag {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    color: var(--primary);
+  }
+
+  .dor-card-title {
+    font-family: var(--font-headline);
+    font-size: 1.25rem;
+    letter-spacing: -0.5px;
+  }
+
+  .dor-card-text {
+    font-size: 0.92rem;
+    color: var(--text-muted);
+    line-height: 1.7;
+  }
+
+  .dor-fechamento {
+    max-width: 600px;
+    margin: 0;
+    font-size: 1.1rem;
+    line-height: 1.65;
+    color: var(--text-muted);
+    border-left: 3px solid var(--primary);
+    padding-left: 20px;
+  }
+
+  /* ─── SOLUÇÃO ─── */
+  #solucao {
+    padding: 96px 0;
+  }
+
+  .solucao-intro {
+    max-width: 680px;
+    margin: 0 0 56px;
+    font-size: 1.05rem;
+    color: var(--text-muted);
+    line-height: 1.75;
+  }
+
+  .solucao-intro p + p { margin-top: 12px; }
+
+  .pilares-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2px;
+    border-radius: var(--radius);
+    overflow: hidden;
+    margin-bottom: 48px;
+  }
+
+  .pilar {
+    background: var(--bg2);
+    padding: 40px 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .pilar-icon {
+    width: 44px;
+    height: 44px;
+    background: rgba(255, 107, 0, 0.12);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+  }
+
+  .pilar-name {
+    font-family: var(--font-headline);
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--primary);
+  }
+
+  .pilar-text {
+    font-size: 0.92rem;
+    color: var(--text-muted);
+    line-height: 1.75;
+  }
+
+  .solucao-fechamento {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .solucao-fechamento p {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    line-height: 1.65;
+  }
+
+  /* ─── DIFERENCIAIS ─── */
+  #diferenciais {
+    padding: 96px 0;
+    background: var(--bg2);
+  }
+
+  .dif-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px;
+    margin-top: 48px;
+  }
+
+  .dif-card {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 36px 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    transition: border-color 0.2s;
+  }
+
+  .dif-card:hover { border-color: rgba(255, 107, 0, 0.35); }
+
+  .dif-num {
+    font-family: var(--font-headline);
+    font-size: 2.5rem;
+    letter-spacing: -2px;
+    color: rgba(255, 107, 0, 0.2);
+    line-height: 1;
+  }
+
+  .dif-title {
+    font-family: var(--font-headline);
+    font-size: 1.15rem;
+    letter-spacing: -0.3px;
+    line-height: 1.2;
+  }
+
+  .dif-text {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    line-height: 1.75;
+  }
+
+  /* ─── PREÇO ─── */
+  #preco {
+    padding: 96px 0;
+  }
+
+  .preco-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+    margin-top: 56px;
+  }
+
+  .plano {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 40px 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    position: relative;
+  }
+
+  .plano-destaque {
+    border-color: var(--primary);
+    background: #1A1A1A;
+  }
+
+  .plano-badge {
+    position: absolute;
+    top: -14px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--primary);
+    color: #fff;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 5px 16px;
+    border-radius: 100px;
+    white-space: nowrap;
+  }
+
+  .plano-name {
+    font-family: var(--font-headline);
+    font-size: 1rem;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+  }
+
+  .plano-price {
+    font-family: var(--font-headline);
+    font-size: 2.8rem;
+    letter-spacing: -2px;
+    line-height: 1;
+    color: var(--text);
+    margin-bottom: 8px;
+  }
+
+  .plano-tagline {
+    font-size: 0.88rem;
+    color: var(--text-muted);
+    line-height: 1.55;
+    margin-bottom: 28px;
+  }
+
+  .plano-divider {
+    height: 1px;
+    background: var(--border);
+    margin-bottom: 24px;
+  }
+
+  .plano-features {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 32px;
+    flex: 1;
+  }
+
+  .plano-features li {
+    font-size: 0.88rem;
+    color: var(--text-muted);
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    line-height: 1.5;
+  }
+
+  .plano-features li::before {
+    content: "✓";
+    color: var(--primary);
+    font-weight: 700;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .plano-ideal {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    font-style: italic;
+    margin-bottom: 24px;
+    padding-top: 8px;
+    border-top: 1px solid var(--border);
+  }
+
+  .plano .btn { align-self: flex-start; width: 100%; justify-content: center; }
+
+  .preco-nota {
+    margin-top: 40px;
+    padding: 24px 28px;
+    background: var(--bg2);
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+  }
+
+  .preco-nota p {
+    font-size: 0.88rem;
+    color: var(--text-muted);
+    line-height: 1.7;
+  }
+
+  .preco-nota p + p { margin-top: 6px; }
+
+  /* ─── CTA FINAL ─── */
+  #cta-final {
+    padding: 96px 0;
+    background: var(--bg2);
+    text-align: center;
+  }
+
+  .cta-final-inner {
+    max-width: 680px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .cta-final-inner .section-title {
+    margin-bottom: 0;
+  }
+
+  .cta-body {
+    font-size: 1.05rem;
+    color: var(--text-muted);
+    line-height: 1.75;
+  }
+
+  .cta-body p + p { margin-top: 8px; }
+
+  .cta-disclaimer {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    opacity: 0.7;
+  }
+
+  .cta-suporte {
+    font-size: 0.88rem;
+    color: var(--text-muted);
+  }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--bg);
+    border-top: 1px solid var(--border);
+    padding: 28px 24px;
+    text-align: center;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+  }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 640px) {
+    .hero-cta-group { flex-direction: column; align-items: center; margin: 0 auto; }
+    .hero-social-proof { gap: 20px; }
+    .proof-divider { display: none; }
+    .pilares-grid { gap: 1px; }
+    .preco-grid { grid-template-columns: 1fr; }
+    .dif-grid { grid-template-columns: 1fr; }
+    .dor-grid { grid-template-columns: 1fr; }
+    .nav-logo { font-size: 1rem; }
+  }
+
+  /* ─── FOCUS / ACESSIBILIDADE ─── */
+  :focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  /* ─── REDUCED MOTION ─── */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      transition: none !important;
+      animation: none !important;
+    }
+    html { scroll-behavior: auto; }
+  }
+
+  /* ─── TWEAKS PANEL (oculto por padrão) ─── */
+  #tweaks-panel {
+    display: none;
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<header>
+<nav aria-label="Navegação principal">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">Triforce<span>Auto</span></a>
+    <a href="https://wa.me/5511999999999?text=Quero+meu+site" class="btn" target="_blank" rel="noopener noreferrer">Quero meu site</a>
+  </div>
+</nav>
+</header>
+
+<main>
+<!-- HERO -->
+<section id="hero">
+  <div class="container">
+    <div class="hero-eyebrow">Copy + Design + Sistema — pacote completo</div>
+    <h1 class="hero-headline">
+      Seu site vai no ar em dias.<br>
+      <span class="accent">Escrito para vender.</span><br>
+      Funcionando no dia 1.
+    </h1>
+    <p class="hero-sub">
+      Copy + design + sistema em um pacote só. Preço fixo. Sem susto no final.<br>
+      Para clínicas, coaches e infoprodutores que estão cansados de perder venda para concorrente com site pior que o seu.
+    </p>
+    <div class="hero-cta-group">
+      <a href="https://wa.me/5511999999999?text=Quero+falar+sobre+meu+site" class="btn btn-lg" target="_blank" rel="noopener noreferrer">→ Falar no WhatsApp e ver os pacotes</a>
+      <a href="#preco" class="btn btn-outline btn-lg">Ver preços</a>
+    </div>
+    <div class="hero-social-proof">
+      <div class="proof-item">
+        <span class="proof-number">+120</span>
+        <span class="proof-label">Sites entregues</span>
+      </div>
+      <div class="proof-divider"></div>
+      <div class="proof-item">
+        <span class="proof-number">7</span>
+        <span class="proof-label">Dias até o ar</span>
+      </div>
+      <div class="proof-divider"></div>
+      <div class="proof-item">
+        <span class="proof-number">R$ 847</span>
+        <span class="proof-label">Começa em</span>
+      </div>
+      <div class="proof-divider"></div>
+      <div class="proof-item">
+        <span class="proof-number">1h</span>
+        <span class="proof-label">Resposta no WA</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DOR -->
+<section id="dor">
+  <div class="container">
+    <h2 class="section-title">Se você já passou por algum disso,<br>a gente está falando com você.</h2>
+    <div class="dor-grid">
+      <div class="dor-card">
+        <span class="dor-card-tag">O freelancer</span>
+        <h3 class="dor-card-title">Contratou. Pagou. Esperou.</h3>
+        <p class="dor-card-text">Depois de duas semanas sem resposta, descobriu que o cara sumiu. Ou pior: entregou alguma coisa. Mas parecia site de empresa fechada em 2014.</p>
+      </div>
+      <div class="dor-card">
+        <span class="dor-card-tag">A agência</span>
+        <h3 class="dor-card-title">Reunião. Briefing. Proposta.</h3>
+        <p class="dor-card-text">Reunião de levantamento. Briefing de 40 perguntas. Proposta que demorou uma semana para chegar. Aprovação em dezembro. Site no ar em março. Três meses depois, a página estava linda e não recebia nenhum contato.</p>
+      </div>
+      <div class="dor-card">
+        <span class="dor-card-tag">O Wix</span>
+        <h3 class="dor-card-title">"Vou fazer eu mesmo."</h3>
+        <p class="dor-card-text">Quarenta e duas horas depois, você tinha um site que parecia amador, não sabia como colocar no domínio certo e desistiu. O link do Wix ainda está no WhatsApp da sua bio até hoje.</p>
+      </div>
+      <div class="dor-card">
+        <span class="dor-card-tag">O Instagram</span>
+        <h3 class="dor-card-title">Seguidores que não viram clientes.</h3>
+        <p class="dor-card-text">Você tem seguidores. Você posta. As pessoas curtem. Mas quando alguém quer contratar, não sabe onde clicar, não encontra o preço, não sabe se você atende na região. E vai para o concorrente que tem uma página clara.</p>
+      </div>
+    </div>
+    <p class="dor-fechamento">
+      O problema não é falta de esforço.<br>
+      É que você estava tentando resolver com a ferramenta errada — ou com a pessoa errada.
+    </p>
+  </div>
+</section>
+
+<!-- SOLUÇÃO -->
+<section id="solucao">
+  <div class="container">
+    <h2 class="section-title">Por que copy + design + sistema<br>juntos muda tudo.</h2>
+    <div class="solucao-intro">
+      <p>A maioria de quem faz site entrega uma das três coisas.</p>
+      <p>O designer faz algo bonito — mas não sabe escrever para vender. O redator escreve bem — mas o resultado fica torto na mão do programador. E o programador conecta os dois — mas ninguém pensou em como o cliente vai entrar em contato.</p>
+      <p>O resultado é página que não fecha venda.</p>
+    </div>
+    <div class="pilares-grid">
+      <div class="pilar">
+        <div class="pilar-icon">✍️</div>
+        <div class="pilar-name">Copy</div>
+        <p class="pilar-text">Cada palavra da sua página vai estar lá por um motivo: empurrar o visitante para a próxima linha, para o próximo bloco, para o botão de contato. Sem texto genérico. Sem "seja bem-vindo ao nosso site". Texto que fala com o cliente do seu negócio, no idioma dele.</p>
+      </div>
+      <div class="pilar">
+        <div class="pilar-icon">🎨</div>
+        <div class="pilar-name">Design</div>
+        <p class="pilar-text">Layout que funciona no celular, carrega rápido e tem uma hierarquia clara. O olho do visitante sabe onde ir. O que é importante fica em evidência. Não é para ganhar prêmio — é para converter.</p>
+      </div>
+      <div class="pilar">
+        <div class="pilar-icon">⚙️</div>
+        <div class="pilar-name">Sistema</div>
+        <p class="pilar-text">Formulário que chega no seu WhatsApp. Botão de agendamento se você precisar. Integração com o que você já usa. Não entregamos arquivo. Entregamos máquina funcionando.</p>
+      </div>
+    </div>
+    <div class="solucao-fechamento">
+      <p>Quando os três trabalham juntos desde o início, o resultado é diferente.<br>Você não vai precisar contratar mais ninguém.</p>
+      <a href="#preco" class="btn btn-lg">→ Ver os pacotes e escolher o seu</a>
+    </div>
+  </div>
+</section>
+
+<!-- DIFERENCIAIS -->
+<section id="diferenciais">
+  <div class="container">
+    <h2 class="section-title">O que é diferente aqui.</h2>
+    <div class="dif-grid">
+      <div class="dif-card">
+        <div class="dif-num">01</div>
+        <h3 class="dif-title">Pacote completo</h3>
+        <p class="dif-text">Copy. Design. Sistema. No mesmo projeto, pelo mesmo time. Nenhum concorrente no nosso ticket entrega os três juntos. Você fecha com a gente e não precisa coordenar freelancer de texto com designer com programador. Um ponto de contato. Um resultado.</p>
+      </div>
+      <div class="dif-card">
+        <div class="dif-num">02</div>
+        <h3 class="dif-title">No ar rápido</h3>
+        <p class="dif-text">Agência demora meses. Freelancer some. A gente tem prazo definido — e cumpre. Do briefing ao site no ar em dias, não em meses. Sem reuniões que não levam a lugar nenhum. Sem update de "estamos trabalhando nisso".</p>
+      </div>
+      <div class="dif-card">
+        <div class="dif-num">03</div>
+        <h3 class="dif-title">Escrito para vender</h3>
+        <p class="dif-text">Site bonito que não converte é despesa, não investimento. Aqui a copy não é decoração — é a estrutura inteira da página. Cada seção tem uma função. Cada frase tem um trabalho a fazer. Isso é raro no ticket acessível.</p>
+      </div>
+      <div class="dif-card">
+        <div class="dif-num">04</div>
+        <h3 class="dif-title">Preço fixo e transparente</h3>
+        <p class="dif-text">Você sabe quanto custa antes de falar com a gente. Sem "solicite um orçamento" que todo mundo sabe que é código para "vai ser mais caro do que você imagina". Três pacotes com preço fixo. Sem adicional surpresa no meio do caminho.</p>
+      </div>
+      <div class="dif-card">
+        <div class="dif-num">05</div>
+        <h3 class="dif-title">Feito para quem vende de verdade</h3>
+        <p class="dif-text">Não fazemos site para empresa que tem departamento de marketing. Fazemos para clínica de estética que quer parar de depender do iFood. Para coach que quer vender mentoria sem ficar só no direct. Para infoprodutor que precisa de LP para lançamento. Se você se parece com um desses, a nossa página vai parecer que foi feita para você — porque foi.</p>
+      </div>
+      <div class="dif-card">
+        <div class="dif-num">06</div>
+        <h3 class="dif-title">Não entregamos arquivo. Entregamos máquina funcionando.</h3>
+        <p class="dif-text">Formulário conectado. Botão do WhatsApp no lugar certo. Agendamento integrado se precisar. Quando a gente termina, você recebe a chave de algo que já está trabalhando por você. Sem "agora você precisa contratar alguém para publicar" ou "precisa pagar a hospedagem em outro lugar".</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PREÇO -->
+<section id="preco">
+  <div class="container">
+    <h2 class="section-title">Sem asterisco. Sem surpresa.<br>Escolha o que faz sentido para o seu momento.</h2>
+    <div class="preco-grid">
+
+      <!-- STARTER -->
+      <div class="plano">
+        <div class="plano-name">Starter</div>
+        <div class="plano-price">R$ 847</div>
+        <p class="plano-tagline">Para quem está começando a presença digital e precisa de algo profissional no ar logo.</p>
+        <div class="plano-divider"></div>
+        <ul class="plano-features">
+          <li>Landing page de uma página (até 6 seções)</li>
+          <li>Copy escrita pelo nosso time</li>
+          <li>Design responsivo (funciona no celular)</li>
+          <li>Formulário de contato integrado ao WhatsApp</li>
+          <li>Publicação no ar incluída</li>
+          <li>Prazo: até 7 dias úteis</li>
+        </ul>
+        <p class="plano-ideal">Ideal para: salão, barbearia, profissional autônomo, negócio local que não tem nada ainda.</p>
+        <a href="https://wa.me/5511999999999?text=Quero+o+Starter" class="btn" target="_blank" rel="noopener noreferrer">→ Contratar o Starter</a>
+      </div>
+
+      <!-- PRO (destaque) -->
+      <div class="plano plano-destaque">
+        <div class="plano-badge">Mais escolhido</div>
+        <div class="plano-name">Pro</div>
+        <div class="plano-price">R$ 1.397</div>
+        <p class="plano-tagline">Para quem precisa de página com mais estrutura, mais prova social e mais conversão.</p>
+        <div class="plano-divider"></div>
+        <ul class="plano-features">
+          <li>Landing page completa (até 10 seções)</li>
+          <li>Copy com estratégia de objeções mapeadas</li>
+          <li>Design responsivo + versão desktop otimizada</li>
+          <li>Formulário + botão de agendamento ou WhatsApp</li>
+          <li>Seção de depoimentos estruturada</li>
+          <li>Integração com Google Analytics</li>
+          <li>Publicação no ar incluída</li>
+          <li>Prazo: até 10 dias úteis</li>
+        </ul>
+        <p class="plano-ideal">Ideal para: clínica, coach, consultor, infoprodutor com lançamento próximo.</p>
+        <a href="https://wa.me/5511999999999?text=Quero+o+Pro" class="btn" target="_blank" rel="noopener noreferrer">→ Contratar o Pro</a>
+      </div>
+
+      <!-- COMPLETO -->
+      <div class="plano">
+        <div class="plano-name">Completo</div>
+        <div class="plano-price">R$ 1.997</div>
+        <p class="plano-tagline">Para quem quer o site mais completo, com funil de entrada e sistema de captura de leads.</p>
+        <div class="plano-divider"></div>
+        <ul class="plano-features">
+          <li>Tudo do Pro</li>
+          <li>Até 2 páginas adicionais (ex: página de obrigado, página de captura)</li>
+          <li>Copy com funil mapeado (topo, meio e fundo)</li>
+          <li>Integração com ferramenta de e-mail marketing (RD Station, Mailchimp ou similar)</li>
+          <li>Pop-up ou banner de captura configurado</li>
+          <li>Suporte por 30 dias após publicação</li>
+          <li>Prazo: até 15 dias úteis</li>
+        </ul>
+        <p class="plano-ideal">Ideal para: infoprodutor, consultor com múltiplos produtos, negócio que quer estrutura de funil desde o início.</p>
+        <a href="https://wa.me/5511999999999?text=Quero+o+Completo" class="btn" target="_blank" rel="noopener noreferrer">→ Contratar o Completo</a>
+      </div>
+
+    </div>
+    <div class="preco-nota">
+      <p>Todos os pacotes incluem publicação no ar. Hospedagem do primeiro ano inclusa.</p>
+      <p>Revisões incluídas no processo — sem custo adicional por ajuste dentro do escopo.</p>
+      <p>Prazo começa a contar na data de entrega do briefing respondido.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section id="cta-final">
+  <div class="container">
+    <div class="cta-final-inner">
+      <h2 class="section-title">Você chegou até aqui.<br>O próximo passo é simples.</h2>
+      <div class="cta-body">
+        <p>Nenhuma reunião antes de saber o preço.</p>
+        <p>Nenhum formulário longo para preencher.</p>
+        <p>Você escolhe o pacote, manda mensagem no WhatsApp e a gente responde em até 1 hora útil.</p>
+        <p>É assim que começa. Rápido, direto, sem enrolação — como o site que você vai ter.</p>
+      </div>
+      <a href="https://wa.me/5511999999999?text=Quero+falar+sobre+meu+site" class="btn btn-lg" target="_blank" rel="noopener noreferrer">→ Falar agora no WhatsApp</a>
+      <span class="cta-disclaimer">(Clica aqui e já vai direto para o atendimento)</span>
+      <p class="cta-suporte">Ainda tem dúvida? Manda mensagem. A gente responde perguntas sem compromisso.</p>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2026 Triforce Auto. Todos os direitos reservados.</p>
+</footer>
+
+<script>
+  // Edit mode listener (deve estar registrado antes de qualquer postMessage externo)
+  window.addEventListener('message', function(e) {
+    if (e.data && e.data.type === '__activate_edit_mode') {
+      var panel = document.getElementById('tweaks-panel');
+      if (panel) panel.style.display = 'block';
+    }
+  });
+
+  // Smooth scroll para links âncora
+  document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+    anchor.addEventListener('click', function(e) {
+      var target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        var navH = document.querySelector('nav').offsetHeight;
+        var top = target.getBoundingClientRect().top + window.pageYOffset - navH - 16;
+        window.scrollTo({ top: top, behavior: 'smooth' });
+      }
+    });
+  });
+
+  // Nav shadow on scroll
+  var nav = document.querySelector('nav');
+  window.addEventListener('scroll', function() {
+    nav.style.boxShadow = window.scrollY > 20
+      ? '0 4px 32px rgba(0,0,0,0.4)'
+      : 'none';
+  });
+</script>
+</body>
+</html>
