@@ -134,8 +134,26 @@ Ao pesquisar o lançamento do Claude Opus 4.5 em `anthropic.com/news/claude-opus
 - Inventar URLs de imagem (CDN paths têm hashes únicos — não dá pra adivinhar)
 - Usar imagens de behind-login (precisa de autenticação = não funciona no gerador)
 - Colocar screenshot_url de Twitter/Instagram (bloqueado por anti-bot)
+- Usar image_url de blogs secundários sem testar visualmente (gzn.jp, sites de notícia japoneses/alemães etc. costumam ter crops ruins, close-ups sem contexto, fundos escuros)
+
+**Teste obrigatório de image_url antes de passar para Fecchio:**
+```python
+import urllib.request
+urllib.request.urlretrieve("URL_DA_IMAGEM", ".img-cache/teste_visual.jpg")
+```
+Abre com Read tool. A foto tem cena clara, contexto visível, não é close-up sem contexto? Se sim → `image_url`. Se não → usa `photo_query`.
 
 Para prints de tweet ou interface que precisam de login → coloca `screenshot_file: "manual/descricao.png"` e sinaliza para o time que precisa de print manual.
+
+---
+
+## Regras de texto para briefing — PROIBIDO passar para Fecchio/Vitória
+
+> ❌ **ZERO TRAVESSÕES (—)** em qualquer texto do briefing — fatos, títulos, corpo.
+> Se você escreveu "X — Y", substitua por "X, Y" ou "X: Y" ou quebre em duas frases.
+> Travessão no briefing = travessão no slide = retrabalho.
+
+> ❌ **ZERO PONTO FINAL** em títulos, headlines, subheadlines, accent de spotlight.
 
 ---
 

@@ -297,6 +297,14 @@ firecrawl search "site:unsplash.com wireframe sketch ux design" --limit 5
 
 Busque em inglês, termos visuais concretos. Prefira cenas reais ("person coding laptop", "barber cutting hair") a conceitos abstratos ("technology", "future").
 
+> **Regras de uma boa photo_query:**
+> - Descreva a **cena completa**, não o objeto isolado. "priest cathedral light interior" é melhor que "priest" (que retorna pescoço sem rosto)
+> - Inclua **contexto humano ou ambiental** quando o slide fala de pessoas ou lugares
+> - Evite queries de 1-2 palavras — retornam fotos genéricas ou com crop ruim
+> - Para slides de impacto/tech: "person laptop screen focused office dark" dá contexto profissional
+> - Para slides de IA/futuro: "technology human connection hands screen light" é melhor que "artificial intelligence" (que retorna robôs de plástico sem expressão)
+> - **Sempre verifique visualmente** antes de confirmar: baixe o preview e abra com Read tool
+
 O resultado traz URLs tipo `https://unsplash.com/photos/ABC123xyz` — o `ABC123xyz` é o ID curto.
 
 **Passo 2 — resolver ID curto → ID longo do CDN:**
@@ -399,6 +407,16 @@ Image.fromarray(data).save(".img-cache/logo_empresa_transparente.png")
 
 #### OPÇÃO D — Qualquer imagem da web via URL direta
 
+> ⚠️ **ATENÇÃO — ANTES DE USAR QUALQUER image_url de blog/site de notícia:**
+> Blogs e sites de notícia (gzn.jp, the-decoder.com, etc.) costumam ter imagens com crop ruim, muito próximas, sem contexto, ou com fundo escuro que não funciona no slide.
+> **Teste visual obrigatório antes de usar:**
+> 1. Baixe a imagem: `urllib.request.urlretrieve("URL", ".img-cache/teste.jpg")`
+> 2. Abra com Read tool e veja se a foto tem **contexto claro e rosto/cena visível**
+> 3. Se a imagem for close-up demais, cortada, escura sem contexto, ou não der pra entender o assunto em 2 segundos → **descarte. Use photo_query em vez disso.**
+>
+> **Fontes confiáveis para image_url:** CDNs oficiais das empresas (anthropic.com, googleapis.com, openai.com) — essas têm imagens editoriais de qualidade.
+> **Fontes problemáticas:** blogs secundários, sites de notícia japoneses/alemães, screenshots de redes sociais.
+
 Se encontrou uma imagem relevante em qualquer site:
 ```bash
 firecrawl scrape "https://exemplo.com/pagina-com-imagem" --format markdown,links -o .firecrawl/pagina.json
@@ -441,6 +459,23 @@ Para cada foto nova:
 A única regra fixa: **último slide é sempre CTA.**
 
 O resto depende do que Fecchio entregou. Um carrossel pode ter 5 slides ou 8. Pode ter dois spotlights seguidos. Pode não ter nenhum dado. Pode ter três heavy consecutivos. Cada conteúdo tem sua estrutura ideal.
+
+### REGRAS DE TEXTO — PROIBIDO EM QUALQUER CAMPO
+
+> ❌ **TRAVESSÃO (—) ZERO TOLERÂNCIA** — É PROIBIDO em qualquer campo de qualquer slide.
+> Se o copy vier com travessão, **substitua antes de colar no gerador:**
+> - Travessão entre frases → ponto final + nova frase
+> - Travessão como aposto → vírgula ou dois-pontos
+> - Exemplo: `"transforma X — sem precisar de Y"` → `"transforma X, sem precisar de Y"`
+
+> ❌ **PONTO FINAL em `title`, `headline`, `subheadline`, `accent`** — PROIBIDO.
+> `body` e `sub` podem ter ponto. Os campos de título nunca.
+
+> ❌ **RETICÊNCIAS (...)** em excesso — evitar. Passa ar de insegurança.
+
+Vitória: se o copy entregue pelo Fecchio tiver travessão ou ponto em título, **corrija na hora** — não espere aprovação. É erro de copy, não de design.
+
+---
 
 ### Anatomia de cada tipo de slide
 
@@ -645,3 +680,117 @@ Cada slide tem papel: abertura (gancho), desenvolvimento (argumento), virada (sp
 
 **7. flex:1 em foto nunca deixa espaço vazio**
 A regra de ouro: usar `flex:1` na foto e deixar o CSS decidir quanto espaço ela ocupa. Altura fixa só quando o designer sabe exatamente quanto texto vai aparecer no slide.
+
+---
+
+## ATUALIZAÇÃO v2.0 — Abril 2026 (aprendido em produção real)
+
+### Fontes maiores — padrão atual
+
+As fontes foram aumentadas em produção. Valores atuais no código:
+
+```css
+/* Slides bege (standard/heavy) */
+h2   { font-size: 76px; }        /* era 56px */
+.body { font-size: 34px; }        /* era 27px */
+/* Heavy sobreescreve: */
+h2[heavy]   { font-size: 62px; } /* era 46px */
+.body[heavy] { font-size: 30px; } /* era 24px */
+
+/* Spotlight */
+.spot-line { font-size: 100px; } /* era 80px */
+.spot-sub  { font-size: 28px; }  /* era 24px */
+```
+
+**Regra:** com fontes maiores, o body de cada slide precisa ser mais curto. Máximo 3-4 linhas visíveis. Texto longo + fonte grande = texto cortado fora do slide.
+
+---
+
+### image_url — imagens reais de CDN
+
+Além de `photo_query` (Unsplash), o gerador aceita `image_url`: uma URL direta de imagem pública.
+
+```python
+("content", {
+    "num": 2,
+    "layout": "standard",
+    "image_url": "https://cdn.empresa.com/grafico-benchmark.gif",
+    "photo_fit": "contain",   # mostra a imagem inteira, sem corte
+    "title": "Título do slide",
+    "body": "Texto explicando o gráfico."
+})
+```
+
+**Quando usar `image_url`:**
+- Gráficos de benchmark de fontes oficiais (blog.google, anthropic.com, openai.com)
+- Logos de produto em alta resolução
+- Tabelas e comparações oficiais da empresa
+- Screenshots de interfaces (se a URL for pública e não precisar de login)
+
+**`photo_fit`:**
+- `"cover"` (padrão) — imagem preenche e corta. Para fotos Unsplash.
+- `"contain"` — imagem inteira visível, sem corte. Para gráficos, tabelas, logos.
+
+**Como Rafael encontra `image_url`:**
+1. Acessa a fonte primária da notícia (ex: `blog.google/...`, `anthropic.com/news/...`)
+2. Usa `firecrawl scrape "URL" --format markdown,links` para extrair todas as URLs de imagem
+3. Filtra por: `benchmark`, `chart`, `graph`, `comparison`, `performance` no caminho da URL
+4. Testa se a URL é pública: `python -c "import urllib.request; urllib.request.urlretrieve('URL', 'test.png')"`
+5. Se baixou → é `image_url`. Se bloqueou → usa `photo_query` Unsplash.
+
+**Exemplo real (Gemini 3.1 Pro, fev/2026):**
+```
+image_url: https://storage.googleapis.com/gweb-uniblog-publish-prod/original_images/gemini_3-1-pro__benchmarks.gif
+```
+Tabela completa de comparação Gemini vs Claude vs GPT-5 — pública, baixa via urllib sem auth.
+
+---
+
+### Filosofia de imagens — MIX obrigatório
+
+**Nunca use só fotos Unsplash em carrossel de tecnologia/IA.**
+
+Para cada carrossel, a mistura ideal:
+
+| Tipo de slide | Fonte de imagem |
+|---|---|
+| Slide de benchmark / dado numérico | `image_url` CDN oficial — gráfico real |
+| Slide de produto / interface | `image_url` CDN oficial — screenshot do produto |
+| Slide de impacto prático | `photo_query` Unsplash — pessoa, contexto humano |
+| Slide de contexto competitivo | `image_url` se tiver chart, senão `photo_query` |
+| Spotlight | Sem foto — layout escuro tipográfico |
+| Cover | Foto Unsplash editorial escura |
+
+**Regra:** se o tema é IA/tech e existe uma imagem oficial da empresa (blog, press kit, CDN), USAR ela. Foto Unsplash genérica onde poderia ter o gráfico real = post de qualidade inferior.
+
+---
+
+### Cache de imagens — pasta correta
+
+A pasta de cache mudou de `.img-cache/` para `banco-de-imagens/`:
+
+```
+.claude/producao/banco-de-imagens/    ← pasta atual
+```
+
+Ao baixar previews para verificar: usar `banco-de-imagens/preview_test.jpg`.
+
+---
+
+### Spotlight — posicionamento absoluto (v2.0)
+
+O layout do spotlight foi refatorado para usar posicionamento absoluto, resolvendo o bug de alinhamento vertical que empurrava o conteúdo para fora do centro.
+
+**Estrutura atual:**
+```css
+.spot-body { flex: 1; position: relative; }
+.spot-top  { position: absolute; top: 72px; left: 72px; right: 72px; }
+.spot-center {
+  position: absolute;
+  top: 50%; left: 72px; right: 72px;
+  transform: translateY(-50%);   /* ← centraliza exato */
+}
+.spot-bottom { position: absolute; bottom: 60px; left: 72px; right: 72px; }
+```
+
+Isso garante: tag no topo, conteúdo no centro exato, footer no rodapé — independente do tamanho do conteúdo.
