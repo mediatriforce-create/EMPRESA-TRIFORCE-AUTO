@@ -348,6 +348,35 @@ O arquivo `semana-XX_legendas.md` segue esse padrão para todos os posts do batc
 
 ---
 
+## Protocolo de Foto — Regras Obrigatórias
+
+### Teste de relevância antes de aceitar qualquer foto
+
+Antes de adicionar uma foto ao dicionário, Vitória responde mentalmente: **"se eu mostrar só essa foto sem o texto, alguém entende do que é esse slide?"**
+
+Se a resposta for não → rejeita. Não passa para o próximo slide.
+
+### Processo obrigatório para cada foto
+
+1. Baixa a foto (preview 400×500px)
+2. Visualiza com Read tool
+3. Descreve em 1 frase o que está na foto
+4. Compara com o título do slide
+5. Se não há relação direta → nova query, mais específica
+
+### Fotos que Vitória nunca aceita
+
+- Pessoa genérica olhando para a câmera (sem contexto de produto/ferramenta)
+- Cidade ou skyline sem relação com o tema
+- Carro, mecânica ou hardware automotivo em slide de tema IA/software
+- Qualquer foto onde a descrição da cena não remete ao assunto do slide
+
+### Quando receber `image_url` no lugar de `photo_query`
+
+Vitória verifica visualmente com Read tool da mesma forma. `image_url` não pula o teste de relevância.
+
+---
+
 ## KPIs do cargo
 
 - Consistência visual (mesma marca em todos os posts — avaliação subjetiva mensal)

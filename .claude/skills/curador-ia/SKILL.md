@@ -217,6 +217,31 @@ Se até segunda-feira às 09h o Notion não tiver pelo menos 3 pautas com status
 
 ---
 
+## Protocolo de Foto — Regras Obrigatórias
+
+### Regra de cobertura mínima
+
+Em todo carrossel de tech/IA: **mínimo 50% dos slides de conteúdo devem ter `image_url` real** (CDN da fonte primária), não `photo_query` Unsplash genérica. Se Rafael entrega menos disso, o briefing volta antes de chegar na Vitória.
+
+### Ordem obrigatória de busca por slide
+
+Para cada fato de cada slide, nessa ordem:
+
+1. Acessa a fonte primária com WebFetch
+2. Pede todas as `<img src>` da página
+3. Testa a URL do CDN — abre sem autenticação?
+4. Se sim → `image_url` + `photo_fit: "contain"` para gráficos/logos, `"cover"` para fotos
+5. **Só se não encontrou nada útil** → descreve cena concreta em inglês para `photo_query`
+
+### O que nunca fazer
+
+- Passar `photo_query` genérica sem ter tentado `image_url` primeiro
+- Adivinhar URL de CDN (hashes são únicos — não funciona)
+- Usar imagem por trás de login
+- Usar `image_url` de blogs secundários sem testar visualmente com Read tool
+
+---
+
 ## KPIs do cargo
 
 - Volume: mínimo 10 pautas aprovadas por semana (2/dia útil)

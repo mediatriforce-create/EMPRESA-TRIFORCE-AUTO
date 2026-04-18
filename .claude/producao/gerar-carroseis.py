@@ -308,7 +308,7 @@ SLIDE_FOOTER_HTML = """
 """
 
 
-def _img_box(logo_b64=None, bg_file=None, logo_domain=None, height="flex", fit="cover"):
+def _img_box(logo_b64=None, bg_file=None, logo_domain=None, height="flex", fit="cover", bg="#0A0A0A"):
     """Retorna HTML do bloco de imagem.
 
     height  — 'flex' preenche espaço restante | valor CSS fixo ('300px')
@@ -329,9 +329,9 @@ def _img_box(logo_b64=None, bg_file=None, logo_domain=None, height="flex", fit="
         raw = Path(bg_file).read_bytes()
         b64 = base64.b64encode(raw).decode()
         if fit == "contain":
-            # Imagem inteira visível — fundo preto, container usa h_style
+            # Imagem inteira visível — fundo configurável, container usa h_style
             return f"""<div style="width:100%; {h_style} border-radius:20px; overflow:hidden;
-    background:#0A0A0A; display:flex; align-items:center; justify-content:center; padding:8px;">
+    background:{bg}; display:flex; align-items:center; justify-content:center; padding:8px;">
     <img src="data:{mime};base64,{b64}"
          style="max-width:100%; max-height:100%; object-fit:contain; border-radius:12px; display:block;">
   </div>"""
@@ -362,7 +362,7 @@ def strip_sources(text):
 
 
 def content_slide(num, title, body_html, logo_domain=None, logo_b64=None, bg_file=None,
-                  layout="standard", chart=None, accent=None, photo_height=None, photo_fit="cover"):
+                  layout="standard", chart=None, accent=None, photo_height=None, photo_fit="cover", photo_bg="#0A0A0A"):
     """
     layout="standard"     — título + corpo + foto (flex por padrão)
     layout="heavy"        — título menor + corpo mais longo + foto proporcional
@@ -380,7 +380,7 @@ def content_slide(num, title, body_html, logo_domain=None, logo_b64=None, bg_fil
         else:
             h = "flex"    # padrão absoluto: foto preenche o espaço restante
 
-        img = _img_box(logo_b64, bg_file, logo_domain, height=h, fit=photo_fit)
+        img = _img_box(logo_b64, bg_file, logo_domain, height=h, fit=photo_fit, bg=photo_bg)
         if layout == "heavy":
             title_style = 'style="font-size:62px;"'
             body_style  = 'style="font-size:30px;line-height:1.65;"'
@@ -1408,6 +1408,65 @@ CARROSEIS = [
         ]
     },
 
+    # ── CARROSSEL mundo-skills-ia ───────────────────────────────────────────────
+    {
+        "slug": "mundo-skills-ia",
+        "cover_photo_query": "dark abstract digital technology circuit lines glowing orange blue cinematic editorial",
+        "slides": [
+            ("cover", {
+                "headline": "Não é mais sobre qual IA usar, é sobre qual skill mandar trabalhar por você",
+                "subheadline": "GPT Store. Claude Skills. Gemini Gems. O ecossistema que vai mudar como você trabalha em 2026",
+            }),
+            ("content", {
+                "num": 2, "layout": "standard",
+                "photo_query": "hands holding phone app data analytics coffee table warm light business",
+                "photo_height": "flex",
+                "title": "GPT Store: os números que ninguém esperava",
+                "body": "A GPT Store ultrapassou <strong>3 milhões de GPTs criados</strong> desde janeiro de 2024. O ChatGPT chegou a <strong>800 milhões de usuários ativos semanais</strong> em outubro de 2025. (OpenAI, out/2025)",
+            }),
+            ("content", {
+                "num": 3, "layout": "heavy",
+                "image_url": "https://www-cdn.anthropic.com/images/4zrzovbb/website/a056db8301f67466de34a19181e7428ec6b6e17f-1920x2500.png",
+                "photo_fit": "contain",
+                "photo_bg": "#FFFFFF",
+                "photo_height": "flex",
+                "title": "MCP: o protocolo que virou padrão da indústria",
+                "body": "Em <strong>16 meses</strong>, o MCP da Anthropic atingiu <strong>97 milhões de downloads mensais</strong> e <strong>10.000+ servidores públicos ativos</strong>. Em março de 2026, a Anthropic doou o MCP para a Linux Foundation, com apoio de OpenAI, Google, Microsoft e AWS. (Anthropic, mar/2026)",
+            }),
+            ("content", {
+                "num": 4, "layout": "spotlight",
+                "accent": "A pergunta certa\nnão é mais\n'você usa IA?'",
+                "title": "",
+                "body": "É: você tem uma skill trabalhando por você agora?",
+            }),
+            ("content", {
+                "num": 5, "layout": "heavy",
+                "photo_query": "Three lanes highway night aerial drone view different colored light trails dark background orange red blue cinematic",
+                "photo_height": "flex",
+                "title": "Três ecossistemas, uma disputa",
+                "body": "ChatGPT lidera com <strong>68% de market share mobile</strong>. Gemini, <strong>18,2%</strong>. Claude gera <strong>61% mais receita por usuário mobile</strong> que o Gemini. GPT Store: <strong>3M+ GPTs</strong>. Gemini Gems: integrado ao Workspace. Claude Skills + MCP: <strong>10.000+ servidores</strong>, open source, cross-platform. (Cohen et al., dez/2025)",
+            }),
+            ("content", {
+                "num": 6, "layout": "standard",
+                "photo_query": "small business owner phone messaging customer service warm light",
+                "photo_height": "flex",
+                "title": "O que a IA já fez pelos pequenos negócios",
+                "body": "<strong>91% dos pequenos negócios</strong> que usam IA reportam aumento de receita. Quem adotou IA viu <strong>2x de lift de receita</strong> e <strong>60% menos tempo</strong> em tarefas repetitivas no primeiro ano. (Salesforce, dez/2024)",
+            }),
+            ("content", {
+                "num": 7, "layout": "heavy",
+                "photo_query": "server rack datacenter cables LED lights colorful modern technology",
+                "photo_height": "flex",
+                "title": "O que vem no roadmap de 2026",
+                "body": "MCP 2026 inclui triggers automáticos, streaming e tarefas de longa duração. O Gartner projeta <strong>40% dos apps empresariais com agentes de IA</strong> até o fim de 2026, contra <strong>menos de 5% hoje</strong>. (Anthropic/Gartner, jan/2026)",
+            }),
+            ("cta", {
+                "main": "Salva esse post<br><span>e segue pra mais conteúdo assim</span>",
+                "sub": "Curadoria semanal de IA para o seu negócio.\n@triforceauto",
+            }),
+        ]
+    },
+
     # ── CARROSSEL 11 — Claude Opus 4.7 ─────────────────────────────────────────
     {
         "slug": "11-claude-opus-47",
@@ -1519,6 +1578,7 @@ COVER_PHOTOS = {
     "09-claude-design":      "https://images.unsplash.com/photo-1569012871812-f38ee64cd54c?w=1080&h=1350&fit=crop&auto=format&q=85",
     "12-gemini-31-pro":      "https://images.unsplash.com/photo-1638136264464-2711f0078d1e?w=1080&h=1350&fit=crop&auto=format&q=85",
     "anthropic-padres-claude": "https://gizmodo.com/app/uploads/2026/04/matrix-praying.jpg",
+    "mundo-skills-ia":         "https://images.unsplash.com/photo-1655900298997-610bf4254578?w=1080&h=1350&fit=crop&auto=format&q=85",
 }
 
 
@@ -1559,6 +1619,13 @@ SLIDE_PHOTO_IDS = {
     "open bible desk laptop books study warm light":                  "1642901798261-667a915d1022",
     "humanoid robot contemplative light shadow ethereal digital concept art": "1578920103364-21678e392488",
     "person laptop window cafe thinking focused working":             "1635694167659-8a6491a6912b",
+    "hands holding phone app data analytics coffee table warm light business": "1746014602412-a51f37a46675",
+    "server rack datacenter cables LED lights colorful modern technology":    "1561233835-f937539b95b9",
+    "Overhead flat lay smartphone showing ChatGPT interface dark surface small business tools notebook coffee keys calculator warm orange accent lighting": "1698934688788-ee485a6f601f",
+    "Three lanes highway night aerial drone view different colored light trails dark background orange red blue cinematic": "1568516816247-5b38bf5c238f",
+    "Small barbershop owner at counter smiling at phone AI chat interface on screen natural daylight warm tones candid documentary": "1666855181417-812fa8503f85",
+    "small business owner phone messaging customer service warm light": "1551989745-8ac16ba81d78",
+    "Futuristic dark control room multiple screens automated workflows empty chair neon blue orange accent lighting high tech cinematic": "1688413399578-14ebdde3666a",
 }
 
 
@@ -1860,6 +1927,7 @@ async def main():
                         accent=data.get("accent"),
                         photo_height=data.get("photo_height"),
                         photo_fit=data.get("photo_fit", "cover"),
+                        photo_bg=data.get("photo_bg", "#0A0A0A"),
                     )
 
                 elif slide_type == "cta":
