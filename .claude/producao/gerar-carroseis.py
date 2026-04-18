@@ -1147,7 +1147,7 @@ CARROSEIS = [
 
 # ─── GERADOR ───────────────────────────────────────────────────────────────────
 
-CACHE_DIR = Path(__file__).parent / ".img-cache"
+CACHE_DIR = Path(__file__).parent / "banco-de-imagens"
 CACHE_DIR.mkdir(exist_ok=True)
 
 UNSPLASH_ACCESS_KEY = "cG06jiqCb_3v5NuSIKAjRcjQUJmQH6yv3q8GsEMiy-k"
@@ -1362,6 +1362,70 @@ async def download_cover_photos(browser) -> dict:
     return cached
 
 
+async def capture_screenshots(browser, carroseis: list) -> dict:
+    """Captura screenshots de URLs reais (tweets, interfaces, charts) via Playwright.
+
+    No slide, use:
+        "screenshot_url": "https://twitter.com/soraofficial/status/..."
+        "screenshot_selector": "article[data-testid='tweet']"  # opcional — clip um elemento
+
+    Se não houver screenshot_url em nenhum slide, retorna {} sem abrir página.
+    """
+    urls_needed = {}
+    for c in carroseis:
+        if c.get("cover_screenshot_url"):
+            urls_needed[c["cover_screenshot_url"]] = c.get("cover_screenshot_selector")
+        for slide_type, data in c["slides"]:
+            if slide_type == "content" and data.get("screenshot_url"):
+                url = data["screenshot_url"]
+                urls_needed[url] = data.get("screenshot_selector")
+
+    if not urls_needed:
+        return {}
+
+    shots = {}
+    page = await browser.new_page(viewport={"width": 1080, "height": 1350})
+    print("\nCapturando screenshots de URLs reais...")
+
+    for url, selector in urls_needed.items():
+        safe_name = re.sub(r"[^a-z0-9]", "_", url)[:60]
+        cache_file = CACHE_DIR / f"screenshot_{safe_name}.jpg"
+
+        if cache_file.exists() and cache_file.stat().st_size > 10_000:
+            shots[url] = str(cache_file)
+            print(f"  [cache] {url[:70]}")
+            continue
+
+        try:
+            print(f"  [screenshot] {url[:70]}")
+            await page.goto(url, wait_until="networkidle", timeout=30000)
+            await page.wait_for_timeout(2000)  # espera JS extra
+
+            if selector:
+                el = await page.query_selector(selector)
+                if el:
+                    img_bytes = await el.screenshot(type="jpeg", quality=90)
+                else:
+                    img_bytes = await page.screenshot(
+                        type="jpeg", quality=90,
+                        clip={"x": 0, "y": 0, "width": 1080, "height": 1350}
+                    )
+            else:
+                img_bytes = await page.screenshot(
+                    type="jpeg", quality=90,
+                    clip={"x": 0, "y": 0, "width": 1080, "height": 1350}
+                )
+
+            cache_file.write_bytes(img_bytes)
+            shots[url] = str(cache_file)
+            print(f"    OK ({len(img_bytes) // 1024} KB)")
+        except Exception as e:
+            print(f"    FALHOU: {e}")
+
+    await page.close()
+    return shots
+
+
 async def generate_slide(page, html, output_path):
     await page.set_content(html, wait_until="networkidle")
     await page.screenshot(path=str(output_path), clip={"x": 0, "y": 0, "width": 1080, "height": 1350})
@@ -1384,6 +1448,7 @@ async def main():
                 logos[_domain] = f"data:image/png;base64,{_b64.b64encode(_p.read_bytes()).decode()}"
         cover_photos = await download_cover_photos(browser)
         slide_photos = await download_slide_photos(browser, CARROSEIS)
+        screenshots  = await capture_screenshots(browser, CARROSEIS)
 
         # Etapa 2: gerar slides
         print("\nGerando slides...")
@@ -1400,15 +1465,24 @@ async def main():
                 output_path = carousel_dir / f"slide-{str(slide_num).zfill(2)}.png"
 
                 if slide_type == "cover":
+                    cover_bg = (
+                        screenshots.get(carousel.get("cover_screenshot_url")) or
+                        cover_photos.get(slug)
+                    )
                     html = cover_slide(
                         data["headline"], data["subheadline"], slide_num,
                         logo_domain=carousel.get("cover_logo_domain"),
-                        bg_file=cover_photos.get(slug)
+                        bg_file=cover_bg
                     )
 
                 elif slide_type == "content":
                     logo_domain = data.get("logo_domain")
-                    slide_photo = slide_photos.get(data.get("photo_query")) or cover_photos.get(slug)
+                    # screenshot_url tem prioridade sobre photo_query
+                    slide_photo = (
+                        screenshots.get(data.get("screenshot_url")) or
+                        slide_photos.get(data.get("photo_query")) or
+                        cover_photos.get(slug)
+                    )
                     html = content_slide(
                         data["num"], data["title"], data["body"],
                         logo_domain=logo_domain,
