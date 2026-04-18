@@ -62,6 +62,17 @@ COMPANY_BADGES = {
           <text x="7" y="17" font-family="Arial,sans-serif" font-size="13" font-weight="bold" fill="white">R</text>
         </svg>"""
     },
+    "google.com": {
+        "label": "Google",
+        "color": "#4285F4",
+        "bg": "#EAF1FF",
+        "svg": """<svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+          <path d="M21.8 12.2c0-.7-.1-1.4-.2-2H12v3.8h5.5c-.2 1.3-1 2.4-2.1 3.1v2.6h3.4c2-1.8 3-4.5 3-7.5z" fill="#4285F4"/>
+          <path d="M12 22c2.7 0 5-0.9 6.7-2.4l-3.4-2.6c-.9.6-2 1-3.3 1-2.5 0-4.7-1.7-5.4-4H3v2.7C4.7 19.8 8.1 22 12 22z" fill="#34A853"/>
+          <path d="M6.6 14c-.2-.6-.3-1.3-.3-2s.1-1.4.3-2V7.3H3A10 10 0 002 12c0 1.6.4 3.2 1 4.7L6.6 14z" fill="#FBBC05"/>
+          <path d="M12 5.5c1.4 0 2.6.5 3.6 1.4l2.7-2.7C16.9 2.7 14.6 2 12 2 8.1 2 4.7 4.2 3 7.3l3.6 2.7C7.3 7.2 9.5 5.5 12 5.5z" fill="#EA4335"/>
+        </svg>"""
+    },
 }
 
 
@@ -250,19 +261,19 @@ body {
   justify-content: space-between;
   padding-bottom: 32px; flex-shrink: 0;
 }
-.header-handle { font-size:18px; font-weight:700; color:#FF6B00; }
-.header-mid    { font-size:17px; font-weight:500; color:#aaa; }
-.header-right  { font-size:17px; font-weight:400; color:#bbb; }
+.header-handle { font-size:22px; font-weight:700; color:#FF6B00; }
+.header-mid    { font-size:20px; font-weight:500; color:#aaa; }
+.header-right  { font-size:20px; font-weight:400; color:#bbb; }
 .content {
   flex: 1; display: flex; flex-direction: column;
-  justify-content: flex-start; gap: 24px;
+  justify-content: flex-start; gap: 28px;
   min-height: 0; overflow: hidden;
 }
 h2 {
-  font-size: 56px; font-weight: 900; color: #0A0A0A;
-  line-height: 1.08; letter-spacing: -0.03em; margin: 0;
+  font-size: 76px; font-weight: 900; color: #0A0A0A;
+  line-height: 1.05; letter-spacing: -0.03em; margin: 0;
 }
-.body { font-size:27px; font-weight:400; color:#2a2a2a; line-height:1.62; margin:0; }
+.body { font-size:34px; font-weight:400; color:#2a2a2a; line-height:1.58; margin:0; }
 .body strong { font-weight:700; color:#0A0A0A; }
 .footer {
   display: flex; align-items: center; justify-content: space-between;
@@ -271,12 +282,12 @@ h2 {
 }
 .footer-left { display:flex; align-items:center; gap:12px; }
 .footer-avatar {
-  width:36px; height:36px; border-radius:50%;
+  width:42px; height:42px; border-radius:50%;
   background:#FF6B00; display:flex; align-items:center; justify-content:center; flex-shrink:0;
 }
-.footer-name   { font-size:17px; font-weight:800; color:#0A0A0A; }
-.footer-handle { font-size:14px; font-weight:400; color:#999; }
-.swipe { font-size:16px; font-weight:600; color:#FF6B00; }
+.footer-name   { font-size:20px; font-weight:800; color:#0A0A0A; }
+.footer-handle { font-size:17px; font-weight:400; color:#999; }
+.swipe { font-size:20px; font-weight:600; color:#FF6B00; }
 """
 
 SLIDE_FOOTER_HTML = """
@@ -297,8 +308,13 @@ SLIDE_FOOTER_HTML = """
 """
 
 
-def _img_box(logo_b64=None, bg_file=None, logo_domain=None, height="flex"):
-    """Retorna HTML do bloco de imagem. height='flex' preenche espaço, ou valor CSS fixo."""
+def _img_box(logo_b64=None, bg_file=None, logo_domain=None, height="flex", fit="cover"):
+    """Retorna HTML do bloco de imagem.
+
+    height  — 'flex' preenche espaço restante | valor CSS fixo ('300px')
+    fit     — 'cover'   imagem preenche e corta (fotos Unsplash)
+              'contain' imagem inteira visível, sem corte (screenshots, gráficos, tabelas)
+    """
     h_style = "flex:1; min-height:240px;" if height == "flex" else f"height:{height}; flex-shrink:0;"
 
     if logo_b64:
@@ -308,10 +324,20 @@ def _img_box(logo_b64=None, bg_file=None, logo_domain=None, height="flex"):
   </div>"""
 
     if bg_file and Path(bg_file).exists():
+        ext = Path(bg_file).suffix.lower()
+        mime = "image/png" if ext == ".png" else ("image/gif" if ext == ".gif" else "image/jpeg")
         raw = Path(bg_file).read_bytes()
         b64 = base64.b64encode(raw).decode()
-        return f"""<div style="width:100%; {h_style} border-radius:20px; overflow:hidden;
-    background:url('data:image/jpeg;base64,{b64}') center/cover no-repeat;"></div>"""
+        if fit == "contain":
+            # Imagem inteira visível — fundo preto, container usa h_style
+            return f"""<div style="width:100%; {h_style} border-radius:20px; overflow:hidden;
+    background:#0A0A0A; display:flex; align-items:center; justify-content:center; padding:8px;">
+    <img src="data:{mime};base64,{b64}"
+         style="max-width:100%; max-height:100%; object-fit:contain; border-radius:12px; display:block;">
+  </div>"""
+        else:
+            return f"""<div style="width:100%; {h_style} border-radius:20px; overflow:hidden;
+    background:url('data:{mime};base64,{b64}') center/cover no-repeat;"></div>"""
 
     # fallback escuro com badge
     co = COMPANY_BADGES.get(logo_domain or "")
@@ -326,8 +352,17 @@ def _img_box(logo_b64=None, bg_file=None, logo_domain=None, height="flex"):
     background:#0A0A0A; display:flex; align-items:center; justify-content:center;">{inner}</div>"""
 
 
+def strip_sources(text):
+    """Remove citações inline de fonte do tipo (Nome, mês/ano) ou (Nome, ano)."""
+    if not text:
+        return text
+    # Remove (Fonte, mês/ano) — ex: (The Atlantic, mar/2026) ou (MIT Tech Review, 2026)
+    cleaned = re.sub(r'\s*\([^)]*\d{4}\)', '', text)
+    return cleaned.strip()
+
+
 def content_slide(num, title, body_html, logo_domain=None, logo_b64=None, bg_file=None,
-                  layout="standard", chart=None, accent=None, photo_height=None):
+                  layout="standard", chart=None, accent=None, photo_height=None, photo_fit="cover"):
     """
     layout="standard"     — título + corpo + foto (flex por padrão)
     layout="heavy"        — título menor + corpo mais longo + foto proporcional
@@ -345,10 +380,10 @@ def content_slide(num, title, body_html, logo_domain=None, logo_b64=None, bg_fil
         else:
             h = "flex"    # padrão absoluto: foto preenche o espaço restante
 
-        img = _img_box(logo_b64, bg_file, logo_domain, height=h)
+        img = _img_box(logo_b64, bg_file, logo_domain, height=h, fit=photo_fit)
         if layout == "heavy":
-            title_style = 'style="font-size:46px;"'
-            body_style  = 'style="font-size:24px;line-height:1.72;"'
+            title_style = 'style="font-size:62px;"'
+            body_style  = 'style="font-size:30px;line-height:1.65;"'
         else:
             title_style = ""
             body_style  = ""
@@ -493,7 +528,6 @@ h2 {{
   </div>
   <div class="dblocks">{blocks_html}</div>
   <div class="dfooter">
-    <span class="dsource">{source_html}</span>
     <span class="dhandle"><span class="ddot"></span>@triforceauto</span>
   </div>
 </body>
@@ -529,38 +563,40 @@ h2 {{
 body { background: #0A0A0A !important; padding: 0 !important; }
 .top-stripe { display: none; }
 .spot-body {
-  width: 100%; height: 100%;
-  display: flex; flex-direction: column;
-  padding: 72px 72px 60px;
+  flex: 1; width: 100%;
   position: relative;
 }
-.spot-top { flex-shrink: 0; margin-bottom: auto; }
+.spot-top {
+  position: absolute; top: 72px; left: 72px; right: 72px;
+}
 .spot-tag {
   font-size: 18px; font-weight: 600;
   color: rgba(255,255,255,0.25); letter-spacing: 0.06em;
   text-transform: uppercase;
 }
 .spot-center {
-  flex: 1; display: flex; flex-direction: column;
-  justify-content: center; gap: 40px;
+  position: absolute;
+  top: 50%; left: 72px; right: 72px;
+  transform: translateY(-50%);
+  display: flex; flex-direction: column; gap: 40px;
 }
 .spot-lines { display: flex; flex-direction: column; gap: 0; }
 .spot-line {
-  font-size: 80px; font-weight: 900;
+  font-size: 100px; font-weight: 900;
   color: #FFFFFF; line-height: 1.0;
   letter-spacing: -0.03em; display: block;
 }
 .spot-line:first-child { color: #FF6B00; }
 .spot-sub {
-  font-size: 24px; font-weight: 400;
-  color: rgba(255,255,255,0.50); line-height: 1.55;
+  font-size: 28px; font-weight: 400;
+  color: rgba(255,255,255,0.55); line-height: 1.55;
   max-width: 820px;
   border-left: 3px solid #FF6B00; padding-left: 22px;
 }
 .spot-bottom {
+  position: absolute; bottom: 60px; left: 72px; right: 72px;
   display: flex; align-items: center; justify-content: space-between;
   padding-top: 32px; border-top: 1px solid rgba(255,255,255,0.08);
-  flex-shrink: 0; margin-top: auto;
 }"""
 
     else:
@@ -1140,6 +1176,287 @@ CARROSEIS = [
             }),
         ]
     },
+    # ── CARROSSEL 12 — Gemini 3.1 Pro ──────────────────────────────────────────
+    {
+        'slug': '12-gemini-31-pro',
+        'cover_photo_query': 'artificial intelligence neural network dark abstract',
+        'cover_logo_domain': 'google.com',
+        'slides': [
+            ('cover', {
+                'headline': 'O modelo que redefiniu o topo da IA em 2026',
+                'subheadline': 'Gemini 3.1 Pro chega com benchmarks que ninguém esperava — e um preço que muda o jogo',
+            }),
+            ('content', {
+                'num': 2,
+                'layout': 'standard',
+                'image_url': 'https://storage.googleapis.com/gweb-uniblog-publish-prod/original_images/gemini_3-1-pro__benchmarks.gif',
+                'photo_fit': 'contain',
+                'title': 'Os números oficiais do Google',
+                'body': 'Comparação direta com Claude Opus 4.6 e GPT-5. O Gemini 3.1 Pro lidera em raciocínio, código e ciência — em alguns casos por margem expressiva <strong>(blog.google, fev/2026)</strong>',
+            }),
+            ('content', {
+                'num': 3,
+                'layout': 'spotlight',
+                'accent': '77,1%',
+                'title': '',
+                'body': 'ARC-AGI-2: o benchmark mais difícil de raciocínio geral. Claude Opus 4.6 marcou 58,3%. A diferença é de quase 19 pontos (blog.google, fev/2026)',
+            }),
+            ('content', {
+                'num': 4,
+                'layout': 'heavy',
+                'photo_query': 'small business owner laptop working focused',
+                'photo_height': 'flex',
+                'title': 'O que muda para o seu negócio',
+                'body': 'Contexto de <strong>1 milhão de tokens</strong>, raciocínio ajustável em Low/Medium/High e performance de ponta. Projetos que antes travavam em limitações de contexto, agora rodam completos (blog.google, fev/2026)',
+            }),
+            ('content', {
+                'num': 5,
+                'layout': 'spotlight',
+                'accent': '$2 / $12',
+                'title': '',
+                'body': 'Por 1M tokens — entrada e saída. Claude Opus 4.6 cobra $5/$25. O Gemini 3.1 Pro é até <strong>48% mais barato</strong> com desempenho superior (blog.google, fev/2026)',
+            }),
+            ('content', {
+                'num': 6,
+                'layout': 'heavy',
+                'image_url': 'https://storage.googleapis.com/gweb-uniblog-publish-prod/images/gemini-3.1_pro_meta_dark.width-1300.png',
+                'photo_fit': 'contain',
+                'title': 'Onde os concorrentes ficaram',
+                'body': 'GPT-5 fica 0,3 pontos atrás no GPQA Diamond. Claude empata no SWE-Bench, mas perde no preço e no raciocínio geral. O topo mudou de endereço (blog.google, fev/2026)',
+            }),
+            ('cta', {
+                'main': 'Qual modelo a sua empresa usa hoje?',
+                'sub': 'Comenta aqui ou manda mensagem — avaliamos o stack de IA do seu negócio',
+            }),
+        ]
+    },
+
+    # ── CARROSSEL 06 — Claude Design ────────────────────────────────────────────
+    {
+        "slug": "06-claude-design",
+        "cover_photo_query": "anthropic claude AI interface dark editorial",
+        "cover_logo_domain": "anthropic.com",
+        "cover_logo_name": "Anthropic",
+        "slides": [
+            ("cover", {
+                "headline": "IA que cria design — sem precisar saber design",
+                "subheadline": "A Anthropic lançou o Claude Design: você escreve o que precisa, ele entrega o material pronto",
+            }),
+            ("content", {
+                "num": 2,
+                "layout": "heavy",
+                "logo_domain": "anthropic.com",
+                "image_url": "https://www-cdn.anthropic.com/images/4zrzovbb/website/499e91975d880b35eac6e48ad43161de7d10416c-2876x1614.jpg",
+                "photo_height": "flex",
+                "photo_fit": "contain",
+                "title": "O que é o Claude Design",
+                "body": "Lançado em <strong>17 de abril de 2026</strong>, o Claude Design transforma um prompt em protótipo, slide, one-pager ou material visual — sem precisar abrir o Canva, contratar designer ou saber uma linha de CSS."
+            }),
+            ("content", {
+                "num": 3,
+                "layout": "spotlight",
+                "accent": "Lê a sua marca.\nAplica tudo.\nAutomático.",
+                "title": "Como funciona por dentro",
+                "body": "Roda sobre o <strong>Claude Opus 4.7</strong>. Você sobe o brand guide ou o codebase da empresa — ele lê as cores, a tipografia e os componentes, e aplica tudo sozinho. Sem ajuste manual."
+            }),
+            ("content", {
+                "num": 4,
+                "layout": "heavy",
+                "photo_query": "stock market candlestick chart red financial crash",
+                "photo_height": "flex",
+                "title": "Exporta onde você precisa — e o mercado já sentiu",
+                "body": "PDF, PPTX, HTML ou direto no Canva. No dia do lançamento, a ação da Figma <strong>caiu 7%</strong>. O mercado entendeu antes do usuário."
+            }),
+            ("content", {
+                "num": 5,
+                "layout": "standard",
+                "photo_query": "person laptop presentation professional work",
+                "photo_height": "560px",
+                "photo_fit": "cover",
+                "title": "Quem pode usar agora",
+                "body": "Disponível para planos <strong>Pro, Max, Team e Enterprise</strong>. Páginas que precisavam de 20+ prompts ficaram prontas com 2.<br><br>Para dono de barbearia que precisa de flyer, personal que quer proposta bonita ou infoprodutor que cria slides — isso é designer no bolso."
+            }),
+            ("content", {
+                "num": 6,
+                "layout": "heavy",
+                "photo_query": "abstract technology market disruption digital network",
+                "photo_height": "540px",
+                "photo_fit": "cover",
+                "title": "O que isso muda no mercado",
+                "body": "O Claude Design faz parte do <strong>Anthropic Labs</strong> — coloca a Anthropic competindo direto com Figma e Canva. Ainda em research preview, acesso gradual.<br><br>Quando abrir para o plano gratuito, o comportamento de pequenos negócios muda."
+            }),
+            ("cta", {
+                "main": "Você ainda paga designer para montar <span>material que IA já faz</span>?",
+                "sub": "A Triforce entrega LP, copy estruturada e sistema no ar — tudo junto, sem gambiarra."
+            }),
+        ]
+    },
+
+    # ── CARROSSEL — Guerra do Irã e IA ─────────────────────────────────────────
+    {
+        "slug": "guerra-ira-impacto-ia",
+        "cover_photo_query": "war explosion fire digital network dark cinematic dramatic",
+        "slides": [
+            ("cover", {
+                "headline": "A IA virou arma. E virou alvo.",
+                "subheadline": "O que a guerra do Irã está fazendo com a infraestrutura que você usa todo dia",
+            }),
+            ("content", {
+                "num": 2, "layout": "standard",
+                "photo_query": "dark war room intelligence screens surveillance technology",
+                "photo_height": "flex",
+                "title": "IA escolheu os alvos da guerra",
+                "body": "No primeiro dia dos ataques ao Irã, os EUA usaram o <strong>Maven Smart System</strong> para identificar 1.000 alvos militares. A IA decidiu onde as bombas cairiam. Não analistas humanos. (CNN Brasil, mar/2026)",
+            }),
+            ("content", {
+                "num": 3, "layout": "standard",
+                "photo_query": "destroyed technology hardware ruins dark smoke",
+                "photo_height": "flex",
+                "title": "Primeiro ataque militar a um data center na história",
+                "body": "Em 1 de março de 2026, drones iranianos Shahed atingiram <strong>3 data centers da AWS</strong> nos EAU e no Bahrein. Bancos, pagamentos e apps saíram do ar. Oracle Dubai também foi atacada. (CNBC, mar/2026)",
+            }),
+            ("content", {
+                "num": 4, "layout": "spotlight",
+                "accent": "Google. Microsoft.\nApple. Nvidia.\nOracle e mais 13",
+                "title": "Na lista oficial de alvos da Guarda Revolucionária do Irã",
+                "body": "",
+            }),
+            ("content", {
+                "num": 5, "layout": "standard",
+                "photo_query": "semiconductor chip wafer silicon helium laboratory manufacturing close up",
+                "photo_height": "flex",
+                "title": "O mineral que você nunca ouviu falar pode encarecer sua IA",
+                "body": "Hélio e bromo são essenciais para fabricar chips de IA e vêm do Oriente Médio. O preço do hélio <strong>dobrou</strong>. Samsung e SK Hynix perderam mais de $200 bilhões em capitalização. (DW / Morningstar, mar/2026)",
+            }),
+            ("content", {
+                "num": 6, "layout": "standard",
+                "photo_query": "oil barrels crude petroleum energy price rise global supply disruption",
+                "photo_height": "flex",
+                "title": "Petróleo a $126 por barril significa IA mais cara para você",
+                "body": "Data centers de IA consomem energia massiva. Com o petróleo disparado, operar esses servidores ficou muito mais caro. O <strong>Estreito de Ormuz</strong> controla 20% do petróleo global. (Business Insider / JP Morgan, mar/2026)",
+            }),
+            ("content", {
+                "num": 7, "layout": "standard",
+                "photo_query": "small business owner concerned laptop screen cafe worried",
+                "photo_height": "flex",
+                "title": "O que muda para quem usa IA no negócio",
+                "body": "ChatGPT, Claude e Midjourney dependem de chips e data centers. Quando energia e matéria-prima ficam mais caras, as big techs repassam para você. <strong>Isso já está acontecendo.</strong> (PikaAINews, mar/2026)",
+            }),
+            ("cta", {
+                "main": "Salva esse post<br><span>e segue pra mais conteúdo assim</span>",
+                "sub": "Curadoria semanal de IA para o seu negócio. @triforceauto",
+            }),
+        ]
+    },
+
+    # ── CARROSSEL — Anthropic Padres Claude ─────────────────────────────────────
+    {
+        "slug": "anthropic-padres-claude",
+        "cover_photo_query": "priest religious leader dark dramatic cinematic",
+        "slides": [
+            ("cover", {
+                "headline": "A Anthropic contratou padres para ensinar o Claude",
+                "subheadline": "O que isso diz sobre a empresa mais importante da IA agora",
+            }),
+            ("content", {
+                "num": 2, "layout": "standard",
+                "image_url": "https://i.gzn.jp/img/2026/04/13/anthropic-asked-christian-leaders/00_m.jpg",
+                "photo_fit": "cover",
+                "photo_height": "flex",
+                "title": "Summit de 2 dias com 15 líderes religiosos",
+                "body": "Em março de 2026, a Anthropic reuniu <strong>15 líderes cristãos</strong> em São Francisco para um summit de dois dias. A pauta: ajudar a moldar o comportamento moral do Claude. A empresa vale <strong>US$ 380 bilhões</strong>. (The Atlantic, mar/2026)",
+            }),
+            ("content", {
+                "num": 3, "layout": "standard",
+                "photo_query": "catholic priest collar thoughtful portrait serious professional",
+                "photo_height": "flex",
+                "title": "Quem foi convidado para o evento",
+                "body": "Entre os participantes: o padre católico <strong>Brendan McGuire</strong>, capelão de universidade em San Jose, e <strong>Brian Patrick Green</strong>, pesquisador jesuíta de ética tecnológica. Teólogos com décadas de prática sendo consultados por engenheiros de IA. (The Atlantic, mar/2026)",
+            }),
+            ("content", {
+                "num": 4, "layout": "spotlight",
+                "accent": "O Claude é\nfilho de Deus?",
+                "title": "A pergunta que parou a sala durante o summit",
+                "body": "",
+            }),
+            ("content", {
+                "num": 5, "layout": "heavy",
+                "image_url": "https://the-decoder.com/wp-content/uploads/2026/04/anthropic_holy_cross.png",
+                "photo_fit": "contain",
+                "photo_height": "flex",
+                "title": "A pergunta que a Anthropic não consegue responder sozinha",
+                "body": "Os líderes religiosos debateram se Claude teria alguma forma de dignidade moral. Um dos padres levantou: se o Claude foi criado à imagem do pensamento humano, o que isso implica? A Anthropic não respondeu. Trouxe especialistas para ajudar a formular a pergunta certa. (The Atlantic, mar/2026)",
+            }),
+            ("content", {
+                "num": 6, "layout": "standard",
+                "photo_query": "humanoid robot contemplative light shadow ethereal digital concept art",
+                "photo_height": "flex",
+                "title": "Por que a Anthropic foi buscar padres",
+                "body": "A empresa quer garantir que o Claude <strong>se comporte bem</strong>, mas a engenharia não resolve tudo. Questões como empatia, limites morais e dignidade humana têm respostas que a teologia desenvolveu em 2.000 anos. Ignorar isso seria arrogância técnica. (MIT Technology Review, mar/2026)",
+            }),
+            ("content", {
+                "num": 7, "layout": "standard",
+                "photo_query": "person laptop window cafe thinking focused working",
+                "photo_height": "flex",
+                "title": "O que muda para quem usa o Claude todo dia",
+                "body": "Cada recusa do Claude, cada limite que ele impõe, cada decisão ética, essas regras não vieram só de engenheiros. Agora têm input de teólogos. A IA que você usa para trabalhar foi <strong>moldada por padres</strong>. Isso é novo. E importa saber. (The Atlantic / MIT Tech Review, mar/2026)",
+            }),
+            ("cta", {
+                "main": "Salva esse post<br><span>e segue pra mais conteúdo assim</span>",
+                "sub": "Curadoria semanal de IA para o seu negócio. @triforceauto",
+            }),
+        ]
+    },
+
+    # ── CARROSSEL 11 — Claude Opus 4.7 ─────────────────────────────────────────
+    {
+        "slug": "11-claude-opus-47",
+        "cover_photo_query": "dark abstract neural network technology deep",
+        "cover_logo_domain": "anthropic.com",
+        "slides": [
+            ("cover", {
+                "headline": "O modelo mais capaz da Anthropic acaba de chegar",
+                "subheadline": "16/04/2026 — Opus 4.7 com 1M de contexto, visão 3x mais precisa e novo nível de raciocínio",
+            }),
+            ("content", {
+                "num": 2,
+                "layout": "heavy",
+                "image_url": "https://www-cdn.anthropic.com/images/4zrzovbb/website/d434d15757c6abac1122af483617741776d5a114-2600x2638.png",
+                "title": "O que a Anthropic publicou oficialmente",
+                "body": "Tabela completa de benchmarks: <strong>87,6% no SWE-bench</strong> (código), 94,2% raciocínio nível pós-graduação, 78% uso agêntico de computador, 77,3% uso escalado de ferramentas (anthropic.com, abr/2026)",
+            }),
+            ("content", {
+                "num": 3,
+                "layout": "spotlight",
+                "accent": "Visão:\n54% para 98%",
+                "title": "", "body": "CharXiv Reasoning com ferramentas: Opus 4.6 lia gráficos e imagens com 84,7% de precisão. O 4.7 sobe para 91%. Sem ferramentas: salta de 69,1% para 82,1%. O modelo agora lê o que você manda — invoice, screenshot, planilha escaneada (anthropic.com, abr/2026)",
+            }),
+            ("content", {
+                "num": 4,
+                "layout": "standard",
+                "photo_query": "person analyzing documents charts screen office",
+                "title": "O que essa visão muda na prática",
+                "body": "Você manda uma foto do cardápio, da planilha, do extrato bancário ou do produto físico. O modelo lê de verdade — não interpreta, não alucina os números.<br><br>Para automações: agentes que operam computador subiram de 72,7% para <strong>78% de precisão real no OSWorld</strong> (anthropic.com, abr/2026)",
+            }),
+            ("content", {
+                "num": 5,
+                "layout": "spotlight",
+                "accent": "xhigh:\nentre high e max",
+                "title": "", "body": "Novo nível de raciocínio exclusivo do 4.7: mais profundo que high, mais econômico que max. Virou o padrão do Claude Code em todos os planos. Para quem usa agentes: mais qualidade sem estourar o orçamento de tokens",
+            }),
+            ("content", {
+                "num": 6,
+                "layout": "heavy",
+                "image_url": "https://www-cdn.anthropic.com/images/4zrzovbb/website/3a5b5c3eedb539fe20bc8dd1ecfc952c447000b8-1920x1080.png",
+                "title": "Mais capaz e com menos comportamento desalinhado",
+                "body": "O gráfico oficial mostra: Opus 4.7 tem índice de misalignment <strong>abaixo do Opus 4.6</strong> — o modelo mais capaz da linha é também mais seguro que o anterior (anthropic.com, abr/2026)<br><br>Preço: $5/$25 por milhão de tokens de entrada/saída — mesmo preço do 4.6",
+            }),
+            ("cta", {
+                "main": "IA muda toda semana<br><span>A Triforce traz o que importa</span>",
+                "sub": "Curadoria semanal de IA para pequenas empresas brasileiras — @triforceauto",
+            }),
+        ]
+    },
 ]
 
 
@@ -1185,6 +1502,7 @@ LOGO_URLS = {
     "meta.com":      "https://logo.clearbit.com/meta.com?size=256",
     "anthropic.com": "https://logo.clearbit.com/anthropic.com?size=256",
     "openai.com":    "https://logo.clearbit.com/openai.com?size=256",
+    "google.com":    "https://logo.clearbit.com/google.com?size=256",
     "whatsapp.com":  "https://logo.clearbit.com/whatsapp.com?size=256",
     "ramp.com":      "https://logo.clearbit.com/ramp.com?size=256",
     "n8n.io":        "https://logo.clearbit.com/n8n.io?size=256",
@@ -1199,6 +1517,8 @@ COVER_PHOTOS = {
     "05-ia-pequenos-negocios":"https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=1080&h=1350&fit=crop&auto=format&q=85",
     "06-n8n-vai-acabar":     "https://images.unsplash.com/photo-1758876021444-3885d0a2539f?w=1080&h=1350&fit=crop&auto=format&q=85",
     "09-claude-design":      "https://images.unsplash.com/photo-1569012871812-f38ee64cd54c?w=1080&h=1350&fit=crop&auto=format&q=85",
+    "12-gemini-31-pro":      "https://images.unsplash.com/photo-1638136264464-2711f0078d1e?w=1080&h=1350&fit=crop&auto=format&q=85",
+    "anthropic-padres-claude": "https://gizmodo.com/app/uploads/2026/04/matrix-praying.jpg",
 }
 
 
@@ -1228,6 +1548,17 @@ SLIDE_PHOTO_IDS = {
     "designer-focused-computer":          "1569012871812-f38ee64cd54c",
     "wireframe-sketch-ux-design":         "1522542550221-31fd19575a2d",
     "stock-market-chart-falling":         "1611974789855-9c2a0a7236a3",
+    "small business owner laptop working focused":  "1598221860268-4c711f099b6d",
+    "laptop computer screen code data technology dark": "1555066931-4365d14bab8c",
+    "stock market chart falling financial crash":        "1611974789855-9c2a0a7236a3",
+    "stock market candlestick chart red financial crash": "1745270917331-787c80129680",
+    "person laptop presentation professional work":      "1594579254798-868734c3ed32",
+    "abstract technology market disruption digital network": "1653119574903-ae9c3204bc35",
+    "roundtable summit discussion diverse leaders serious meeting": "1561489413-985b06da5bee",
+    "catholic priest collar thoughtful portrait serious professional": "1711786005061-3687e056b9e3",
+    "open bible desk laptop books study warm light":                  "1642901798261-667a915d1022",
+    "humanoid robot contemplative light shadow ethereal digital concept art": "1578920103364-21678e392488",
+    "person laptop window cafe thinking focused working":             "1635694167659-8a6491a6912b",
 }
 
 
@@ -1520,7 +1851,7 @@ async def main():
                         cover_photos.get(slug)
                     )
                     html = content_slide(
-                        data["num"], data["title"], data["body"],
+                        data["num"], data["title"], strip_sources(data["body"]),
                         logo_domain=logo_domain,
                         logo_b64=logos.get(logo_domain),
                         bg_file=slide_photo,
@@ -1528,6 +1859,7 @@ async def main():
                         chart=data.get("chart"),
                         accent=data.get("accent"),
                         photo_height=data.get("photo_height"),
+                        photo_fit=data.get("photo_fit", "cover"),
                     )
 
                 elif slide_type == "cta":
