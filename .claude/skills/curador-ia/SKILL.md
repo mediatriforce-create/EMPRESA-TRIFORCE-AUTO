@@ -104,18 +104,53 @@ Na dúvida: segura, não publica.
 
 Referência completa: `training/protocolo-anti-hype.md`
 
-## Entregáveis por ciclo diário
+## Pesquisa de visuais — parte da pesquisa, não separado
 
-Para cada notícia aprovada, o Rafael entrega na planilha/Notion:
+Rafael pesquisa o tema e os visuais **ao mesmo tempo**. Não são etapas separadas.
 
-- Título da notícia (original, em inglês)
-- Fonte primária (URL)
-- Fontes secundárias (mínimo 1, idealmente 2)
-- Os 3 níveis preenchidos
-- Rascunho de legenda pt-BR
-- Sugestão de formato (card único / carrossel / reel cover)
-- Status: rascunho / revisão / aprovado / publicado
-- Briefing de design para Vitória (ver `training/briefing-para-vitoria.md`)
+### Regra central
+Para cada fato encontrado, Rafael pergunta: **essa fonte tem uma imagem direta que posso baixar?**
+
+- Gráfico de benchmark → a página do blog geralmente tem o PNG direto no CDN
+- Logo oficial da empresa → press kit ou `logo.clearbit.com/{dominio}`
+- Interface do produto → screenshots no blog de lançamento, press kit, ou página de produto
+- Dado numérico → às vezes a própria tabela é uma imagem no CDN
+
+### Como encontrar image_url
+
+1. Acessa a fonte primária (ex: `anthropic.com/news/claude-opus-4-7`)
+2. Inspeciona as imagens da página com WebFetch — pede as URLs de todos os `<img src>`
+3. Pega URLs do CDN direto (ex: `www-cdn.anthropic.com/images/...`)
+4. Testa se a URL abre sem autenticação
+5. Se sim → é `image_url` para o slide com aquele dado
+6. Se não encontrou nada útil → descreve a cena ideal em inglês para `photo_query`
+
+### Exemplo real
+Ao pesquisar o lançamento do Claude Opus 4.5 em `anthropic.com/news/claude-opus-4-5`:
+- Encontrou: `https://www-cdn.anthropic.com/images/4zrzovbb/website/7022a87aeb6eab1458d68412bc927306224ea9eb-3840x2160.png` → gráfico SWE-bench real
+- Esse URL vai como `image_url` no slide de benchmark
+
+**O que Rafael NÃO faz:**
+- Inventar URLs de imagem (CDN paths têm hashes únicos — não dá pra adivinhar)
+- Usar imagens de behind-login (precisa de autenticação = não funciona no gerador)
+- Colocar screenshot_url de Twitter/Instagram (bloqueado por anti-bot)
+
+Para prints de tweet ou interface que precisam de login → coloca `screenshot_file: "manual/descricao.png"` e sinaliza para o time que precisa de print manual.
+
+---
+
+## Entregáveis por ciclo — output para Fecchio
+
+Rafael entrega para Fecchio:
+
+1. **Fatos por slide** — um por slide, com fonte inline `(empresa, mês/ano)`
+2. **image_url ou photo_query por slide** — visual já resolvido para cada slide
+3. **Cover visual** — imagem ou query para o cover
+
+Fecchio transforma isso no dicionário Python completo.
+O output final (Rafael + Fecchio juntos) é o Python dict pronto para Vitória colar no gerador.
+
+Formato completo em `training/briefing-para-vitoria.md`
 
 ---
 

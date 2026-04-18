@@ -1,211 +1,124 @@
 ---
 skill: curador-ia
 doc: briefing-para-vitoria
-version: "1.0"
+version: "2.0"
+update_reason: "Rafael + Fecchio entregam o Python completo com visuais incluídos — Vitória só roda o gerador"
 ---
 
-# Briefing de Design para Vitória — Formato e Protocolo
+# Briefing para Vitória — v2.0
 
-## Por que esse documento existe
+## O que mudou
 
-Rafael entrega conteúdo. Vitória entrega visual. O briefing de design é o único ponto de contato entre os dois — e precisa ser preciso o suficiente para que Vitória produza sem precisar perguntar nada.
+Na v1.0, Rafael entregava um briefing em texto e Vitória buscava as imagens.
+Isso criava retrabalho: Vitória tinha que descobrir o visual de cada slide do zero.
 
-Um briefing incompleto cria retrabalho, atraso no agendamento e inconsistência visual. Um briefing bem preenchido garante que Vitória entrega o batch em 48h sem vai e vem.
+**Na v2.0:** Rafael + Fecchio entregam o dicionário Python completo — texto, estrutura e visuais já resolvidos. Vitória cola no `gerar-carroseis.py` e roda.
 
 ---
 
-## Template de briefing — preenchimento obrigatório por pauta
+## Pipeline novo
 
 ```
-BRIEFING DE DESIGN — [slug da pauta]
-Data de entrega solicitada: [data]
-Prioridade: [normal / urgente]
-
----
-
-CONTEÚDO
-Tema: [assunto em português, sem jargão]
-Headline sugerida: [máx. 8 palavras — impacto direto, começa pelo problema ou dado]
-Subtítulo (opcional): [complementa a headline — máx. 12 palavras]
-Dados ou números de destaque: [se houver — ex: "4x mais barato", "98% de precisão"]
-
----
-
-FORMATO
-Tipo: [card único / carrossel / reels cover]
-Número de slides (se carrossel): [N]
-Estrutura dos slides (se carrossel):
-  Slide 1 (cover): [o que vai na cover — headline + dado principal]
-  Slide 2: [título do item + conteúdo resumido]
-  Slide 3: [...]
-  Último slide: [CTA + call para salvar/seguir]
-
----
-
-VISUAL
-Fundo preferencial: [escuro (preto) / claro (bege) / a critério da Vitória]
-Elemento visual sugerido: [foto editorial? ícone? abstrato? a critério?]
-Cor de destaque: [laranja para qual elemento — ex: "laranja no dado numérico"]
-Referência de estilo (se houver): [URL ou descrição — opcional]
-
----
-
-LEGENDA
-Rascunho completo: [colar o rascunho de legenda pt-BR conforme training/legenda-instagram-br.md]
-Gancho (primeira linha): [repetir isolado — é o que define o visual do cover]
-
----
-
-OBSERVAÇÕES
-[qualquer contexto adicional que ajude Vitória — ex: "esse tema tem muito texto técnico, priorizar hierarquia clara nos slides internos"]
+Rafael (pesquisa + visuais) ──┐
+                               ├──► estrutura Python completa ──► Vitória (roda gerador) ──► Bruno (revisa)
+Fecchio (copy dos slides)  ──┘
 ```
 
----
+### O que Rafael entrega para Fecchio
 
-## Regras de preenchimento
+- Fatos verificados com fonte (ex: "SWE-bench 87,6% — fonte: anthropic.com/news/claude-opus-4-7")
+- **URLs de visuais por tema** encontradas nas fontes oficiais:
+  - Gráficos e tabelas de benchmark → URL direta do CDN da empresa
+  - Logo oficial → URL do press kit ou Clearbit
+  - Interface do produto → URL da imagem no blog/press kit oficial
+  - Se não encontrou visual oficial → descreve a cena ideal (vira `photo_query` Unsplash)
+- Contexto editorial: por que importa agora, para quem
 
-### Headline
-- Máximo 8 palavras
-- Começa pelo problema do ICP ou pelo dado concreto — nunca pelo nome da empresa/produto
-- Teste: se a headline funciona sozinha num card escuro sem explicação adicional, está boa
-- Exemplos bons: "Seu WhatsApp pode atender sozinho agora" / "IA que custa 4x menos foi lançada"
-- Exemplos ruins: "Anthropic Claude 3.5 Haiku lançado" / "Novidade incrível no mundo da IA"
+### O que Fecchio entrega para Vitória
 
-### Estrutura de carrossel
-- Cover (slide 1) sempre escuro + headline + subtítulo
-- Slides internos (2 a N-1) sempre claros (bege) + conteúdo numerado
-- Último slide sempre com CTA: "Salva esse post" ou "Segue para mais"
-- Rafael define o conteúdo de cada slide — Vitória define o visual
+O dicionário Python do carrossel, pronto para colar no `CARROSEIS`:
 
-### Dado ou número de destaque
-- Se a notícia tem um número forte, ele vai em laranja no visual
-- Rafael indica qual número merece destaque — Vitória decide a composição
-- Se não há número, indicar "sem destaque numérico"
-
-### Fundo preferencial
-- Rafael sugere, Vitória decide
-- Regra geral: notícia de impacto → fundo escuro. Ferramenta prática → pode ser claro
-- Em caso de dúvida: "a critério da Vitória" é resposta válida
-
----
-
-## Protocolo de entrega
-
-### Onde entregar
-- Notion: database "Pauta Curadoria IA", campo "Briefing de Design"
-- Status da pauta deve mudar para `em produção` no momento da entrega
-
-### Prazo
-- Briefing entregue até 12h do dia de produção (conforme rotina de `garimpagem-diaria.md`)
-- Vitória tem 48h para entregar o visual a partir do recebimento do briefing
-- Para posts urgentes (notícia quente do dia): briefing entregue até 13h, Vitória tem 6h para cover + 1 slide
-
-### Comunicação de urgência
-Se a pauta for urgente (notícia quente que precisa sair no mesmo dia), Rafael sinaliza no briefing:
-
-```
-Prioridade: URGENTE
-Motivo: [ex: "lançamento do GPT-5 hoje — janela de 24h para ser relevante"]
-```
-
-E notifica Larissa diretamente sobre a urgência — não espera ela encontrar no Notion.
-
----
-
-## O que Rafael NÃO decide no briefing
-
-- Composição exata dos elementos visuais (posição, tamanho, espaçamento)
-- Escolha de imagem ou geração de imagem editorial
-- Tipografia específica
-- Versão final da headline (Rafael sugere, Vitória pode melhorar)
-- Ordem visual dentro de um slide
-
-Vitória tem autonomia total sobre as decisões visuais. O briefing é insumo, não instrução de design.
-
----
-
-## Exemplos de briefing preenchido
-
-### Exemplo 1 — Carrossel sobre ferramenta de WhatsApp
-
-```
-BRIEFING DE DESIGN — whatsapp-ia-atendimento
-Data de entrega solicitada: 2026-04-18
-Prioridade: normal
-
-CONTEÚDO
-Tema: Ferramenta de IA que automatiza atendimento no WhatsApp para pequenos negócios
-Headline sugerida: Seu WhatsApp pode atender sozinho agora
-Subtítulo: Sem contratar atendente. Sem custo de agência.
-Dados ou números de destaque: (nenhum número forte nessa pauta)
-
-FORMATO
-Tipo: carrossel
-Número de slides: 5
-Estrutura dos slides:
-  Slide 1 (cover): Headline + subtítulo
-  Slide 2: O que a ferramenta faz (responde dúvidas, confirma horário, manda lembrete)
-  Slide 3: Para quem funciona melhor (barbearia, salão, personal trainer)
-  Slide 4: O que ainda não faz (limitações honestas)
-  Slide 5: CTA — "Salva esse post. Explico como configurar nos próximos."
-
-VISUAL
-Fundo preferencial: escuro no cover, claro nos internos
-Elemento visual sugerido: ícone de WhatsApp ou mensagem de chat — a critério
-Cor de destaque: laranja no título de cada slide interno
-
-LEGENDA
-Rascunho completo:
-WhatsApp com IA respondendo cliente? Já tem solução funcionando pra pequenos negócios.
-
-Não é chatbot engessado de 2019. É assistente que responde dúvida, confirma horário e manda lembrete — tudo automatizado, tudo no número que o cliente já tem.
-
-Na prática: barbearia ou salão que não consegue atender pelo WhatsApp em horário de pico pode resolver isso sem contratar atendente.
-
-Você já testou algum bot de atendimento? Funcionou ou foi mais problema?
-
-Gancho (primeira linha): WhatsApp com IA respondendo cliente? Já tem solução funcionando pra pequenos negócios.
-
-OBSERVAÇÕES
-Conteúdo prático e direto. Público é dono de barbearia/salão. Priorizar clareza nos slides internos — não sobrecarregar com texto técnico.
+```python
+{
+    "slug": "11-nome-do-tema",
+    "cover_photo_query": "descrição visual da cover em inglês",  # ou cover_image_url se encontrou
+    "slides": [
+        ("cover", {
+            "headline": "Título sem ponto final",
+            "subheadline": "Contexto em 1-2 linhas sem ponto final",
+        }),
+        ("content", {
+            "num": 2,
+            "layout": "standard",         # standard | heavy | spotlight | data
+            "image_url": "https://cdn.empresa.com/imagem-real.png",  # visual encontrado por Rafael
+            "title": "Título sem ponto final",
+            "body": "Texto com <strong>dado</strong> em bold. Fonte inline (empresa, mês/ano)",
+        }),
+        ("content", {
+            "num": 3,
+            "layout": "spotlight",
+            "accent": "Frase de impacto\nem duas linhas",
+            "title": "", "body": "Subtexto opcional do spotlight",
+        }),
+        ("cta", {
+            "main": "Linha principal<br><span>Linha em laranja</span>",
+            "sub": "Descrição do canal — @triforceauto",
+        }),
+    ]
+}
 ```
 
 ---
 
-### Exemplo 2 — Card único sobre lançamento de modelo
+## Campos de visual por slide — escolher o mais certo, não o mais fácil
 
-```
-BRIEFING DE DESIGN — claude-haiku-mais-barato
-Data de entrega solicitada: 2026-04-19
-Prioridade: normal
+Cada slide tem UMA fonte de visual. Rafael encontra o melhor disponível, Fecchio decide qual campo usar:
 
-CONTEÚDO
-Tema: Anthropic lançou versão mais barata do Claude — custo 4x menor por uso
-Headline sugerida: IA profissional por 4x menos. Acabou de lançar.
-Subtítulo: (a critério da Vitória)
-Dados ou números de destaque: "4x mais barato" — destaque em laranja
+| Campo | Quando usar | Exemplo |
+|---|---|---|
+| `image_url` | URL direta de imagem pública (CDN, press kit, blog oficial) | Gráfico do SWE-bench da Anthropic, logo do produto, screenshot de interface |
+| `photo_query` | Nenhuma imagem real encontrada → Unsplash API busca automaticamente | `"entrepreneur laptop startup"`, `"robot handshake human"` |
+| `screenshot_file` | Print manual salvo em `banco-de-imagens/manual/` | Tweet relevante, interface que precisa de login |
 
-FORMATO
-Tipo: card único
-Número de slides: 1
+**Regra:** não é um tipo só. Um carrossel pode ter `image_url` no slide 2, `photo_query` no slide 4, `spotlight` sem foto no slide 3. O visual serve o conteúdo — não o contrário.
 
-VISUAL
-Fundo preferencial: escuro
-Elemento visual sugerido: tipografia forte + dado em destaque — sem imagem editorial obrigatória
-Cor de destaque: laranja no "4x"
+### Como Rafael encontra image_url
 
-LEGENDA
-Rascunho completo:
-A Anthropic lançou uma versão do Claude que custa 4x menos por mensagem.
+1. Acessa a fonte da notícia (anthropic.com, openai.com, techcrunch, etc.)
+2. Inspeciona as imagens da página (gráficos, interfaces, tabelas)
+3. Pega a URL direta do CDN — ex: `https://www-cdn.anthropic.com/images/.../chart.png`
+4. Testa se a URL é acessível diretamente (sem login, sem redirect de autenticação)
+5. Se sim → coloca como `image_url` no slide correspondente
+6. Se não → usa `photo_query` com descrição visual precisa em inglês
 
-Isso não é só notícia técnica. Significa que ferramentas que você já paga ficam mais baratas pra rodar — ou que quem ainda não usa vai ter menos desculpa.
+### photo_query: como escrever bem
 
-Na prática: chatbots de atendimento, geradores de conteúdo e automações que usam Claude vão ficar mais acessíveis pra pequenos negócios.
+- Descreve a cena, não o conceito: `"man reviewing code on monitor at night"` > `"software developer"`
+- Sem abstrações: `"lock on laptop keyboard security"` > `"cybersecurity concept"`
+- Sem marca/empresa: `"ai chatbot interface dark screen"` > `"claude interface"`
+- Em inglês sempre (Unsplash API)
 
-Você já usa alguma ferramenta de IA no seu negócio ou ainda tá no modo manual?
+---
 
-Gancho (primeira linha): A Anthropic lançou uma versão do Claude que custa 4x menos por mensagem.
+## Regras de copy para os slides
 
-OBSERVAÇÕES
-O dado "4x" é o coração desse post. Tudo gira em torno dele visualmente.
-```
+- **Zero pontos finais** em `title` e `headline`
+- **Zero travessões (—)** — usar vírgula, ponto, dois pontos ou quebrar em frase nova
+- `body` pode ter ponto final, mas cada parágrafo máximo 2 linhas
+- Fonte sempre inline no corpo: `(anthropic.com, abr/2026)` — nunca numa nota separada
+- Bold (`<strong>`) só no dado mais importante do slide — 1 por slide no máximo
+- Spotlights: `accent` é a frase de impacto. Primeira linha fica laranja automaticamente. Não colocar ponto final
+- Slides `data`: usa o campo `chart` com lista de itens, não `body`
+
+---
+
+## Checklist antes de entregar para Vitória
+
+- [ ] Todos os `title` e `headline` sem ponto final
+- [ ] Nenhum travessão (—) em títulos
+- [ ] Cada slide tem um visual definido (`image_url`, `photo_query`, ou sem foto para spotlight/data)
+- [ ] Nenhum `photo_query` se repete no mesmo carrossel
+- [ ] Spotlights têm `"title": ""` e `"body": ""`  mesmo que vazios
+- [ ] Cover tem `cover_photo_query` ou `cover_image_url`
+- [ ] Último slide é `("cta", {...})`
+- [ ] Fonte citada em pelo menos 1 dado por slide

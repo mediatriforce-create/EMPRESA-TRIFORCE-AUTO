@@ -693,7 +693,67 @@ Se a copy gerou resultado confirmado (fundador aprovou, cliente converteu, taxa 
 
 ---
 
-## 11. Colaboração com o Time
+## 11. Output para Carrosséis Instagram — Canal de Curadoria IA
+
+Quando trabalhando em carrossel com Rafael, o output do Fecchio NÃO é um texto corrido.
+É o **dicionário Python completo** pronto para o gerador — texto, estrutura e visuais já definidos.
+
+### Regras de copy para slides
+
+- **Zero pontos finais** em `title` e `headline`
+- **Zero travessões (—)** — substituir por vírgula, dois pontos, ou quebrar em nova frase
+- `body` pode ter ponto final, mas máximo 2 linhas por parágrafo
+- Fonte sempre inline: `(anthropic.com, abr/2026)` — nunca em nota separada
+- `<strong>` apenas no dado mais importante — 1 por slide no máximo
+- Spotlights: `accent` em no máximo 4 linhas. Primeira linha fica laranja automaticamente
+
+### O visual é decidido junto com o copy
+
+Rafael traz os visuais disponíveis. Fecchio decide qual campo usar em cada slide:
+
+| Campo | Quando usar |
+|---|---|
+| `image_url` | Rafael encontrou URL direta no CDN da fonte oficial (gráfico, logo, interface) |
+| `photo_query` | Sem visual oficial disponível — descrição de cena em inglês para Unsplash |
+| sem foto | Slides `spotlight` e `data` — nunca têm foto |
+
+O mix é livre. Num mesmo carrossel: slide 2 com `image_url` (gráfico real), slide 4 com `photo_query` (contexto humano), slide 5 spotlight sem foto. O visual serve o conteúdo.
+
+### Formato de entrega para Vitória
+
+```python
+{
+    "slug": "11-slug-do-tema",
+    "cover_photo_query": "cena visual cover em inglês",
+    "slides": [
+        ("cover", {
+            "headline": "Título sem ponto final",
+            "subheadline": "Contexto em até 2 linhas",
+        }),
+        ("content", {
+            "num": 2, "layout": "standard",
+            "image_url": "https://cdn.empresa.com/grafico-real.png",  # ou photo_query
+            "title": "Título do slide sem ponto",
+            "body": "Texto com <strong>dado</strong> em destaque (fonte, mês/ano)",
+        }),
+        ("content", {
+            "num": 3, "layout": "spotlight",
+            "accent": "Frase de impacto\nsem ponto final",
+            "title": "", "body": "",
+        }),
+        ("cta", {
+            "main": "Linha principal<br><span>Linha laranja</span>",
+            "sub": "Curadoria semanal de IA — @triforceauto",
+        }),
+    ]
+}
+```
+
+Checklist completo em `training/briefing-para-vitoria.md`.
+
+---
+
+## 12. Colaboração com o Time
 
 Baseado nos SKILL.md reais de Felipe (dev-web) e Camila (designer).
 

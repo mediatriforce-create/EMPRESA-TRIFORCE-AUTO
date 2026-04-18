@@ -1232,10 +1232,45 @@ SLIDE_PHOTO_IDS = {
 
 
 async def download_slide_photos(browser, carroseis: list) -> dict:
-    """Baixa fotos dos slides — usa dicionário fixo ou busca automática via Unsplash API."""
+    """Baixa fotos dos slides.
+
+    Prioridade por slide:
+      1. image_url   — URL direta de imagem (logo, screenshot de artigo, gráfico oficial)
+                       Baixa com urllib, sem browser, sem proteção anti-bot.
+                       Exemplo: logo do Claude, gráfico do SWE-bench, imagem de press kit.
+      2. photo_query — texto livre → Unsplash API → CDN
+    """
     photos = {}
     page = await browser.new_page(viewport={"width": 1080, "height": 1350})
 
+    # ── image_url: download direto via urllib (sem Playwright) ─────────────────
+    import urllib.request as _urllib
+    print("\nBaixando imagens diretas (image_url)...")
+    for c in carroseis:
+        for slide_type, data in c["slides"]:
+            if slide_type != "content":
+                continue
+            url = data.get("image_url")
+            if not url:
+                continue
+            safe = re.sub(r"[^a-z0-9]", "_", url)[:60]
+            ext  = "png" if url.lower().endswith(".png") else "jpg"
+            cache_file = CACHE_DIR / f"direct_{safe}.{ext}"
+            if cache_file.exists() and cache_file.stat().st_size > 5_000:
+                photos[url] = str(cache_file)
+                print(f"  [cache] {url[:70]}")
+                continue
+            try:
+                req = _urllib.Request(url, headers={"User-Agent": "Mozilla/5.0"})
+                with _urllib.urlopen(req, timeout=15) as r:
+                    body = r.read()
+                cache_file.write_bytes(body)
+                photos[url] = str(cache_file)
+                print(f"  [ok] {url[:70]} ({len(body)//1024} KB)")
+            except Exception as e:
+                print(f"  [erro] {url[:70]} — {e}")
+
+    # ── photo_query: Unsplash API ───────────────────────────────────────────────
     # Coleta todas as photo_queries usadas nos carrosséis
     queries_needed = set()
     for c in carroseis:
@@ -1477,8 +1512,9 @@ async def main():
 
                 elif slide_type == "content":
                     logo_domain = data.get("logo_domain")
-                    # screenshot_url tem prioridade sobre photo_query
+                    # prioridade: image_url > screenshot_url > photo_query > cover fallback
                     slide_photo = (
+                        slide_photos.get(data.get("image_url")) or
                         screenshots.get(data.get("screenshot_url")) or
                         slide_photos.get(data.get("photo_query")) or
                         cover_photos.get(slug)
