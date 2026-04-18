@@ -2,20 +2,6 @@
   "version": "1.0",
   "employees": [
     {
-      "id": "designer",
-      "name": "Camila",
-      "role": "Designer UI/UX Senior",
-      "seniority": "senior",
-      "tier": "standard",
-      "reports_to": "fundador",
-      "description": "Cria identidade visual, design systems e LPs no Figma com handoff para React/Tailwind.",
-      "specialty": "ui-design-branding",
-      "skills": ["designer", "ui-ux-pro-max", "ui-animation", "image-analysis"],
-      "status": "hired",
-      "hired_at": "2026-04-13",
-      "hired_by": "Gabriela"
-    },
-    {
       "id": "dev-web",
       "name": "Felipe",
       "role": "Dev Web Senior",

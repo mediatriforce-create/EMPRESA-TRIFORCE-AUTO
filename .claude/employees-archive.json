@@ -1,0 +1,19 @@
+{
+  "version": "1.0",
+  "archived": [
+    {
+      "id": "designer",
+      "name": "Camila",
+      "role": "Designer UI/UX Senior",
+      "seniority": "senior",
+      "tier": "standard",
+      "specialty": "ui-design-branding",
+      "skills": ["designer", "ui-ux-pro-max", "ui-animation", "image-analysis"],
+      "hired_at": "2026-04-13",
+      "hired_by": "Gabriela",
+      "fired_at": "2026-04-18",
+      "fired_by": "Gabriela",
+      "motivo": "Produto é LP entregue como HTML final. Felipe + claude-design cobre design e desenvolvimento sem necessidade de Figma ou design system separado."
+    }
+  ]
+}
