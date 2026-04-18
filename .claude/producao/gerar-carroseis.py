@@ -1015,6 +1015,88 @@ CARROSEIS = [
         ]
     },
 
+    # ── CARROSSEL 10 — Claude Opus 4.7 ─────────────────────────────────────────
+    {
+        "slug": "10-claude-opus-47",
+        "cover_photo_query": "neural network glowing dark abstract intelligence",
+        "cover_logo_domain": "anthropic.com",
+        "cover_logo_name": "Anthropic",
+        "slides": [
+            ("cover", {
+                "headline": "O modelo que alimenta o Claude Design acaba de chegar",
+                "subheadline": "Claude Opus 4.7, lançado em 16/04/2026: 87,6% no SWE-bench, visão 3,75 MP e o modo xhigh que ninguém estava esperando",
+            }),
+            ("content", {
+                "num": 2,
+                "layout": "standard",
+                "logo_domain": "anthropic.com",
+                "photo_query": "performance benchmark chart improvement technology",
+                "photo_height": "flex",
+                "title": "O que mudou de verdade",
+                "body": "Não foi atualização incremental. O Opus 4.7 resolve problemas que o 4.6 deixava para trás:<br><br><strong>SWE-bench Verified: 87,6%</strong> — alta de 6,8 pontos em uma versão só (findskill.ai, abr/2026)<br><strong>CursorBench: 70%</strong> — subiu de 58 para 70, o maior salto desde o lançamento do benchmark (theplanettools.ai, abr/2026)",
+            }),
+            ("content", {
+                "num": 3,
+                "layout": "data",
+                "title": "Benchmarks lado a lado",
+                "body": "SWE-bench Verified — tarefa real de engenharia de software",
+                "chart": [
+                    {"label": "Opus 4.7", "pct": 88, "val": "87,6%", "color": "#FF6B00"},
+                    {"label": "Opus 4.6", "pct": 75, "val": "~75%",  "color": "rgba(255,255,255,0.35)"},
+                    {"source": "SWE-bench Verified — buildFastWithAI, abr/2026"},
+                ]
+            }),
+            ("content", {
+                "num": 4,
+                "layout": "standard",
+                "photo_query": "high resolution camera lens detail precision technology",
+                "photo_height": "flex",
+                "title": "Visão que não existia antes",
+                "body": "O 4.6 processava imagens até 1.024 px. O 4.7 vai até <strong>2.576 px nativos</strong>, com leitura real de 3,75 megapixels por chamada (findskill.ai, abr/2026)<br><br>Na prática: gráficos financeiros, plants de engenharia, wireframes de alta densidade, screenshots de produto inteiro — tudo analisado sem perder detalhe",
+            }),
+            ("content", {
+                "num": 5,
+                "layout": "spotlight",
+                "accent": "xhigh:\nraciocínio\nentre high e max",
+                "title": "", "body": "Novo nível de esforço exclusivo do 4.7: mais profundo que high, mais econômico que max. Para fluxos de agente que precisam de qualidade sem explodir o budget de tokens — é o ponto certo no meio do espectro (theplanettools.ai, abr/2026)",
+            }),
+            ("content", {
+                "num": 6,
+                "layout": "heavy",
+                "photo_query": "workflow automation agent robot task management",
+                "photo_height": "flex",
+                "title": "Task budgets: agente com limite de gasto",
+                "body": "Em beta público desde o lançamento: você define quanto o agente pode gastar por loop antes de parar e pedir confirmação.<br><br>Acabou a era do agente que vai embora e volta com uma fatura surpresa. <strong>Controle granular de custo operacional por tarefa</strong> — primeiro modelo da Anthropic com essa feature nativa (rawpickai.com, abr/2026)",
+            }),
+            ("content", {
+                "num": 7,
+                "layout": "heavy",
+                "photo_query": "developer looking at pricing cost invoice screen",
+                "photo_height": "flex",
+                "title": "Preço igual, custo diferente",
+                "body": "A tarifa oficial não mudou: <strong>$5 por milhão de tokens de entrada, $25 por saída</strong> — igual ao Opus 4.6 (verdent.ai, abr/2026)<br><br>Mas o novo tokenizador converte texto de forma diferente: o mesmo prompt custa entre <strong>10% e 35% a mais em tokens</strong> do que custava no 4.6. Antes de migrar em produção, rode seu prompt real e meça (tokenmix.ai, abr/2026)",
+            }),
+            ("content", {
+                "num": 8,
+                "layout": "spotlight",
+                "accent": "Claude Design\nroda em cima\ndisso",
+                "title": "", "body": "O Claude Design, lançado 24 horas antes do Opus 4.7, usa esse modelo como motor: visão 3,75 MP para ler screenshots e layouts, xhigh para raciocinar sobre componentes, task budget para não estourar o crédito do usuário. Não foi coincidência de data",
+            }),
+            ("content", {
+                "num": 9,
+                "layout": "heavy",
+                "photo_query": "security lock restriction policy decision corporate",
+                "photo_height": "flex",
+                "title": "O que a Anthropic removeu de propósito",
+                "body": "O Opus 4.7 teve capacidades de segurança ofensiva deliberadamente reduzidas em relação ao que os modelos internos já conseguem fazer (sangrokjung/claude-forge, abr/2026)<br><br>Não é limitação técnica — é decisão de política. A Anthropic publica o que escala com segurança, não o máximo absoluto do que o modelo é capaz",
+            }),
+            ("cta", {
+                "main": "IA muda toda semana<br><span>A Triforce traz o que importa</span>",
+                "sub": "Curadoria semanal de IA para pequenas empresas brasileiras — sem hype, com dado. Segue @triforceauto",
+            }),
+        ]
+    },
+
     # ── CARROSSEL 09 — Claude Design ────────────────────────────────────────────
     {
         "slug": "09-claude-design",
