@@ -24,7 +24,7 @@
       "reports_to": "fundador",
       "description": "Constrói landing pages e sistemas full stack. React/TS + Supabase + Vercel + Cloudflare.",
       "specialty": "landing-pages-sistemas",
-      "skills": ["dev-web", "nextjs-supabase-auth", "supabase-postgres-best-practices", "tailwind-css"],
+      "skills": ["dev-web", "nextjs-supabase-auth", "supabase-postgres-best-practices", "tailwind-css", "claude-design"],
       "status": "hired",
       "hired_at": "2026-04-13",
       "hired_by": "Gabriela"
