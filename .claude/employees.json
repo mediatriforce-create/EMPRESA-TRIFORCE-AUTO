@@ -10,7 +10,7 @@
       "reports_to": "fundador",
       "description": "Constrói landing pages e sistemas full stack. React/TS + Supabase + Vercel + Cloudflare.",
       "specialty": "landing-pages-sistemas",
-      "skills": ["dev-web", "nextjs-supabase-auth", "supabase-postgres-best-practices", "tailwind-css", "claude-design"],
+      "skills": ["dev-web", "nextjs-supabase-auth", "supabase-postgres-best-practices", "tailwind-css", "claude-design", "vercel-react-best-practices", "vercel-composition-patterns", "web-design-guidelines", "deploy-to-vercel", "vercel-react-view-transitions", "vercel-cli-with-tokens", "nextjs-react-typescript", "nextjs-typescript-supabase", "nextjs-shadcn", "nextjs-seo", "cloudflare-skill", "cloudflare-workers", "frontend-design", "webapp-testing", "web-artifacts-builder", "theme-factory", "brand-guidelines", "web-performance-optimization", "github-actions-docs"],
       "status": "hired",
       "hired_at": "2026-04-13",
       "hired_by": "Gabriela"
@@ -39,7 +39,7 @@
       "description": "Copywriter de resposta direta BR. Escreve LP, VSL, headlines, CTAs, microcopy e copy de cards/carrosséis para Instagram. Atua nas duas equipes: LP & Produto e Marketing & Instagram.",
       "specialty": "direct-response-copy-br",
       "teams": ["lp-produto", "marketing-instagram"],
-      "skills": ["copywriter", "direct-response-copy"],
+      "skills": ["copywriter", "direct-response-copy", "fecchio-mind", "copywriting", "copywriting-master", "page-cro", "form-cro", "signup-flow-cro", "marketing-psychology", "ab-test-setup", "analytics-tracking", "copy-editing", "product-marketing-context", "customer-research", "seo-audit", "ai-seo", "firecrawl-search", "firecrawl-scrape", "site-architecture"],
       "status": "hired",
       "hired_at": "2026-04-13",
       "hired_by": "Gabriela"
@@ -53,7 +53,7 @@
       "reports_to": "fundador",
       "description": "Revisa todo código do Felipe antes de ir para produção. Segurança, qualidade TypeScript, performance, acessibilidade e CI/CD. Não reescreve — questiona e exige melhor.",
       "specialty": "code-review-security-quality",
-      "skills": ["code-reviewer"],
+      "skills": ["code-reviewer", "vercel-react-best-practices", "web-design-guidelines", "webapp-testing", "web-performance-optimization", "nextjs-react-typescript", "nextjs-typescript-supabase", "github-actions-docs", "cloudflare-workers", "schema-markup"],
       "status": "hired",
       "hired_at": "2026-04-13",
       "hired_by": "Gabriela"
