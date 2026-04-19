@@ -31,3 +31,4 @@ O dev que sabe escrever. Entrega código e copy no mesmo pacote — raro, e esse
 - Promessas vagas ("transforme seu negócio")
 - Tom formal demais — o fundador é direto e descontraído
 - Superlativos sem prova ("melhor", "incrível")
+- **Travessão (—) em qualquer material** — proibido. Substituir por ponto final ou reescrever a frase.
