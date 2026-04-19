@@ -1,0 +1,1006 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Triforce Auto — Landing Page que converte em 10 dias</title>
+  <meta name="description" content="A Triforce Auto entrega copy, design e sistema em um único projeto. Sem freelancer de copy, sem designer separado, sem dev que some depois. LP completa de R$ 847 a R$ 1.997." />
+  <meta property="og:title" content="Triforce Auto — Landing Page que converte" />
+  <meta property="og:description" content="Copy, design e sistema no mesmo pacote. Do briefing ao ar em até 10 dias úteis." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="/og-image.png" />
+  <meta property="og:url" content="https://triforceauto.com.br/" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            bg: '#0a0a0a',
+            surface: '#111111',
+            border: '#1e1e1e',
+            muted: '#2a2a2a',
+            accent: '#00e87a',
+            'accent-dim': '#00b85f',
+            text: '#f0f0f0',
+            'text-muted': '#888888',
+            'text-faint': '#444444',
+          },
+          fontFamily: {
+            display: ['Space Grotesk', 'sans-serif'],
+            body: ['Inter', 'sans-serif'],
+          },
+        },
+      },
+    }
+  </script>
+  <style>
+    * { box-sizing: border-box; }
+    html { background-color: #0a0a0a; }
+    body {
+      background-color: #0a0a0a;
+      color: #f0f0f0;
+      font-family: 'Inter', sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Fade-in on scroll */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+
+    /* Accent glow */
+    .accent-glow {
+      text-shadow: 0 0 40px rgba(0, 232, 122, 0.35);
+    }
+
+    /* Custom scrollbar */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #0a0a0a; }
+    ::-webkit-scrollbar-thumb { background: #2a2a2a; border-radius: 3px; }
+
+    /* Nav blur */
+    .nav-blur {
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+
+    /* Pill badge */
+    .pill {
+      display: inline-block;
+      padding: 4px 14px;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    /* Step connector line */
+    .step-line::before {
+      content: '';
+      position: absolute;
+      left: 19px;
+      top: 40px;
+      bottom: -24px;
+      width: 1px;
+      background: linear-gradient(to bottom, #1e1e1e, transparent);
+    }
+
+    /* Table zebra */
+    .price-table tr:nth-child(even) td {
+      background-color: #111111;
+    }
+    .price-table tr:last-child td {
+      background-color: #001a0e;
+      color: #00e87a;
+      font-weight: 700;
+    }
+
+    /* FAQ transition */
+    .faq-body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s ease;
+    }
+    .faq-item.open .faq-body {
+      max-height: 400px;
+    }
+    .faq-item.open .faq-icon {
+      transform: rotate(45deg);
+    }
+    .faq-icon {
+      transition: transform 0.3s ease;
+      flex-shrink: 0;
+    }
+
+    /* Horizontal rule gradient */
+    .hr-gradient {
+      border: none;
+      height: 1px;
+      background: linear-gradient(to right, transparent, #1e1e1e 20%, #1e1e1e 80%, transparent);
+    }
+
+    /* Noise texture overlay */
+    .noise::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+      pointer-events: none;
+    }
+
+    /* Hero grid background */
+    .hero-grid {
+      background-image:
+        linear-gradient(rgba(0,232,122,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,232,122,0.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════
+     NAV
+═══════════════════════════════════════════════ -->
+<nav id="nav" class="fixed top-0 left-0 right-0 z-50 nav-blur bg-bg/80 border-b border-border transition-all duration-300">
+  <div class="max-w-6xl mx-auto px-5 md:px-8 h-16 flex items-center justify-between">
+
+    <!-- Logo -->
+    <a href="#hero" class="flex items-center gap-2.5 group">
+      <!-- Triforce SVG icon -->
+      <svg aria-hidden="true" width="28" height="26" viewBox="0 0 28 26" fill="none" xmlns="http://www.w3.org/2000/svg" class="transition-transform group-hover:scale-110">
+        <polygon points="14,0 21,12 7,12" fill="#00e87a" opacity="0.9"/>
+        <polygon points="7,14 14,26 0,26" fill="#00e87a" opacity="0.6"/>
+        <polygon points="21,14 28,26 14,26" fill="#00e87a" opacity="0.75"/>
+      </svg>
+      <span class="font-display font-bold text-base text-text tracking-tight">Triforce Auto</span>
+    </a>
+
+    <!-- Desktop nav links -->
+    <div class="hidden md:flex items-center gap-7 text-sm font-medium text-text-muted">
+      <a href="#problema" class="hover:text-text transition-colors">Problema</a>
+      <a href="#solucao" class="hover:text-text transition-colors">Solução</a>
+      <a href="#como-funciona" class="hover:text-text transition-colors">Como funciona</a>
+      <a href="#preco" class="hover:text-text transition-colors">Preço</a>
+      <a href="#faq" class="hover:text-text transition-colors">FAQ</a>
+    </div>
+
+    <!-- CTA nav -->
+    <a href="#cta-final" class="hidden md:inline-flex items-center gap-2 bg-accent text-bg text-sm font-semibold font-display px-4 py-2 rounded-lg hover:bg-accent-dim transition-colors">
+      Quero minha LP
+      <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+    </a>
+
+    <!-- Mobile menu button -->
+    <button id="mobile-menu-btn" class="md:hidden p-2 text-text-muted hover:text-text" aria-label="Menu">
+      <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
+      </svg>
+    </button>
+  </div>
+
+  <!-- Mobile menu -->
+  <div id="mobile-menu" class="hidden md:hidden border-t border-border bg-bg">
+    <div class="max-w-6xl mx-auto px-5 py-4 flex flex-col gap-4 text-sm font-medium text-text-muted">
+      <a href="#problema" class="hover:text-text transition-colors">Problema</a>
+      <a href="#solucao" class="hover:text-text transition-colors">Solução</a>
+      <a href="#como-funciona" class="hover:text-text transition-colors">Como funciona</a>
+      <a href="#preco" class="hover:text-text transition-colors">Preço</a>
+      <a href="#faq" class="hover:text-text transition-colors">FAQ</a>
+      <a href="#cta-final" class="inline-flex items-center gap-2 bg-accent text-bg font-semibold font-display px-4 py-2.5 rounded-lg w-fit">
+        Quero minha LP →
+      </a>
+    </div>
+  </div>
+</nav>
+
+
+<main>
+
+<!-- ═══════════════════════════════════════════════
+     HERO
+═══════════════════════════════════════════════ -->
+<section id="hero" class="relative min-h-screen flex items-center pt-16 overflow-hidden hero-grid noise">
+
+  <!-- Radial glow behind headline -->
+  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] rounded-full opacity-10" style="background: radial-gradient(ellipse, #00e87a 0%, transparent 70%); pointer-events:none;"></div>
+
+  <div class="relative max-w-6xl mx-auto px-5 md:px-8 py-24 md:py-32 w-full">
+
+    <!-- Top badge -->
+    <div class="reveal mb-8">
+      <span class="pill bg-accent/10 text-accent border border-accent/20">Copy · Design · Sistema — tudo no mesmo projeto</span>
+    </div>
+
+    <!-- Headline -->
+    <div class="reveal reveal-delay-1 max-w-4xl">
+      <h1 class="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.08] tracking-tight text-text">
+        Seu negócio merece uma<br class="hidden md:block" />
+        página que <span class="text-accent accent-glow">vende</span> —<br class="hidden md:block" />
+        não uma que envergonha.
+      </h1>
+    </div>
+
+    <!-- Subheadline -->
+    <div class="reveal reveal-delay-2 mt-6 max-w-2xl">
+      <p class="text-lg md:text-xl text-text-muted leading-relaxed">
+        A Triforce Auto entrega copy, design e sistema em um único projeto.
+        Sem freelancer de copy, sem designer separado, sem dev que some depois.
+      </p>
+    </div>
+
+    <!-- CTA + prova rápida -->
+    <div class="reveal reveal-delay-3 mt-10 flex flex-col sm:flex-row items-start sm:items-center gap-5">
+      <a href="#cta-final" class="inline-flex items-center gap-2 bg-accent text-bg font-display font-bold text-base px-7 py-3.5 rounded-xl hover:bg-accent-dim transition-all hover:scale-[1.02] active:scale-[0.98] shadow-lg shadow-accent/20">
+        Quero minha landing page
+        <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </a>
+      <a href="#preco" class="text-sm text-text-muted hover:text-text transition-colors underline underline-offset-4">Ver preço →</a>
+    </div>
+
+    <!-- Trust strip -->
+    <div class="reveal reveal-delay-4 mt-10 flex flex-wrap items-center gap-x-6 gap-y-3 text-sm text-text-muted">
+      <span class="flex items-center gap-2">
+        <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#00e87a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        Entrega em até 10 dias úteis
+      </span>
+      <span class="flex items-center gap-2">
+        <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#00e87a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        Sem contrato de fidelidade
+      </span>
+      <span class="flex items-center gap-2">
+        <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#00e87a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        50% só na entrega
+      </span>
+    </div>
+
+    <!-- Scroll indicator -->
+    <div class="absolute bottom-10 left-1/2 -translate-x-1/2 hidden md:flex flex-col items-center gap-1 opacity-30">
+      <span class="text-xs text-text-muted font-body">scroll</span>
+      <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="animate-bounce"><path d="m6 9 6 6 6-6"/></svg>
+    </div>
+  </div>
+</section>
+
+<hr class="hr-gradient" />
+
+<!-- ═══════════════════════════════════════════════
+     PROBLEMA
+═══════════════════════════════════════════════ -->
+<section id="problema" class="py-24 md:py-32">
+  <div class="max-w-6xl mx-auto px-5 md:px-8">
+
+    <!-- Section label -->
+    <div class="reveal mb-10">
+      <span class="pill bg-red-500/10 text-red-400 border border-red-500/20">O diagnóstico</span>
+    </div>
+
+    <div class="reveal reveal-delay-1 max-w-3xl mb-16">
+      <h2 class="font-display text-3xl sm:text-4xl md:text-5xl font-bold leading-tight tracking-tight text-text">
+        Você está perdendo clientes todos os dias.
+        <span class="text-text-muted"> E sabe disso.</span>
+      </h2>
+    </div>
+
+    <!-- Pain bullets — 2-col on desktop -->
+    <div class="grid md:grid-cols-2 gap-5 mb-16">
+
+      <div class="reveal reveal-delay-1 flex gap-4 bg-surface border border-border rounded-xl p-6 hover:border-muted transition-colors">
+        <div class="w-8 h-8 rounded-lg bg-red-500/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+          <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#f87171" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+        </div>
+        <div>
+          <p class="text-text font-medium mb-1">Dependência de WhatsApp e Instagram</p>
+          <p class="text-text-muted text-sm leading-relaxed">Quando o algoritmo muda ou o cliente some do feed, você some também. Sem LP própria, você não controla nada.</p>
+        </div>
+      </div>
+
+      <div class="reveal reveal-delay-2 flex gap-4 bg-surface border border-border rounded-xl p-6 hover:border-muted transition-colors">
+        <div class="w-8 h-8 rounded-lg bg-red-500/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+          <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#f87171" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+        </div>
+        <div>
+          <p class="text-text font-medium mb-1">A LP anterior ficou genérica e não converteu</p>
+          <p class="text-text-muted text-sm leading-relaxed">Você já tentou. Ficou bonito na tela, mas vazio no resultado. Desistiu porque o problema nunca foi o produto — foi a página.</p>
+        </div>
+      </div>
+
+      <div class="reveal reveal-delay-3 flex gap-4 bg-surface border border-border rounded-xl p-6 hover:border-muted transition-colors">
+        <div class="w-8 h-8 rounded-lg bg-red-500/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+          <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#f87171" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+        </div>
+        <div>
+          <p class="text-text font-medium mb-1">Três fornecedores, três briefings, zero resultado</p>
+          <p class="text-text-muted text-sm leading-relaxed">Copywriter, designer e dev separados. Você vira gerente de projeto não contratado — e no fim alguém some com o código.</p>
+        </div>
+      </div>
+
+      <div class="reveal reveal-delay-4 flex gap-4 bg-surface border border-border rounded-xl p-6 hover:border-muted transition-colors">
+        <div class="w-8 h-8 rounded-lg bg-red-500/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+          <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#f87171" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+        </div>
+        <div>
+          <p class="text-text font-medium mb-1">Seu concorrente está na frente, online</p>
+          <p class="text-text-muted text-sm leading-relaxed">Enquanto você depende de indicação e stories, o concorrente tem uma página profissional capturando leads 24 horas.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Transition line -->
+    <div class="reveal max-w-2xl mx-auto text-center">
+      <p class="text-lg md:text-xl text-text leading-relaxed">
+        Não é falta de produto. <strong class="text-accent">É falta de página.</strong><br class="hidden md:block" />
+        E a gente resolve isso do início ao fim.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<hr class="hr-gradient" />
+
+<!-- ═══════════════════════════════════════════════
+     SOLUÇÃO — 3 PILARES
+═══════════════════════════════════════════════ -->
+<section id="solucao" class="py-24 md:py-32">
+  <div class="max-w-6xl mx-auto px-5 md:px-8">
+
+    <div class="reveal mb-10">
+      <span class="pill bg-accent/10 text-accent border border-accent/20">A solução</span>
+    </div>
+
+    <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-start">
+
+      <!-- Left: text -->
+      <div>
+        <h2 class="reveal font-display text-3xl sm:text-4xl md:text-5xl font-bold leading-tight tracking-tight text-text mb-6">
+          Uma empresa.<br />Três pilares.<br /><span class="text-accent">Uma entrega.</span>
+        </h2>
+        <div class="reveal reveal-delay-1 space-y-4 text-text-muted leading-relaxed">
+          <p>A Triforce Auto é uma empresa de performance digital que produz landing pages completas para pequenos negócios e empreendedores.</p>
+          <p>O que diferencia a gente: não terceirizamos nada. Copy, design e desenvolvimento saem do mesmo time, com o mesmo briefing, sem ruído entre fornecedores.</p>
+          <p class="text-text">Você faz um briefing. A gente entrega uma LP pronta, no ar, que reflete seu negócio de verdade.</p>
+        </div>
+      </div>
+
+      <!-- Right: 3 pillar cards — vertical stack -->
+      <div class="space-y-4">
+
+        <div class="reveal reveal-delay-1 bg-surface border border-border rounded-2xl p-6 hover:border-accent/30 transition-colors group">
+          <div class="flex items-start gap-4">
+            <div class="w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center flex-shrink-0 group-hover:bg-accent/20 transition-colors">
+              <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#00e87a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/></svg>
+            </div>
+            <div>
+              <div class="flex items-center gap-2 mb-2">
+                <h3 class="font-display font-semibold text-text text-lg">Copy</h3>
+                <span class="text-xs text-accent font-medium">— Texto que vende</span>
+              </div>
+              <p class="text-text-muted text-sm leading-relaxed">Escrita por quem entende de resposta direta. Cada linha existe para mover o leitor para o próximo passo — não para parecer bonito.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="reveal reveal-delay-2 bg-surface border border-border rounded-2xl p-6 hover:border-accent/30 transition-colors group">
+          <div class="flex items-start gap-4">
+            <div class="w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center flex-shrink-0 group-hover:bg-accent/20 transition-colors">
+              <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#00e87a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
+            </div>
+            <div>
+              <div class="flex items-center gap-2 mb-2">
+                <h3 class="font-display font-semibold text-text text-lg">Design</h3>
+                <span class="text-xs text-accent font-medium">— Visual que converte</span>
+              </div>
+              <p class="text-text-muted text-sm leading-relaxed">Identidade coerente, hierarquia clara, mobile-first. O layout trabalha junto com a copy, não contra ela.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="reveal reveal-delay-3 bg-surface border border-border rounded-2xl p-6 hover:border-accent/30 transition-colors group">
+          <div class="flex items-start gap-4">
+            <div class="w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center flex-shrink-0 group-hover:bg-accent/20 transition-colors">
+              <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#00e87a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+            </div>
+            <div>
+              <div class="flex items-center gap-2 mb-2">
+                <h3 class="font-display font-semibold text-text text-lg">Sistema</h3>
+                <span class="text-xs text-accent font-medium">— Tecnologia que funciona</span>
+              </div>
+              <p class="text-text-muted text-sm leading-relaxed">Página rápida, formulário integrado, domínio configurado. Você não precisa entender de código para ter um site profissional.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<hr class="hr-gradient" />
+
+<!-- ═══════════════════════════════════════════════
+     COMO FUNCIONA
+═══════════════════════════════════════════════ -->
+<section id="como-funciona" class="py-24 md:py-32 bg-surface/40">
+  <div class="max-w-6xl mx-auto px-5 md:px-8">
+
+    <div class="reveal mb-4">
+      <span class="pill bg-accent/10 text-accent border border-accent/20">O processo</span>
+    </div>
+    <h2 class="reveal font-display text-3xl sm:text-4xl md:text-5xl font-bold leading-tight tracking-tight text-text mb-4">
+      Do briefing ao ar:<br /><span class="text-text-muted">4 etapas, sem enrolação.</span>
+    </h2>
+    <p class="reveal reveal-delay-1 text-text-muted mb-16 max-w-xl">Cada etapa tem entregável claro. Nada fica na gaveta esperando.</p>
+
+    <!-- Steps — vertical list with connector -->
+    <div class="max-w-2xl space-y-0">
+
+      <div class="reveal reveal-delay-1 relative flex gap-6 pb-10">
+        <div class="step-line flex-shrink-0">
+          <div class="w-10 h-10 rounded-full bg-accent/10 border border-accent/30 flex items-center justify-center font-display font-bold text-accent text-sm">1</div>
+        </div>
+        <div class="pt-1 pb-2">
+          <h3 class="font-display font-semibold text-text text-lg mb-2">Briefing</h3>
+          <p class="text-text-muted text-sm leading-relaxed">Você responde um formulário direto sobre seu negócio, público e objetivo. <strong class="text-text">Leva 15 minutos.</strong> É disso que a gente precisa para trabalhar.</p>
+        </div>
+      </div>
+
+      <div class="reveal reveal-delay-2 relative flex gap-6 pb-10">
+        <div class="step-line flex-shrink-0">
+          <div class="w-10 h-10 rounded-full bg-accent/10 border border-accent/30 flex items-center justify-center font-display font-bold text-accent text-sm">2</div>
+        </div>
+        <div class="pt-1 pb-2">
+          <h3 class="font-display font-semibold text-text text-lg mb-2">Copy</h3>
+          <p class="text-text-muted text-sm leading-relaxed">Escrevemos o texto completo da LP — headline, benefícios, provas, objeções e CTAs. <strong class="text-text">Você revisa e aprova</strong> antes de avançar.</p>
+        </div>
+      </div>
+
+      <div class="reveal reveal-delay-3 relative flex gap-6 pb-10">
+        <div class="step-line flex-shrink-0">
+          <div class="w-10 h-10 rounded-full bg-accent/10 border border-accent/30 flex items-center justify-center font-display font-bold text-accent text-sm">3</div>
+        </div>
+        <div class="pt-1 pb-2">
+          <h3 class="font-display font-semibold text-text text-lg mb-2">Design + Desenvolvimento</h3>
+          <p class="text-text-muted text-sm leading-relaxed">Com a copy aprovada, design e código são produzidos em paralelo. <strong class="text-text">Página responsiva, rápida</strong> e pronta para receber visitas.</p>
+        </div>
+      </div>
+
+      <div class="reveal reveal-delay-4 relative flex gap-6">
+        <div class="flex-shrink-0">
+          <div class="w-10 h-10 rounded-full bg-accent flex items-center justify-center font-display font-bold text-bg text-sm">4</div>
+        </div>
+        <div class="pt-1">
+          <h3 class="font-display font-semibold text-text text-lg mb-2">Entrega</h3>
+          <p class="text-text-muted text-sm leading-relaxed">Você recebe a LP no ar no domínio que escolher. <strong class="text-text">Testamos todos os formulários, links e integrações</strong> antes de passar a chave.</p>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<hr class="hr-gradient" />
+
+<!-- ═══════════════════════════════════════════════
+     O QUE ESTÁ INCLUÍDO
+═══════════════════════════════════════════════ -->
+<section id="incluido" class="py-24 md:py-32">
+  <div class="max-w-6xl mx-auto px-5 md:px-8">
+
+    <div class="reveal mb-10">
+      <span class="pill bg-accent/10 text-accent border border-accent/20">O pacote</span>
+    </div>
+
+    <div class="grid lg:grid-cols-2 gap-16 items-start">
+
+      <div>
+        <h2 class="reveal font-display text-3xl sm:text-4xl md:text-5xl font-bold leading-tight tracking-tight text-text mb-6">
+          O que você recebe<br /><span class="text-accent">no pacote:</span>
+        </h2>
+        <p class="reveal reveal-delay-1 text-text-muted leading-relaxed">
+          Sem lista de extras ocultos, sem configuração por sua conta depois. O que está aqui é o que você recebe — testado e funcionando.
+        </p>
+      </div>
+
+      <!-- Deliverables list -->
+      <div class="space-y-4">
+        <div class="reveal reveal-delay-1 flex items-start gap-3.5">
+          <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00e87a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="mt-0.5 flex-shrink-0"><polyline points="20 6 9 17 4 12"/></svg>
+          <div>
+            <span class="text-text font-medium text-sm">Copy completa da LP</span>
+            <p class="text-text-muted text-sm mt-0.5">Texto de todas as seções, escrito do zero para o seu público — não um template genérico.</p>
+          </div>
+        </div>
+        <div class="reveal reveal-delay-2 flex items-start gap-3.5">
+          <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00e87a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="mt-0.5 flex-shrink-0"><polyline points="20 6 9 17 4 12"/></svg>
+          <div>
+            <span class="text-text font-medium text-sm">Design responsivo</span>
+            <p class="text-text-muted text-sm mt-0.5">Adaptado para celular, tablet e desktop. 80% dos seus clientes abrem pelo celular.</p>
+          </div>
+        </div>
+        <div class="reveal reveal-delay-3 flex items-start gap-3.5">
+          <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00e87a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="mt-0.5 flex-shrink-0"><polyline points="20 6 9 17 4 12"/></svg>
+          <div>
+            <span class="text-text font-medium text-sm">Desenvolvimento e publicação</span>
+            <p class="text-text-muted text-sm mt-0.5">Código limpo, hospedagem configurada, domínio apontado. Sem "você que arruma depois".</p>
+          </div>
+        </div>
+        <div class="reveal reveal-delay-4 flex items-start gap-3.5">
+          <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00e87a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="mt-0.5 flex-shrink-0"><polyline points="20 6 9 17 4 12"/></svg>
+          <div>
+            <span class="text-text font-medium text-sm">Formulário de captação integrado</span>
+            <p class="text-text-muted text-sm mt-0.5">Os leads chegam no seu e-mail ou CRM. Sem configuração manual da sua parte.</p>
+          </div>
+        </div>
+        <div class="reveal reveal-delay-1 flex items-start gap-3.5">
+          <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00e87a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="mt-0.5 flex-shrink-0"><polyline points="20 6 9 17 4 12"/></svg>
+          <div>
+            <span class="text-text font-medium text-sm">2 rodadas de revisão inclusas</span>
+            <p class="text-text-muted text-sm mt-0.5">Se algo não ficou como você imaginou, você pede o ajuste. Está no pacote.</p>
+          </div>
+        </div>
+        <div class="reveal reveal-delay-2 flex items-start gap-3.5">
+          <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00e87a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="mt-0.5 flex-shrink-0"><polyline points="20 6 9 17 4 12"/></svg>
+          <div>
+            <span class="text-text font-medium text-sm">PageSpeed acima de 90</span>
+            <p class="text-text-muted text-sm mt-0.5">Velocidade não é detalhe técnico. É fator de conversão. Entregamos com score comprovado.</p>
+          </div>
+        </div>
+        <div class="reveal reveal-delay-3 flex items-start gap-3.5">
+          <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00e87a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="mt-0.5 flex-shrink-0"><polyline points="20 6 9 17 4 12"/></svg>
+          <div>
+            <span class="text-text font-medium text-sm">Meta tags e SEO básico</span>
+            <p class="text-text-muted text-sm mt-0.5">Título, descrição e tags configuradas para o Google indexar desde o dia 1.</p>
+          </div>
+        </div>
+        <div class="reveal reveal-delay-4 flex items-start gap-3.5">
+          <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00e87a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="mt-0.5 flex-shrink-0"><polyline points="20 6 9 17 4 12"/></svg>
+          <div>
+            <span class="text-text font-medium text-sm">Suporte por 30 dias após entrega</span>
+            <p class="text-text-muted text-sm mt-0.5">Dúvida técnica, erro de formulário, ajuste pontual. A gente não some depois que entregou.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<hr class="hr-gradient" />
+
+<!-- ═══════════════════════════════════════════════
+     PARA QUEM É
+═══════════════════════════════════════════════ -->
+<section id="para-quem" class="py-24 md:py-32 bg-surface/40">
+  <div class="max-w-6xl mx-auto px-5 md:px-8">
+
+    <div class="reveal mb-10">
+      <span class="pill bg-accent/10 text-accent border border-accent/20">Qualificação</span>
+    </div>
+
+    <h2 class="reveal font-display text-3xl sm:text-4xl md:text-5xl font-bold leading-tight tracking-tight text-text mb-16">
+      Essa LP é pra você se...
+    </h2>
+
+    <div class="grid lg:grid-cols-2 gap-10">
+
+      <!-- Para quem É -->
+      <div class="reveal reveal-delay-1">
+        <div class="flex items-center gap-2 mb-6">
+          <div class="w-6 h-6 rounded-full bg-accent/20 flex items-center justify-center flex-shrink-0">
+            <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#00e87a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <span class="font-display font-semibold text-text">Perfil ideal</span>
+        </div>
+        <div class="space-y-4">
+          <div class="flex items-start gap-3">
+            <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#00e87a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="mt-1 flex-shrink-0"><polyline points="20 6 9 17 4 12"/></svg>
+            <p class="text-text-muted text-sm leading-relaxed">Você tem um negócio presencial — barbearia, salão, academia, personal, pet shop, clínica — e quer parar de depender só do Instagram.</p>
+          </div>
+          <div class="flex items-start gap-3">
+            <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#00e87a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="mt-1 flex-shrink-0"><polyline points="20 6 9 17 4 12"/></svg>
+            <p class="text-text-muted text-sm leading-relaxed">Você é infoprodutor, coach ou consultor e sua LP atual não converte como deveria.</p>
+          </div>
+          <div class="flex items-start gap-3">
+            <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#00e87a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="mt-1 flex-shrink-0"><polyline points="20 6 9 17 4 12"/></svg>
+            <p class="text-text-muted text-sm leading-relaxed">Você já tentou montar uma página sozinho e o resultado não passou no teste do espelho.</p>
+          </div>
+          <div class="flex items-start gap-3">
+            <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#00e87a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="mt-1 flex-shrink-0"><polyline points="20 6 9 17 4 12"/></svg>
+            <p class="text-text-muted text-sm leading-relaxed">Você quer resultado profissional sem gastar R$ 5.000 em agência e sem esperar 3 meses.</p>
+          </div>
+          <div class="flex items-start gap-3">
+            <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#00e87a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="mt-1 flex-shrink-0"><polyline points="20 6 9 17 4 12"/></svg>
+            <p class="text-text-muted text-sm leading-relaxed">Você tem o produto. Só falta a página que apresenta ele direito.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quem NÃO é -->
+      <div class="reveal reveal-delay-2">
+        <div class="flex items-center gap-2 mb-6">
+          <div class="w-6 h-6 rounded-full bg-red-500/10 flex items-center justify-center flex-shrink-0">
+            <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#f87171" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+          </div>
+          <span class="font-display font-semibold text-text">Não é para você se...</span>
+        </div>
+        <div class="space-y-4 bg-surface border border-border rounded-2xl p-6">
+          <div class="flex items-start gap-3">
+            <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#f87171" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mt-1 flex-shrink-0"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+            <p class="text-text-muted text-sm leading-relaxed">Grandes empresas com time de marketing interno — nosso formato não é para operações complexas.</p>
+          </div>
+          <hr class="hr-gradient" />
+          <div class="flex items-start gap-3">
+            <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#f87171" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mt-1 flex-shrink-0"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+            <p class="text-text-muted text-sm leading-relaxed">Quem precisa de e-commerce com catálogo completo — isso é outro escopo.</p>
+          </div>
+          <hr class="hr-gradient" />
+          <div class="flex items-start gap-3">
+            <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#f87171" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mt-1 flex-shrink-0"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+            <p class="text-text-muted text-sm leading-relaxed">Quem não tem clareza sobre o próprio negócio — o briefing exige respostas. Se ainda não sabe o que vende nem para quem, a LP espera.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<hr class="hr-gradient" />
+
+<!-- ═══════════════════════════════════════════════
+     PREÇO
+═══════════════════════════════════════════════ -->
+<section id="preco" class="py-24 md:py-32">
+  <div class="max-w-6xl mx-auto px-5 md:px-8">
+
+    <div class="reveal mb-10">
+      <span class="pill bg-accent/10 text-accent border border-accent/20">Investimento</span>
+    </div>
+
+    <div class="grid lg:grid-cols-2 gap-16 items-start">
+
+      <!-- Pricing card -->
+      <div class="reveal reveal-delay-1 bg-surface border border-border rounded-2xl p-8">
+        <h2 class="font-display text-2xl sm:text-3xl font-bold text-text mb-2">Preço direto.<br />Sem surpresa no final.</h2>
+        <p class="text-text-muted text-sm mb-8">O pacote completo. Uma entrega. Um time.</p>
+
+        <!-- Price range -->
+        <div class="bg-bg border border-border rounded-xl p-6 mb-6">
+          <div class="text-text-muted text-xs font-medium mb-2 uppercase tracking-widest">Landing Page Completa</div>
+          <div class="flex items-end gap-3 mb-1">
+            <span class="font-display text-4xl font-bold text-text">R$ 847</span>
+            <span class="text-text-muted text-lg mb-1">–</span>
+            <span class="font-display text-4xl font-bold text-accent">R$ 1.997</span>
+          </div>
+          <p class="text-text-muted text-xs mt-2">Dependendo da complexidade e número de seções</p>
+        </div>
+
+        <!-- Payment condition -->
+        <div class="flex items-center gap-3 p-4 bg-accent/5 border border-accent/15 rounded-xl mb-6">
+          <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00e87a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          <p class="text-sm text-text-muted"><strong class="text-accent">50% na aprovação</strong> · <strong class="text-accent">50% na entrega</strong> da LP no ar</p>
+        </div>
+
+        <a href="#cta-final" class="flex items-center justify-center gap-2 bg-accent text-bg font-display font-bold text-base px-6 py-3.5 rounded-xl hover:bg-accent-dim transition-all w-full">
+          Quero um orçamento
+          <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </a>
+      </div>
+
+      <!-- Comparison table -->
+      <div class="reveal reveal-delay-2">
+        <h3 class="font-display font-semibold text-text mb-2">Contratar separado custaria mais:</h3>
+        <p class="text-text-muted text-sm mb-6">E você ainda gerenciaria três pessoas, três briefings e três prazos.</p>
+
+        <div class="overflow-hidden rounded-xl border border-border">
+          <table class="w-full text-sm price-table">
+            <thead>
+              <tr class="bg-muted">
+                <th class="text-left px-4 py-3 text-text-muted font-medium">Serviço</th>
+                <th class="text-right px-4 py-3 text-text-muted font-medium">Preço de mercado</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="px-4 py-3 text-text-muted">Copywriter freelancer</td>
+                <td class="px-4 py-3 text-right text-text-muted">R$ 600 – R$ 1.200</td>
+              </tr>
+              <tr>
+                <td class="px-4 py-3 text-text-muted">Designer de LP</td>
+                <td class="px-4 py-3 text-right text-text-muted">R$ 800 – R$ 1.500</td>
+              </tr>
+              <tr>
+                <td class="px-4 py-3 text-text-muted">Dev front-end</td>
+                <td class="px-4 py-3 text-right text-text-muted">R$ 700 – R$ 1.800</td>
+              </tr>
+              <tr>
+                <td class="px-4 py-3 font-semibold text-text">Total separado</td>
+                <td class="px-4 py-3 text-right font-semibold text-text">R$ 2.100 – R$ 4.500</td>
+              </tr>
+              <tr>
+                <td class="px-4 py-3 font-bold">Triforce Auto (tudo junto)</td>
+                <td class="px-4 py-3 text-right font-bold">R$ 847 – R$ 1.997</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<hr class="hr-gradient" />
+
+<!-- ═══════════════════════════════════════════════
+     FAQ
+═══════════════════════════════════════════════ -->
+<section id="faq" class="py-24 md:py-32 bg-surface/40">
+  <div class="max-w-3xl mx-auto px-5 md:px-8">
+
+    <div class="reveal mb-10">
+      <span class="pill bg-accent/10 text-accent border border-accent/20">Dúvidas</span>
+    </div>
+    <h2 class="reveal font-display text-3xl sm:text-4xl font-bold leading-tight tracking-tight text-text mb-12">
+      Perguntas diretas.<br /><span class="text-text-muted">Respostas diretas.</span>
+    </h2>
+
+    <div class="space-y-3" id="faq-list">
+
+      <div class="faq-item reveal reveal-delay-1 bg-surface border border-border rounded-xl overflow-hidden">
+        <button class="faq-trigger w-full flex items-center justify-between gap-4 px-6 py-5 text-left hover:bg-muted/30 transition-colors" aria-expanded="false">
+          <span class="font-display font-500 text-text text-sm md:text-base">Quanto tempo leva para ficar pronta?</span>
+          <svg aria-hidden="true" class="faq-icon w-5 h-5 text-accent flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="M5 12h14"/></svg>
+        </button>
+        <div class="faq-body">
+          <div class="px-6 pb-5">
+            <p class="text-text-muted text-sm leading-relaxed">Em média 7 a 10 dias úteis após a aprovação do briefing. Projetos mais simples podem sair antes. Nada fica na gaveta esperando.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item reveal reveal-delay-2 bg-surface border border-border rounded-xl overflow-hidden">
+        <button class="faq-trigger w-full flex items-center justify-between gap-4 px-6 py-5 text-left hover:bg-muted/30 transition-colors" aria-expanded="false">
+          <span class="font-display font-500 text-text text-sm md:text-base">E se eu não gostar do resultado?</span>
+          <svg aria-hidden="true" class="faq-icon w-5 h-5 text-accent flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="M5 12h14"/></svg>
+        </button>
+        <div class="faq-body">
+          <div class="px-6 pb-5">
+            <p class="text-text-muted text-sm leading-relaxed">O pacote inclui 2 rodadas de revisão. Se a entrega não refletir o que foi combinado no briefing, a gente ajusta sem cobrar a mais. O que não entra no escopo de revisão são mudanças de direção — "mudei de ideia sobre o produto" é um novo projeto.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item reveal reveal-delay-3 bg-surface border border-border rounded-xl overflow-hidden">
+        <button class="faq-trigger w-full flex items-center justify-between gap-4 px-6 py-5 text-left hover:bg-muted/30 transition-colors" aria-expanded="false">
+          <span class="font-display font-500 text-text text-sm md:text-base">Funciona para o meu segmento?</span>
+          <svg aria-hidden="true" class="faq-icon w-5 h-5 text-accent flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="M5 12h14"/></svg>
+        </button>
+        <div class="faq-body">
+          <div class="px-6 pb-5">
+            <p class="text-text-muted text-sm leading-relaxed">Se você tem um serviço ou produto definido e um público-alvo claro, funciona. Já produzimos LPs para barbearias, academias, coaches, afiliados, prestadores de serviço e infoprodutores. O modelo de LP que converte não muda muito entre nichos — o que muda é a copy. E isso é exatamente o que a gente faz.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item reveal reveal-delay-1 bg-surface border border-border rounded-xl overflow-hidden">
+        <button class="faq-trigger w-full flex items-center justify-between gap-4 px-6 py-5 text-left hover:bg-muted/30 transition-colors" aria-expanded="false">
+          <span class="font-display font-500 text-text text-sm md:text-base">Preciso ter CNPJ?</span>
+          <svg aria-hidden="true" class="faq-icon w-5 h-5 text-accent flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="M5 12h14"/></svg>
+        </button>
+        <div class="faq-body">
+          <div class="px-6 pb-5">
+            <p class="text-text-muted text-sm leading-relaxed">Não. Atendemos pessoa física e jurídica. O contrato e a nota fiscal se adaptam à sua situação.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item reveal reveal-delay-2 bg-surface border border-border rounded-xl overflow-hidden">
+        <button class="faq-trigger w-full flex items-center justify-between gap-4 px-6 py-5 text-left hover:bg-muted/30 transition-colors" aria-expanded="false">
+          <span class="font-display font-500 text-text text-sm md:text-base">Preciso ter domínio e hospedagem?</span>
+          <svg aria-hidden="true" class="faq-icon w-5 h-5 text-accent flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="M5 12h14"/></svg>
+        </button>
+        <div class="faq-body">
+          <div class="px-6 pb-5">
+            <p class="text-text-muted text-sm leading-relaxed">Não obrigatoriamente. Se você já tem, a gente usa. Se não tem, orientamos a contratação (custo separado e baixo — em torno de R$ 50/ano) e fazemos toda a configuração.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item reveal reveal-delay-3 bg-surface border border-border rounded-xl overflow-hidden">
+        <button class="faq-trigger w-full flex items-center justify-between gap-4 px-6 py-5 text-left hover:bg-muted/30 transition-colors" aria-expanded="false">
+          <span class="font-display font-500 text-text text-sm md:text-base">Vou conseguir mexer na página depois?</span>
+          <svg aria-hidden="true" class="faq-icon w-5 h-5 text-accent flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="M5 12h14"/></svg>
+        </button>
+        <div class="faq-body">
+          <div class="px-6 pb-5">
+            <p class="text-text-muted text-sm leading-relaxed">Sim. Entregamos com documentação de como atualizar textos e imagens básicos. Para alterações maiores de design ou estrutura, você pode contratar um pacote de manutenção com a gente.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<hr class="hr-gradient" />
+
+<!-- ═══════════════════════════════════════════════
+     CTA FINAL
+═══════════════════════════════════════════════ -->
+<section id="cta-final" class="py-24 md:py-40 relative overflow-hidden">
+
+  <!-- Background accent -->
+  <div class="absolute inset-0 hero-grid opacity-50 pointer-events-none"></div>
+  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[300px] rounded-full opacity-10 pointer-events-none" style="background: radial-gradient(ellipse, #00e87a 0%, transparent 70%);"></div>
+
+  <div class="relative max-w-3xl mx-auto px-5 md:px-8 text-center">
+
+    <div class="reveal mb-6">
+      <span class="pill bg-accent/10 text-accent border border-accent/20">Próximo passo</span>
+    </div>
+
+    <h2 class="reveal font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight tracking-tight text-text mb-6">
+      Sua LP pode estar<br />no ar em <span class="text-accent accent-glow">10 dias</span>.<br />
+      <span class="text-text-muted">O próximo passo é o briefing.</span>
+    </h2>
+
+    <p class="reveal reveal-delay-1 text-text-muted text-lg leading-relaxed mb-10 max-w-xl mx-auto">
+      Sem call de vendas. Sem proposta de 20 páginas. Você preenche o formulário, a gente analisa e retorna com prazo e valor em até 24 horas.
+    </p>
+
+    <!-- CTA button -->
+    <div class="reveal reveal-delay-2">
+      <a href="https://wa.me/5571996591404?text=Ol%C3%A1%2C%20quero%20preencher%20o%20briefing%20para%20minha%20landing%20page" target="_blank" rel="noopener"
+         class="inline-flex items-center gap-3 bg-accent text-bg font-display font-bold text-lg px-8 py-4 rounded-xl hover:bg-accent-dim transition-all hover:scale-[1.02] active:scale-[0.98] shadow-xl shadow-accent/20">
+        Preencher o briefing agora
+        <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </a>
+    </div>
+
+    <!-- Trust strip -->
+    <div class="reveal reveal-delay-3 mt-8 flex flex-wrap justify-center items-center gap-x-6 gap-y-3 text-sm text-text-muted">
+      <span class="flex items-center gap-2">
+        <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#00e87a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        50% só na entrega
+      </span>
+      <span class="flex items-center gap-2">
+        <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#00e87a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        2 revisões inclusas
+      </span>
+      <span class="flex items-center gap-2">
+        <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#00e87a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        Suporte por 30 dias
+      </span>
+    </div>
+
+  </div>
+</section>
+
+</main>
+
+<!-- ═══════════════════════════════════════════════
+     FOOTER
+═══════════════════════════════════════════════ -->
+<footer class="border-t border-border bg-surface/50 py-12">
+  <div class="max-w-6xl mx-auto px-5 md:px-8">
+    <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+
+      <!-- Logo -->
+      <a href="#hero" class="flex items-center gap-2.5">
+        <svg aria-hidden="true" width="24" height="22" viewBox="0 0 28 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <polygon points="14,0 21,12 7,12" fill="#00e87a" opacity="0.9"/>
+          <polygon points="7,14 14,26 0,26" fill="#00e87a" opacity="0.6"/>
+          <polygon points="21,14 28,26 14,26" fill="#00e87a" opacity="0.75"/>
+        </svg>
+        <span class="font-display font-semibold text-sm text-text">Triforce Auto</span>
+      </a>
+
+      <!-- Nav links -->
+      <div class="flex flex-wrap justify-center gap-x-6 gap-y-2 text-xs text-text-faint">
+        <a href="#problema" class="hover:text-text-muted transition-colors">Problema</a>
+        <a href="#solucao" class="hover:text-text-muted transition-colors">Solução</a>
+        <a href="#como-funciona" class="hover:text-text-muted transition-colors">Como funciona</a>
+        <a href="#preco" class="hover:text-text-muted transition-colors">Preço</a>
+        <a href="#faq" class="hover:text-text-muted transition-colors">FAQ</a>
+      </div>
+
+      <!-- Copyright -->
+      <p class="text-xs text-text-faint">© 2026 Triforce Auto. Todos os direitos reservados.</p>
+
+    </div>
+  </div>
+</footer>
+
+
+<!-- ═══════════════════════════════════════════════
+     JAVASCRIPT
+═══════════════════════════════════════════════ -->
+<script>
+  // ── Mobile menu ──────────────────────────────
+  const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+
+  mobileMenuBtn.addEventListener('click', () => {
+    mobileMenu.classList.toggle('hidden');
+  });
+
+  function closeMobileMenu() {
+    mobileMenu.classList.add('hidden');
+  }
+
+  // ── Scroll reveal (Intersection Observer) ────
+  const revealEls = document.querySelectorAll('.reveal');
+  const revealObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
+  );
+  revealEls.forEach((el) => revealObserver.observe(el));
+
+  // ── FAQ accordion ────────────────────────────
+  document.querySelectorAll('.faq-trigger').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const item = btn.closest('.faq-item');
+      const isOpen = item.classList.contains('open');
+
+      // Close all
+      document.querySelectorAll('.faq-item.open').forEach((openItem) => {
+        openItem.classList.remove('open');
+        openItem.querySelector('.faq-trigger').setAttribute('aria-expanded', 'false');
+      });
+
+      // Toggle clicked
+      if (!isOpen) {
+        item.classList.add('open');
+        btn.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
+
+  // ── Nav: add shadow on scroll ────────────────
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 20) {
+      nav.style.borderBottomColor = '#1e1e1e';
+    } else {
+      nav.style.borderBottomColor = 'transparent';
+    }
+  }, { passive: true });
+
+  // ── Smooth close mobile menu on link click ───
+  document.querySelectorAll('#mobile-menu a').forEach((link) => {
+    link.addEventListener('click', closeMobileMenu);
+  });
+</script>
+
+</body>
+</html>
