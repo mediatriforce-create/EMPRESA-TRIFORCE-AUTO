@@ -24,3 +24,4 @@ Faixa de preço: R$ 847 – R$ 1.997. Estágio: pré-receita (primeira venda ain
 - **Decisões**: fundador aprova via AskUserQuestion
 - **Tier default**: standard (sonnet) para novas contratações
 - **Hierarquia**: fundador → diretor → gerente → senior → pleno → junior
+- **Exibição do time**: ao mostrar funcionários, SEMPRE separar por equipe em tabelas distintas (nunca uma tabela só com todos misturados)
