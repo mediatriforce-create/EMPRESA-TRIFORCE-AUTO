@@ -19,14 +19,16 @@
       theme: {
         extend: {
           colors: {
-            bg: '#0a0a0a',
-            surface: '#111111',
+            bg: '#0d0d0d',
+            surface: '#141414',
             border: '#1e1e1e',
             muted: '#2a2a2a',
-            accent: '#00e87a',
-            'accent-dim': '#00b85f',
-            text: '#f0f0f0',
-            'text-muted': '#888888',
+            accent: '#FF6600',
+            'accent-dim': '#CC5200',
+            'bg-light': '#F0EAE0',
+            text: '#FFFFFF',
+            'text-dark': '#111111',
+            'text-muted': '#999999',
             'text-faint': '#444444',
           },
           fontFamily: {
@@ -39,9 +41,9 @@
   </script>
   <style>
     * { box-sizing: border-box; }
-    html { background-color: #0a0a0a; }
+    html { background-color: #0d0d0d; }
     body {
-      background-color: #0a0a0a;
+      background-color: #0d0d0d;
       color: #f0f0f0;
       font-family: 'Inter', sans-serif;
       -webkit-font-smoothing: antialiased;
@@ -64,12 +66,12 @@
 
     /* Accent glow */
     .accent-glow {
-      text-shadow: 0 0 40px rgba(0, 232, 122, 0.35);
+      text-shadow: 0 0 40px rgba(255, 102, 0, 0.35);
     }
 
     /* Custom scrollbar */
     ::-webkit-scrollbar { width: 6px; }
-    ::-webkit-scrollbar-track { background: #0a0a0a; }
+    ::-webkit-scrollbar-track { background: #0d0d0d; }
     ::-webkit-scrollbar-thumb { background: #2a2a2a; border-radius: 3px; }
 
     /* Nav blur */
@@ -105,8 +107,8 @@
       background-color: #111111;
     }
     .price-table tr:last-child td {
-      background-color: #001a0e;
-      color: #00e87a;
+      background-color: #1a0a00;
+      color: #FF6600;
       font-weight: 700;
     }
 
@@ -146,8 +148,8 @@
     /* Hero grid background */
     .hero-grid {
       background-image:
-        linear-gradient(rgba(0,232,122,0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0,232,122,0.03) 1px, transparent 1px);
+        linear-gradient(rgba(255,102,0,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,102,0,0.03) 1px, transparent 1px);
       background-size: 60px 60px;
     }
   </style>
@@ -164,9 +166,9 @@
     <a href="#hero" class="flex items-center gap-2.5 group">
       <!-- Triforce SVG icon -->
       <svg aria-hidden="true" width="28" height="26" viewBox="0 0 28 26" fill="none" xmlns="http://www.w3.org/2000/svg" class="transition-transform group-hover:scale-110">
-        <polygon points="14,0 21,12 7,12" fill="#00e87a" opacity="0.9"/>
-        <polygon points="7,14 14,26 0,26" fill="#00e87a" opacity="0.6"/>
-        <polygon points="21,14 28,26 14,26" fill="#00e87a" opacity="0.75"/>
+        <polygon points="14,0 21,12 7,12" fill="#FF6600" opacity="0.9"/>
+        <polygon points="7,14 14,26 0,26" fill="#FF6600" opacity="0.6"/>
+        <polygon points="21,14 28,26 14,26" fill="#FF6600" opacity="0.75"/>
       </svg>
       <span class="font-display font-bold text-base text-text tracking-tight">Triforce Auto</span>
     </a>
@@ -218,7 +220,7 @@
 <section id="hero" class="relative min-h-screen flex items-center pt-16 overflow-hidden hero-grid noise">
 
   <!-- Radial glow behind headline -->
-  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] rounded-full opacity-10" style="background: radial-gradient(ellipse, #00e87a 0%, transparent 70%); pointer-events:none;"></div>
+  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] rounded-full opacity-10" style="background: radial-gradient(ellipse, #FF6600 0%, transparent 70%); pointer-events:none;"></div>
 
   <div class="relative max-w-6xl mx-auto px-5 md:px-8 py-24 md:py-32 w-full">
 
@@ -256,15 +258,15 @@
     <!-- Trust strip -->
     <div class="reveal reveal-delay-4 mt-10 flex flex-wrap items-center gap-x-6 gap-y-3 text-sm text-text-muted">
       <span class="flex items-center gap-2">
-        <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#00e87a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#FF6600" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
         Entrega em até 10 dias úteis
       </span>
       <span class="flex items-center gap-2">
-        <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#00e87a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#FF6600" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
         Sem contrato de fidelidade
       </span>
       <span class="flex items-center gap-2">
-        <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#00e87a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#FF6600" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
         50% só na entrega
       </span>
     </div>
@@ -384,7 +386,7 @@
         <div class="reveal reveal-delay-1 bg-surface border border-border rounded-2xl p-6 hover:border-accent/30 transition-colors group">
           <div class="flex items-start gap-4">
             <div class="w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center flex-shrink-0 group-hover:bg-accent/20 transition-colors">
-              <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#00e87a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/></svg>
+              <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FF6600" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/></svg>
             </div>
             <div>
               <div class="flex items-center gap-2 mb-2">
@@ -399,7 +401,7 @@
         <div class="reveal reveal-delay-2 bg-surface border border-border rounded-2xl p-6 hover:border-accent/30 transition-colors group">
           <div class="flex items-start gap-4">
             <div class="w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center flex-shrink-0 group-hover:bg-accent/20 transition-colors">
-              <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#00e87a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
+              <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FF6600" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
             </div>
             <div>
               <div class="flex items-center gap-2 mb-2">
@@ -414,7 +416,7 @@
         <div class="reveal reveal-delay-3 bg-surface border border-border rounded-2xl p-6 hover:border-accent/30 transition-colors group">
           <div class="flex items-start gap-4">
             <div class="w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center flex-shrink-0 group-hover:bg-accent/20 transition-colors">
-              <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#00e87a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+              <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FF6600" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
             </div>
             <div>
               <div class="flex items-center gap-2 mb-2">
@@ -522,56 +524,56 @@
       <!-- Deliverables list -->
       <div class="space-y-4">
         <div class="reveal reveal-delay-1 flex items-start gap-3.5">
-          <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00e87a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="mt-0.5 flex-shrink-0"><polyline points="20 6 9 17 4 12"/></svg>
+          <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FF6600" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="mt-0.5 flex-shrink-0"><polyline points="20 6 9 17 4 12"/></svg>
           <div>
             <span class="text-text font-medium text-sm">Copy completa da LP</span>
             <p class="text-text-muted text-sm mt-0.5">Texto de todas as seções, escrito do zero para o seu público — não um template genérico.</p>
           </div>
         </div>
         <div class="reveal reveal-delay-2 flex items-start gap-3.5">
-          <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00e87a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="mt-0.5 flex-shrink-0"><polyline points="20 6 9 17 4 12"/></svg>
+          <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FF6600" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="mt-0.5 flex-shrink-0"><polyline points="20 6 9 17 4 12"/></svg>
           <div>
             <span class="text-text font-medium text-sm">Design responsivo</span>
             <p class="text-text-muted text-sm mt-0.5">Adaptado para celular, tablet e desktop. 80% dos seus clientes abrem pelo celular.</p>
           </div>
         </div>
         <div class="reveal reveal-delay-3 flex items-start gap-3.5">
-          <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00e87a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="mt-0.5 flex-shrink-0"><polyline points="20 6 9 17 4 12"/></svg>
+          <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FF6600" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="mt-0.5 flex-shrink-0"><polyline points="20 6 9 17 4 12"/></svg>
           <div>
             <span class="text-text font-medium text-sm">Desenvolvimento e publicação</span>
             <p class="text-text-muted text-sm mt-0.5">Código limpo, hospedagem configurada, domínio apontado. Sem "você que arruma depois".</p>
           </div>
         </div>
         <div class="reveal reveal-delay-4 flex items-start gap-3.5">
-          <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00e87a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="mt-0.5 flex-shrink-0"><polyline points="20 6 9 17 4 12"/></svg>
+          <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FF6600" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="mt-0.5 flex-shrink-0"><polyline points="20 6 9 17 4 12"/></svg>
           <div>
             <span class="text-text font-medium text-sm">Formulário de captação integrado</span>
             <p class="text-text-muted text-sm mt-0.5">Os leads chegam no seu e-mail ou CRM. Sem configuração manual da sua parte.</p>
           </div>
         </div>
         <div class="reveal reveal-delay-1 flex items-start gap-3.5">
-          <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00e87a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="mt-0.5 flex-shrink-0"><polyline points="20 6 9 17 4 12"/></svg>
+          <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FF6600" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="mt-0.5 flex-shrink-0"><polyline points="20 6 9 17 4 12"/></svg>
           <div>
             <span class="text-text font-medium text-sm">2 rodadas de revisão inclusas</span>
             <p class="text-text-muted text-sm mt-0.5">Se algo não ficou como você imaginou, você pede o ajuste. Está no pacote.</p>
           </div>
         </div>
         <div class="reveal reveal-delay-2 flex items-start gap-3.5">
-          <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00e87a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="mt-0.5 flex-shrink-0"><polyline points="20 6 9 17 4 12"/></svg>
+          <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FF6600" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="mt-0.5 flex-shrink-0"><polyline points="20 6 9 17 4 12"/></svg>
           <div>
             <span class="text-text font-medium text-sm">PageSpeed acima de 90</span>
             <p class="text-text-muted text-sm mt-0.5">Velocidade não é detalhe técnico. É fator de conversão. Entregamos com score comprovado.</p>
           </div>
         </div>
         <div class="reveal reveal-delay-3 flex items-start gap-3.5">
-          <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00e87a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="mt-0.5 flex-shrink-0"><polyline points="20 6 9 17 4 12"/></svg>
+          <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FF6600" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="mt-0.5 flex-shrink-0"><polyline points="20 6 9 17 4 12"/></svg>
           <div>
             <span class="text-text font-medium text-sm">Meta tags e SEO básico</span>
             <p class="text-text-muted text-sm mt-0.5">Título, descrição e tags configuradas para o Google indexar desde o dia 1.</p>
           </div>
         </div>
         <div class="reveal reveal-delay-4 flex items-start gap-3.5">
-          <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00e87a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="mt-0.5 flex-shrink-0"><polyline points="20 6 9 17 4 12"/></svg>
+          <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FF6600" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="mt-0.5 flex-shrink-0"><polyline points="20 6 9 17 4 12"/></svg>
           <div>
             <span class="text-text font-medium text-sm">Suporte por 30 dias após entrega</span>
             <p class="text-text-muted text-sm mt-0.5">Dúvida técnica, erro de formulário, ajuste pontual. A gente não some depois que entregou.</p>
@@ -606,29 +608,29 @@
       <div class="reveal reveal-delay-1">
         <div class="flex items-center gap-2 mb-6">
           <div class="w-6 h-6 rounded-full bg-accent/20 flex items-center justify-center flex-shrink-0">
-            <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#00e87a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#FF6600" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
           </div>
           <span class="font-display font-semibold text-text">Perfil ideal</span>
         </div>
         <div class="space-y-4">
           <div class="flex items-start gap-3">
-            <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#00e87a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="mt-1 flex-shrink-0"><polyline points="20 6 9 17 4 12"/></svg>
+            <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#FF6600" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="mt-1 flex-shrink-0"><polyline points="20 6 9 17 4 12"/></svg>
             <p class="text-text-muted text-sm leading-relaxed">Você tem um negócio presencial — barbearia, salão, academia, personal, pet shop, clínica — e quer parar de depender só do Instagram.</p>
           </div>
           <div class="flex items-start gap-3">
-            <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#00e87a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="mt-1 flex-shrink-0"><polyline points="20 6 9 17 4 12"/></svg>
+            <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#FF6600" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="mt-1 flex-shrink-0"><polyline points="20 6 9 17 4 12"/></svg>
             <p class="text-text-muted text-sm leading-relaxed">Você é infoprodutor, coach ou consultor e sua LP atual não converte como deveria.</p>
           </div>
           <div class="flex items-start gap-3">
-            <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#00e87a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="mt-1 flex-shrink-0"><polyline points="20 6 9 17 4 12"/></svg>
+            <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#FF6600" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="mt-1 flex-shrink-0"><polyline points="20 6 9 17 4 12"/></svg>
             <p class="text-text-muted text-sm leading-relaxed">Você já tentou montar uma página sozinho e o resultado não passou no teste do espelho.</p>
           </div>
           <div class="flex items-start gap-3">
-            <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#00e87a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="mt-1 flex-shrink-0"><polyline points="20 6 9 17 4 12"/></svg>
+            <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#FF6600" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="mt-1 flex-shrink-0"><polyline points="20 6 9 17 4 12"/></svg>
             <p class="text-text-muted text-sm leading-relaxed">Você quer resultado profissional sem gastar R$ 5.000 em agência e sem esperar 3 meses.</p>
           </div>
           <div class="flex items-start gap-3">
-            <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#00e87a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="mt-1 flex-shrink-0"><polyline points="20 6 9 17 4 12"/></svg>
+            <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#FF6600" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="mt-1 flex-shrink-0"><polyline points="20 6 9 17 4 12"/></svg>
             <p class="text-text-muted text-sm leading-relaxed">Você tem o produto. Só falta a página que apresenta ele direito.</p>
           </div>
         </div>
@@ -697,7 +699,7 @@
 
         <!-- Payment condition -->
         <div class="flex items-center gap-3 p-4 bg-accent/5 border border-accent/15 rounded-xl mb-6">
-          <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00e87a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FF6600" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
           <p class="text-sm text-text-muted"><strong class="text-accent">50% na aprovação</strong> · <strong class="text-accent">50% na entrega</strong> da LP no ar</p>
         </div>
 
@@ -854,7 +856,7 @@
 
   <!-- Background accent -->
   <div class="absolute inset-0 hero-grid opacity-50 pointer-events-none"></div>
-  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[300px] rounded-full opacity-10 pointer-events-none" style="background: radial-gradient(ellipse, #00e87a 0%, transparent 70%);"></div>
+  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[300px] rounded-full opacity-10 pointer-events-none" style="background: radial-gradient(ellipse, #FF6600 0%, transparent 70%);"></div>
 
   <div class="relative max-w-3xl mx-auto px-5 md:px-8 text-center">
 
@@ -883,15 +885,15 @@
     <!-- Trust strip -->
     <div class="reveal reveal-delay-3 mt-8 flex flex-wrap justify-center items-center gap-x-6 gap-y-3 text-sm text-text-muted">
       <span class="flex items-center gap-2">
-        <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#00e87a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#FF6600" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
         50% só na entrega
       </span>
       <span class="flex items-center gap-2">
-        <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#00e87a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#FF6600" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
         2 revisões inclusas
       </span>
       <span class="flex items-center gap-2">
-        <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#00e87a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#FF6600" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
         Suporte por 30 dias
       </span>
     </div>
@@ -911,9 +913,9 @@
       <!-- Logo -->
       <a href="#hero" class="flex items-center gap-2.5">
         <svg aria-hidden="true" width="24" height="22" viewBox="0 0 28 26" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <polygon points="14,0 21,12 7,12" fill="#00e87a" opacity="0.9"/>
-          <polygon points="7,14 14,26 0,26" fill="#00e87a" opacity="0.6"/>
-          <polygon points="21,14 28,26 14,26" fill="#00e87a" opacity="0.75"/>
+          <polygon points="14,0 21,12 7,12" fill="#FF6600" opacity="0.9"/>
+          <polygon points="7,14 14,26 0,26" fill="#FF6600" opacity="0.6"/>
+          <polygon points="21,14 28,26 14,26" fill="#FF6600" opacity="0.75"/>
         </svg>
         <span class="font-display font-semibold text-sm text-text">Triforce Auto</span>
       </a>
