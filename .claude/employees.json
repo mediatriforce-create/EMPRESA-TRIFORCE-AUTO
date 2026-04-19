@@ -67,7 +67,7 @@
       "reports_to": "fundador",
       "description": "Produz toda a identidade visual do canal de curadoria de IA no Instagram. Cards, carrosséis e reels cover. Sistema modular, batch semanal, entrega pronta para publicar.",
       "specialty": "instagram-design-ai-content",
-      "skills": ["designer-instagram"],
+      "skills": ["designer-instagram", "baoyu-image-cards", "baoyu-infographic", "baoyu-cover-image", "baoyu-article-illustrator", "baoyu-imagine", "canvas-design", "baoyu-slide-deck"],
       "status": "hired",
       "hired_at": "2026-04-17",
       "hired_by": "Gabriela"
@@ -81,7 +81,7 @@
       "reports_to": "fundador",
       "description": "Gerencia o canal de curadoria de IA no Instagram. Planeja calendário editorial mensal, agenda via Later/Buffer, analisa métricas e integra IA para prever tendências e otimizar conteúdo.",
       "specialty": "instagram-strategy-ai-content",
-      "skills": ["social-media"],
+      "skills": ["social-media", "social-content", "ai-video-generation", "baoyu-slide-deck", "instagram-content-generation"],
       "status": "hired",
       "hired_at": "2026-04-17",
       "hired_by": "Gabriela"
@@ -96,7 +96,7 @@
       "description": "Monitora o ecossistema global de IA diariamente, filtra ruído e hype, e transforma notícias técnicas em conteúdo acessível para o canal de curadoria de IA da Triforce Auto no Instagram. Na equipe de LP, pesquisa mercado, público-alvo, concorrentes e ângulos de copy antes do Fecchio escrever.",
       "specialty": "ai-research-content-curation",
       "teams": ["marketing-instagram", "lp-produto"],
-      "skills": ["curador-ia"],
+      "skills": ["curador-ia", "pexels-automation", "googlephotos-automation", "ai-image-generation", "firecrawl-search", "all-images-ai-automation"],
       "status": "hired",
       "hired_at": "2026-04-17",
       "hired_by": "Gabriela"
@@ -111,7 +111,7 @@
       "description": "Revisa os PNGs gerados pela Vitória antes de publicar. Detecta e reporta erros visuais com precisão — fotos repetidas, espaço em branco, foto sem sentido, contraste insuficiente, ritmo ruim. Não redesenha, não reescreve código. Só revisa e dá feedback acionável por slide.",
       "specialty": "editorial-design-review-social-media",
       "teams": ["marketing-instagram"],
-      "skills": ["revisor-design", "image-analysis"],
+      "skills": ["revisor-design", "image-analysis", "background-removal", "image-upscaling", "baoyu-compress-image"],
       "status": "hired",
       "hired_at": "2026-04-18",
       "hired_by": "Gabriela"
