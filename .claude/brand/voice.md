@@ -32,3 +32,4 @@ O dev que sabe escrever. Entrega código e copy no mesmo pacote — raro, e esse
 - Tom formal demais — o fundador é direto e descontraído
 - Superlativos sem prova ("melhor", "incrível")
 - **Travessão (—) em qualquer material** — proibido. Substituir por ponto final ou reescrever a frase.
+- **Vírgulas em excesso nos carrosséis** — proibido. Português real usa vírgula com propósito, não como pausa decorativa. Frases curtas terminam em ponto. Nunca encadear ideias com vírgula onde cabem dois pontos, ponto e vírgula ou ponto final.
