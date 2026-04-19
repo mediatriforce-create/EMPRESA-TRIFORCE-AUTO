@@ -1,5 +1,5 @@
 ---
-sources: ["confirmado pelo fundador"]
+sources: ["carrosséis do Instagram (@triforceauto)", "confirmado pelo fundador"]
 generated_at: 2026-04-19
 ---
 
@@ -11,35 +11,34 @@ generated_at: 2026-04-19
 
 | Token | Hex | Uso |
 |---|---|---|
-| `accent` | `#00e87a` | Verde principal — CTAs, ícones, destaques, logo |
-| `accent-dim` | `#00b85f` | Verde hover / versão escura do accent |
-| `bg` | `#0a0a0a` | Fundo principal (quase preto) |
-| `surface` | `#111111` | Fundo de cards e seções internas |
-| `border` | `#1e1e1e` | Bordas e divisores |
-| `muted` | `#2a2a2a` | Elementos sutis, backgrounds de hover |
-| `text` | `#f0f0f0` | Texto principal |
+| `accent` | `#FF6600` | Laranja principal — CTAs, destaques, headlines em destaque, logo |
+| `accent-dim` | `#CC5200` | Laranja escuro — hover, versão mais sóbria |
+| `bg-dark` | `#0d0d0d` | Fundo escuro (cards dark, hero dark) |
+| `bg-light` | `#F0EAE0` | Bege — fundo de cards claros |
+| `text-light` | `#FFFFFF` | Texto sobre fundo escuro |
+| `text-dark` | `#111111` | Texto sobre fundo claro/bege |
 | `text-muted` | `#888888` | Texto secundário / labels |
-| `text-faint` | `#444444` | Texto muito apagado / placeholders |
+| `border-dark` | `#1e1e1e` | Bordas em contexto escuro |
 
-## CSS Variables (copiar e usar)
+## CSS Variables
 
 ```css
 :root {
-  --accent: #00e87a;
-  --accent-dim: #00b85f;
-  --bg: #0a0a0a;
-  --surface: #111111;
-  --border: #1e1e1e;
-  --muted: #2a2a2a;
-  --text: #f0f0f0;
+  --accent: #FF6600;
+  --accent-dim: #CC5200;
+  --bg-dark: #0d0d0d;
+  --bg-light: #F0EAE0;
+  --text-light: #FFFFFF;
+  --text-dark: #111111;
   --text-muted: #888888;
-  --text-faint: #444444;
+  --border-dark: #1e1e1e;
 }
 ```
 
 ## Regras de uso
 
-- **Fundo sempre escuro** — nunca usar fundo branco ou claro em materiais da marca
-- **Verde apenas em destaque** — não usar o accent como cor de fundo de seções inteiras
-- **Texto sobre fundo escuro** — sempre `#f0f0f0` ou `#888888`, nunca preto
-- **CTAs sempre em accent** — botões principais sempre em `#00e87a` com texto escuro (`#0a0a0a`)
+- **Laranja apenas em destaque** — headlines em destaque, CTAs, ícones, bordas de ênfase
+- **Nunca laranja como fundo de seção inteira** — reservado para elementos pontuais
+- **Dois modos de card:** dark (`#0d0d0d` + texto branco) e light (`#F0EAE0` + texto escuro)
+- **CTAs sempre em laranja** com texto branco ou preto dependendo do contraste
+- **Fonte usada nos carrosséis:** bold, condensada (estilo dos carrosséis do Instagram)
