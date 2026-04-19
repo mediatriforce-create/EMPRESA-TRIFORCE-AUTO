@@ -6,4 +6,5 @@ Arquivo append-only. Time adiciona o que funciona e o que não funciona.
 - [YYYY-MM-DD] {O que}: {resultado} — {aprendizado}
 
 ## Registro
-<!-- Adicionar aqui à medida que o negócio avança -->
+
+- [2026-04-19] Logo PNG grande em container de altura fixa: funciona — usar `height` fixo no container + `overflow:visible` + `position:relative` + `z-index` na img. A logo transborda visualmente sem expandir nada ao redor.
