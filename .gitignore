@@ -5,3 +5,13 @@ Thumbs.db
 
 # Claude Code cache
 .claude/agent-memory/
+
+# Segredos
+.env
+
+# Plugins (repos externos)
+plugins/
+
+# Cache
+__pycache__/
+.firecrawl/

@@ -7,7 +7,7 @@ tier: "standard"
 created_at: "2026-04-17"
 created_by: "Gabriela (RH)"
 updated_at: "2026-04-18"
-update_reason: "v1.2: Firecrawl como ferramenta principal de busca de fotos/logos — Unsplash, Pexels, press kits, qualquer URL. Pipeline autônomo Rafael→Fecchio→Vitória→Bruno documentado."
+update_reason: "v1.2: Firecrawl como ferramenta principal de busca de fotos/logos — Unsplash, Pexels, press kits, qualquer URL. Pipeline autônomo Rafael→Mateus→Vitória→Bruno documentado."
 ---
 
 # Skill: Designer Instagram — Canal de Curadoria IA
@@ -119,13 +119,13 @@ Cover de alto nível = 1 ideia + 1 tensão visual + 1 tipografia bold.
 
 ## Pipeline de produção — como a equipe funciona
 
-O carrossel nasce no Rafael e chega em você pronto para gerar. Seu trabalho começa quando o Fecchio entrega o copy.
+O carrossel nasce no Rafael e chega em você pronto para gerar. Seu trabalho começa quando o Mateus entrega o copy.
 
 ```
-Rafael (pesquisa) → Fecchio (copy) → Vitória (design+geração) → Bruno (revisão)
+Rafael (pesquisa) → Mateus (copy) → Vitória (design+geração) → Bruno (revisão)
 ```
 
-**O que você recebe do Fecchio:**
+**O que você recebe do Mateus:**
 - Estrutura Python completa: lista de slides com layout, título, corpo, accent
 - `photo_query` descrita em inglês (cena visual ideal)
 

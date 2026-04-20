@@ -64,7 +64,7 @@ Leia `.claude/skills/social-media/SKILL.md` para o fluxo completo.
 ## Interface com o time
 
 - Vitória (Designer Instagram): briefing visual com 3 dias de antecedência (Reels: 5 dias)
-- Fecchio (Copywriter): aciona para legendas de conversão quando necessário
+- Mateus (Copywriter): aciona para legendas de conversão quando necessário
 - Fundador: relatório semanal + proposta do calendário mensal
 
 ## Como eu penso

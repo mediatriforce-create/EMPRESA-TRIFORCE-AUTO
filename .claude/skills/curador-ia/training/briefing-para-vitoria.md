@@ -2,7 +2,7 @@
 skill: curador-ia
 doc: briefing-para-vitoria
 version: "2.0"
-update_reason: "Rafael + Fecchio entregam o Python completo com visuais incluídos — Vitória só roda o gerador"
+update_reason: "Rafael + Mateus entregam o Python completo com visuais incluídos — Vitória só roda o gerador"
 ---
 
 # Briefing para Vitória — v2.0
@@ -12,7 +12,7 @@ update_reason: "Rafael + Fecchio entregam o Python completo com visuais incluíd
 Na v1.0, Rafael entregava um briefing em texto e Vitória buscava as imagens.
 Isso criava retrabalho: Vitória tinha que descobrir o visual de cada slide do zero.
 
-**Na v2.0:** Rafael + Fecchio entregam o dicionário Python completo — texto, estrutura e visuais já resolvidos. Vitória cola no `gerar-carroseis.py` e roda.
+**Na v2.0:** Rafael + Mateus entregam o dicionário Python completo — texto, estrutura e visuais já resolvidos. Vitória cola no `gerar-carroseis.py` e roda.
 
 ---
 
@@ -21,10 +21,10 @@ Isso criava retrabalho: Vitória tinha que descobrir o visual de cada slide do z
 ```
 Rafael (pesquisa + visuais) ──┐
                                ├──► estrutura Python completa ──► Vitória (roda gerador) ──► Bruno (revisa)
-Fecchio (copy dos slides)  ──┘
+Mateus (copy dos slides)  ──┘
 ```
 
-### O que Rafael entrega para Fecchio
+### O que Rafael entrega para Mateus
 
 - Fatos verificados com fonte (ex: "SWE-bench 87,6% — fonte: anthropic.com/news/claude-opus-4-7")
 - **URLs de visuais por tema** encontradas nas fontes oficiais:
@@ -34,7 +34,7 @@ Fecchio (copy dos slides)  ──┘
   - Se não encontrou visual oficial → descreve a cena ideal (vira `photo_query` Unsplash)
 - Contexto editorial: por que importa agora, para quem
 
-### O que Fecchio entrega para Vitória
+### O que Mateus entrega para Vitória
 
 O dicionário Python do carrossel, pronto para colar no `CARROSEIS`:
 
@@ -72,7 +72,7 @@ O dicionário Python do carrossel, pronto para colar no `CARROSEIS`:
 
 ## Campos de visual por slide — escolher o mais certo, não o mais fácil
 
-Cada slide tem UMA fonte de visual. Rafael encontra o melhor disponível, Fecchio decide qual campo usar:
+Cada slide tem UMA fonte de visual. Rafael encontra o melhor disponível, Mateus decide qual campo usar:
 
 | Campo | Quando usar | Exemplo |
 |---|---|---|

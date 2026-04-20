@@ -77,7 +77,7 @@ Canal IA — Triforce Auto
 │   └── Publicados
 ├── Temas Semanais
 ├── Análises de Performance
-└── Briefings para Vitória / Fecchio
+└── Briefings para Vitória / Mateus
 ```
 
 **Como usar o Notion AI no fluxo:**

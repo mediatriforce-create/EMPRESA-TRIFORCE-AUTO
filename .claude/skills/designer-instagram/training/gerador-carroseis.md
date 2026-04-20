@@ -458,7 +458,7 @@ Para cada foto nova:
 
 A única regra fixa: **último slide é sempre CTA.**
 
-O resto depende do que Fecchio entregou. Um carrossel pode ter 5 slides ou 8. Pode ter dois spotlights seguidos. Pode não ter nenhum dado. Pode ter três heavy consecutivos. Cada conteúdo tem sua estrutura ideal.
+O resto depende do que Mateus entregou. Um carrossel pode ter 5 slides ou 8. Pode ter dois spotlights seguidos. Pode não ter nenhum dado. Pode ter três heavy consecutivos. Cada conteúdo tem sua estrutura ideal.
 
 ### REGRAS DE TEXTO — PROIBIDO EM QUALQUER CAMPO
 
@@ -473,7 +473,7 @@ O resto depende do que Fecchio entregou. Um carrossel pode ter 5 slides ou 8. Po
 
 > ❌ **RETICÊNCIAS (...)** em excesso — evitar. Passa ar de insegurança.
 
-Vitória: se o copy entregue pelo Fecchio tiver travessão ou ponto em título, **corrija na hora** — não espere aprovação. É erro de copy, não de design.
+Vitória: se o copy entregue pelo Mateus tiver travessão ou ponto em título, **corrija na hora** — não espere aprovação. É erro de copy, não de design.
 
 ---
 

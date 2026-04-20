@@ -2,7 +2,7 @@
 doc: workflow-conjunto
 version: "1.0"
 equipe: [Rafael, Larissa, Vitória]
-integra: [Fecchio]
+integra: [Mateus]
 created_at: 2026-04-17
 created_by: Gabriela (RH)
 ---
@@ -211,31 +211,31 @@ Acionado quando: notícia relevante de IA surge após o bloco de produção do R
 
 ---
 
-## Integração com Fecchio (Copywriter — Equipe LP)
+## Integração com Mateus (Copywriter — Equipe LP)
 
-Fecchio é o copywriter da equipe de landing pages. Não faz parte do fluxo diário do canal de curadoria — mas é acionado em situações específicas.
+Mateus é o copywriter da equipe de landing pages. Não faz parte do fluxo diário do canal de curadoria — mas é acionado em situações específicas.
 
-### Quando Larissa aciona Fecchio:
+### Quando Larissa aciona Mateus:
 
-1. **Post de conversão direta** — quando o conteúdo do Rafael conecta com um serviço específico da Triforce e o post deve gerar ação (visita à LP, DM com intenção). Larissa escreve a legenda de curadoria, Fecchio escreve ou revisa o CTA de conversão.
-2. **Campanha especial** — lançamento de novo serviço, promoção pontual, ou post de posicionamento estratégico. Nesses casos Fecchio assume o copy completo e Rafael fornece o contexto de IA relevante.
-3. **Reel de posicionamento** — vídeo que fala da Triforce, não só de curadoria de IA. Fecchio escreve o roteiro, Larissa revisa para Instagram, Rafael valida se o contexto de IA está correto.
+1. **Post de conversão direta** — quando o conteúdo do Rafael conecta com um serviço específico da Triforce e o post deve gerar ação (visita à LP, DM com intenção). Larissa escreve a legenda de curadoria, Mateus escreve ou revisa o CTA de conversão.
+2. **Campanha especial** — lançamento de novo serviço, promoção pontual, ou post de posicionamento estratégico. Nesses casos Mateus assume o copy completo e Rafael fornece o contexto de IA relevante.
+3. **Reel de posicionamento** — vídeo que fala da Triforce, não só de curadoria de IA. Mateus escreve o roteiro, Larissa revisa para Instagram, Rafael valida se o contexto de IA está correto.
 
-### Como acionar Fecchio:
+### Como acionar Mateus:
 
 - Larissa envia briefing via Notion com prazo mínimo de 3 dias úteis
 - Briefing inclui: objetivo do post, público-alvo, tom desejado, contexto de IA fornecido pelo Rafael, prazo de publicação planejado
-- Fecchio entrega copy diretamente no Notion — Larissa revisa e encaixa no calendário
+- Mateus entrega copy diretamente no Notion — Larissa revisa e encaixa no calendário
 
-### O que Fecchio não faz no canal de curadoria:
+### O que Mateus não faz no canal de curadoria:
 
 - Reescrever as legendas de curadoria padrão (Rafael e Larissa têm autonomia para isso)
 - Substituir Rafael na pesquisa de IA (são funções diferentes)
 - Criar visual (isso é com Vitória)
 
-### Regra de autonomia de Larissa em relação ao Fecchio:
+### Regra de autonomia de Larissa em relação ao Mateus:
 
-Se Fecchio está indisponível ou atrasado, Larissa escreve a legenda de conversão seguindo o protocolo de contingência documentado em `skills/social-media/SKILL.md`. O calendário não para por dependência do Fecchio.
+Se Mateus está indisponível ou atrasado, Larissa escreve a legenda de conversão seguindo o protocolo de contingência documentado em `skills/social-media/SKILL.md`. O calendário não para por dependência do Mateus.
 
 ---
 
@@ -262,5 +262,5 @@ Se Fecchio está indisponível ou atrasado, Larissa escreve a legenda de convers
 | Vitória não entregou visual no prazo | Larissa | Publica card de emergência no slot, reprograma visual original |
 | Larissa não encaixou no calendário | Rafael | Avisa Larissa e fundador até 15h do mesmo dia |
 | Reunião semanal não aconteceu | Larissa (organiza) | Alinhamento assíncrono obrigatório via Notion comentário até segunda às 12h |
-| Fecchio atrasou copy de conversão | Larissa | Escreve legenda própria conforme protocolo de contingência |
+| Mateus atrasou copy de conversão | Larissa | Escreve legenda própria conforme protocolo de contingência |
 | Notícia urgente fora do horário | Quem identificou | Aciona protocolo de urgência — os três entram independentemente do horário |

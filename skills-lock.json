@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "skills": {
+    "geo-prospect": {
+      "source": "zubair-trabzada/geo-seo-claude",
+      "sourceType": "github",
+      "computedHash": "87241854905a18850c0bd2f154779fb14ed4ee4b5bfc05ae52143c3681a8d464"
+    },
+    "prospect": {
+      "source": "anthropics/knowledge-work-plugins",
+      "sourceType": "github",
+      "computedHash": "90e380010b01404dbe0586e246b797e574b62671c78613e298f840dd284fe464"
+    },
+    "prospecting-research": {
+      "source": "guia-matthieu/clawfu-skills",
+      "sourceType": "github",
+      "computedHash": "88ffc8442247c68124965e26fca09a7f75bb7f7b581534a9ea905739c9f37a65"
+    }
+  }
+}

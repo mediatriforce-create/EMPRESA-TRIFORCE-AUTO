@@ -136,7 +136,7 @@ Ao pesquisar o lançamento do Claude Opus 4.5 em `anthropic.com/news/claude-opus
 - Colocar screenshot_url de Twitter/Instagram (bloqueado por anti-bot)
 - Usar image_url de blogs secundários sem testar visualmente (gzn.jp, sites de notícia japoneses/alemães etc. costumam ter crops ruins, close-ups sem contexto, fundos escuros)
 
-**Teste obrigatório de image_url antes de passar para Fecchio:**
+**Teste obrigatório de image_url antes de passar para Mateus:**
 ```python
 import urllib.request
 urllib.request.urlretrieve("URL_DA_IMAGEM", ".img-cache/teste_visual.jpg")
@@ -147,7 +147,7 @@ Para prints de tweet ou interface que precisam de login → coloca `screenshot_f
 
 ---
 
-## Regras de texto para briefing — PROIBIDO passar para Fecchio/Vitória
+## Regras de texto para briefing — PROIBIDO passar para Mateus/Vitória
 
 > ❌ **ZERO TRAVESSÕES (—)** em qualquer texto do briefing — fatos, títulos, corpo.
 > Se você escreveu "X — Y", substitua por "X, Y" ou "X: Y" ou quebre em duas frases.
@@ -157,16 +157,16 @@ Para prints de tweet ou interface que precisam de login → coloca `screenshot_f
 
 ---
 
-## Entregáveis por ciclo — output para Fecchio
+## Entregáveis por ciclo — output para Mateus
 
-Rafael entrega para Fecchio:
+Rafael entrega para Mateus:
 
 1. **Fatos por slide** — um por slide, com fonte inline `(empresa, mês/ano)`
 2. **image_url ou photo_query por slide** — visual já resolvido para cada slide
 3. **Cover visual** — imagem ou query para o cover
 
-Fecchio transforma isso no dicionário Python completo.
-O output final (Rafael + Fecchio juntos) é o Python dict pronto para Vitória colar no gerador.
+Mateus transforma isso no dicionário Python completo.
+O output final (Rafael + Mateus juntos) é o Python dict pronto para Vitória colar no gerador.
 
 Formato completo em `training/briefing-para-vitoria.md`
 

@@ -1,5 +1,5 @@
 ---
-name: fecchio-mind
+name: mateus-mind
 description: >
   Skill mestre de copywriting de resposta direta com psicologia de persuasão integrada
   para o mercado brasileiro. Use quando criar, revisar ou melhorar qualquer peça que
@@ -10,7 +10,7 @@ description: >
   Use mesmo que o pedido seja parcial — aplique sempre o framework completo.
 version: 9.0.0
 last_updated: 2026-04-20
-sources_version: "fecchio-mind 9.0.0 | Triforce research 2026 | reescrita total por RH"
+sources_version: "mateus-mind 9.0.0 | Triforce research 2026 | reescrita total por RH"
 next_review: 2026-10-20
 review_reason: "Upgrade completo — versão 8 produzia copy motivacional. Versão 9 corrige na raiz."
 ---
@@ -24,7 +24,7 @@ review_reason: "Upgrade completo — versão 8 produzia copy motivacional. Vers�
 
 ## POR QUE ESTA VERSÃO EXISTE
 
-A versão 8 tinha os frameworks certos. O problema estava na execução: ao escrever, o Fecchio caia consistentemente em padrões de copy motivacional BR — headlines aspiracionais sem número, seções de problema genéricas, CTAs vagos. A teoria era boa. O output era ruim.
+A versão 8 tinha os frameworks certos. O problema estava na execução: ao escrever, o Mateus caia consistentemente em padrões de copy motivacional BR — headlines aspiracionais sem número, seções de problema genéricas, CTAs vagos. A teoria era boa. O output era ruim.
 
 Esta versão corrige isso com três adições que a versão 8 não tinha:
 
@@ -134,7 +134,7 @@ Esta seção documenta os erros reais cometidos em cópias anteriores da Triforc
 
 ### Anti-padrão 1: Headline aspiracional sem número
 
-**O que o Fecchio escreve:**
+**O que o Mateus escreve:**
 > "Seu negócio merece uma página que vende — não uma que envergonha."
 
 **Por que está errado:** "Merece" é linguagem de coaching, não de resposta direta. A headline não diz para quem, o que especificamente entrega, em quanto tempo, e qualquer concorrente pode dizer exatamente isso.
@@ -156,7 +156,7 @@ Para tráfego frio (qualquer segmento):
 
 ### Anti-padrão 2: Seção de problema genérica
 
-**O que o Fecchio escreve:**
+**O que o Mateus escreve:**
 > "Você está perdendo cliente todos os dias. E sabe disso."
 
 **Por que está errado:** "Perdendo cliente todos os dias" é genérico. Todo cliente de toda empresa de marketing ouve isso. Não especifica qual é a situação exata, qual é o mecanismo da perda, qual é o custo real.
@@ -175,7 +175,7 @@ Para tráfego frio (qualquer segmento):
 
 ### Anti-padrão 3: Seção de solução didática
 
-**O que o Fecchio escreve:**
+**O que o Mateus escreve:**
 > "A Triforce Auto é uma empresa de performance digital que produz landing pages completas para pequenos negócios e empreendedores digitais."
 
 **Por que está errado:** Isso é descrição de empresa, não copy de venda. O lead já sabe que você é uma empresa que faz LP. O que ele quer saber é POR QUE você especificamente, e o que isso muda para ele.
@@ -189,7 +189,7 @@ Para tráfego frio (qualquer segmento):
 
 ### Anti-padrão 4: CTA fraco
 
-**O que o Fecchio escreve:**
+**O que o Mateus escreve:**
 > "Quero minha landing page"
 
 **Por que está errado:** Não diz o que acontece ao clicar, não tem especificidade de resultado, não remove objeção de fricção.
@@ -205,7 +205,7 @@ Para tráfego frio (qualquer segmento):
 
 ### Anti-padrão 5: D-STACKS sem valor percebido real
 
-**O que o Fecchio escreve:**
+**O que o Mateus escreve:**
 ```
 - Copy completa da LP
 - Design responsivo
@@ -1322,7 +1322,7 @@ Se a copy gerou resultado confirmado (fundador aprovou, cliente converteu, taxa 
 
 ## TRIFORCE — OUTPUT PARA CARROSSÉIS INSTAGRAM
 
-Quando trabalhando em carrossel com Rafael, o output do Fecchio NÃO é um texto corrido.
+Quando trabalhando em carrossel com Rafael, o output do Mateus NÃO é um texto corrido.
 É o **dicionário Python completo** pronto para o gerador.
 
 ### Regras de copy para slides

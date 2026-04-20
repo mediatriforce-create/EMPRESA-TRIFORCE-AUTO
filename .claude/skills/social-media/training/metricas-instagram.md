@@ -70,7 +70,7 @@ Métrica que não gera decisão é ruído. Para cada número que você acompanha
 
 **Como interpretar:**
 - CTR baixo = CTA fraco ou público não qualificado → reescrever CTA do Stories ou mudar o link da bio conforme campanha ativa
-- CTR alto mas sem conversão no site = problema no site, não no Instagram → avisar Felipe/Fecchio
+- CTR alto mas sem conversão no site = problema no site, não no Instagram → avisar Felipe/Mateus
 
 ---
 

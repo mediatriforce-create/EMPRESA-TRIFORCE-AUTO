@@ -325,7 +325,7 @@ Referência: OWASP A01:2025, CVE-2025-29927
 |---------|--------------|----------------------|
 | Código | Felipe (Dev Web Senior) | Revisa tudo antes de ir para produção |
 | Design → Código | Camila → Felipe | Verifica se implementação segue tokens e acessibilidade do design |
-| Copy → LP | Fecchio → Felipe | Verifica se texto em hardcode no código conflita com o que deveria ser CMS/config |
+| Copy → LP | Mateus → Felipe | Verifica se texto em hardcode no código conflita com o que deveria ser CMS/config |
 | Decisões de produto | Joaquim (fundador) | Escala somente para bloquear produção por risco técnico crítico |
 
 ---

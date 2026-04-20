@@ -1,0 +1,1222 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Triforce Auto — Site pronto em 7 dias</title>
+
+  <!-- Google Fonts: Syne (headlines) + Inter (body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    /* ── Reset ─────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 16px; -webkit-text-size-adjust: 100%; }
+    html, body { width: 100%; min-height: 100%; overflow-x: hidden; }
+    body { line-height: 1.6; -webkit-font-smoothing: antialiased; }
+    img, picture, video, svg { display: block; max-width: 100%; }
+    input, button, textarea, select { font: inherit; }
+    a { color: inherit; text-decoration: none; }
+    button { cursor: pointer; border: none; background: none; }
+
+    /* ── Design Tokens ─────────────────────────────── */
+    :root {
+      --c-bg:        #0A0A0A;
+      --c-surface:   #111111;
+      --c-surface-2: #1A1A1A;
+      --c-border:    rgba(255,255,255,0.08);
+      --c-text:      #F2EDE8;
+      --c-muted:     rgba(242,237,232,0.5);
+      --c-accent:    #E8621A;
+      --c-accent-h:  #C9511200;
+      --c-accent-glow: rgba(232,98,26,0.18);
+
+      --ff-head: 'Syne', sans-serif;
+      --ff-body: 'Inter', sans-serif;
+
+      --t-xs:   clamp(0.75rem,  0.7rem  + 0.25vw, 0.875rem);
+      --t-sm:   clamp(0.875rem, 0.8rem  + 0.35vw, 1rem);
+      --t-base: clamp(1rem,     0.95rem + 0.25vw, 1.125rem);
+      --t-lg:   clamp(1.125rem, 1rem    + 0.6vw,  1.375rem);
+      --t-xl:   clamp(1.375rem, 1.1rem  + 1.3vw,  2rem);
+      --t-2xl:  clamp(1.875rem, 1.4rem  + 2.4vw,  3rem);
+      --t-3xl:  clamp(2.5rem,   1.8rem  + 3.5vw,  4.5rem);
+      --t-4xl:  clamp(3rem,     2rem    + 4vw,     6rem);
+
+      --s-1: 4px;   --s-2: 8px;   --s-3: 12px;  --s-4: 16px;
+      --s-6: 24px;  --s-8: 32px;  --s-12: 48px; --s-16: 64px;
+      --s-24: 96px; --s-32: 128px;
+
+      --r-sm: 4px; --r-md: 8px; --r-lg: 16px; --r-full: 9999px;
+
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.4);
+      --shadow-md: 0 4px 20px rgba(0,0,0,0.5);
+      --shadow-lg: 0 20px 60px rgba(0,0,0,0.6);
+      --shadow-accent: 0 0 40px rgba(232,98,26,0.25);
+
+      --ease-out: cubic-bezier(0.0, 0.0, 0.2, 1);
+      --ease-in:  cubic-bezier(0.4, 0.0, 1, 1);
+      --ease:     cubic-bezier(0.4, 0.0, 0.2, 1);
+      --dur-fast: 120ms;
+      --dur-base: 220ms;
+      --dur-slow: 380ms;
+    }
+
+    /* ── Dark mode toggle via JS ─── */
+    body.light-mode {
+      --c-bg:        #F8F4F0;
+      --c-surface:   #FFFFFF;
+      --c-surface-2: #F0EBE5;
+      --c-border:    rgba(0,0,0,0.08);
+      --c-text:      #0A0A0A;
+      --c-muted:     rgba(10,10,10,0.5);
+      --c-accent-glow: rgba(232,98,26,0.12);
+    }
+
+    /* ── Typography ─────────────────────────────────── */
+    body {
+      font-family: var(--ff-body);
+      background: var(--c-bg);
+      color: var(--c-text);
+      transition: background var(--dur-base) var(--ease), color var(--dur-base) var(--ease);
+    }
+
+    h1 { font-family: var(--ff-head); font-size: var(--t-4xl); font-weight: 900; line-height: 1.0; letter-spacing: -0.03em; }
+    h2 { font-family: var(--ff-head); font-size: var(--t-3xl); font-weight: 800; line-height: 1.1; letter-spacing: -0.02em; }
+    h3 { font-family: var(--ff-head); font-size: var(--t-xl);  font-weight: 700; line-height: 1.2; letter-spacing: -0.01em; }
+    p  { font-size: var(--t-base); line-height: 1.65; max-width: 60ch; }
+
+    /* ── Layout ─────────────────────────────────────── */
+    .container {
+      width: 100%;
+      max-width: 1120px;
+      margin-inline: auto;
+      padding-inline: var(--s-6);
+    }
+    @media (min-width: 768px)  { .container { padding-inline: var(--s-8); } }
+    @media (min-width: 1200px) { .container { padding-inline: var(--s-12); } }
+
+    /* ── Components ─────────────────────────────────── */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--s-2);
+      padding: var(--s-4) var(--s-8);
+      font-family: var(--ff-body);
+      font-size: var(--t-base);
+      font-weight: 600;
+      letter-spacing: 0.01em;
+      border-radius: var(--r-md);
+      cursor: pointer;
+      white-space: nowrap;
+      align-self: flex-start;
+      transition:
+        background var(--dur-fast) var(--ease),
+        transform  var(--dur-fast) var(--ease),
+        box-shadow var(--dur-fast) var(--ease);
+    }
+    .btn-primary {
+      background: var(--c-accent);
+      color: #fff;
+      border: none;
+    }
+    .btn-primary:hover {
+      filter: brightness(1.1);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-accent);
+    }
+    .btn-primary:active { transform: translateY(0); filter: brightness(0.95); }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--c-text);
+      border: 1px solid var(--c-border);
+    }
+    .btn-ghost:hover { border-color: var(--c-accent); color: var(--c-accent); }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--s-1);
+      padding: var(--s-1) var(--s-3);
+      font-size: var(--t-xs);
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      background: var(--c-accent-glow);
+      color: var(--c-accent);
+      border: 1px solid rgba(232,98,26,0.25);
+      border-radius: var(--r-full);
+    }
+
+    .card {
+      background: var(--c-surface);
+      border: 1px solid var(--c-border);
+      border-radius: var(--r-lg);
+      padding: var(--s-8);
+      transition:
+        border-color var(--dur-base) var(--ease),
+        box-shadow   var(--dur-base) var(--ease);
+    }
+    .card:hover {
+      border-color: rgba(232,98,26,0.3);
+      box-shadow: 0 8px 32px rgba(232,98,26,0.08);
+    }
+
+    /* ── Focus ───────────────────────────────────────── */
+    :focus-visible {
+      outline: 2px solid var(--c-accent);
+      outline-offset: 3px;
+      border-radius: var(--r-sm);
+    }
+    :focus:not(:focus-visible) { outline: none; }
+
+    /* ── Motion ─────────────────────────────────────── */
+    @keyframes fade-up {
+      from { opacity: 0; transform: translateY(28px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .reveal {
+      animation: fade-up 0.7s var(--ease-out) both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 40%;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+
+    /* ── NAV ─────────────────────────────────────────── */
+    .nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(10,10,10,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--c-border);
+      transition: background var(--dur-base) var(--ease);
+    }
+    body.light-mode .nav { background: rgba(248,244,240,0.9); }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+    }
+
+    .nav-logo {
+      font-family: var(--ff-head);
+      font-size: var(--t-lg);
+      font-weight: 900;
+      color: var(--c-text);
+      letter-spacing: -0.02em;
+    }
+    .nav-logo span { color: var(--c-accent); }
+
+    .nav-cta { display: none; }
+    @media (min-width: 640px) { .nav-cta { display: inline-flex; } }
+
+    /* ── HERO ────────────────────────────────────────── */
+    .hero {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      padding-top: calc(64px + var(--s-24));
+      padding-bottom: var(--s-24);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0; right: -20%;
+      width: 60%;
+      height: 100%;
+      background: radial-gradient(ellipse at top right, rgba(232,98,26,0.12) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    .hero-eyebrow {
+      margin-bottom: var(--s-6);
+    }
+
+    .hero-headline {
+      margin-bottom: var(--s-6);
+      max-width: 14ch;
+    }
+
+    .hero-headline .accent { color: var(--c-accent); }
+
+    .hero-sub {
+      color: var(--c-muted);
+      font-size: var(--t-lg);
+      margin-bottom: var(--s-8);
+      max-width: 50ch;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: var(--s-4);
+    }
+    @media (min-width: 480px) {
+      .hero-actions { flex-direction: row; align-items: center; }
+    }
+
+    .hero-proof {
+      margin-top: var(--s-16);
+      display: flex;
+      align-items: center;
+      gap: var(--s-4);
+      color: var(--c-muted);
+      font-size: var(--t-sm);
+    }
+    .hero-proof-dots {
+      display: flex;
+      gap: var(--s-1);
+    }
+    .hero-proof-dot {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--c-surface-2);
+      border: 2px solid var(--c-bg);
+      margin-left: -8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--c-accent);
+    }
+    .hero-proof-dot:first-child { margin-left: 0; }
+
+    /* ── DOR ─────────────────────────────────────────── */
+    .section-dor {
+      padding: var(--s-24) 0;
+      border-top: 1px solid var(--c-border);
+    }
+
+    .dor-label {
+      font-family: var(--ff-body);
+      font-size: var(--t-xs);
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--c-muted);
+      margin-bottom: var(--s-4);
+    }
+
+    .dor-headline {
+      margin-bottom: var(--s-12);
+      max-width: 18ch;
+    }
+
+    .dor-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--s-4);
+    }
+    @media (min-width: 640px)  { .dor-grid { grid-template-columns: 1fr 1fr; } }
+    @media (min-width: 1024px) { .dor-grid { grid-template-columns: repeat(3, 1fr); } }
+
+    .dor-card {
+      background: var(--c-surface);
+      border: 1px solid var(--c-border);
+      border-radius: var(--r-lg);
+      padding: var(--s-8);
+    }
+
+    .dor-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: var(--r-md);
+      background: var(--c-accent-glow);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: var(--s-6);
+      font-size: 20px;
+    }
+
+    .dor-card h3 {
+      margin-bottom: var(--s-3);
+      font-size: var(--t-lg);
+    }
+
+    .dor-card p {
+      color: var(--c-muted);
+      font-size: var(--t-sm);
+      max-width: 36ch;
+    }
+
+    /* ── SOLUCAO ─────────────────────────────────────── */
+    .section-solucao {
+      padding: var(--s-24) 0;
+      border-top: 1px solid var(--c-border);
+    }
+
+    .solucao-layout {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--s-16);
+      align-items: center;
+    }
+    @media (min-width: 768px) {
+      .solucao-layout { grid-template-columns: 1fr 1fr; }
+    }
+
+    .solucao-copy {}
+    .solucao-copy .dor-label { margin-bottom: var(--s-4); }
+    .solucao-copy h2 { margin-bottom: var(--s-6); }
+    .solucao-copy p { color: var(--c-muted); margin-bottom: var(--s-8); }
+
+    .pilares {
+      display: flex;
+      flex-direction: column;
+      gap: var(--s-4);
+      margin-top: var(--s-8);
+    }
+
+    .pilar {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--s-4);
+      padding: var(--s-4) 0;
+      border-bottom: 1px solid var(--c-border);
+    }
+    .pilar:last-child { border-bottom: none; }
+
+    .pilar-num {
+      font-family: var(--ff-head);
+      font-size: var(--t-xs);
+      font-weight: 900;
+      color: var(--c-accent);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      white-space: nowrap;
+      padding-top: 3px;
+      min-width: 28px;
+    }
+
+    .pilar-body h3 {
+      font-size: var(--t-base);
+      font-weight: 700;
+      margin-bottom: var(--s-1);
+    }
+    .pilar-body p {
+      font-size: var(--t-sm);
+      color: var(--c-muted);
+      max-width: 40ch;
+    }
+
+    .solucao-visual {
+      background: var(--c-surface);
+      border: 1px solid var(--c-border);
+      border-radius: var(--r-lg);
+      padding: var(--s-8);
+      aspect-ratio: 1 / 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: var(--s-6);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .solucao-visual::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at center, rgba(232,98,26,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .triforce-svg {
+      width: 140px;
+      height: auto;
+      opacity: 0.9;
+    }
+
+    .solucao-stats {
+      display: flex;
+      gap: var(--s-6);
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .stat {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--s-1);
+    }
+    .stat-num {
+      font-family: var(--ff-head);
+      font-size: var(--t-2xl);
+      font-weight: 900;
+      color: var(--c-accent);
+      line-height: 1;
+    }
+    .stat-label {
+      font-size: var(--t-xs);
+      color: var(--c-muted);
+      text-align: center;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    /* ── PRECO ───────────────────────────────────────── */
+    .section-preco {
+      padding: var(--s-24) 0;
+      border-top: 1px solid var(--c-border);
+    }
+
+    .preco-header {
+      text-align: center;
+      margin-bottom: var(--s-16);
+    }
+    .preco-header .dor-label { margin-bottom: var(--s-4); display: block; }
+    .preco-header h2 { margin-bottom: var(--s-4); }
+    .preco-header p { color: var(--c-muted); margin-inline: auto; text-align: center; }
+
+    .preco-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--s-6);
+    }
+    @media (min-width: 640px) { .preco-grid { grid-template-columns: 1fr 1fr; } }
+    @media (min-width: 1024px) { .preco-grid { grid-template-columns: repeat(3, 1fr); } }
+
+    .preco-card {
+      background: var(--c-surface);
+      border: 1px solid var(--c-border);
+      border-radius: var(--r-lg);
+      padding: var(--s-8);
+      display: flex;
+      flex-direction: column;
+      gap: var(--s-6);
+      transition:
+        border-color var(--dur-base) var(--ease),
+        box-shadow   var(--dur-base) var(--ease);
+    }
+
+    .preco-card.destaque {
+      border-color: var(--c-accent);
+      box-shadow: 0 0 0 1px var(--c-accent), var(--shadow-accent);
+      position: relative;
+    }
+    .preco-card.destaque::before {
+      content: 'Mais popular';
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--c-accent);
+      color: #fff;
+      font-size: var(--t-xs);
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: var(--s-1) var(--s-4);
+      border-radius: var(--r-full);
+      white-space: nowrap;
+    }
+
+    .preco-card:hover:not(.destaque) {
+      border-color: rgba(232,98,26,0.3);
+      box-shadow: 0 8px 32px rgba(232,98,26,0.06);
+    }
+
+    .preco-nome {
+      font-family: var(--ff-head);
+      font-size: var(--t-base);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .preco-valor {
+      display: flex;
+      align-items: baseline;
+      gap: var(--s-2);
+    }
+    .preco-cifrao {
+      font-size: var(--t-base);
+      font-weight: 600;
+      color: var(--c-muted);
+    }
+    .preco-num {
+      font-family: var(--ff-head);
+      font-size: var(--t-3xl);
+      font-weight: 900;
+      line-height: 1;
+      color: var(--c-text);
+    }
+    .preco-card.destaque .preco-num { color: var(--c-accent); }
+
+    .preco-desc {
+      color: var(--c-muted);
+      font-size: var(--t-sm);
+      max-width: 32ch;
+    }
+
+    .preco-lista {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: var(--s-3);
+      flex: 1;
+    }
+
+    .preco-lista li {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--s-3);
+      font-size: var(--t-sm);
+      color: var(--c-muted);
+    }
+    .preco-lista li::before {
+      content: '✓';
+      color: var(--c-accent);
+      font-weight: 700;
+      font-size: var(--t-base);
+      line-height: 1.3;
+      flex-shrink: 0;
+    }
+
+    .preco-cta {
+      width: 100%;
+      justify-content: center;
+      align-self: stretch;
+      padding: var(--s-4) var(--s-6);
+    }
+
+    .btn-preco-ghost {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      padding: var(--s-4) var(--s-6);
+      font-size: var(--t-sm);
+      font-weight: 600;
+      letter-spacing: 0.01em;
+      border-radius: var(--r-md);
+      cursor: pointer;
+      white-space: nowrap;
+      background: transparent;
+      color: var(--c-text);
+      border: 1px solid var(--c-border);
+      transition:
+        border-color var(--dur-fast) var(--ease),
+        color var(--dur-fast) var(--ease);
+    }
+    .btn-preco-ghost:hover { border-color: var(--c-accent); color: var(--c-accent); }
+
+    /* ── CTA FINAL ───────────────────────────────────── */
+    .section-cta {
+      padding: var(--s-32) 0;
+      border-top: 1px solid var(--c-border);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .section-cta::before {
+      content: '';
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 600px;
+      height: 400px;
+      background: radial-gradient(ellipse, rgba(232,98,26,0.1) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    .cta-inner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: var(--s-6);
+    }
+
+    .cta-inner h2 { max-width: 18ch; }
+
+    .cta-inner p {
+      color: var(--c-muted);
+      max-width: 48ch;
+      text-align: center;
+      margin-inline: auto;
+    }
+
+    .cta-actions {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--s-4);
+    }
+    @media (min-width: 480px) {
+      .cta-actions { flex-direction: row; justify-content: center; }
+    }
+
+    .cta-nota {
+      font-size: var(--t-xs);
+      color: var(--c-muted);
+      margin-top: var(--s-2);
+    }
+
+    /* ── FOOTER ──────────────────────────────────────── */
+    .footer {
+      padding: var(--s-12) 0;
+      border-top: 1px solid var(--c-border);
+    }
+    .footer-inner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--s-4);
+      text-align: center;
+    }
+    @media (min-width: 640px) {
+      .footer-inner {
+        flex-direction: row;
+        justify-content: space-between;
+        text-align: left;
+      }
+    }
+    .footer-logo {
+      font-family: var(--ff-head);
+      font-weight: 900;
+      font-size: var(--t-base);
+      letter-spacing: -0.02em;
+    }
+    .footer-logo span { color: var(--c-accent); }
+    .footer-copy {
+      font-size: var(--t-xs);
+      color: var(--c-muted);
+    }
+
+    /* ── TWEAKS PANEL ────────────────────────────────── */
+    #tweaks-panel {
+      position: fixed;
+      bottom: var(--s-6);
+      right: var(--s-6);
+      z-index: 999;
+      background: var(--c-surface);
+      border: 1px solid var(--c-border);
+      border-radius: var(--r-lg);
+      padding: var(--s-6);
+      width: 220px;
+      box-shadow: var(--shadow-lg);
+      display: none;
+      flex-direction: column;
+      gap: var(--s-4);
+      font-family: var(--ff-body);
+    }
+    #tweaks-panel.visible { display: flex; }
+
+    .tweaks-title {
+      font-family: var(--ff-head);
+      font-size: var(--t-sm);
+      font-weight: 700;
+      color: var(--c-text);
+      letter-spacing: 0.02em;
+      border-bottom: 1px solid var(--c-border);
+      padding-bottom: var(--s-3);
+    }
+
+    .tweak-row {
+      display: flex;
+      flex-direction: column;
+      gap: var(--s-2);
+    }
+    .tweak-label {
+      font-size: var(--t-xs);
+      font-weight: 600;
+      color: var(--c-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .tweak-color {
+      width: 100%;
+      height: 36px;
+      border-radius: var(--r-md);
+      border: 1px solid var(--c-border);
+      cursor: pointer;
+      padding: 2px;
+      background: var(--c-surface-2);
+    }
+
+    .tweak-toggle {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--s-3);
+    }
+    .tweak-toggle-label {
+      font-size: var(--t-sm);
+      color: var(--c-text);
+    }
+    .toggle-switch {
+      position: relative;
+      width: 40px;
+      height: 22px;
+      flex-shrink: 0;
+    }
+    .toggle-switch input { opacity: 0; width: 0; height: 0; }
+    .toggle-track {
+      position: absolute;
+      inset: 0;
+      background: var(--c-surface-2);
+      border: 1px solid var(--c-border);
+      border-radius: var(--r-full);
+      cursor: pointer;
+      transition: background var(--dur-base) var(--ease);
+    }
+    .toggle-track::after {
+      content: '';
+      position: absolute;
+      top: 2px; left: 2px;
+      width: 16px; height: 16px;
+      border-radius: 50%;
+      background: var(--c-muted);
+      transition: transform var(--dur-base) var(--ease), background var(--dur-base) var(--ease);
+    }
+    input:checked + .toggle-track { background: var(--c-accent); border-color: var(--c-accent); }
+    input:checked + .toggle-track::after { transform: translateX(18px); background: #fff; }
+
+    .tweaks-close {
+      align-self: flex-end;
+      font-size: var(--t-xs);
+      color: var(--c-muted);
+      cursor: pointer;
+      padding: var(--s-1) var(--s-2);
+      border-radius: var(--r-sm);
+    }
+    .tweaks-close:hover { color: var(--c-text); }
+
+    /* ── TWEAKS OPEN BUTTON ──────────────────────────── */
+    #tweaks-btn {
+      position: fixed;
+      bottom: var(--s-6);
+      right: var(--s-6);
+      z-index: 998;
+      width: 44px;
+      height: 44px;
+      border-radius: var(--r-full);
+      background: var(--c-surface);
+      border: 1px solid var(--c-border);
+      box-shadow: var(--shadow-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition:
+        border-color var(--dur-fast) var(--ease),
+        box-shadow var(--dur-fast) var(--ease);
+      font-size: 18px;
+    }
+    #tweaks-btn:hover {
+      border-color: var(--c-accent);
+      box-shadow: var(--shadow-accent);
+    }
+    #tweaks-btn.hidden { display: none; }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav" aria-label="Menu principal">
+    <div class="container nav-inner">
+      <a href="#" class="nav-logo" aria-label="Triforce Auto — página inicial">
+        Triforce<span>Auto</span>
+      </a>
+      <a href="#cta" class="btn btn-primary nav-cta" style="padding: var(--s-3) var(--s-6); font-size: var(--t-sm);">
+        Quero meu site
+      </a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" aria-labelledby="hero-headline">
+    <div class="container">
+      <div class="hero-eyebrow">
+        <span class="badge">Entrega em 7 dias</span>
+      </div>
+      <h1 class="hero-headline" id="hero-headline">
+        Seu site pronto em <span class="accent">7 dias.</span>
+      </h1>
+      <p class="hero-sub">
+        Copy, design e sistema no mesmo pacote. Sem precisar contratar três fornecedores ou esperar meses para colocar algo no ar.
+      </p>
+      <div class="hero-actions">
+        <a href="#cta" class="btn btn-primary">
+          Quero meu site agora
+        </a>
+        <a href="#solucao" class="btn btn-ghost" style="align-self: flex-start;">
+          Como funciona
+        </a>
+      </div>
+      <div class="hero-proof">
+        <div class="hero-proof-dots" aria-hidden="true">
+          <div class="hero-proof-dot">F</div>
+          <div class="hero-proof-dot">M</div>
+          <div class="hero-proof-dot">R</div>
+          <div class="hero-proof-dot">+</div>
+        </div>
+        <span>47 negócios lançados nos últimos 6 meses</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- DOR -->
+  <section class="section-dor" aria-labelledby="dor-headline">
+    <div class="container">
+      <p class="dor-label">O problema real</p>
+      <h2 class="dor-headline" id="dor-headline">
+        Por que seu site nunca sai do papel
+      </h2>
+      <div class="dor-grid">
+        <div class="dor-card reveal">
+          <div class="dor-icon" aria-hidden="true">📉</div>
+          <h3>Perde venda todo dia</h3>
+          <p>Cliente chega, não encontra site, vai embora. Sem presença online, você compete só no boca a boca.</p>
+        </div>
+        <div class="dor-card reveal">
+          <div class="dor-icon" aria-hidden="true">⏳</div>
+          <h3>Meses sem sair do lugar</h3>
+          <p>Briefing aqui, reunião ali, revisão acolá. O processo demorado paralisa o negócio antes de começar.</p>
+        </div>
+        <div class="dor-card reveal">
+          <div class="dor-icon" aria-hidden="true">💸</div>
+          <h3>Três fornecedores, três dores de cabeça</h3>
+          <p>Copywriter, designer e dev que não conversam entre si. O resultado aparece desconexo e caro.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOLUCAO -->
+  <section class="section-solucao" id="solucao" aria-labelledby="solucao-headline">
+    <div class="container">
+      <div class="solucao-layout">
+        <div class="solucao-copy reveal">
+          <p class="dor-label">A solução</p>
+          <h2 id="solucao-headline">Os 3 pilares. Um pacote. Uma semana.</h2>
+          <p>A Triforce Auto une copy, design e sistema numa entrega única. Você fala uma vez, aprova uma vez, recebe tudo pronto.</p>
+          <div class="pilares">
+            <div class="pilar">
+              <span class="pilar-num">01</span>
+              <div class="pilar-body">
+                <h3>Copy estruturada</h3>
+                <p>Cada palavra do seu site é escrita para converter. Sem blá blá blá corporativo.</p>
+              </div>
+            </div>
+            <div class="pilar">
+              <span class="pilar-num">02</span>
+              <div class="pilar-body">
+                <h3>Design</h3>
+                <p>Visual profissional que passa credibilidade e diferencia você da concorrência.</p>
+              </div>
+            </div>
+            <div class="pilar">
+              <span class="pilar-num">03</span>
+              <div class="pilar-body">
+                <h3>Sistema</h3>
+                <p>Site publicado, domínio configurado, formulário funcionando. Pronto para receber clientes.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="solucao-visual reveal" aria-hidden="true">
+          <!-- Triforce SVG custom -->
+          <svg class="triforce-svg" viewBox="0 0 200 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Top triangle -->
+            <polygon points="100,10 145,85 55,85" fill="#E8621A" opacity="0.95"/>
+            <!-- Bottom left triangle -->
+            <polygon points="55,90 100,165 10,165" fill="#E8621A" opacity="0.65"/>
+            <!-- Bottom right triangle -->
+            <polygon points="145,90 190,165 100,165" fill="#E8621A" opacity="0.65"/>
+            <!-- Center inverted triangle (void) -->
+            <polygon points="100,85 55,90 145,90" fill="var(--c-surface)" opacity="1"/>
+          </svg>
+          <div class="solucao-stats">
+            <div class="stat">
+              <span class="stat-num">7</span>
+              <span class="stat-label">dias de entrega</span>
+            </div>
+            <div class="stat">
+              <span class="stat-num">1</span>
+              <span class="stat-label">reunião de briefing</span>
+            </div>
+            <div class="stat">
+              <span class="stat-num">3</span>
+              <span class="stat-label">pilares inclusos</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRECO -->
+  <section class="section-preco" id="preco" aria-labelledby="preco-headline">
+    <div class="container">
+      <div class="preco-header reveal">
+        <span class="dor-label">Investimento</span>
+        <h2 id="preco-headline">Escolha seu ponto de partida</h2>
+        <p>Todos os pacotes incluem copy, design e sistema. A diferença é a profundidade do projeto.</p>
+      </div>
+      <div class="preco-grid">
+
+        <!-- Pacote Start -->
+        <div class="preco-card reveal">
+          <div>
+            <p class="preco-nome">Start</p>
+          </div>
+          <div class="preco-valor">
+            <span class="preco-cifrao">R$</span>
+            <span class="preco-num">847</span>
+          </div>
+          <p class="preco-desc">Para quem precisa marcar presença rápido com profissionalismo.</p>
+          <ul class="preco-lista">
+            <li>Landing page de 1 seção principal</li>
+            <li>Copy para hero + CTA</li>
+            <li>Design responsivo mobile e desktop</li>
+            <li>Publicação no domínio escolhido</li>
+            <li>Entrega em 5 dias úteis</li>
+          </ul>
+          <button class="btn-preco-ghost" onclick="document.getElementById('cta').scrollIntoView({behavior:'smooth'})">
+            Começar com o Start
+          </button>
+        </div>
+
+        <!-- Pacote Pro (destaque) -->
+        <div class="preco-card destaque reveal">
+          <div>
+            <p class="preco-nome">Pro</p>
+          </div>
+          <div class="preco-valor">
+            <span class="preco-cifrao">R$</span>
+            <span class="preco-num">1.397</span>
+          </div>
+          <p class="preco-desc">Para negócios que querem converter visitante em cliente de verdade.</p>
+          <ul class="preco-lista">
+            <li>Landing page completa com 5 seções</li>
+            <li>Copy completa incluindo dor, solucao e prova social</li>
+            <li>Design com identidade visual</li>
+            <li>Formulario de contato integrado</li>
+            <li>Publicacao e configuracao de dominio</li>
+            <li>Entrega em 7 dias uteis</li>
+          </ul>
+          <a href="#cta" class="btn btn-primary preco-cta">
+            Quero o Pro
+          </a>
+        </div>
+
+        <!-- Pacote Max -->
+        <div class="preco-card reveal">
+          <div>
+            <p class="preco-nome">Max</p>
+          </div>
+          <div class="preco-valor">
+            <span class="preco-cifrao">R$</span>
+            <span class="preco-num">1.997</span>
+          </div>
+          <p class="preco-desc">Para quem quer o site como ferramenta central de vendas do negócio.</p>
+          <ul class="preco-lista">
+            <li>Site com ate 8 paginas ou secoes</li>
+            <li>Copy completa com SEO basico</li>
+            <li>Design sistema com componentes reutilizaveis</li>
+            <li>Integracao com WhatsApp e Google Analytics</li>
+            <li>30 dias de suporte pos-entrega</li>
+            <li>Entrega em 10 dias uteis</li>
+          </ul>
+          <button class="btn-preco-ghost" onclick="document.getElementById('cta').scrollIntoView({behavior:'smooth'})">
+            Quero o Max
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA FINAL -->
+  <section class="section-cta" id="cta" aria-labelledby="cta-headline">
+    <div class="container">
+      <div class="cta-inner reveal">
+        <span class="badge">Vagas abertas agora</span>
+        <h2 id="cta-headline">Seu site no ar em 7 dias. Sem enrolação.</h2>
+        <p>
+          Uma conversa de 30 minutos e a gente já tem tudo para começar. Sem formulário gigante, sem proposta de 40 páginas.
+        </p>
+        <div class="cta-actions">
+          <a
+            href="https://wa.me/5500000000000?text=Oi%2C%20quero%20saber%20sobre%20a%20Triforce%20Auto"
+            class="btn btn-primary"
+            target="_blank"
+            rel="noopener noreferrer"
+            style="font-size: var(--t-lg); padding: var(--s-4) var(--s-12);"
+          >
+            Quero meu site agora
+          </a>
+        </div>
+        <p class="cta-nota">Sem compromisso. A conversa e gratuita.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <span class="footer-logo">Triforce<span>Auto</span></span>
+      <span class="footer-copy">
+        Copy, design e sistema — entregues juntos, de uma vez.
+      </span>
+      <span class="footer-copy">
+        &copy; 2026 Triforce Auto
+      </span>
+    </div>
+  </footer>
+
+  <!-- TWEAKS OPEN BUTTON -->
+  <button id="tweaks-btn" aria-label="Abrir painel de ajustes" title="Tweaks">
+    ⚙️
+  </button>
+
+  <!-- TWEAKS PANEL -->
+  <aside id="tweaks-panel" role="complementary" aria-label="Painel de ajustes">
+    <div class="tweaks-title">Tweaks</div>
+
+    <!-- Tweak 1: Primary Color -->
+    <div class="tweak-row">
+      <label class="tweak-label" for="tweak-color">Cor principal</label>
+      <input class="tweak-color" type="color" id="tweak-color" value="#E8621A" aria-label="Cor principal da marca">
+    </div>
+
+    <!-- Tweak 2: Dark Mode -->
+    <div class="tweak-row">
+      <div class="tweak-toggle">
+        <span class="tweak-toggle-label">Modo claro</span>
+        <label class="toggle-switch" aria-label="Alternar modo claro e escuro">
+          <input type="checkbox" id="tweak-dark" aria-checked="false">
+          <span class="toggle-track"></span>
+        </label>
+      </div>
+    </div>
+
+    <button class="tweaks-close" onclick="closeTweaks()" aria-label="Fechar painel de ajustes">
+      Fechar
+    </button>
+  </aside>
+
+  <script>
+    // ── TWEAKS CONFIG ──────────────────────────────────
+    const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+      "primaryColor": "#E8621A",
+      "darkMode": false
+    }/*EDITMODE-END*/;
+
+    // ── Apply tweaks from stored values ────────────────
+    function applyColor(color) {
+      const root = document.documentElement;
+      root.style.setProperty('--c-accent', color);
+      // Derive glow
+      root.style.setProperty('--c-accent-glow', hexToRgba(color, 0.18));
+      // Derive shadow accent
+      root.style.setProperty('--shadow-accent', `0 0 40px ${hexToRgba(color, 0.25)}`);
+    }
+
+    function hexToRgba(hex, alpha) {
+      const r = parseInt(hex.slice(1,3), 16);
+      const g = parseInt(hex.slice(3,5), 16);
+      const b = parseInt(hex.slice(5,7), 16);
+      return `rgba(${r},${g},${b},${alpha})`;
+    }
+
+    function applyDarkMode(isLight) {
+      document.body.classList.toggle('light-mode', isLight);
+    }
+
+    // ── Init tweaks from defaults ──────────────────────
+    (function initTweaks() {
+      applyColor(TWEAK_DEFAULTS.primaryColor);
+      applyDarkMode(TWEAK_DEFAULTS.darkMode);
+      document.getElementById('tweak-color').value = TWEAK_DEFAULTS.primaryColor;
+      document.getElementById('tweak-dark').checked = TWEAK_DEFAULTS.darkMode;
+    })();
+
+    // ── Tweak: color change ────────────────────────────
+    document.getElementById('tweak-color').addEventListener('input', function() {
+      applyColor(this.value);
+      window.parent.postMessage({
+        type: '__edit_mode_set_keys',
+        edits: { primaryColor: this.value }
+      }, '*');
+    });
+
+    // ── Tweak: dark mode toggle ────────────────────────
+    document.getElementById('tweak-dark').addEventListener('change', function() {
+      applyDarkMode(this.checked);
+      window.parent.postMessage({
+        type: '__edit_mode_set_keys',
+        edits: { darkMode: this.checked }
+      }, '*');
+    });
+
+    // ── Tweaks panel open/close ────────────────────────
+    const tweaksPanel = document.getElementById('tweaks-panel');
+    const tweaksBtn   = document.getElementById('tweaks-btn');
+
+    function openTweaks() {
+      tweaksPanel.classList.add('visible');
+      tweaksBtn.classList.add('hidden');
+    }
+    function closeTweaks() {
+      tweaksPanel.classList.remove('visible');
+      tweaksBtn.classList.remove('hidden');
+    }
+
+    tweaksBtn.addEventListener('click', openTweaks);
+
+    // ── Claude Design postMessage protocol ────────────
+    window.addEventListener('message', (e) => {
+      if (e.data?.type === '__activate_edit_mode')   openTweaks();
+      if (e.data?.type === '__deactivate_edit_mode') closeTweaks();
+    });
+    window.parent.postMessage({ type: '__edit_mode_available' }, '*');
+
+    // ── Smooth scroll for anchor links ─────────────────
+    document.querySelectorAll('a[href^="#"]').forEach(link => {
+      link.addEventListener('click', function(e) {
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          e.preventDefault();
+          const navH = 64;
+          const top = target.getBoundingClientRect().top + window.scrollY - navH - 24;
+          window.scrollTo({ top, behavior: 'smooth' });
+        }
+      });
+    });
+
+    // ── Nav background on scroll ───────────────────────
+    const nav = document.querySelector('.nav');
+    window.addEventListener('scroll', () => {
+      nav.style.borderBottomColor = window.scrollY > 10
+        ? 'var(--c-border)'
+        : 'transparent';
+    }, { passive: true });
+  </script>
+</body>
+</html>

@@ -54,7 +54,7 @@ Estrutura padrão por semana:
 3. PRODUÇÃO
    → Larissa: legenda, hashtags, CTA
    → Vitória: card visual / cover do Reel
-   → Fecchio: copy de conversão (quando necessário)
+   → Mateus: copy de conversão (quando necessário)
 
 4. AGENDAMENTO
    → Later: calendário visual, slots confirmados
@@ -178,7 +178,7 @@ Toda pauta responde 5 perguntas antes de entrar no calendário. Falhar em 2 ou m
 
 ## Protocolo de Contingência
 
-O calendário nunca para por dependência interna. Se Vitória ou Fecchio atrasarem, Larissa tem autonomia e recursos para manter a publicação.
+O calendário nunca para por dependência interna. Se Vitória ou Mateus atrasarem, Larissa tem autonomia e recursos para manter a publicação.
 
 ### Se Vitória atrasar (design não entregue no prazo)
 
@@ -194,7 +194,7 @@ Existe um template fixo chamado "Emergência — Texto sobre fundo" no projeto T
 3. Avisa Vitória que o slot foi coberto e reprograma a entrega original para o próximo slot disponível
 4. Não cancela o post original — só desloca o prazo
 
-### Se Fecchio atrasar (copy de conversão não entregue)
+### Se Mateus atrasar (copy de conversão não entregue)
 
 Larissa escreve a legenda seguindo o protocolo do `brand/voice.md` e do `training/voz-triforce-na-pratica.md`.
 
