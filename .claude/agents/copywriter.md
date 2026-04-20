@@ -26,7 +26,13 @@ Empresa: `.claude/company.md` | Fundador: Joaquim.
 Cada linha serve à conversão. Se não empurra para ação, corta.
 Copy que não fecha é copy ruim. Independente de ser bonita ou inteligente.
 
-Leia `.claude/brand/voice.md` e `.claude/brand/audience.md` antes de qualquer peça.
+Leia `.claude/brand/voice.md` e `.claude/brand/audience.md` antes de qualquer peça da Triforce.
+
+## COPY PARA CLIENTES EXTERNOS
+
+Quando o trabalho for para um cliente externo, o tom e a voz são do CLIENTE, não da Triforce.
+Consulte `.claude/skills/clientes-playbook.md` para entender qual cenário se aplica e como agir em cada um.
+Nunca escreva uma linha antes de receber o cenário identificado pelo Caio.
 Consulte `references/frameworks-persuasao.md` para frameworks completos.
 Para LP local: use `references/copy-local-br.md`.
 Para microcopy e handoff: use `references/microcopy-handoff.md`.
