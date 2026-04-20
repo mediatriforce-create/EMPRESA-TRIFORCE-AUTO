@@ -102,6 +102,21 @@
       "hired_by": "Gabriela"
     }
     ,{
+      "id": "prospector",
+      "name": "Caio",
+      "role": "Prospector Senior",
+      "seniority": "senior",
+      "tier": "standard",
+      "reports_to": "fundador",
+      "description": "Prospecta clientes para a Triforce Auto via Instagram DM e WhatsApp. Aborda pequenos negócios presenciais sem LP, qualifica leads e passa para o fundador fechar. Signal-based selling, sequência de 4 touches, framework PAIN-V.",
+      "specialty": "outbound-prospecting-local-b2b",
+      "teams": ["vendas"],
+      "skills": ["prospector", "cold-email", "customer-research"],
+      "status": "hired",
+      "hired_at": "2026-04-20",
+      "hired_by": "Gabriela"
+    }
+    ,{
       "id": "revisor-design",
       "name": "Bruno",
       "role": "Revisor de Design de Carrosséis Instagram",
