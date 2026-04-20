@@ -1,0 +1,1024 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Triforce Auto — LP Builder</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,700;0,900;1,400&family=Space+Grotesk:wght@400;700&family=Barlow+Condensed:wght@400;700;900&family=Inter:wght@400;600;700;900&family=Bebas+Neue&family=Syne:wght@400;700;800&family=Oswald:wght@400;700&family=DM+Sans:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+/* ── RESET ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+button { cursor: pointer; font-family: inherit; }
+
+/* ── APP SHELL ── */
+html, body { height: 100%; overflow: hidden; background: #060606; color: #fff; font-family: 'Inter', sans-serif; }
+.app { display: flex; height: 100vh; }
+
+/* ══════════════════════════════════════════
+   PANEL
+══════════════════════════════════════════ */
+.panel {
+  width: 288px; flex-shrink: 0;
+  background: #0a0a0a;
+  border-right: 1px solid #1a1a1a;
+  display: flex; flex-direction: column;
+  overflow: hidden;
+}
+.panel-top {
+  padding: 16px 18px 12px;
+  border-bottom: 1px solid #1a1a1a;
+  flex-shrink: 0;
+}
+.panel-top .wordmark { font-size: 9px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: #333; margin-bottom: 3px; }
+.panel-top h1 { font-size: 14px; font-weight: 700; color: #e0e0e0; }
+.panel-scroll { flex: 1; overflow-y: auto; }
+.panel-scroll::-webkit-scrollbar { width: 4px; }
+.panel-scroll::-webkit-scrollbar-track { background: transparent; }
+.panel-scroll::-webkit-scrollbar-thumb { background: #222; border-radius: 2px; }
+
+/* section */
+.ps { padding: 14px 18px; border-bottom: 1px solid #141414; }
+.ps-title { font-size: 8px; font-weight: 800; letter-spacing: 2.5px; text-transform: uppercase; color: #333; margin-bottom: 12px; }
+.ps-row { margin-bottom: 10px; }
+.ps-row:last-child { margin-bottom: 0; }
+.ps-label { font-size: 10px; font-weight: 600; color: #555; margin-bottom: 5px; display: block; }
+
+/* inputs */
+.pi {
+  width: 100%; background: #111; border: 1px solid #1f1f1f;
+  color: #ddd; font-family: 'Inter', sans-serif; font-size: 12px;
+  padding: 7px 10px; border-radius: 5px; outline: none; transition: border-color .15s;
+}
+.pi:focus { border-color: var(--p-accent, #0066FF); }
+textarea.pi { resize: vertical; min-height: 52px; }
+select.pi {
+  appearance: none; cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23444'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right 10px center; padding-right: 26px;
+}
+
+/* color picker */
+.color-row { display: flex; gap: 8px; align-items: center; }
+.cp-wrap { width: 34px; height: 34px; border-radius: 5px; border: 1px solid #2a2a2a; overflow: hidden; position: relative; flex-shrink: 0; cursor: pointer; }
+.cp-wrap input[type="color"] { position: absolute; inset: -5px; width: calc(100% + 10px); height: calc(100% + 10px); border: none; padding: 0; background: none; cursor: pointer; }
+.hex-pi { flex: 1; background: #111; border: 1px solid #1f1f1f; color: #ddd; font-family: 'Menlo','Consolas',monospace; font-size: 11px; padding: 7px 10px; border-radius: 5px; outline: none; text-transform: uppercase; }
+.hex-pi:focus { border-color: var(--p-accent, #0066FF); }
+.swatches { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 9px; }
+.sw { width: 22px; height: 22px; border-radius: 4px; cursor: pointer; border: 2px solid transparent; transition: transform .1s, border-color .1s, box-shadow .1s; flex-shrink: 0; }
+.sw:hover { transform: scale(1.2); }
+.sw.on { border-color: #fff; box-shadow: 0 0 0 1px #000; }
+
+/* toggle chips */
+.chips { display: flex; gap: 5px; flex-wrap: wrap; }
+.chip {
+  font-size: 10px; font-weight: 600; padding: 5px 9px;
+  background: #111; border: 1px solid #1f1f1f; color: #555;
+  border-radius: 4px; transition: all .12s; white-space: nowrap;
+}
+.chip:hover { border-color: #333; color: #aaa; }
+.chip.on { background: var(--p-accent, #0066FF); border-color: var(--p-accent, #0066FF); color: #fff; }
+
+/* presets */
+.preset-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+.preset-card {
+  padding: 10px 10px 8px; border-radius: 5px; border: 1px solid #1a1a1a;
+  cursor: pointer; background: #0e0e0e; transition: border-color .12s, transform .1s;
+  text-align: left;
+}
+.preset-card:hover { border-color: #333; transform: translateY(-1px); }
+.preset-card.on { border-color: var(--p-accent, #0066FF); }
+.pc-swatch { width: 20px; height: 20px; border-radius: 3px; margin-bottom: 6px; }
+.pc-name { font-size: 10px; font-weight: 700; color: #aaa; display: block; }
+.pc-desc { font-size: 9px; color: #444; margin-top: 1px; }
+
+/* export */
+.exp-btn {
+  margin: 14px 18px 18px;
+  display: block; width: calc(100% - 36px);
+  padding: 10px; border: none; border-radius: 5px;
+  font-size: 10px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase;
+  background: var(--p-accent, #0066FF); color: #fff;
+  transition: opacity .15s, filter .15s;
+}
+.exp-btn:hover { filter: brightness(1.15); }
+
+/* ══════════════════════════════════════════
+   PREVIEW WRAP
+══════════════════════════════════════════ */
+.preview-wrap { flex: 1; overflow-y: auto; background: #111; display: flex; flex-direction: column; }
+.preview-wrap::-webkit-scrollbar { width: 6px; }
+.preview-wrap::-webkit-scrollbar-track { background: transparent; }
+.preview-wrap::-webkit-scrollbar-thumb { background: #222; border-radius: 3px; }
+
+.preview-bar {
+  position: sticky; top: 0; z-index: 10;
+  background: rgba(10,10,10,.92); backdrop-filter: blur(10px);
+  border-bottom: 1px solid #1a1a1a;
+  padding: 8px 20px; display: flex; align-items: center; gap: 8px; flex-shrink: 0;
+}
+.preview-bar .pb-label { font-size: 9px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: #2a2a2a; margin-right: 4px; }
+.dev-btn { font-size: 9px; font-weight: 700; letter-spacing: .5px; padding: 4px 10px; background: transparent; border: 1px solid #1f1f1f; color: #3a3a3a; border-radius: 3px; transition: all .1s; }
+.dev-btn:hover, .dev-btn.on { background: #1a1a1a; border-color: #2a2a2a; color: #aaa; }
+
+.preview-stage { padding: 28px 20px 60px; display: flex; justify-content: center; }
+#lpf { width: 100%; max-width: 1100px; transition: max-width .3s ease; }
+#lpf.tablet { max-width: 768px; }
+#lpf.mobile { max-width: 390px; }
+
+/* ══════════════════════════════════════════
+   LP STYLES
+══════════════════════════════════════════ */
+#lp {
+  --a: #0066FF;
+  --ad: #0044CC;
+  --black: #050505;
+  --light: #F5F0E8;
+  --border: 3px solid var(--black);
+  --shadow: 5px 5px 0 var(--black);
+  font-family: 'Montserrat', sans-serif;
+  background: var(--black);
+}
+
+/* NAV */
+.lnav {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 18px 40px;
+  background: var(--black);
+  border-bottom: var(--border);
+}
+.lnav-logo { font-size: 14px; font-weight: 900; letter-spacing: -.3px; text-transform: uppercase; color: #fff; }
+.lnav-logo em { font-style: normal; color: var(--a); transition: color .25s; }
+.lnav-links { display: flex; gap: 28px; }
+.lnav-links a { font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: #444; text-decoration: none; transition: color .1s; }
+.lnav-links a:hover { color: #fff; }
+.lnav-cta {
+  font-size: 10px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase;
+  padding: 9px 18px; background: var(--a); color: #050505;
+  border: 2px solid var(--black); box-shadow: 3px 3px 0 var(--black);
+  text-decoration: none; transition: color .25s, background .25s, transform .1s, box-shadow .1s;
+  white-space: nowrap;
+}
+.lnav-cta:hover { transform: translate(-1px,-1px); box-shadow: 4px 4px 0 var(--black); }
+
+/* HERO */
+.lhero {
+  position: relative; overflow: hidden;
+  padding: 80px 40px 88px;
+  background: var(--black);
+}
+.lhero-bg {
+  position: absolute; inset: 0; pointer-events: none;
+}
+.lhero-aurora {
+  position: absolute; width: 600px; height: 600px; border-radius: 50%;
+  filter: blur(130px); opacity: .16;
+  top: -150px; right: -120px;
+  background: var(--a); pointer-events: none;
+  transition: background .25s, opacity .25s;
+}
+.lhero-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 9px; font-weight: 800; letter-spacing: 2.5px; text-transform: uppercase;
+  color: var(--a); border: 1.5px solid var(--a); padding: 5px 12px;
+  margin-bottom: 22px; position: relative;
+  transition: color .25s, border-color .25s;
+}
+.lhero-badge::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--a); display: inline-block; transition: background .25s; }
+.lhero-h1 {
+  font-size: clamp(48px, 7.5vw, 88px);
+  font-weight: 900; line-height: .9; text-transform: uppercase;
+  color: #fff; letter-spacing: -2.5px; position: relative;
+  margin-bottom: 24px;
+  transition: font-family .2s, font-weight .2s;
+}
+.lhero-h1 .ac { color: var(--a); display: block; transition: color .25s; }
+.lhero-sub {
+  font-size: 16px; font-weight: 400; color: #666; line-height: 1.65;
+  max-width: 520px; margin-bottom: 44px; position: relative;
+}
+.lhero-actions { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; position: relative; }
+
+/* BUTTON SYSTEM */
+.lbtn {
+  display: inline-block; font-size: 11px; font-weight: 900;
+  letter-spacing: 1.5px; text-transform: uppercase;
+  padding: 15px 32px; text-decoration: none;
+  transition: transform .1s, box-shadow .1s, background .25s, color .25s, border-color .25s;
+}
+.lbtn-primary {
+  background: var(--a); color: #050505;
+  border: 3px solid var(--black); box-shadow: var(--shadow);
+}
+.lbtn-primary:hover { transform: translate(-2px,-2px); box-shadow: 7px 7px 0 var(--black); }
+.lbtn-primary:active { transform: translate(2px,2px); box-shadow: 3px 3px 0 var(--black); }
+.lbtn-ghost { color: #444; font-size: 11px; font-weight: 600; letter-spacing: 1px; padding: 15px 0; }
+.lbtn-ghost:hover { color: #fff; }
+
+/* LOGOS STRIP */
+.llogos {
+  display: flex; align-items: center; gap: 0;
+  border-top: var(--border); border-bottom: var(--border);
+  background: var(--black);
+}
+.llogos-label { font-size: 8px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; color: #333; padding: 16px 28px; border-right: var(--border); white-space: nowrap; flex-shrink: 0; }
+.llogos-list { display: flex; flex: 1; overflow: hidden; }
+.llogos-item { flex: 1; padding: 16px 20px; text-align: center; font-size: 11px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; color: #2a2a2a; border-right: var(--border); }
+.llogos-item:last-child { border-right: none; }
+
+/* STATS */
+.lstats { display: flex; border-bottom: var(--border); background: var(--black); }
+.lstat { flex: 1; padding: 32px 40px; border-right: var(--border); }
+.lstat:last-child { border-right: none; }
+.lstat-n { font-size: clamp(32px, 4.5vw, 52px); font-weight: 900; color: var(--a); letter-spacing: -1.5px; line-height: 1; transition: color .25s; }
+.lstat-l { font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: #444; margin-top: 6px; }
+
+/* SERVICES */
+.lsvc {
+  position: relative; overflow: hidden;
+  padding: 72px 40px 80px;
+  background: var(--light);
+  border-bottom: var(--border);
+}
+.lsvc-bg { position: absolute; inset: 0; pointer-events: none; }
+.lsec-tag { font-size: 9px; font-weight: 900; letter-spacing: 2.5px; text-transform: uppercase; color: #999; margin-bottom: 10px; }
+.lsec-h2 {
+  font-size: clamp(28px, 4vw, 46px); font-weight: 900; text-transform: uppercase;
+  color: var(--black); letter-spacing: -1.5px; line-height: .95;
+  margin-bottom: 48px; transition: font-family .2s;
+}
+.lsec-h2 .ac { color: var(--a); transition: color .25s; }
+.svc-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.svc-card {
+  background: #fff; border: var(--border); box-shadow: var(--shadow);
+  padding: 28px 24px; position: relative;
+  transition: transform .12s, box-shadow .12s;
+}
+.svc-card:hover { transform: translate(-2px,-2px); box-shadow: 7px 7px 0 var(--black); }
+.svc-num { font-size: 10px; font-weight: 900; letter-spacing: 2px; text-transform: uppercase; color: #ccc; margin-bottom: 16px; }
+.svc-tag-pill {
+  display: inline-block; font-size: 8px; font-weight: 900; letter-spacing: 2px; text-transform: uppercase;
+  padding: 4px 9px; border: 2px solid var(--black);
+  background: var(--a); transition: background .25s;
+  margin-bottom: 12px;
+}
+.svc-h3 { font-size: 17px; font-weight: 900; color: var(--black); text-transform: uppercase; letter-spacing: -.5px; margin-bottom: 10px; line-height: 1.1; }
+.svc-p { font-size: 12px; color: #666; line-height: 1.65; margin-bottom: 20px; }
+.svc-metric { font-size: 36px; font-weight: 900; color: var(--a); letter-spacing: -1px; line-height: 1; transition: color .25s; }
+.svc-metric-l { font-size: 9px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: #aaa; margin-top: 3px; }
+
+/* PROCESS */
+.lproc {
+  padding: 72px 40px;
+  background: var(--black);
+  border-bottom: var(--border);
+}
+.proc-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; margin-top: 48px; }
+.proc-step {
+  padding: 32px 28px; border-right: var(--border); position: relative;
+}
+.proc-step:last-child { border-right: none; }
+.proc-arrow {
+  position: absolute; top: 38px; right: -14px; z-index: 1;
+  font-size: 14px; color: #2a2a2a;
+}
+.proc-step:last-child .proc-arrow { display: none; }
+.proc-n { font-size: 48px; font-weight: 900; color: #111; letter-spacing: -2px; line-height: 1; margin-bottom: 16px; }
+.proc-h { font-size: 14px; font-weight: 900; text-transform: uppercase; letter-spacing: -.3px; color: #fff; margin-bottom: 8px; }
+.proc-p { font-size: 12px; color: #555; line-height: 1.65; }
+.proc-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--a); margin-bottom: 16px; transition: background .25s; }
+
+/* PROOF */
+.lproof { padding: 72px 40px; background: var(--black); border-bottom: var(--border); }
+.proof-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 48px; }
+.proof-card { border: 2px solid #111; padding: 32px 28px; position: relative; transition: border-color .1s; }
+.proof-card:hover { border-color: #1e1e1e; }
+.proof-stars { color: var(--a); font-size: 13px; letter-spacing: 2px; margin-bottom: 16px; transition: color .25s; }
+.proof-q { font-size: 14px; color: #777; line-height: 1.75; font-style: italic; margin-bottom: 24px; }
+.proof-q strong { color: var(--a); font-style: normal; transition: color .25s; }
+.proof-author { font-size: 11px; font-weight: 700; letter-spacing: .5px; color: #fff; }
+.proof-role { font-size: 10px; color: #333; margin-top: 3px; }
+
+/* CTA SECTION */
+.lcta {
+  position: relative; overflow: hidden;
+  padding: 80px 40px; text-align: center;
+  background: var(--black);
+  border-bottom: var(--border);
+}
+.lcta-aurora { position: absolute; width: 700px; height: 400px; border-radius: 50%; filter: blur(140px); opacity: .12; top: -100px; left: 50%; transform: translateX(-50%); background: var(--a); pointer-events: none; transition: background .25s; }
+.lcta-h2 { font-size: clamp(36px, 5.5vw, 68px); font-weight: 900; text-transform: uppercase; color: #fff; letter-spacing: -2px; line-height: .92; margin-bottom: 20px; position: relative; }
+.lcta-h2 .ac { color: var(--a); transition: color .25s; }
+.lcta-sub { font-size: 15px; color: #444; max-width: 460px; margin: 0 auto 44px; line-height: 1.65; position: relative; }
+
+/* FOOTER */
+.lfooter {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 20px 40px;
+  background: var(--black);
+  border-top: 2px solid #0e0e0e;
+}
+.lfooter-brand { font-size: 11px; font-weight: 900; letter-spacing: .5px; text-transform: uppercase; color: #222; }
+.lfooter-brand em { font-style: normal; color: var(--a); transition: color .25s; }
+.lfooter-copy { font-size: 9px; color: #222; letter-spacing: .5px; }
+
+/* RESPONSIVE */
+@media (max-width: 700px) {
+  .lnav { padding: 14px 20px; }
+  .lnav-links { display: none; }
+  .lhero { padding: 52px 20px 60px; }
+  .lstats { flex-direction: column; }
+  .lstat { border-right: none; border-bottom: var(--border); padding: 24px 20px; }
+  .lstat:last-child { border-bottom: none; }
+  .lsvc { padding: 52px 20px 60px; }
+  .svc-grid { grid-template-columns: 1fr; }
+  .lproc { padding: 52px 20px; }
+  .proc-grid { grid-template-columns: 1fr; }
+  .proc-step { border-right: none; border-bottom: var(--border); }
+  .proc-step:last-child { border-bottom: none; }
+  .proc-arrow { display: none; }
+  .lproof { padding: 52px 20px; }
+  .proof-grid { grid-template-columns: 1fr; }
+  .lcta { padding: 60px 20px; }
+  .lfooter { padding: 16px 20px; flex-direction: column; gap: 8px; text-align: center; }
+  .llogos-list { flex-wrap: wrap; }
+  .llogos-item { flex: none; width: 50%; }
+}
+</style>
+</head>
+<body>
+
+<div class="app">
+
+<!-- ══════════════════════════════════════════
+     PANEL
+══════════════════════════════════════════ -->
+<aside class="panel">
+  <div class="panel-top">
+    <div class="wordmark">Triforce Auto</div>
+    <h1>LP Builder</h1>
+  </div>
+
+  <div class="panel-scroll">
+
+    <!-- PRESETS -->
+    <div class="ps">
+      <div class="ps-title">Presets</div>
+      <div class="preset-grid" id="presetGrid">
+        <button class="preset-card on" data-preset="eletrico">
+          <div class="pc-swatch" style="background:#0066FF;"></div>
+          <span class="pc-name">Eletrico</span>
+          <span class="pc-desc">Tech / Confianca</span>
+        </button>
+        <button class="preset-card" data-preset="roxo">
+          <div class="pc-swatch" style="background:#7C3AED;"></div>
+          <span class="pc-name">Roxo</span>
+          <span class="pc-desc">IA / Exclusivo</span>
+        </button>
+        <button class="preset-card" data-preset="verde">
+          <div class="pc-swatch" style="background:#A8FF00;"></div>
+          <span class="pc-name">Verde</span>
+          <span class="pc-desc">Agressivo</span>
+        </button>
+        <button class="preset-card" data-preset="vermelho">
+          <div class="pc-swatch" style="background:#FF2D2D;"></div>
+          <span class="pc-name">Vermelho</span>
+          <span class="pc-desc">Urgencia</span>
+        </button>
+        <button class="preset-card" data-preset="dourado">
+          <div class="pc-swatch" style="background:#F5C518;"></div>
+          <span class="pc-name">Dourado</span>
+          <span class="pc-desc">Premium</span>
+        </button>
+        <button class="preset-card" data-preset="laranja">
+          <div class="pc-swatch" style="background:#FF4500;"></div>
+          <span class="pc-name">Laranja</span>
+          <span class="pc-desc">Energia</span>
+        </button>
+        <button class="preset-card" data-preset="ciano">
+          <div class="pc-swatch" style="background:#00D4C8;"></div>
+          <span class="pc-name">Ciano</span>
+          <span class="pc-desc">Moderno</span>
+        </button>
+        <button class="preset-card" data-preset="rosa">
+          <div class="pc-swatch" style="background:#FF2D78;"></div>
+          <span class="pc-name">Rosa</span>
+          <span class="pc-desc">Ousado</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- COR -->
+    <div class="ps">
+      <div class="ps-title">Cor de Destaque</div>
+      <div class="color-row">
+        <div class="cp-wrap" id="cpWrap">
+          <input type="color" id="colorPicker" value="#0066FF">
+        </div>
+        <input type="text" class="hex-pi" id="hexInput" value="#0066FF" maxlength="7" spellcheck="false">
+      </div>
+      <div class="swatches" id="swatches">
+        <div class="sw on" data-c="#0066FF" style="background:#0066FF"></div>
+        <div class="sw" data-c="#7C3AED" style="background:#7C3AED"></div>
+        <div class="sw" data-c="#A8FF00" style="background:#A8FF00"></div>
+        <div class="sw" data-c="#FF2D2D" style="background:#FF2D2D"></div>
+        <div class="sw" data-c="#F5C518" style="background:#F5C518"></div>
+        <div class="sw" data-c="#FF4500" style="background:#FF4500"></div>
+        <div class="sw" data-c="#00D4C8" style="background:#00D4C8"></div>
+        <div class="sw" data-c="#FF2D78" style="background:#FF2D78"></div>
+        <div class="sw" data-c="#00FF88" style="background:#00FF88"></div>
+        <div class="sw" data-c="#fff" style="background:#fff;border-color:#2a2a2a"></div>
+      </div>
+    </div>
+
+    <!-- TIPOGRAFIA -->
+    <div class="ps">
+      <div class="ps-title">Tipografia</div>
+      <div class="ps-row">
+        <label class="ps-label">Familia</label>
+        <select class="pi" id="fontSel">
+          <option value="'Montserrat',sans-serif">Montserrat</option>
+          <option value="'Space Grotesk',sans-serif">Space Grotesk</option>
+          <option value="'Barlow Condensed',sans-serif">Barlow Condensed</option>
+          <option value="'Bebas Neue',cursive">Bebas Neue</option>
+          <option value="'Syne',sans-serif">Syne</option>
+          <option value="'Oswald',sans-serif">Oswald</option>
+          <option value="'DM Sans',sans-serif">DM Sans</option>
+          <option value="'Inter',sans-serif">Inter</option>
+        </select>
+      </div>
+      <div class="ps-row">
+        <label class="ps-label">Peso</label>
+        <div class="chips" id="weightChips">
+          <button class="chip" data-v="700">700</button>
+          <button class="chip" data-v="800">800</button>
+          <button class="chip on" data-v="900">900</button>
+        </div>
+      </div>
+      <div class="ps-row">
+        <label class="ps-label">Caixa Alta</label>
+        <div class="chips" id="caseChips">
+          <button class="chip on" data-v="uppercase">Sim</button>
+          <button class="chip" data-v="none">Nao</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- BOTAO -->
+    <div class="ps">
+      <div class="ps-title">Botao Principal</div>
+      <div class="ps-row">
+        <label class="ps-label">Estilo</label>
+        <div class="chips" id="btnChips">
+          <button class="chip on" data-v="solid">Solido</button>
+          <button class="chip" data-v="outline">Outline</button>
+          <button class="chip" data-v="gradient">Gradiente</button>
+          <button class="chip" data-v="flat">Flat</button>
+        </div>
+      </div>
+      <div class="ps-row">
+        <label class="ps-label">Sombra</label>
+        <div class="chips" id="shadowChips">
+          <button class="chip on" data-v="brutal">Brutal</button>
+          <button class="chip" data-v="soft">Soft</button>
+          <button class="chip" data-v="none">Nenhuma</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- EFEITOS -->
+    <div class="ps">
+      <div class="ps-title">Efeitos</div>
+      <div class="ps-row">
+        <label class="ps-label">Aurora</label>
+        <div class="chips" id="auroraChips">
+          <button class="chip on" data-v="on">Visivel</button>
+          <button class="chip" data-v="off">Oculto</button>
+        </div>
+      </div>
+      <div class="ps-row">
+        <label class="ps-label">Grid de fundo</label>
+        <div class="chips" id="gridChips">
+          <button class="chip on" data-v="on">Visivel</button>
+          <button class="chip" data-v="off">Oculto</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- TEXTOS -->
+    <div class="ps">
+      <div class="ps-title">Textos</div>
+      <div class="ps-row">
+        <label class="ps-label">Badge / Eyebrow</label>
+        <input type="text" class="pi" id="tBadge" value="Landing Pages + Sistemas">
+      </div>
+      <div class="ps-row">
+        <label class="ps-label">Titulo — linha 1</label>
+        <input type="text" class="pi" id="tL1" value="Triforce">
+      </div>
+      <div class="ps-row">
+        <label class="ps-label">Titulo — linha 2 (destaque)</label>
+        <input type="text" class="pi" id="tL2" value="Auto">
+      </div>
+      <div class="ps-row">
+        <label class="ps-label">Subtitulo</label>
+        <textarea class="pi" id="tSub">LPs e sistemas que transformam visitantes em clientes pagantes.</textarea>
+      </div>
+      <div class="ps-row">
+        <label class="ps-label">Texto do CTA</label>
+        <input type="text" class="pi" id="tCta" value="Ver Demo Gratis">
+      </div>
+    </div>
+
+  </div><!-- /panel-scroll -->
+
+  <button class="exp-btn" id="expBtn">Exportar HTML</button>
+</aside>
+
+<!-- ══════════════════════════════════════════
+     PREVIEW
+══════════════════════════════════════════ -->
+<div class="preview-wrap">
+  <div class="preview-bar">
+    <span class="pb-label">Preview</span>
+    <button class="dev-btn on" data-d="desktop">Desktop</button>
+    <button class="dev-btn" data-d="tablet">Tablet</button>
+    <button class="dev-btn" data-d="mobile">Mobile</button>
+  </div>
+
+  <div class="preview-stage">
+    <div id="lpf">
+      <div id="lp">
+
+        <!-- NAV -->
+        <nav class="lnav">
+          <div class="lnav-logo">Triforce&nbsp;<em id="ln-logo">Auto</em></div>
+          <div class="lnav-links">
+            <a href="#">Servicos</a>
+            <a href="#">Resultados</a>
+            <a href="#">Como funciona</a>
+            <a href="#">Contato</a>
+          </div>
+          <a class="lnav-cta" id="ln-nav-cta" href="#">Ver Demo</a>
+        </nav>
+
+        <!-- HERO -->
+        <section class="lhero" id="ln-hero">
+          <!-- grid SVG injetado por JS -->
+          <div class="lhero-aurora" id="ln-aurora"></div>
+          <div class="lhero-badge" id="ln-badge">Landing Pages + Sistemas</div>
+          <h1 class="lhero-h1" id="ln-h1">
+            <span id="ln-l1">Triforce</span>
+            <span class="ac" id="ln-l2">Auto</span>
+          </h1>
+          <p class="lhero-sub" id="ln-sub">LPs e sistemas que transformam visitantes em clientes pagantes.</p>
+          <div class="lhero-actions">
+            <a class="lbtn lbtn-primary" id="ln-cta1" href="#">Ver Demo Gratis</a>
+            <a class="lbtn lbtn-ghost" href="#">Ver portfolio &rarr;</a>
+          </div>
+        </section>
+
+        <!-- LOGOS -->
+        <div class="llogos">
+          <div class="llogos-label">Ja atendemos</div>
+          <div class="llogos-list">
+            <div class="llogos-item">AutoMax</div>
+            <div class="llogos-item">MegaCar</div>
+            <div class="llogos-item">VelozMkt</div>
+            <div class="llogos-item">DriveUp</div>
+            <div class="llogos-item">TopGear</div>
+          </div>
+        </div>
+
+        <!-- STATS -->
+        <div class="lstats">
+          <div class="lstat">
+            <div class="lstat-n ac-text">+340%</div>
+            <div class="lstat-l">Conversao media</div>
+          </div>
+          <div class="lstat">
+            <div class="lstat-n ac-text">80+</div>
+            <div class="lstat-l">Projetos entregues</div>
+          </div>
+          <div class="lstat">
+            <div class="lstat-n ac-text">4.9</div>
+            <div class="lstat-l">Avaliacao media</div>
+          </div>
+          <div class="lstat">
+            <div class="lstat-n ac-text">24h</div>
+            <div class="lstat-l">Tempo de resposta</div>
+          </div>
+        </div>
+
+        <!-- SERVICES -->
+        <section class="lsvc" id="ln-svc">
+          <div class="lsvc-bg" id="ln-svc-grid"></div>
+          <div class="lsec-tag">O que fazemos</div>
+          <h2 class="lsec-h2">Solucoes que<br><span class="ac-text">vendem de verdade</span></h2>
+          <div class="svc-grid">
+            <div class="svc-card">
+              <div class="svc-num">01</div>
+              <div class="svc-tag-pill ac-bg">Landing Page</div>
+              <div class="svc-h3">LP de Alta Conversao</div>
+              <p class="svc-p">Paginas construidas para converter — nao apenas bonitas, mas otimizadas para cada etapa do funil.</p>
+              <div class="svc-metric ac-text">+340%</div>
+              <div class="svc-metric-l">conversao media</div>
+            </div>
+            <div class="svc-card">
+              <div class="svc-num">02</div>
+              <div class="svc-tag-pill ac-bg">Automacao</div>
+              <div class="svc-h3">Sistemas com IA</div>
+              <p class="svc-p">Fluxos automatizados que capturam, qualificam e nutrem leads sem esforco manual da sua equipe.</p>
+              <div class="svc-metric ac-text">24/7</div>
+              <div class="svc-metric-l">operando sem parar</div>
+            </div>
+            <div class="svc-card">
+              <div class="svc-num">03</div>
+              <div class="svc-tag-pill ac-bg">Analytics</div>
+              <div class="svc-h3">Dados em Tempo Real</div>
+              <p class="svc-p">Dashboard completo com metricas que importam para decisoes rapidas e baseadas em dados reais.</p>
+              <div class="svc-metric ac-text">100%</div>
+              <div class="svc-metric-l">rastreamento completo</div>
+            </div>
+          </div>
+        </section>
+
+        <!-- PROCESS -->
+        <section class="lproc">
+          <div class="lsec-tag" style="color:#333;">Como funciona</div>
+          <h2 class="lsec-h2" style="color:#fff;">Tres passos para<br><span class="ac-text">comecar a vender</span></h2>
+          <div class="proc-grid">
+            <div class="proc-step">
+              <div class="proc-arrow">&#8594;</div>
+              <div class="proc-n">01</div>
+              <div class="proc-dot ac-bg"></div>
+              <div class="proc-h">Briefing Rapido</div>
+              <p class="proc-p">Em 30 minutos mapeamos seu negocio, publico e objetivos. Sem burocracia.</p>
+            </div>
+            <div class="proc-step">
+              <div class="proc-arrow">&#8594;</div>
+              <div class="proc-n">02</div>
+              <div class="proc-dot ac-bg"></div>
+              <div class="proc-h">Construcao em 7 dias</div>
+              <p class="proc-p">LP completa com integracoes, analytics e automacoes prontas para rodar.</p>
+            </div>
+            <div class="proc-step">
+              <div class="proc-n">03</div>
+              <div class="proc-dot ac-bg"></div>
+              <div class="proc-h">Resultados ou Reembolso</div>
+              <p class="proc-p">Garantia total de 30 dias. Se nao converter mais, devolvemos 100%.</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- PROOF -->
+        <section class="lproof">
+          <div class="lsec-tag" style="color:#333;">Resultados reais</div>
+          <h2 class="lsec-h2" style="color:#fff;">O que nossos<br><span class="ac-text">clientes dizem</span></h2>
+          <div class="proof-grid">
+            <div class="proof-card">
+              <div class="proof-stars ac-text">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+              <p class="proof-q">"Em 30 dias nossa LP ja tinha <strong>triplicado as conversoes</strong>. Nunca vi resultado tao rapido — e o suporte e excepcional."</p>
+              <div class="proof-author">Carlos Silva</div>
+              <div class="proof-role">CEO — AutoMax Veiculos</div>
+            </div>
+            <div class="proof-card">
+              <div class="proof-stars ac-text">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+              <p class="proof-q">"O sistema de automacao <strong>economizou 40h por semana</strong> da nossa equipe. Investimento que se paga no primeiro mes com folga."</p>
+              <div class="proof-author">Ana Rodrigues</div>
+              <div class="proof-role">Gerente Comercial — MegaCar</div>
+            </div>
+          </div>
+        </section>
+
+        <!-- CTA -->
+        <section class="lcta">
+          <div class="lcta-aurora ac-bg" id="ln-cta-aurora"></div>
+          <p class="lsec-tag" style="color:#333;">Proximo passo</p>
+          <h2 class="lcta-h2">Pronto para<br><span class="ac-text">crescer?</span></h2>
+          <p class="lcta-sub">Fale com a gente hoje e receba uma analise gratuita do seu negocio digital.</p>
+          <a class="lbtn lbtn-primary" id="ln-cta2" href="#">Ver Demo Gratis</a>
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="lfooter">
+          <div class="lfooter-brand">Triforce&nbsp;<em id="ln-ft-logo">Auto</em></div>
+          <div class="lfooter-copy">2025 &mdash; Todos os direitos reservados</div>
+        </footer>
+
+      </div><!-- /lp -->
+    </div><!-- /lpf -->
+  </div>
+</div>
+
+<script>
+// ─── STATE ───────────────────────────────────
+const S = {
+  accent:  '#0066FF',
+  font:    "'Montserrat',sans-serif",
+  weight:  '900',
+  tcase:   'uppercase',
+  btn:     'solid',
+  shadow:  'brutal',
+  aurora:  'on',
+  grid:    'on',
+};
+
+// ─── PRESETS ─────────────────────────────────
+const PRESETS = {
+  eletrico: { accent:'#0066FF', font:"'Montserrat',sans-serif", btn:'solid', shadow:'brutal' },
+  roxo:     { accent:'#7C3AED', font:"'Syne',sans-serif",       btn:'gradient', shadow:'brutal' },
+  verde:    { accent:'#A8FF00', font:"'Barlow Condensed',sans-serif", btn:'solid', shadow:'brutal' },
+  vermelho: { accent:'#FF2D2D', font:"'Montserrat',sans-serif", btn:'gradient', shadow:'brutal' },
+  dourado:  { accent:'#F5C518', font:"'Oswald',sans-serif",     btn:'solid', shadow:'brutal' },
+  laranja:  { accent:'#FF4500', font:"'DM Sans',sans-serif",    btn:'gradient', shadow:'soft' },
+  ciano:    { accent:'#00D4C8', font:"'Space Grotesk',sans-serif", btn:'flat', shadow:'soft' },
+  rosa:     { accent:'#FF2D78', font:"'Syne',sans-serif",       btn:'gradient', shadow:'brutal' },
+};
+
+// ─── HELPERS ─────────────────────────────────
+function hexToRgb(h) {
+  h = h.replace('#','');
+  if (h.length === 3) h = h[0]+h[0]+h[1]+h[1]+h[2]+h[2];
+  return { r:parseInt(h.slice(0,2),16), g:parseInt(h.slice(2,4),16), b:parseInt(h.slice(4,6),16) };
+}
+function isLight(h) {
+  const {r,g,b} = hexToRgb(h);
+  return (r*299+g*587+b*114)/1000 > 128;
+}
+function darken(h, p=25) {
+  let {r,g,b} = hexToRgb(h);
+  return '#'+[r,g,b].map(v=>Math.max(0,Math.floor(v*(1-p/100))).toString(16).padStart(2,'0')).join('');
+}
+function validHex(h) { return /^#[0-9a-fA-F]{6}$/.test(h); }
+
+// ─── RENDER ──────────────────────────────────
+function render() {
+  const a = S.accent;
+  const ad = darken(a, 22);
+  const onA = isLight(a) ? '#050505' : '#ffffff';
+  const lp = document.getElementById('lp');
+
+  // CSS vars
+  lp.style.setProperty('--a', a);
+  lp.style.setProperty('--ad', ad);
+
+  // font on headings + logo
+  const fontEls = lp.querySelectorAll('.lhero-h1, .lsec-h2, .lcta-h2, .lnav-logo, .svc-h3, .proc-h');
+  fontEls.forEach(el => {
+    el.style.fontFamily = S.font;
+    if (el.classList.contains('lhero-h1') || el.classList.contains('lsec-h2') || el.classList.contains('lcta-h2')) {
+      el.style.fontWeight = S.weight;
+      el.style.textTransform = S.tcase;
+    }
+  });
+  lp.style.fontFamily = S.font;
+
+  // accent color elements
+  lp.querySelectorAll('.ac-text').forEach(el => { el.style.color = a; });
+  lp.querySelectorAll('.ac').forEach(el => { el.style.color = a; });
+  lp.querySelectorAll('.ac-bg').forEach(el => {
+    el.style.background = a;
+    if (el.classList.contains('svc-tag-pill')) {
+      el.style.color = onA;
+    }
+    if (el.classList.contains('proc-dot')) {
+      el.style.background = a;
+    }
+  });
+  lp.querySelectorAll('.lhero-badge').forEach(el => {
+    el.style.color = a;
+    el.style.borderColor = a;
+  });
+  lp.querySelectorAll('.lhero-badge::before');
+  lp.querySelectorAll('.proof-stars').forEach(el => { el.style.color = a; });
+  lp.querySelectorAll('.proof-q strong').forEach(el => { el.style.color = a; });
+  lp.querySelectorAll('em').forEach(el => { el.style.color = a; });
+  lp.querySelectorAll('.lnav-cta').forEach(el => {
+    el.style.background = a;
+    el.style.color = onA;
+  });
+
+  // aurora
+  lp.querySelectorAll('.lhero-aurora, .lcta-aurora').forEach(el => {
+    el.style.background = a;
+    el.style.display = S.aurora === 'on' ? 'block' : 'none';
+  });
+
+  // grid SVG (hero)
+  const heroSection = document.getElementById('ln-hero');
+  let bgSvg = heroSection.querySelector('.lhero-bg');
+  if (!bgSvg) {
+    bgSvg = document.createElementNS('http://www.w3.org/2000/svg','svg');
+    bgSvg.setAttribute('class','lhero-bg');
+    bgSvg.style.cssText = 'position:absolute;inset:0;pointer-events:none;width:100%;height:100%;';
+    heroSection.insertBefore(bgSvg, heroSection.firstChild);
+  }
+  if (S.grid === 'on') {
+    bgSvg.style.opacity = '1';
+    bgSvg.innerHTML = `<defs><pattern id="hgp" width="32" height="32" patternUnits="userSpaceOnUse">
+      <path d="M 32 0 L 0 0 0 32" fill="none" stroke="${a}" stroke-width="0.5" opacity="0.15"/></pattern></defs>
+      <rect width="100%" height="100%" fill="url(#hgp)"/>`;
+  } else {
+    bgSvg.style.opacity = '0';
+  }
+
+  // svc section grid
+  const svcGrid = document.getElementById('ln-svc-grid');
+  if (S.grid === 'on') {
+    svcGrid.innerHTML = `<svg style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;" xmlns="http://www.w3.org/2000/svg">
+      <defs><pattern id="sgp" width="32" height="32" patternUnits="userSpaceOnUse">
+      <path d="M 32 0 L 0 0 0 32" fill="none" stroke="${a}" stroke-width="0.5" opacity="0.07"/></pattern></defs>
+      <rect width="100%" height="100%" fill="url(#sgp)"/></svg>`;
+  } else {
+    svcGrid.innerHTML = '';
+  }
+
+  // buttons
+  const btns = [document.getElementById('ln-cta1'), document.getElementById('ln-cta2')];
+  btns.forEach(btn => {
+    if (!btn) return;
+    // reset
+    btn.style.borderRadius = '';
+    btn.style.border = '3px solid #050505';
+    btn.style.boxShadow = '5px 5px 0 #050505';
+
+    if (S.btn === 'solid') {
+      btn.style.background = a;
+      btn.style.color = onA;
+    } else if (S.btn === 'outline') {
+      btn.style.background = 'transparent';
+      btn.style.color = a;
+      btn.style.border = `3px solid ${a}`;
+    } else if (S.btn === 'gradient') {
+      btn.style.background = `linear-gradient(135deg,${a},${ad})`;
+      btn.style.color = onA;
+    } else if (S.btn === 'flat') {
+      btn.style.background = a;
+      btn.style.color = onA;
+      btn.style.borderRadius = '8px';
+    }
+
+    if (S.shadow === 'brutal') {
+      btn.style.boxShadow = '5px 5px 0 #050505';
+      if (S.btn !== 'outline') btn.style.border = '3px solid #050505';
+    } else if (S.shadow === 'soft') {
+      btn.style.boxShadow = `0 8px 28px ${a}55`;
+      btn.style.border = 'none';
+    } else {
+      btn.style.boxShadow = 'none';
+      if (S.btn !== 'outline') btn.style.border = 'none';
+    }
+  });
+
+  // sync panel UI
+  document.getElementById('colorPicker').value = a;
+  document.getElementById('hexInput').value = a.toUpperCase();
+  document.getElementById('cpWrap').style.background = a;
+  document.querySelectorAll('.sw').forEach(sw => sw.classList.toggle('on', sw.dataset.c === a));
+
+  // panel accent chip highlight
+  document.getElementById('expBtn').style.background = a;
+  document.getElementById('expBtn').style.color = onA;
+  document.querySelectorAll('.chip.on').forEach(c => {
+    c.style.background = a;
+    c.style.borderColor = a;
+  });
+}
+
+// ─── CHIP GROUPS ─────────────────────────────
+function chipGroup(id, key) {
+  document.getElementById(id).querySelectorAll('.chip').forEach(chip => {
+    chip.addEventListener('click', function() {
+      document.getElementById(id).querySelectorAll('.chip').forEach(c => {
+        c.classList.remove('on');
+        c.style.background = '';
+        c.style.borderColor = '';
+        c.style.color = '';
+      });
+      this.classList.add('on');
+      S[key] = this.dataset.v;
+      render();
+    });
+  });
+}
+chipGroup('weightChips', 'weight');
+chipGroup('caseChips',   'tcase');
+chipGroup('btnChips',    'btn');
+chipGroup('shadowChips', 'shadow');
+chipGroup('auroraChips', 'aurora');
+chipGroup('gridChips',   'grid');
+
+// ─── FONT SELECT ──────────────────────────────
+document.getElementById('fontSel').addEventListener('change', function() {
+  S.font = this.value;
+  render();
+});
+
+// ─── COLOR ───────────────────────────────────
+document.getElementById('colorPicker').addEventListener('input', function() {
+  S.accent = this.value;
+  render();
+});
+document.getElementById('hexInput').addEventListener('input', function() {
+  let v = this.value.trim();
+  if (!v.startsWith('#')) v = '#' + v;
+  if (validHex(v)) { S.accent = v; render(); }
+});
+document.querySelectorAll('.sw').forEach(sw => {
+  sw.addEventListener('click', () => { S.accent = sw.dataset.c; render(); });
+});
+
+// ─── PRESETS ──────────────────────────────────
+document.querySelectorAll('.preset-card').forEach(card => {
+  card.addEventListener('click', function() {
+    document.querySelectorAll('.preset-card').forEach(c => c.classList.remove('on'));
+    this.classList.add('on');
+    const p = PRESETS[this.dataset.preset];
+    Object.assign(S, p);
+    // sync font select
+    document.getElementById('fontSel').value = S.font;
+    // sync btn chips
+    document.getElementById('btnChips').querySelectorAll('.chip').forEach(c => {
+      c.classList.toggle('on', c.dataset.v === S.btn);
+    });
+    render();
+  });
+});
+
+// ─── TEXTS ───────────────────────────────────
+const textMap = [
+  ['tBadge', 'ln-badge'],
+  ['tL1',    'ln-l1'],
+  ['tL2',    'ln-l2'],
+  ['tSub',   'ln-sub'],
+];
+textMap.forEach(([inputId, elId]) => {
+  document.getElementById(inputId).addEventListener('input', function() {
+    document.getElementById(elId).textContent = this.value;
+    // sync logo/footer if line2
+    if (inputId === 'tL2') {
+      document.getElementById('ln-logo').textContent = this.value;
+      document.getElementById('ln-ft-logo').textContent = this.value;
+    }
+    if (inputId === 'tL1') {
+      const logo = document.querySelector('.lnav-logo');
+      logo.childNodes[0].textContent = this.value + '\u00A0';
+    }
+  });
+});
+document.getElementById('tCta').addEventListener('input', function() {
+  document.getElementById('ln-cta1').textContent = this.value;
+  document.getElementById('ln-cta2').textContent = this.value;
+  document.getElementById('ln-nav-cta').textContent = this.value;
+});
+
+// ─── DEVICE ──────────────────────────────────
+document.querySelectorAll('.dev-btn').forEach(btn => {
+  btn.addEventListener('click', function() {
+    document.querySelectorAll('.dev-btn').forEach(b => b.classList.remove('on'));
+    this.classList.add('on');
+    const f = document.getElementById('lpf');
+    f.className = '';
+    if (this.dataset.d !== 'desktop') f.className = this.dataset.d;
+  });
+});
+
+// ─── EXPORT ───────────────────────────────────
+document.getElementById('expBtn').addEventListener('click', () => {
+  const lpHtml = document.getElementById('lp').outerHTML;
+  const lpStyles = [...document.styleSheets].map(s => {
+    try { return [...s.cssRules].map(r => r.cssText).join('\n'); } catch(e) { return ''; }
+  }).join('\n');
+
+  const blob = new Blob([`<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Triforce Auto</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Space+Grotesk:wght@400;700&family=Barlow+Condensed:wght@400;700;900&family=Inter:wght@400;700;900&family=Bebas+Neue&family=Syne:wght@400;700;800&family=Oswald:wght@400;700&family=DM+Sans:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+body { margin: 0; }
+${lpStyles}
+</style>
+</head>
+<body>
+${lpHtml}
+</body>
+</html>`], { type: 'text/html' });
+
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = 'triforce-lp.html'; a.click();
+  URL.revokeObjectURL(url);
+});
+
+// ─── INIT ────────────────────────────────────
+render();
+</script>
+</body>
+</html>
