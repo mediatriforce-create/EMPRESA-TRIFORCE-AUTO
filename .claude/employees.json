@@ -30,28 +30,6 @@
       "hired_by": "fundador"
     },
     {
-      "id": "copywriter",
-      "name": "Fecchio",
-      "role": "Copywriter Senior",
-      "seniority": "senior",
-      "tier": "standard",
-      "reports_to": "fundador",
-      "description": "Copywriter de resposta direta BR. Escreve LP, VSL, headlines, CTAs, microcopy e copy de cards/carrosséis para Instagram. Atua nas duas equipes: LP & Produto e Marketing & Instagram.",
-      "specialty": "direct-response-copy-br",
-      "teams": ["lp-produto", "marketing-instagram"],
-      "skills": ["copywriter", "direct-response-copy", "fecchio-mind", "copywriting", "copywriting-master", "ad-creative", "paid-ads", "page-cro", "form-cro", "signup-flow-cro", "marketing-psychology", "ab-test-setup", "analytics-tracking", "copy-editing", "product-marketing-context", "customer-research", "seo-audit", "ai-seo", "firecrawl-search", "firecrawl-scrape", "site-architecture"],
-      "status": "hired",
-      "hired_at": "2026-04-13",
-      "hired_by": "Gabriela",
-      "evaluation": {
-        "date": "2026-04-20",
-        "result": "reprovado",
-        "evaluator": "fundador",
-        "issues": ["hook nao para o scroll", "copy generica para Meta Ads", "CTA fraco", "revelou produto no hook", "frases motivacionais em copy de resposta direta"],
-        "action": "retreinamento com ad-creative e paid-ads adicionados ao stack"
-      }
-    },
-    {
       "id": "code-reviewer",
       "name": "Marcelo",
       "role": "Revisor de Código Senior",

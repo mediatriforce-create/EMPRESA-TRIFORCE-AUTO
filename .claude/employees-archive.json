@@ -15,5 +15,19 @@
       "fired_by": "Gabriela",
       "motivo": "Produto é LP entregue como HTML final. Felipe + claude-design cobre design e desenvolvimento sem necessidade de Figma ou design system separado."
     }
+    ,{
+      "id": "copywriter",
+      "name": "Fecchio",
+      "role": "Copywriter Senior",
+      "seniority": "senior",
+      "tier": "standard",
+      "specialty": "direct-response-copy-br",
+      "teams": ["lp-produto", "marketing-instagram"],
+      "hired_at": "2026-04-13",
+      "hired_by": "Gabriela",
+      "fired_at": "2026-04-20",
+      "fired_by": "fundador",
+      "motivo": "performance insatisfatoria em copy de anuncios Meta — hook fraco, copy generica, nao atingiu nivel de execucao exigido mesmo apos retreinamento"
+    }
   ]
 }
