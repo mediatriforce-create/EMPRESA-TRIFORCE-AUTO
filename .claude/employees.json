@@ -118,6 +118,21 @@
       "hired_by": "Gabriela"
     }
     ,{
+      "id": "orquestrador",
+      "name": "Eduardo",
+      "role": "Orquestrador de Equipe",
+      "seniority": "diretor",
+      "tier": "best",
+      "reports_to": "fundador",
+      "description": "Recebe pedidos do fundador, roteia para o especialista certo com brief estruturado, acompanha handoffs entre equipes e entrega resultado consolidado. Nao executa — orquestra.",
+      "specialty": "task-routing-delegation-orchestration",
+      "teams": ["gestao"],
+      "skills": ["orquestrador"],
+      "status": "hired",
+      "hired_at": "2026-04-20",
+      "hired_by": "Gabriela"
+    }
+    ,{
       "id": "revisor-design",
       "name": "Bruno",
       "role": "Revisor de Design de Carrosséis Instagram",
