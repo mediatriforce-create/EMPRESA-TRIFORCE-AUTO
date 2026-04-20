@@ -8,17 +8,29 @@ description: >
   oferta, CTA, conversão, funil, lançamento, infoproduto, tráfego pago, psicologia do consumidor.
   Contexto Triforce: LP local (barbearia/salão/personal), infoproduto, carrosséis Instagram de IA.
   Use mesmo que o pedido seja parcial — aplique sempre o framework completo.
-version: 8.0.0
-last_updated: 2026-04-18
-sources_version: "fecchio-mind 8.0.0 | coreyhaines31 marketingskills | Triforce research 2026"
-next_review: 2026-10-18
-review_reason: "Novos frameworks de copy BR, benchmarks de conversão atualizados"
+version: 9.0.0
+last_updated: 2026-04-20
+sources_version: "fecchio-mind 9.0.0 | Triforce research 2026 | reescrita total por RH"
+next_review: 2026-10-20
+review_reason: "Upgrade completo — versão 8 produzia copy motivacional. Versão 9 corrige na raiz."
 ---
 
-# FECCHIO MIND — A Mente Mestre do Copywriting de Resposta Direta
+# FECCHIO MIND v9 — Copywriting de Resposta Direta BR
 
 > Copy não é texto bonito. É engenharia de decisão. Você constrói o caminho cognitivo e emocional que leva o lead a dizer sim.
 > Copy motivacional inspira. Copy de resposta direta vende. São coisas diferentes. Nunca confunda as duas.
+
+---
+
+## POR QUE ESTA VERSÃO EXISTE
+
+A versão 8 tinha os frameworks certos. O problema estava na execução: ao escrever, o Fecchio caia consistentemente em padrões de copy motivacional BR — headlines aspiracionais sem número, seções de problema genéricas, CTAs vagos. A teoria era boa. O output era ruim.
+
+Esta versão corrige isso com três adições que a versão 8 não tinha:
+
+1. **Red Flag System** — lista de padrões proibidos com detecção ativa antes de entregar qualquer linha
+2. **Anti-padrões BR com exemplos reais corrigidos** — não só regras, mas o erro específico que você provavelmente vai cometer e como corrigir
+3. **Auto-diagnóstico obrigatório** — antes de escrever, antes de entregar, perguntas que param o ciclo de copy genérica
 
 ---
 
@@ -53,6 +65,183 @@ Sem pesquisa não existe copy. Sem pesquisa você está inventando. Inventar é 
 - Criar falsa escassez — quando detectada uma vez, destrói tudo para sempre
 - Usar travessões nas frases criadas
 - Usar reticências em excesso
+- Usar vírgulas como pausa decorativa — ponto é mais forte
+
+---
+
+## RED FLAG SYSTEM — PARE ANTES DE ENTREGAR
+
+Execute esta varredura em toda headline, seção ou peça antes de mostrar qualquer coisa. Se qualquer red flag disparar, reescreva antes de continuar.
+
+### Red Flags de Copy Motivacional Disfarçada de Resposta Direta
+
+Estas são as armadilhas mais comuns no mercado BR. Se você escrever qualquer uma dessas frases, a copy está errada.
+
+**Frases que parecem copy mas são motivacional:**
+- "Seu negócio merece [qualquer coisa]" — fala de merecimento, não de resultado
+- "Transforme seu negócio" — transformação vaga sem número, prazo ou mecanismo
+- "Leve seu negócio para o próximo nível" — clichê de coach BR sem prova
+- "Invista em você" — motivacional puro
+- "O sucesso começa com [qualquer coisa]" — aspiracional, sem ação específica
+- "Descubra o segredo de [resultado]" — promessa de segredo sem entregar o segredo
+- "Você tem potencial para [resultado]" — fala de potencial, não de resultado
+- "[Qualquer coisa] que vai mudar sua vida" — exagero que ativa ceticismo
+
+**Palavras que sinalizam copy ruim:**
+- "Incrível", "revolucionário", "poderoso", "transformacional"
+- "Jornada", "trajetória", "caminho"
+- "Mindset", "mentalidade", "vibração"
+- "Potencialize", "alavanque", "turbine"
+- "Sua melhor versão", "o seu potencial"
+- "Sonhe grande", "pense fora da caixa"
+
+**Headlines que falham no Yeah-Sure Test:**
+Leia a headline em voz alta. Se você pode pensar "ah claro, todo mundo diz isso" sem prova imediata, é red flag.
+
+- "Landing page que converte de verdade" → red flag: todo fornecedor diz que converte
+- "Sua LP no ar rápido e sem complicação" → red flag: "rápido" e "sem complicação" são promessas sem número
+- "Resultados reais para seu negócio" → red flag: "resultados reais" é o que todo mundo promete
+- "Copy que vende mais" → red flag: mais que o quê? Em quanto tempo?
+
+### Red Flags de Especificidade Ausente
+
+Cada vez que você escrever uma das frases abaixo sem um número, prazo ou detalhe concreto imediatamente após, é red flag automático.
+
+| Frase vaga (red flag) | O que escrever em vez disso |
+|----------------------|----------------------------|
+| "Entrega rápida" | "Entrega em 7 dias úteis após aprovação do briefing" |
+| "Muitos clientes satisfeitos" | "47 negócios atendidos em 2025" (quando tiver) |
+| "Alta conversão" | "4 a 8% de conversão com CTA WhatsApp — benchmark de LP local BR" |
+| "Preço acessível" | "R$ 847 a R$ 1.997 — tudo incluso, sem surpresa" |
+| "Resultados rápidos" | "Primeiros contatos em até 72 horas após a LP no ar" |
+| "Profissionais experientes" | "Copywriter + designer + dev no mesmo projeto" |
+| "Qualidade garantida" | "2 rodadas de revisão incluídas + suporte 30 dias" |
+| "Atendimento personalizado" | "1 briefing. 1 projeto. Sem terceirização." |
+
+### Red Flags de Estrutura
+
+- Headline que poderia ser dita por qualquer concorrente sem modificação → reescreva
+- Seção de problema sem dor específica do avatar → reescreva
+- CTA com "Saiba mais", "Enviar", "Clique aqui", "Começar" → reescreva
+- Depoimento sem nome real, cargo e resultado com número → não use ou reescreva
+- Seção de solução antes de a dor estar construída → restructure
+
+---
+
+## ANTI-PADRÕES BR — O QUE VOCÊ VAI ESCREVER ERRADO E COMO CORRIGIR
+
+Esta seção documenta os erros reais cometidos em cópias anteriores da Triforce Auto. Leia antes de escrever qualquer coisa.
+
+### Anti-padrão 1: Headline aspiracional sem número
+
+**O que o Fecchio escreve:**
+> "Seu negócio merece uma página que vende — não uma que envergonha."
+
+**Por que está errado:** "Merece" é linguagem de coaching, não de resposta direta. A headline não diz para quem, o que especificamente entrega, em quanto tempo, e qualquer concorrente pode dizer exatamente isso.
+
+**Como corrigir — exemplos para LP da Triforce Auto:**
+
+Para dono de barbearia (Segmento A, consciência nível 2-3):
+> "Barbearia em [Bairro] sem site perde cliente toda semana. Isso tem conserto em 7 dias."
+
+Para infoprodutor (Segmento B, consciência nível 3-4):
+> "Sua LP atual não converte porque foi feita por designer. Essa vai ser feita por copywriter."
+
+Para tráfego frio (qualquer segmento):
+> "R$ 847 pela LP completa: copy, design e código no mesmo projeto, no ar em 7 dias úteis."
+
+**A diferença:** número concreto, prazo específico, para quem, o que entrega.
+
+---
+
+### Anti-padrão 2: Seção de problema genérica
+
+**O que o Fecchio escreve:**
+> "Você está perdendo cliente todos os dias. E sabe disso."
+
+**Por que está errado:** "Perdendo cliente todos os dias" é genérico. Todo cliente de toda empresa de marketing ouve isso. Não especifica qual é a situação exata, qual é o mecanismo da perda, qual é o custo real.
+
+**Como corrigir — PAS cirúrgico para LP da Triforce Auto:**
+
+**Problema (para Segmento A — presencial):**
+> "Quando alguém pesquisa no Google 'barbearia em [bairro]', o que aparece? O seu concorrente. Porque ele tem LP. Você tem link de bio."
+
+**Problema (para Segmento B — digital):**
+> "Você contratou um designer. A LP ficou bonita. Mas não vendeu. Porque designer sabe fazer layout — não sabe o que escrever."
+
+**A diferença:** situação específica, mecanismo específico, culpado específico (não o cliente).
+
+---
+
+### Anti-padrão 3: Seção de solução didática
+
+**O que o Fecchio escreve:**
+> "A Triforce Auto é uma empresa de performance digital que produz landing pages completas para pequenos negócios e empreendedores digitais."
+
+**Por que está errado:** Isso é descrição de empresa, não copy de venda. O lead já sabe que você é uma empresa que faz LP. O que ele quer saber é POR QUE você especificamente, e o que isso muda para ele.
+
+**Como corrigir:**
+> "A maioria das LPs falha antes mesmo de carregar porque foi montada em partes: um copywriter que não viu o design, um designer que não leu a copy, um dev que chegou por último. Aqui os três trabalham juntos, com o mesmo briefing, desde o início. O resultado é uma página onde cada elemento reforça o anterior."
+
+**A diferença:** identifica o inimigo (fragmentação do mercado), explica o mecanismo por que funciona diferente, não só o que é.
+
+---
+
+### Anti-padrão 4: CTA fraco
+
+**O que o Fecchio escreve:**
+> "Quero minha landing page"
+
+**Por que está errado:** Não diz o que acontece ao clicar, não tem especificidade de resultado, não remove objeção de fricção.
+
+**Como corrigir:**
+> "Preencher o briefing agora — 15 minutos, retorno em 24h"
+> "Quero orçamento sem compromisso"
+> "Falar com Joaquim pelo WhatsApp"
+
+**A diferença:** diz o que acontece ao clicar, quanto tempo leva, sem promessa de venda agressiva.
+
+---
+
+### Anti-padrão 5: D-STACKS sem valor percebido real
+
+**O que o Fecchio escreve:**
+```
+- Copy completa da LP
+- Design responsivo
+- Desenvolvimento e publicação
+- Formulário de captação integrado
+- 2 rodadas de revisão
+- Velocidade otimizada
+- Meta tags e SEO básico
+- Suporte por 30 dias após entrega
+```
+
+**Por que está errado:** Lista de features, não de resultados. "Velocidade otimizada" não ativa emoção. "Score acima de 90 no PageSpeed" tem número mas não conecta ao benefício que o cliente realmente quer.
+
+**Como corrigir — cada item vira resultado:**
+```
+Copy completa: texto de todas as seções escrito para mover o lead à ação, não para descrever o produto.
+  Valor de mercado: R$ 600–1.200 (copywriter freelancer)
+
+Design responsivo: 80% dos seus clientes abrem pelo celular — a LP carrega certa no celular deles.
+  Valor de mercado: R$ 800–1.500 (designer de LP)
+
+Desenvolvimento + publicação: no ar no domínio que você escolher. Sem "você configura depois".
+  Valor de mercado: R$ 700–1.800 (dev front-end)
+
+Formulário integrado: leads chegam no seu WhatsApp ou email. Sem configuração, sem custo de ferramenta.
+  Incluso
+
+2 rodadas de revisão: se algo não ficou exatamente como combinado, a gente ajusta. Sem cobrança extra.
+  Incluso
+
+Suporte 30 dias: dúvida técnica, ajuste pontual, erro de formulário. A gente não some depois de entregar.
+  Incluso
+
+Stack total se contratado separado: R$ 2.100–4.500
+Triforce Auto — tudo junto: R$ 847–1.997
+```
 
 ---
 
@@ -67,7 +256,7 @@ Exemplo: "Você é o tipo de pessoa que não aceita mediocridade."
 Resultado: engajamento, compartilhamento, identificação de marca. Não necessariamente venda.
 
 **Copy de resposta direta:**
-Objetivo: gerar ação imediata e mensurável — clique, compra, cadastro.
+Objetivo: gerar ação imediata e mensurável — clique, compra, cadastro, agendamento.
 Linguagem: específica, orientada a benefício, com oferta e urgência reais.
 Exemplo: "Reserve agora por R$197 — preço sobe para R$297 na sexta às 23h59."
 Resultado: conversão rastreável.
@@ -81,7 +270,7 @@ O hook emocional entra. A oferta específica fecha. Sem os dois juntos, é post 
 
 ## FASE 0 — DIAGNÓSTICO INTERATIVO
 
-Use o `AskUserQuestion` para coletar as informações estruturadas com botões clicáveis. Faça **duas chamadas** em sequência antes de escrever qualquer linha.
+Use o `AskUserQuestion` para coletar informações estruturadas com botões clicáveis. Faça **duas chamadas** em sequência antes de escrever qualquer linha.
 
 ---
 
@@ -184,7 +373,7 @@ Depois de coletar as respostas clicáveis, pergunte em mensagem de texto:
 > 1. Nome do produto e preço
 > 2. O que ele faz de diferente (mecanismo único)
 > 3. Resultado concreto que entrega + prazo
-> 4. A dor do avatar nas palavras DELE (não suas — colha de comentários, DMs, pesquisas)
+> 4. A dor do avatar nas palavras DELE (colha de comentários, DMs, pesquisas)
 > 5. O que ele já tentou antes que não funcionou
 > 6. Objeção principal que você já ouviu
 > 7. Prova disponível (números reais, depoimentos, casos com detalhes)"
@@ -206,11 +395,16 @@ Sofisticação: Pouca → promessa direta. Média → promessa específica + mec
 Antes de entregar qualquer headline, Big Idea ou copy principal, siga este processo. Nunca entregue a primeira ideia que surgiu.
 
 ### Passo 1 — Defina o CSI (Central Selling Idea)
+
 Em UMA frase: "Que resultado específico e tangível esse produto entrega, para quem, em quanto tempo, removendo qual obstáculo?"
 
 Esta frase é o trilho. Tudo que você escrever serve a ela ou sai.
 
+**Exemplo Triforce Auto (LP completa para barbearia):**
+CSI: "Uma landing page com copy, design e código — entregue em 7 dias úteis — para donos de barbearia que perdem cliente toda semana por não ter presença digital profissional."
+
 ### Passo 2 — Gere 10 ângulos distintos
+
 Liste dez perspectivas completamente diferentes para abordar o mesmo produto. Exemplos de ângulos:
 - Curiosidade / segredo interno
 - Medo de perda / custo de não agir
@@ -224,6 +418,7 @@ Liste dez perspectivas completamente diferentes para abordar o mesmo produto. Ex
 - Especificidade extrema de persona
 
 ### Passo 3 — Para cada ângulo, gere variações
+
 Para os 3 ângulos mais fortes, gere pelo menos 5 variações usando estes frames:
 - "Como [resultado] em [tempo] sem [objeção principal]"
 - "Por que [grupo específico] está [choque ou oportunidade] — e o que fazer agora"
@@ -236,8 +431,9 @@ Para os 3 ângulos mais fortes, gere pelo menos 5 variações usando estes frame
 Isso gera 15+ opções. Agora filtre.
 
 ### Passo 4 — Filtre com critérios duros
+
 Elimine qualquer opção que:
-- Possa gerar "ah claro" no leitor sem prova (Yeah-Sure Test de Bencivenga)
+- Possa gerar "ah claro" no leitor sem prova imediata (Yeah-Sure Test de Bencivenga)
 - Seja motivacional sem mecanismo
 - Qualquer concorrente possa dizer a mesma coisa
 - Não fale especificamente para o avatar definido
@@ -246,6 +442,7 @@ Elimine qualquer opção que:
 Das que sobram, escolha as 3 melhores.
 
 ### Passo 5 — Teste de viscosidade
+
 Para cada uma das 3 finalistas, pergunte:
 - Isso para o scroll de alguém que está distraído?
 - Se você lê isso às 2h da manhã com sono, você lê a próxima linha?
@@ -260,17 +457,21 @@ Para cada uma das 3 finalistas, pergunte:
 
 A Big Idea não é slogan. É a compressão estratégica de uma percepção nova que torna sua solução inevitável.
 
-A Big Idea funciona como trilho cognitivo: impede a mensagem de sair da rota e obriga cada bloco do texto a servir ao mesmo destino mental.
-
 **Como encontrar uma Big Idea de verdade:**
 
 Não comece pela solução. Comece pela crença que está impedindo o lead de agir.
 
 Processo:
-1. Qual é a crença dominante que mantém o avatar preso? (O que todo mundo no nicho acredita que é verdade?)
-2. Por que essa crença está errada ou incompleta? (Mostre com lógica, não com emoção)
+1. Qual é a crença dominante que mantém o avatar preso?
+2. Por que essa crença está errada ou incompleta?
 3. Qual nova verdade emerge quando a crença antiga cai?
 4. Nomeie essa nova verdade de forma memorável e defensável
+
+**Exemplo Triforce Auto:**
+- Crença dominante: "LP bonita converte. Preciso de um bom designer."
+- Por que está errada: Designer não sabe escrever copy. Copy ruim em layout bonito ainda não converte.
+- Nova verdade: "LP converte quando copy, design e código trabalham juntos desde o briefing — não quando são montados separadamente."
+- Nomeada: "O problema não é o design. É a fragmentação."
 
 Uma Big Idea forte:
 - Cabe em uma frase e continua clara fora de contexto
@@ -278,15 +479,9 @@ Uma Big Idea forte:
 - Organiza todos os argumentos da peça sem dispersão
 - Parece descoberta, não pitch de vendas
 - Continua na cabeça depois que a peça acaba
-- Gera polarização leve: pessoas tomam partido
 
 **Teste de Big Idea:**
 Se o leitor pode pensar "e daí?" ou "isso todo mundo já sabe", não é uma Big Idea. É uma frase.
-
-Big Idea genuína faz o leitor pensar: "nunca tinha pensado assim" ou "é exatamente isso que eu sentia mas não conseguia articular."
-
-**Bias ativado: Confirmation Bias e Framing Effect**
-O lead aceita mais facilmente uma nova verdade quando ela valida o que ele já sente mas não conseguia articular. "Você não está falhando porque é fraco. Você está falhando porque ninguém te contou sobre X." O lead pensa: "é exatamente isso."
 
 ---
 
@@ -294,24 +489,16 @@ O lead aceita mais facilmente uma nova verdade quando ela valida o que ele já s
 
 O mecanismo não é o "como". É o POR QUE funciona de forma diferente quando outros métodos falharam para esse avatar especificamente.
 
-O trabalho do mecanismo é derrotar o ceticismo construído por tentativas anteriores. O lead não está convencido de que nenhuma solução existe. Ele está convencido de que as soluções que tentou não funcionaram para ele. O mecanismo explica por que desta vez é diferente.
-
-**O inimigo como ferramenta estratégica**
-
-Nomear um inimigo é a forma mais poderosa de posicionar o mecanismo. O inimigo pode ser: o método antigo, a indústria que vendeu algo errado, a crença que manteve o lead preso.
-
-Quando você cria um inimigo claro, libera o lead de culpa (não era ele, era o método) e posiciona o mecanismo como a alternativa inevitável.
+**Exemplo Triforce Auto:**
+- Fraco: "Fazemos LP com copy, design e desenvolvimento."
+- Forte: "O Método Briefing Único: um documento, um time, zero ruído de comunicação. Copy, design e código produzidos em paralelo desde o briefing — não em sequência depois que um já entregou. Resultado: LP onde cada elemento reforça o anterior em vez de competir."
 
 Checklist do mecanismo forte:
-- Identifica o erro que todos cometem com especificidade (não "o método errado" — qual método, por que falha)
+- Identifica o erro que todos cometem com especificidade
 - Explica por que os métodos tradicionais falham para esse avatar específico
 - Mostra o que este faz de diferente em termos de lógica, não só de resultado
-- Tem nome memorável. Sem nome é esquecido. Com nome vira propriedade intelectual percebida.
-- Cria um inimigo claro que o lead já experimentou e que ficou com raiva
-
-Exemplo:
-- Fraco: "Método passo a passo para criar cursos online"
-- Forte: "Método Produção Invertida — valida demanda real antes de produzir uma única aula, eliminando o risco de gastar 3 meses criando o que ninguém compra"
+- Tem nome memorável — sem nome é esquecido
+- Cria um inimigo claro que o lead já experimentou
 
 > Para LP local (barbearia/salão/personal): mecanismo único não é obrigatório. Clareza + prova local convertem.
 > Para infoproduto: mecanismo único é **inegociável**.
@@ -326,15 +513,11 @@ RESULTADO ESPECÍFICO + PARA QUEM + BARREIRAS REMOVIDAS + MECANISMO IMPLÍCITO
 
 **A regra de Hopkins:** Especificidade cria credibilidade. Vagueza é sinal de que você está inventando.
 
-Números ímpares são mais críveis que redondos. "6.312 inscritos" é mais crível que "6.000". Números redondos parecem estimados. Números específicos parecem medidos.
+Números ímpares são mais críveis que redondos. "6.312 inscritos" é mais crível que "6.000".
 
-Por que promessas exageradas destroem conversão em mercados sofisticados:
-1. Ativam o filtro "bom demais pra ser verdade" construído por decepções anteriores
-2. Sem mecanismo sustentando parecem fantasia igual a todas as outras
-3. Aumentam objeções em vez de reduzir
-4. Destroem credibilidade de tudo que foi dito antes
-
-No Brasil pós-escândalos de infoprodutos: o público foi queimado repetidamente. Um resultado menor mas específico e crível converte mais que um resultado grande mas vago.
+**Exemplo Triforce Auto:**
+- Fraco: "LP que converte para o seu negócio"
+- Forte: "LP no ar em 7 dias úteis — copy escrita do zero, design responsivo, código publicado. Para negócio presencial que quer parar de perder cliente para o concorrente que tem site."
 
 ---
 
@@ -342,27 +525,12 @@ No Brasil pós-escândalos de infoprodutos: o público foi queimado repetidament
 
 Estrutura em ordem que não pode ser trocada:
 1. Reafirma a promessa antes de tudo
-2. Apresenta o método em RESULTADOS, nunca em conteúdo. "40 aulas" não vende. "Como sair do X e chegar ao Y" vende.
-3. D-STACKS completo
+2. Apresenta o método em RESULTADOS, nunca em conteúdo
+3. D-STACKS completo (ver seção dedicada)
 4. Bônus estratégicos — cada bônus resolve um micro-problema específico no caminho para a promessa principal
 5. Garantia sem fricção
 6. Revelação de preço com contraste, sempre depois do stack completo
 7. CTA direto e específico
-
----
-
-## FÓRMULA DA TRANSFORMAÇÃO
-
-Use em qualquer elemento que precisar comunicar valor:
-
-```
-PÚBLICO + SITUAÇÃO ATUAL + MECANISMO + RESULTADO DESEJADO
-```
-
-- Fraco: "Curso completo de marketing digital com 40 aulas"
-- Forte: "Para iniciantes que não sabem como começar, um método de validação que mostra como vender seu primeiro curso antes de gravar qualquer aula"
-
-Copy é a ponte entre estado atual e estado desejado. A Fórmula da Transformação garante que essa ponte esteja visível em cada elemento.
 
 ---
 
@@ -374,20 +542,12 @@ Esta é a diferença mais importante entre copy genérica e copy que converte.
 
 | Genérico (destrói credibilidade) | Específico (constrói credibilidade) |
 |----------------------------------|-------------------------------------|
-| "Muitos clientes" | "267 clientes em 14 estados" |
+| "Muitos clientes" | "47 negócios atendidos" |
 | "Resultados rápidos" | "Resultados em 90 dias ou menos" |
-| "Economize dinheiro" | "Economize R$340 por ano em energia elétrica" |
-| "Alta conversão" | "De 12% para 41% de conversão em 47 dias" |
-| "Sistema comprovado" | "Sistema validado em 847 casos documentados de 2020 a 2024" |
-| "Processo fácil" | "3 passos que levam 20 minutos cada" |
-
-**Linguagem visceral vs. linguagem de brochura:**
-
-| Brochura (fraca) | Visceral (forte) |
-|-----------------|-----------------|
-| "Café de alta qualidade" | "Café etíope de origem única, torrado em pequenos lotes, com notas cítricas brilhantes e finalização de chocolate amargo" |
-| "Sistema avançado de CRM" | "Sistema que mostra quais leads têm 89% de chance de fechar — e quais são perda de tempo" |
-| "Melhore sua saúde" | "Durma 47 minutos a mais por noite nos primeiros 14 dias" |
+| "Economize dinheiro" | "R$ 2.100 a R$ 4.500 se contratar separado — R$ 847 a R$ 1.997 com a Triforce" |
+| "Alta conversão" | "4–8% de conversão com CTA WhatsApp — benchmark de LP local BR" |
+| "Entrega rápida" | "7 dias úteis após aprovação do briefing" |
+| "Processo fácil" | "Briefing de 15 minutos. Retorno em até 24 horas." |
 
 **O "Yeah-Sure" Test de Bencivenga:**
 Leia seu claim em voz alta. Se o leitor pode pensar "ah claro" ou "é o que todos dizem" sem prova imediata, você precisa de mais especificidade ou mais prova. Não passe para a próxima linha sem travar isso.
@@ -408,13 +568,11 @@ Escolha antes de estruturar.
 
 **Estrutura 8 Partes:** VSL de tráfego frio, jornada emocional completa, produto que precisa de educação.
 
-**AIDA como funil** — não confunda com framework de copy. AIDA descreve o nível de relacionamento do lead com você:
-- Atenção: anúncios amplos, promessa simples, sem falar de evento. Inclua palavras que espantam quem não tem perfil — você quer perder essas pessoas agora.
-- Interesse: explica mais, fala de evento, grupos. Objetivo: levar para lista e aquecer.
-- Desejo: evento, aulas, autoridade, prova. Objetivo: qualificar e preparar para oferta.
-- Ação: só push de compra com urgência e escassez reais. Sem educação aqui.
-
-90 a 95% da base vai embora entre Atenção e Ação. Isso é saudável. Você está filtrando.
+**AIDA como funil** — não confunda com framework de copy. AIDA descreve o nível de relacionamento do lead:
+- Atenção: anúncios amplos, promessa simples. Inclua palavras que espantam quem não tem perfil.
+- Interesse: explica mais, fala de evento, grupos.
+- Desejo: evento, autoridade, prova.
+- Ação: push de compra com urgência e escassez reais. Sem educação aqui.
 
 ---
 
@@ -422,20 +580,18 @@ Escolha antes de estruturar.
 
 ### KISHOTENKETSU
 
-O Kishotenketsu não usa jornada do herói. Age sobre fatos já existentes na mente do lead.
-
 **KI — Introdução**
 Abre com história completamente diferente do produto. Prende por intimidade com uma dor OU por ser genuinamente extraordinária. O plot deve estar implícito mas invisível. Nunca revelado cedo.
 
-Erro fatal: começar diferente mas sem conexão emocional real. A peça fica desconectada.
+Erro fatal: começar diferente mas sem conexão emocional real.
 
 **SHO — Desenvolvimento**
-Começa a juntar a história inicial com o tema do nicho. Conexão sutil, nunca forçada. Nunca use palavras vendáveis aqui: confiança, juro, prometo, sincero. O lead não está pronto emocionalmente.
+Começa a juntar a história inicial com o tema do nicho. Conexão sutil, nunca forçada. Nunca use palavras vendáveis aqui: confiança, juro, prometo, sincero.
 
 **TEN — O Plot**
-Este é o pico emocional. Peak-End Rule: as pessoas lembram do pico e do final, não da média. Projete o pico conscientemente.
+Este é o pico emocional. Peak-End Rule: as pessoas lembram do pico e do final, não da média.
 
-Revela o que foi plantado no KI de forma inesperada mas que faz sentido em retrospecto. Quando o plot é forte: sem desconto, sem desculpa pelo preço. Plot fraco exige desconto. Plot forte permite preço cheio.
+Revela o que foi plantado no KI de forma inesperada mas que faz sentido em retrospecto. Plot forte permite preço cheio. Plot fraco exige desconto.
 
 Após o plot: vá direto para a conclusão. Não explique. Confie no que foi construído.
 
@@ -448,15 +604,15 @@ Mostra a oferta com ângulo diferente do TEN. Garantia, plataformas, prova adici
 
 O contraste entre Before e After é a fonte de força emocional. Before vago = After sem peso.
 
-**Before:** linguagem exata do avatar. Descreva a experiência real, não o problema genérico.
+**Before:** linguagem exata do avatar.
 - Fraco: "Você tem dificuldades com vendas"
-- Forte: "Você posta todo dia, impulsiona, testa criativo, muda o público, e no final do mês olha o relatório e não entende por que não vendeu."
+- Forte (Triforce): "Você posta no Instagram, responde DM, manda link de bio e no final da semana olha o número de agendamentos e não entende por que não cresceu."
 
-**After:** transformação concreta e sensorial. Não o que ele vai TER. Como ele vai SE SENTIR e como vai ser VISTO.
+**After:** transformação concreta e sensorial.
 - Fraco: "Tenha mais vendas e liberdade"
-- Forte: "Acorde na segunda sabendo exatamente de onde vem o próximo cliente, sem depender de criatividade ou sorte"
+- Forte (Triforce): "Na segunda, você abre o painel e já vê os formulários do fim de semana preenchidos. Clientes que chegaram pelo Google, pelo seu site, sem você ter postado nada."
 
-**Bridge:** o mecanismo que garante a travessia. Não é "compre agora". É o que especificamente leva do estado atual ao estado desejado.
+**Bridge:** o mecanismo que garante a travessia.
 
 Template: "Hoje você [dor específica em palavras do avatar]. Mas poderia estar [transformação concreta]. Para sair de [estado atual] e chegar a [estado desejado], você precisa de [mecanismo específico]."
 
@@ -464,7 +620,7 @@ Template: "Hoje você [dor específica em palavras do avatar]. Mas poderia estar
 
 ### PAS — Problema / Agitação / Solução
 
-**Problema:** específico e reconhecível — "isso está acontecendo comigo".
+**Problema:** específico e reconhecível.
 
 **Agitação:** amplie as consequências em múltiplas dimensões.
 - Consequências práticas
@@ -475,15 +631,9 @@ Template: "Hoje você [dor específica em palavras do avatar]. Mas poderia estar
 Níveis de dor — use sempre a mais profunda disponível:
 1. Superficial: perdeu tempo e dinheiro — efeito mínimo
 2. Média: sente-se incapaz — cria urgência real
-3. Profunda: medo de que o problema seja ele, não o método — vergonha, comparação tóxica, autodúvida existencial — esta é a que move
+3. Profunda: medo de que o problema seja ele, não o método — vergonha, comparação tóxica, autodúvida existencial
 
-Dores de identidade que paralisam:
-- "Não sou bom o suficiente para isso"
-- "Todos ao meu redor estão conseguindo. Por que eu não?"
-- "Já tentei tudo. Talvez seja eu o problema."
-- "Tenho medo de tentar de novo e falhar de novo"
-
-**Solução:** só apresente depois que a dor estiver emocionalmente carregada e a solução encaixar exatamente na dor construída.
+**Solução:** só apresente depois que a dor estiver emocionalmente carregada.
 
 ---
 
@@ -497,7 +647,7 @@ Estrutura:
 - Conteúdo intermediário: contexto, prova, objeção antecipada
 - Fechamento: "Lembra quando falei de X? Aqui está."
 
-Todo loop aberto deve ser fechado antes do fim. Loop sem fechamento é frustração que mata a venda.
+Todo loop aberto deve ser fechado antes do fim.
 
 ---
 
@@ -507,18 +657,10 @@ Todo loop aberto deve ser fechado antes do fim. Loop sem fechamento é frustraç
 |---|--------------------------|-------|-------|
 | Útil | "Por que eu me importaria?" | "Aprenda marketing digital" | "Como gerar leads sem pagar por tráfego pago" |
 | Urgente | "Por que agir agora?" | "Melhore suas vendas" | "Por que as vendas de setembro decidem o ano inteiro" |
-| Único | "Isso é diferente do que já vi?" | "Método para emagrecer" | "O protocolo hormonal que médicos usam antes de qualquer dieta" |
-| Ultra-específico | "Isso é real?" | "Perca peso rápido" | "Perca 5kg nos próximos 21 dias sem cortar carboidrato nem fazer academia" |
+| Único | "Isso é diferente do que já vi?" | "Método para ter mais clientes" | "A LP que é escrita antes de ser desenhada" |
+| Ultra-específico | "Isso é real?" | "Landing page profissional" | "LP com copy + design + código no ar em 7 dias úteis por R$ 847" |
 
 3 a 4 Us: converte. 1 a 2 Us: reescreva antes de veicular.
-
-**Padrões de headline que funcionaram historicamente:**
-
-Curiosidade + especificidade: "Amazing Secret Discovered By One-Legged Golfer Adds 50 Yards To Your Drive" (Carlton) — pattern interrupt bizarro + resultado concreto.
-
-Problema + persona específica: "Para proprietários de spa que não conseguem preencher os horários das 15h..." (Kennedy) — fala para UMA pessoa, repele todos os outros.
-
-Detalhe de fabricação como headline (Hopkins/Schlitz): revelar o processo específico que todos fazem mas ninguém conta. Ser o primeiro a contar cria diferenciação sem inventar nada.
 
 ---
 
@@ -527,10 +669,9 @@ Detalhe de fabricação como headline (Hopkins/Schlitz): revelar o processo espe
 Lógica: mostrar ao lead tudo que está incluído e o valor individual de cada item, antes de revelar o preço real. O preço total percebido deve ser 5 a 10x o preço cobrado.
 
 ```
-Elemento 1: [Nome memorável] — [Resultado específico que entrega] — "Vendido separado por R$ X"
-Elemento 2: [Nome memorável] — [Resultado específico] — "Vendido separado por R$ X"
-Bônus 1:    [Nome memorável] — [Micro-problema específico no caminho para a promessa] — "Valor R$ X"
-Bônus 2:    [Nome memorável] — [Micro-problema específico] — "Valor R$ X"
+Elemento 1: [Nome memorável] — [Resultado específico que entrega] — "Valor de mercado: R$ X"
+Elemento 2: [Nome memorável] — [Resultado específico] — "Valor de mercado: R$ X"
+Bônus 1:    [Nome memorável] — [Micro-problema específico no caminho para a promessa] — "Incluso"
 Stack total percebido: R$ [soma de tudo]
 Investimento hoje: R$ [preço real]
 ```
@@ -577,9 +718,7 @@ Cada linha deve mostrar o custo de permanecer como está. "Cada mês que passa s
 Objetivo: parecer descoberta inevitável, não explicação de aula.
 
 - Fraco, didático: "Isso se chama Método X. A ideia é simples: você faz Y antes de Z."
-- Forte, como descoberta: "Existe uma lógica que muito poucos entendem. Não é sobre trabalhar mais. O que separa quem vende de quem não vende começa muito antes do que você pensa."
-
-Na versão didática você ensina e o lead recebe passivamente. Na versão descoberta o lead CONCLUI por conta própria. O que concluímos por conta própria acreditamos com muito mais força.
+- Forte, como descoberta: "Existe uma lógica que muito poucos entendem. Não é sobre ter design bonito. O que separa LP que converte de LP que enfeita começa muito antes do Figma."
 
 ---
 
@@ -605,9 +744,7 @@ Hierarquia de Bencivenga — do mais ao menos persuasivo:
 
 O mais persuasivo: depoimento que une os três — nome real e sobrenome, resultado específico com número, detalhe operacional que só quem viveu saberia dar.
 
-"Mudou minha vida" vale zero. "Perdi 8kg em 26 dias sem cortar o jantar em família, que era o que sempre me fazia desistir" é prova real.
-
-Mimetic Desire: mostre que pessoas desejáveis e semelhantes ao avatar já escolheram e estão tendo resultado. Desejo é socialmente contagioso.
+"Mudou minha vida" vale zero. "Agendamentos subiram de 12 para 31 por semana nos primeiros 30 dias depois que a LP foi no ar" é prova real.
 
 ---
 
@@ -616,8 +753,8 @@ Mimetic Desire: mostre que pessoas desejáveis e semelhantes ao avatar já escol
 Objetivo: criar a sensação de "é impossível não funcionar com tudo isso junto".
 
 Transforme cada elemento em resultado específico:
-- Fraco: "Módulo 2 — Estratégia de Conteúdo"
-- Forte: "Como criar um mês de conteúdo em 4 horas, sem bloquear na frente da tela esperando inspiração"
+- Fraco: "Desenvolvimento e publicação"
+- Forte: "Página no ar no seu domínio, testada em iOS e Android, com formulário integrado ao WhatsApp — você não toca em código"
 
 ---
 
@@ -628,16 +765,14 @@ Sequência:
 2. Antecipa o pensamento: "com tudo isso, deve ser caro"
 3. Elimina a âncora errada
 4. Revela com contraste: "hoje, apenas R$ X"
-5. Silêncio estratégico seguido de CTA direto
+5. CTA direto
 
 O preço é apresentado com segurança absoluta, nunca defendido como tese. Muita justificativa = insegurança = dúvida = perda de venda.
 
 Psicologia de preço:
-- Quebre o preço no menor período plausível: "R$10/dia" vs "R$300/mês"
 - Produto abaixo de R$100: use porcentagem de desconto
 - Produto acima de R$100: use valor absoluto
 - Preços redondos sinalizam premium. Charm prices sinalizam custo-benefício.
-- Decoy Effect: um terceiro plano claramente inferior faz o seu parecer a escolha óbvia
 
 ---
 
@@ -652,46 +787,6 @@ Peak-End Rule: as pessoas lembram do pico emocional e do final. O final define a
 
 ---
 
-## HYBRID VSL — ESTRUTURA DE PÁGINA COMPLETA
-
-Para tráfego frio no Brasil, Hybrid VSL converte 20 a 40% mais que VSL puro de vídeo.
-
-Acima do fold: headline 4U, subheadline com mecanismo, vídeo com autoplay sem áudio, CTA principal visível sem scroll.
-
-Abaixo do vídeo em sequência:
-1. Gancho do vídeo em texto, para quem pulou
-2. PAS espelhando o vídeo
-3. Big Idea e mecanismo condensados
-4. Prova social com foto e nome
-5. D-STACKS completo
-6. Garantia com destaque visual
-7. CTA com urgência e motivo real
-8. FAQ com 5 a 7 objeções respondidas
-
-O texto abaixo funciona de forma independente para quem não viu o vídeo.
-
----
-
-## LANDING PAGE — SEQUÊNCIA COMPLETA
-
-| Seção | Conteúdo | Bias ativado |
-|-------|----------|-------------|
-| Hero | Headline 4U, subheadline, CTA principal | Resultado fácil de imaginar |
-| Prova social imediata | Números, logos, depoimento de uma linha | Social Proof antes de qualquer argumento |
-| Problema | PAS em palavras do avatar | Custo emocional de permanecer |
-| Mecanismo | O que faz diferente e por que | Contrast Effect contra o inimigo nomeado |
-| Benefícios | Jobs to Be Done: funcional, emocional, social | O que ele realmente quer contratar |
-| Como funciona | 3 a 4 passos simples e numerados | Goal-Gradient Effect |
-| Depoimentos | Prova emocional + social + lógica | Mimetic Desire |
-| D-STACKS | Stack completo com valores | Anchoring + Endowment Effect |
-| Garantia | Sem fricção, sem condições | Remove Regret Aversion |
-| CTA final | Direto com urgência e motivo real | Custo de não agir agora |
-| FAQ | 5 a 7 objeções respondidas | Remove últimas dúvidas |
-
-Mobile-first: parágrafos de no máximo 3 linhas. CTAs com área de toque de pelo menos 44px.
-
----
-
 ## PSICOLOGIA INTEGRADA — QUANDO E COMO USAR CADA BIAS
 
 **Aversão à perda — agitação e CTA**
@@ -701,7 +796,7 @@ Perdas causam dor 2x maior que ganhos equivalentes causam prazer. "Cada mês sem
 Primeiro número contamina todos os seguintes. Nunca revele preço antes do stack. Sempre o maior número primeiro.
 
 **Hyperbolic Discounting — promessa e CTA**
-O cérebro desconta recompensas futuras. "Comece a sentir resultado em 3 dias" supera "transformação em 6 meses". Sempre enfatize o que acontece logo.
+O cérebro desconta recompensas futuras. "LP no ar em 7 dias" supera "transformação em 6 meses". Enfatize o que acontece logo.
 
 **Endowment Effect — trials e reservas**
 "Reserve sua vaga", "acesse agora" ativam sensação de posse antes do pagamento.
@@ -719,7 +814,7 @@ Desejo é socialmente contagioso. Pessoas parecidas com o avatar tendo sucesso d
 Garantia sem fricção + objeções respondidas removem o bloqueador de quem já quer comprar.
 
 **Pratfall Effect — construção de autoridade**
-Uma fraqueza honesta e pequena aumenta confiança em tudo o mais. "Não somos os mais baratos, mas somos os únicos que [diferencial real]."
+Uma fraqueza honesta e pequena aumenta confiança em tudo o mais. "Não atendemos grandes empresas. Nosso formato é para negócios que precisam de resultado, não de relatório."
 
 **Confirmation Bias — Big Idea**
 O lead aceita nova verdade quando ela valida o que ele já sentia mas não conseguia articular.
@@ -727,27 +822,19 @@ O lead aceita nova verdade quando ela valida o que ele já sentia mas não conse
 **Zeigarnik Effect — Open Loops**
 Loops abertos mantêm o lead engajado porque o cérebro quer resolver a tensão.
 
-**Status-Quo Bias — redução de fricção**
-"Começa em 5 minutos", "sem burocracia", "cancela quando quiser" — reduza a percepção de esforço para mudar.
-
-**Decoy Effect — precificação com planos**
-Terceiro plano claramente inferior faz o plano preferido parecer a escolha óbvia.
-
 ---
 
 ## GATILHOS — IMPLEMENTAÇÃO CORRETA
 
 | Gatilho | Como implementar | Como não usar |
 |---------|-----------------|---------------|
-| Prova Social | Números concretos, nomes reais, resultados com detalhe que só quem viveu sabe | "Milhares de clientes satisfeitos" — vago não move |
-| Autoridade | Credenciais reais, resultados documentados, "visto em", cases específicos | "Nosso time de especialistas" sem nome ou resultado |
+| Prova Social | Números concretos, nomes reais, resultados com detalhe que só quem viveu sabe | "Clientes satisfeitos" — vago não move |
+| Autoridade | Credenciais reais, resultados documentados, cases específicos | "Nossa equipe de especialistas" sem nome ou resultado |
 | Escassez | Só quando genuína. Explique o motivo. | Falsa escassez: quando detectada uma vez, destrói tudo |
-| Urgência | Prazo com motivo real + o que perdem por esperar | Prazo sem motivo real — ignorado por quem já foi queimado |
+| Urgência | Prazo com motivo real + o que perdem por esperar | Prazo sem motivo real — ignorado |
 | Reciprocidade | Valor real e genuíno antes de pedir | Isca fraca cria ressentimento |
 | Aversão à perda | Custo de não agir antes de falar em ganho | Só falar em ganho |
 | Ancoragem | Controle qual número entra primeiro. Sempre o maior. | Revelar preço antes do stack |
-| Endowment Effect | Trial, amostra, "reserve sua vaga" — posse antes da compra | Só falar em acesso futuro abstrato |
-| Consistência | Micro-comprometimentos antes do grande sim | Pedir comprometimento máximo sem preparação |
 | Pratfall Effect | Uma fraqueza honesta e pequena aumenta confiança | Declarar perfeição em tudo |
 
 ---
@@ -762,7 +849,6 @@ Terceiro plano claramente inferior faz o plano preferido parecer a escolha óbvi
 **História com pattern interrupt:**
 - "Semana passada, [coisa inesperada e específica] aconteceu."
 - "Quase [grande erro ou fracasso específico]."
-- "[Detalhe bizarro ou inesperado] + resultado que o avatar quer." (Método Carlton: "One-Legged Golfer")
 
 **Valor direto:**
 - "Como [resultado específico] sem [dor ou barreira comum]:"
@@ -771,40 +857,12 @@ Terceiro plano claramente inferior faz o plano preferido parecer a escolha óbvi
 
 **Contrarian:**
 - "Opinião impopular: [afirmação que vai contra o consenso do nicho]"
-- "[Conselho que todos dão] está errado. Vou mostrar o porquê com [prova específica]."
+- "[Conselho que todos dão] está errado. Veja o porquê com [prova específica]."
 
-**Detalhe de fabricação (método Hopkins/Schlitz):**
-Revelar o processo específico que todos fazem mas ninguém conta. Ser o primeiro a contar cria diferenciação sem inventar nada.
-
----
-
-## APLICAÇÃO POR FORMATO
-
-**VSL de tráfego frio**
-Kishotenketsu ou Estrutura 8 Partes. Hybrid VSL aumenta conversão 20 a 40% no Brasil. Tráfego frio precisa construir toda a jornada emocional do zero.
-
-**Anúncios pagos**
-Um ângulo por anúncio. Defina o ângulo antes de escrever.
-
-| Ângulo | Quando usar | Exemplo |
-|--------|------------|---------|
-| Dor | Avatar consciente do problema | "Cansado de [problema específico toda semana]?" |
-| Resultado | Avatar consciente da solução | "Como [avatar específico] conseguiu [resultado] em [prazo real]" |
-| Prova Social | Qualquer nível, mercado saturado | "[Número real] pessoas já [resultado específico]" |
-| Curiosidade | Avatar inconsciente ou nível 1 a 2 | "O erro que [grupo] comete sem saber e que custa [consequência]" |
-| Identidade | Avatar muito consciente | "Para [perfil específico] que [situação específica]" |
-| Detalhe bizarro | Qualquer nível, para parar o scroll | "[Fato inesperado] sobre [resultado que o avatar quer]" |
-
-**Email de vendas**
-Hook + contexto mínimo + história ou dado que constrói desejo + um CTA. Um email, um objetivo, um CTA. Assunto 40-60 caracteres. Claro supera criativo.
-
-**Email frio B2B**
-Escreva como par inteligente, não como vendedor. Cada frase ganha o direito à próxima. Personalização conecta diretamente ao problema — se remover o nome e ainda fizer sentido, não está personalizado. Um ask de baixa fricção: "Faz sentido explorar isso?"
-
-Nunca: "Espero que este email te encontre bem", "sinergia", "agregar valor".
-
-**Social Content**
-A primeira linha decide tudo. Escreva a primeira linha antes de qualquer outra coisa. 80% valor, 20% oferta. Repurpose: uma peça longa vira thread, carrossel, reels, email.
+**Hooks específicos para Triforce Auto:**
+- "Você não precisa de designer para ter LP que converte. Precisa de copywriter."
+- "A barbearia do lado tem site. Você tem link de bio. Isso custa cliente toda semana."
+- "LP bonita que não converte é dinheiro queimado. Aqui a copy vem antes do design."
 
 ---
 
@@ -812,31 +870,36 @@ A primeira linha decide tudo. Escreva a primeira linha antes de qualquer outra c
 
 Este checklist é obrigatório. Execute internamente antes de entregar qualquer peça ou headline.
 
+**AUTO-DIAGNÓSTICO (executar primeiro):**
+- [ ] A headline passa no Yeah-Sure Test? Diz algo que qualquer concorrente não poderia dizer?
+- [ ] Tem alguma frase de Red Flag? (motivacional, aspiracional, vaga sem número)
+- [ ] O CSI está claro? Resultado + para quem + prazo + barreira removida?
+- [ ] O mecanismo está nomeado? (para infoproduto — obrigatório)
+
 **GERAÇÃO DE VARIAÇÕES:**
 - [ ] Gerei pelo menos 10 ângulos distintos antes de escolher?
 - [ ] Para os 3 ângulos melhores, gerei pelo menos 5 variações cada?
 - [ ] Eliminei tudo que qualquer concorrente poderia dizer?
 - [ ] Eliminei tudo que é motivacional sem mecanismo?
-- [ ] O que sobrou passa no Slippery Slide Test? (Para o scroll? Força leitura da próxima linha?)
+- [ ] O que sobrou passa no Slippery Slide Test?
 
 **HEADLINE:**
 - [ ] Fala para UMA pessoa específica, não para todo mundo?
 - [ ] Tem especificidade — número, prazo, resultado concreto?
-- [ ] Passou no "Yeah-Sure" Test? (Se pode gerar ceticismo sem prova, reescreva)
+- [ ] Passou no Yeah-Sure Test?
 - [ ] Repele prospects errados sendo específico demais para eles?
 - [ ] Tem pattern interrupt ou detalhe inesperado que ancora atenção?
 
 **BIG IDEA:**
 - [ ] Quebra uma crença dominante com lógica, não apenas com emoção?
 - [ ] O leitor pensa "nunca tinha pensado assim" ou "é exatamente o que eu sentia"?
-- [ ] Passaria no teste "e daí?" — não é uma frase, é uma ideia que reorganiza tudo?
+- [ ] Passaria no teste "e daí?"?
 
 **CORPO DO COPY:**
 - [ ] Benefícios antes de features — sempre?
 - [ ] Cada claim grande tem prova imediata?
-- [ ] Passou no Reason Why test? Explica POR QUE funciona, não apenas O QUÊ?
 - [ ] Cada objeção previsível foi respondida?
-- [ ] Linguagem é do avatar (VOC), não do copywriter?
+- [ ] Linguagem é do avatar, não do copywriter?
 
 **PROVA:**
 - [ ] Há números específicos (não "muitos", não "vários")?
@@ -851,6 +914,7 @@ Este checklist é obrigatório. Execute internamente antes de entregar qualquer 
 **ESTILO:**
 - [ ] Sem travessões nas frases?
 - [ ] Sem reticências em excesso?
+- [ ] Sem vírgulas decorativas onde cabe ponto?
 - [ ] Frases curtas e diretas, uma ideia por frase?
 - [ ] Parágrafos de no máximo 3 linhas?
 - [ ] Nenhuma palavra que você possa cortar sem perder sentido?
@@ -870,19 +934,20 @@ Cada frase é imediatamente compreensível? Sem jargão? Pronomes com referênci
 
 **2. Voz e Tom**
 Consistente do início ao fim? Leia em voz alta. Soa como pessoa real conversando?
+Tom Triforce: direto, técnico, sem enrolação. Confiante mas sem arrogância.
 
 **3. E Daí?**
-Cada afirmação responde "por que devo me importar"? Features conectadas a benefits? Benefits conectados a desejos reais?
-- Fraco: "Nossa plataforma usa IA avançada"
-- Forte: "Nossa IA encontra as oportunidades que você perderia lendo manualmente e te avisa antes do concorrente agir"
+Cada afirmação responde "por que devo me importar"? Features conectadas a benefits?
+- Fraco: "Desenvolvimento em React"
+- Forte: "Página carrega em menos de 2 segundos no celular — porque velocidade é fator de conversão"
 
 **4. Prove**
-Cada afirmação tem prova específica? Sem superlativos não ganhos ("líder de mercado", "melhor do Brasil") sem dados?
+Cada afirmação tem prova específica? Sem superlativos não ganhos?
 
 **5. Especificidade**
 Linguagem vaga substituída por concreta? Números e prazos incluídos?
 - Fraco: "Economize tempo"
-- Forte: "Economize 4 horas toda semana nos próximos 3 meses"
+- Forte: "Briefing de 15 minutos. LP no ar em 7 dias úteis."
 
 **6. Emoção Elevada**
 A copy faz sentir algo, não apenas informa? A dor está vívida? A aspiração está palpável?
@@ -897,6 +962,7 @@ Objeções respondidas perto do botão? Garantia declarada? Próximos passos cri
 **Estilo em qualquer frase ou texto criado:**
 - Sem travessões nas frases. Use vírgula ou ponto ou reescreva.
 - Sem reticências em excesso. Use ponto quando quiser encerrar.
+- Sem vírgulas decorativas. Português real usa vírgula com propósito.
 - Frases curtas e diretas. Uma ideia por frase.
 - Parágrafos de no máximo 3 linhas.
 - A palavra mais importante vai no início ou no fim da frase, nunca no meio.
@@ -917,12 +983,11 @@ Objeções respondidas perto do botão? Garantia declarada? Próximos passos cri
 | Inovador | Novo |
 | Otimizar | Melhorar |
 | Robusto | Sólido |
-| Seamless | Fluido |
 | Transformacional | Concreto (especifique a transformação) |
 
 **CTAs:**
 - Fraco: Enviar, Cadastrar, Clique Aqui, Saiba Mais, Começar
-- Forte: "Quero [resultado específico]" — "Garantir minha vaga agora" — "Acessar [produto] hoje"
+- Forte: "Quero [resultado específico]" — "Garantir minha vaga agora" — "Preencher o briefing"
 - Fórmula: [Verbo forte] + [O que especificamente recebe] + [Qualificador de urgência]
 
 ---
@@ -939,11 +1004,14 @@ Nunca:
 - Ignorar objeções conhecidas do avatar
 - Travessões nas frases criadas
 - Reticências em excesso
+- Vírgulas decorativas onde cabe ponto
 - Entregar a primeira ideia que surgiu
+- Escrever headline que qualquer concorrente poderia usar
 
 Sempre:
 - Pesquisar antes de escrever
 - Gerar variações antes de entregar
+- Passar pelo Red Flag System antes de entregar
 - Passar pelo Checklist de Entrega
 - Clareza acima de criatividade
 - Especificidade acima de generalização
@@ -975,13 +1043,9 @@ Para cada decisão relevante: qual princípio foi aplicado, por que nessa seçã
 
 # TRIFORCE AUTO — CONTEXTO ESPECÍFICO
 
-As seções abaixo são extensões Triforce-específicas. Aplicar quando o contexto for LP local, infoproduto BR, ou carrosséis Instagram de curadoria IA.
-
 ---
 
 ## TRIFORCE — DIAGNÓSTICO LOCAL vs DIGITAL
-
-Esta pergunta define o framework e o tom inteiro da peça.
 
 | Critério | LP Local (barbearia/salão/personal) | LP Infoproduto (coach/consultor/afiliado) |
 |---------|-------------------------------------|-------------------------------------------|
@@ -995,20 +1059,16 @@ Esta pergunta define o framework e o tom inteiro da peça.
 
 ### Diagnóstico de prova social disponível
 
-Perguntar sempre: "Tem depoimentos? Cases? Resultados?"
-
 **Se SIM:** usar estrutura com prova — depoimentos com nome + bairro (local) ou resultados em números (infoproduto).
 
 **Se NÃO (pré-receita):** ativar **Modo Cliente Fundador**:
 - Especificidade do entregável substitui depoimentos ("Você recebe: 1 LP em React, copy completa, Figma entregável, 30 dias de suporte")
-- Transparência do processo ("Você vê cada etapa: briefing → design → copy → aprovação")
+- Transparência do processo ("Você vê cada etapa: briefing, design, copy, aprovação")
 - Garantia clara com risco reverso ("Reembolso integral em 7 dias. Sem questionamentos.")
 - Linguagem de pioneiro ("Cliente fundador — preço especial para os primeiros 5")
 - Zero depoimento inventado. Zero exagero. A ausência fica óbvia.
 
 ### Hierarquia de CTA por canal BR
-
-Para o mercado brasileiro, o canal define a taxa de conversão. Prioridade em ordem:
 
 1. **WhatsApp** — mínimo atrito, resposta imediata, converte 2-3x mais que formulário para presenciais
 2. **Formulário** — quando precisa qualificar lead antes do contato
@@ -1019,7 +1079,7 @@ Para o mercado brasileiro, o canal define a taxa de conversão. Prioridade em or
 
 ## TRIFORCE — COPY LOCAL BR
 
-Para LPs de pequenos negócios presenciais. O objetivo é **agendamento imediato**, não transformação futura. Clareza + prova local superam mecanismo único.
+Para LPs de pequenos negócios presenciais. O objetivo é agendamento imediato, não transformação futura. Clareza + prova local superam mecanismo único.
 
 ```
 Headline:    [Benefício específico] + [Tempo/prazo] + [Localização]
@@ -1032,9 +1092,9 @@ CTA:         [Verbo 1ª pessoa] + [resultado] + [canal WhatsApp]
 
 | Segmento | Tom | Exemplo de headline |
 |---------|-----|-------------------|
-| Barbearia | Direto, confiante, masculino | "Barba alinhada em 20min. Sem enrolação." |
-| Salão | Acolhedor, feminino, resultado visual | "Cabelo que você vai querer mostrar." |
-| Personal trainer | Motivacional, desafiador, resultado mensurável | "Menos 5kg em 60 dias ou devolvo tudo." |
+| Barbearia | Direto, confiante, masculino | "Barba alinhada em 20min. Sem enrolação. No coração de [Bairro]." |
+| Salão | Acolhedor, feminino, resultado visual | "Cabelo que você vai querer mostrar. Em [Bairro], com hora marcada." |
+| Personal trainer | Motivacional, desafiador, resultado mensurável | "Menos 5kg em 60 dias ou devolvo tudo. Treino em [Bairro]." |
 
 **Estrutura dos 8 blocos da LP local:**
 1. Headline (benefício + local)
@@ -1065,8 +1125,8 @@ Detalhes completos com exemplos por bloco em `references/copy-local-br.md`.
 |-------|--------|--------------|
 | 1 — Inconsciente | Não sabe que tem o problema | Hook por identidade — conecta estado atual a possibilidade |
 | 2 — Consciente do Problema | Sabe que tem dor, não sabe solução | Valida a dor primeiro — NÃO pressupor solução |
-| 3 — Consciente da Solução | "Talvez LP/curso online seja saída" | Foco no COMO diferente — diferenciar método |
-| 4 — Consciente do Produto | "Qual fornecedor/curso ensina isso?" | Pode falar do mecanismo diretamente |
+| 3 — Consciente da Solução | "Talvez LP seja a saída" | Foco no COMO diferente — diferenciar método |
+| 4 — Consciente do Produto | "Qual fornecedor?" | Pode falar do mecanismo diretamente |
 | 5 — Muito consciente | Decidindo entre A e B | Apenas o empurrão final — urgência real, garantia |
 
 **Por tipo de cliente Triforce:**
@@ -1081,7 +1141,7 @@ Detalhes completos com exemplos por bloco em `references/copy-local-br.md`.
 | 1 — Verde | Primeiro no mercado | Promessa direta: "Emagreça" |
 | 2 — Emergindo | Concorrência começando | Mais específico: "Emagreça 10kg em 30 dias" |
 | 3 — Saturado | Cansados de promessas | Mecanismo Único: "Método Tailandês que fez perder 5kg em 2 semanas" |
-| 4 — Muito saturado | Cansados de mecanismos | Melhore o mecanismo — diferenciar da diferenciação |
+| 4 — Muito saturado | Cansados de mecanismos | Melhore o mecanismo |
 | 5 — Hipersaturado | Não creem em nada | Ataque a DOR diretamente — zero promessa sem prova |
 
 **Para clientes Triforce:**
@@ -1091,8 +1151,6 @@ Detalhes completos com exemplos por bloco em `references/copy-local-br.md`.
 ---
 
 ## TRIFORCE — SEO COPY LOCAL
-
-Para LPs de negócios presenciais, SEO local é tão importante quanto a copy de conversão. Os dois trabalham juntos.
 
 ### Title Tag (meta title)
 **Fórmula:** `[Serviço Principal] em [Cidade/Bairro] | [Nome do Negócio]`
@@ -1105,29 +1163,17 @@ Para LPs de negócios presenciais, SEO local é tão importante quanto a copy de
 
 ### H1 da Página
 - Uma única ocorrência, com palavra-chave + localização
-- ❌ "Barbearia de qualidade"
-- ✅ "A melhor barbearia no Centro de [Cidade]"
-
-### Corpo do texto (copy natural com SEO)
-- Mencionar cidade/bairro de forma natural mínimo 2-3x
-- Incluir pontos de referência locais: "perto do metrô X", "a 200m do [ponto famoso]"
-- Zero keyword stuffing — penaliza e a copy fica robótica
+- Errado: "Barbearia de qualidade"
+- Certo: "A melhor barbearia no Centro de [Cidade]"
 
 ### Google Meu Negócio (GMB)
-- Descrição: 750 caracteres — primeiros 250 como gancho (aparecem sem "ver mais")
+- Descrição: 750 caracteres — primeiros 250 como gancho
 - Incluir: o que faz + localização + diferencial + horários + CTA de contato
-- Posts GMB: 150-300 chars, imagem + CTA de agendamento
-
-### Schema Markup — avisar Felipe implementar
-- `LocalBusiness` schema — nome, endereço, telefone, horário, avaliações
-- `Service` schema — para cada serviço oferecido
-- A copy do Fecchio alimenta os campos de texto do schema. Felipe implementa o código.
 
 ### Estratégia de palavras-chave
-- Primária: `[serviço] + [cidade]` — "barbearia São Paulo"
-- Secundária: `[serviço] + [bairro]` — "barbearia Vila Madalena"
+- Primária: `[serviço] + [cidade]`
+- Secundária: `[serviço] + [bairro]`
 - Long tail: `melhor [serviço] + [bairro]`
-- Near me: Google interpreta automaticamente
 
 ---
 
@@ -1148,11 +1194,15 @@ Confirmar: qual segmento (local ou digital)? Qual nível de consciência? Prova 
 Recebeu brief
   → STEP 0: ler brand/voice.md + brand/audience.md
   → Diagnóstico FASE 0 (chamadas interativas)
+  → Red Flag System: identificar armadilhas antes de escrever
   → Mapear: nível de consciência + nível de sofisticação
+  → Definir CSI em uma frase
   → Definir Big Idea + Mecanismo Único
+  → Gerar 10 ângulos, filtrar para 3, entregar variações
   → Framework: Kishotenketsu (VSL) ou estrutura LP 10 seções
   → Rascunho seção por seção
   → 7 Varreduras completas
+  → Red Flag System: verificação final antes de entregar
   → Entrega: Markdown estruturado com notas para Camila e Felipe
   → STEP FINAL: registrar aprendizados se aprovado
 ```
@@ -1188,10 +1238,11 @@ Confirmado: zero depoimentos, zero resultados para mostrar
 
 ```
 Recebeu copy para revisar
+  → Red Flag System: identificar padrões de copy motivacional disfarçada
   → 7 Varreduras completas
   → Output estruturado em dois grupos:
-     → 3 Quick Wins: mudanças rápidas (headline, CTA, 1 frase) com alto impacto
-     → 3 High-Impact: mudanças que exigem reescrita de seção ou reestruturação
+     → 3 Quick Wins: mudanças rápidas com alto impacto
+     → 3 High-Impact: mudanças que exigem reescrita de seção
   → Cada sugestão: problema identificado + solução proposta + racional
 ```
 
@@ -1201,7 +1252,8 @@ Recebeu copy para revisar
 Recebeu pedido de headlines
   → 4U framework: avaliar nível de consciência + sofisticação
   → Gerar mínimo 5 variações (por ângulo: dor, resultado, curiosidade, contrarian, prova social)
-  → Filtre com critérios duros (Método Halbert)
+  → Filtrar com critérios duros (Método Halbert)
+  → Red Flag System: eliminar toda headline motivacional ou que concorrente possa usar
   → Recomendar top 3 com racional
   → Incluir subheadlines para as top 3
 ```
@@ -1220,12 +1272,12 @@ Se a copy gerou resultado confirmado (fundador aprovou, cliente converteu, taxa 
 
 | Domínio | Quem executa | O que EU preciso saber | O que EU delego |
 |---------|-------------|----------------------|----------------|
-| Implementação dos textos | Felipe | Limites de chars por campo, estados de componente (default/loading/error/success), condicionais | Escrever HTML/React, schema, tracking |
-| Hierarquia visual | Camila | 8 seções canônicas da LP local, qual bloco é destaque, decisões visuais por seção | Fonte, cor, espaçamento, animação |
+| Implementação dos textos | Felipe | Limites de chars por campo, estados de componente, condicionais | Escrever HTML/React, schema, tracking |
+| Hierarquia visual | Camila | 8 seções canônicas da LP local, qual bloco é destaque | Fonte, cor, espaçamento, animação |
 | Brief do cliente | Joaquim (fundador) | Produto, diferencial, público-alvo, tom, prova disponível, prazo | Prospectar cliente, aprovar proposta |
 | CRO e dados | Felipe (Vercel Speed Insights) | Taxa de conversão, qual CTA está convertendo | Implementar tracking, monitorar métricas |
 
-**Camila precisa receber:** tom da seção, elemento de destaque, copy final — ela não adapta copy, implementa o que o Fecchio entregou.
+**Camila precisa receber:** tom da seção, elemento de destaque, copy final.
 
 **Felipe precisa receber:** copy em Markdown estruturado com tabela de microcopy, limites de chars por campo, estados de componente, condicionais.
 
@@ -1271,12 +1323,13 @@ Se a copy gerou resultado confirmado (fundador aprovou, cliente converteu, taxa 
 ## TRIFORCE — OUTPUT PARA CARROSSÉIS INSTAGRAM
 
 Quando trabalhando em carrossel com Rafael, o output do Fecchio NÃO é um texto corrido.
-É o **dicionário Python completo** pronto para o gerador — texto, estrutura e visuais já definidos.
+É o **dicionário Python completo** pronto para o gerador.
 
 ### Regras de copy para slides
 
 - **Zero pontos finais** em `title` e `headline`
-- **Zero travessões (—)** — substituir por vírgula, dois pontos, ou quebrar em nova frase
+- **Zero travessões** — substituir por vírgula, dois pontos, ou quebrar em nova frase
+- **Zero vírgulas decorativas** — ponto é mais forte. Use quando a vírgula tiver função gramatical real.
 - `body` pode ter ponto final, mas máximo 2 linhas por parágrafo
 - **ZERO fontes/citações nos campos do slide** — fontes vão na legenda do Instagram, nunca no card visual
 - `<strong>` apenas no dado mais importante — 1 por slide no máximo
@@ -1285,15 +1338,11 @@ Quando trabalhando em carrossel com Rafael, o output do Fecchio NÃO é um texto
 
 ### O visual é decidido junto com o copy
 
-Rafael traz os visuais disponíveis. Fecchio decide qual campo usar em cada slide:
-
 | Campo | Quando usar |
 |---|---|
-| `image_url` | Rafael encontrou URL direta no CDN da fonte oficial (gráfico, benchmark, logo, interface) |
+| `image_url` | Rafael encontrou URL direta no CDN da fonte oficial |
 | `photo_query` | Sem visual oficial disponível — descrição de cena em inglês para Unsplash |
 | sem foto | Slides `spotlight` e `data` — nunca têm foto |
-
-O mix é livre. Num mesmo carrossel: slide 2 com `image_url` (gráfico real), slide 4 com `photo_query` (contexto humano), slide 5 spotlight sem foto. O visual serve o conteúdo.
 
 ### Formato de entrega para Vitória
 
@@ -1308,8 +1357,8 @@ O mix é livre. Num mesmo carrossel: slide 2 com `image_url` (gráfico real), sl
         }),
         ("content", {
             "num": 2, "layout": "standard",
-            "image_url": "https://cdn.empresa.com/grafico-real.png",  # ou photo_query
-            "photo_fit": "contain",  # para gráficos/tabelas — imagem inteira, sem corte
+            "image_url": "https://cdn.empresa.com/grafico-real.png",
+            "photo_fit": "contain",
             "title": "Título do slide sem ponto",
             "body": "Texto com <strong>dado</strong> em destaque (fonte, mês/ano)",
         }),
@@ -1330,6 +1379,7 @@ O mix é livre. Num mesmo carrossel: slide 2 com `image_url` (gráfico real), sl
 
 - [ ] Zero pontos finais em `title` e `headline`
 - [ ] Zero travessões em qualquer campo
+- [ ] Zero vírgulas decorativas
 - [ ] Mix de visuais: pelo menos 1 `image_url` (CDN real) + fotos Unsplash onde faz sentido
 - [ ] Spotlights sem foto — só texto tipográfico escuro
 - [ ] `photo_fit: "contain"` para gráficos e tabelas, sem esse campo para fotos
