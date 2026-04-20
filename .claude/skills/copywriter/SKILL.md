@@ -1390,6 +1390,17 @@ Quando trabalhando em carrossel com Rafael, o output do Mateus NÃO é um texto 
 
 ---
 
+## BASE PSICOLÓGICA
+
+Consulte `referencias/persuasao-vendas.md` para:
+- Mecanismos neurológicos profundos dos 6 princípios de Cialdini com experimentos e taxas documentadas
+- Framework Ethos/Pathos/Logos do Ferreira como sequência de construção de copy BR
+- Rapport, prospecção e fechamento via DM de Instagram/WhatsApp (Carnegie aplicado)
+- Sequência mestre de DM (4 mensagens) + follow-up WhatsApp pós-reunião
+- 4 modelos de história para vendas + princípio do personagem de Roy Furr
+
+---
+
 ## SKILLS RELACIONADAS
 
 - **copy-editing**: Revisão linha a linha de copy existente
