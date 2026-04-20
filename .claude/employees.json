@@ -53,6 +53,7 @@
       "reports_to": "fundador",
       "description": "Revisa todo código do Felipe antes de ir para produção. Segurança, qualidade TypeScript, performance, acessibilidade e CI/CD. Não reescreve — questiona e exige melhor.",
       "specialty": "code-review-security-quality",
+      "teams": ["lp-produto"],
       "skills": ["code-reviewer", "vercel-react-best-practices", "web-design-guidelines", "webapp-testing", "web-performance-optimization", "nextjs-react-typescript", "nextjs-typescript-supabase", "github-actions-docs", "cloudflare-workers", "schema-markup"],
       "status": "hired",
       "hired_at": "2026-04-13",
