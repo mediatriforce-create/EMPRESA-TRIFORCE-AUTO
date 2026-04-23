@@ -147,5 +147,20 @@
       "hired_at": "2026-04-18",
       "hired_by": "Gabriela"
     }
+    ,{
+      "id": "estrategista-comercial",
+      "name": "Clara",
+      "role": "Estrategista Comercial Senior",
+      "seniority": "senior",
+      "tier": "standard",
+      "reports_to": "fundador",
+      "description": "Define ICP por segmento, cria scripts de DM/WhatsApp por perfil de lead, analisa KPIs de prospecção do Caio e orienta ajustes semanais. Ênfase inviolável: fechar o primeiro cliente.",
+      "specialty": "commercial-strategy-b2b-local-outbound",
+      "teams": ["vendas"],
+      "skills": ["estrategista-comercial", "customer-research", "cold-email"],
+      "status": "hired",
+      "hired_at": "2026-04-22",
+      "hired_by": "Gabriela"
+    }
   ]
 }
