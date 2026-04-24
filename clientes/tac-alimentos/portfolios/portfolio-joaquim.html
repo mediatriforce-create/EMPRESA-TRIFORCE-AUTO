@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio — Joaquim Salles | Triforce Auto</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --accent: #FF6600;
+  --black: #050505;
+  --dark: #0d0d0d;
+  --dark2: #141414;
+  --light: #F5F0E8;
+  --border: 3px solid #050505;
+  --shadow: 4px 4px 0 #050505;
+  --font: 'Montserrat', sans-serif;
+}
+
+body { font-family: var(--font); background: var(--light); color: var(--black); line-height: 1.6; }
+
+/* HERO */
+.hero {
+  background: var(--dark);
+  color: var(--light);
+  padding: 80px 40px;
+  position: relative;
+  overflow: hidden;
+  border-bottom: 4px solid var(--accent);
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 80% 30%, rgba(255,102,0,0.13), transparent 45%),
+    radial-gradient(circle at 20% 80%, rgba(255,102,0,0.08), transparent 40%);
+  pointer-events: none;
+}
+.grid-overlay {
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(rgba(255,102,0,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(255,102,0,0.04) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events: none;
+}
+.hero-inner { position: relative; max-width: 900px; margin: 0 auto; display: grid; grid-template-columns: 1fr auto; gap: 40px; align-items: start; }
+.hero-content {}
+.hero-label {
+  display: inline-block;
+  background: var(--accent);
+  color: var(--black);
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  padding: 6px 14px;
+  border: var(--border);
+  box-shadow: var(--shadow);
+  margin-bottom: 28px;
+}
+.hero h1 {
+  font-size: clamp(2.8rem, 6vw, 5rem);
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: -2px;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.hero h1 span { color: var(--accent); }
+.hero-role {
+  font-size: 1rem;
+  font-weight: 600;
+  color: rgba(245,240,232,0.55);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.hero-age {
+  display: inline-block;
+  background: rgba(255,102,0,0.15);
+  border: 1px solid rgba(255,102,0,0.3);
+  color: var(--accent);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 4px 12px;
+  margin-bottom: 28px;
+}
+.hero-bio {
+  font-size: 1.05rem;
+  color: rgba(245,240,232,0.82);
+  max-width: 600px;
+  line-height: 1.75;
+  margin-bottom: 32px;
+}
+.hero-tese {
+  background: rgba(255,102,0,0.1);
+  border-left: 3px solid var(--accent);
+  padding: 16px 20px;
+  margin-bottom: 32px;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--light);
+  font-style: italic;
+  line-height: 1.6;
+  max-width: 600px;
+}
+.hero-tags { display: flex; flex-wrap: wrap; gap: 10px; }
+.tag {
+  background: rgba(255,102,0,0.12);
+  border: 1px solid rgba(255,102,0,0.3);
+  color: var(--accent);
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 6px 14px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+/* LAYOUT */
+.container { max-width: 960px; margin: 0 auto; padding: 0 40px; }
+.section { padding: 72px 40px; }
+.section.dark { background: var(--dark2); color: var(--light); }
+.section.light { background: var(--light); }
+.section.white { background: #fff; }
+
+.section-title {
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 12px;
+}
+.section-heading {
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: -0.5px;
+  color: inherit;
+  margin-bottom: 40px;
+  padding-bottom: 16px;
+  border-bottom: var(--border);
+}
+.section.dark .section-heading { border-color: rgba(245,240,232,0.15); }
+
+/* FILOSOFIA */
+.filosofia-box {
+  background: var(--dark);
+  border: var(--border);
+  box-shadow: 6px 6px 0 var(--accent);
+  padding: 48px;
+  text-align: center;
+  margin-bottom: 48px;
+}
+.filosofia-box blockquote {
+  font-size: clamp(1.2rem, 2.5vw, 1.7rem);
+  font-weight: 800;
+  color: var(--light);
+  line-height: 1.4;
+  font-style: italic;
+  margin-bottom: 20px;
+}
+.filosofia-box blockquote span { color: var(--accent); }
+.filosofia-autor {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(245,240,232,0.4);
+}
+
+/* PROJETOS */
+.projects-grid { display: grid; gap: 28px; }
+
+.project-card {
+  background: #fff;
+  border: var(--border);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+.project-header {
+  background: var(--black);
+  padding: 24px 32px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: start;
+  gap: 20px;
+}
+.project-badge {
+  background: var(--accent);
+  color: var(--black);
+  font-size: 0.62rem;
+  font-weight: 900;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  display: inline-block;
+  margin-bottom: 8px;
+}
+.project-name {
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: var(--light);
+  text-transform: uppercase;
+  letter-spacing: -0.5px;
+  line-height: 1;
+}
+.project-type {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(245,240,232,0.35);
+  text-align: right;
+  margin-top: 4px;
+}
+.project-status {
+  background: rgba(255,102,0,0.2);
+  border: 1px solid rgba(255,102,0,0.4);
+  color: var(--accent);
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 5px 12px;
+  white-space: nowrap;
+  align-self: start;
+}
+.project-body { padding: 32px; }
+.project-client {
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 12px;
+}
+.project-desc {
+  font-size: 1rem;
+  color: #333;
+  line-height: 1.75;
+  margin-bottom: 24px;
+}
+.project-impact {
+  background: #fff9f5;
+  border-left: 4px solid var(--accent);
+  padding: 16px 20px;
+  margin-bottom: 24px;
+}
+.project-impact-label {
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 6px;
+}
+.project-impact-text {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--black);
+  line-height: 1.5;
+}
+.feature-list { list-style: none; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 8px; }
+.feature-list li {
+  font-size: 0.85rem;
+  color: #444;
+  padding: 8px 12px;
+  background: var(--light);
+  border-left: 3px solid var(--accent);
+  font-weight: 600;
+}
+
+/* STACK */
+.stack-section { padding: 48px 40px; background: var(--dark); }
+.stack-categories { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 24px; margin-top: 32px; }
+.stack-cat {
+  border: 1px solid rgba(255,102,0,0.2);
+  padding: 24px 20px;
+}
+.stack-cat-name {
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 16px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(255,102,0,0.2);
+}
+.stack-items { display: flex; flex-wrap: wrap; gap: 8px; }
+.stack-item {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  color: var(--light);
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 5px 12px;
+  letter-spacing: 0.5px;
+}
+
+/* COUNTER */
+.counter-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--black);
+  border: var(--border);
+  box-shadow: var(--shadow);
+  margin: 40px 0;
+}
+.counter-box {
+  background: #fff;
+  padding: 32px 20px;
+  text-align: center;
+}
+.counter-num {
+  font-size: 2.8rem;
+  font-weight: 900;
+  color: var(--accent);
+  line-height: 1;
+  display: block;
+}
+.counter-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #888;
+  margin-top: 8px;
+  display: block;
+}
+
+/* SKILLS */
+.skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
+.skill-item {
+  border: var(--border);
+  box-shadow: var(--shadow);
+  padding: 24px 20px;
+  background: #fff;
+}
+.skill-icon { font-size: 1.8rem; margin-bottom: 12px; display: block; }
+.skill-name {
+  font-size: 0.9rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: -0.2px;
+  color: var(--black);
+  margin-bottom: 6px;
+}
+.skill-desc { font-size: 0.8rem; color: #666; line-height: 1.5; }
+
+/* INFLUENCIA */
+.influencia-card {
+  background: var(--dark);
+  border: var(--border);
+  box-shadow: var(--shadow);
+  padding: 40px;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 32px;
+  align-items: start;
+}
+.influencia-icon {
+  width: 72px;
+  height: 72px;
+  background: var(--accent);
+  border: var(--border);
+  box-shadow: var(--shadow);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  flex-shrink: 0;
+}
+.influencia-nome {
+  font-size: 1.3rem;
+  font-weight: 900;
+  color: var(--light);
+  text-transform: uppercase;
+  letter-spacing: -0.3px;
+  margin-bottom: 6px;
+}
+.influencia-titulo {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 16px;
+}
+.influencia-desc {
+  font-size: 0.92rem;
+  color: rgba(245,240,232,0.75);
+  line-height: 1.7;
+}
+
+/* FOOTER */
+.footer {
+  background: var(--dark);
+  border-top: 4px solid var(--accent);
+  padding: 40px;
+  text-align: center;
+  color: rgba(245,240,232,0.5);
+  font-size: 0.8rem;
+  letter-spacing: 1px;
+}
+.footer strong { color: var(--accent); font-size: 1rem; letter-spacing: 3px; text-transform: uppercase; display: block; margin-bottom: 8px; }
+
+@media (max-width: 768px) {
+  .hero-inner { grid-template-columns: 1fr; }
+  .counter-row { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 640px) {
+  .hero, .section { padding: 48px 20px; }
+  .container { padding: 0 20px; }
+  .stack-section { padding: 48px 20px; }
+  .influencia-card { grid-template-columns: 1fr; }
+  .project-header { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="grid-overlay"></div>
+  <div class="hero-inner">
+    <div class="hero-content">
+      <div class="hero-label">Triforce Auto — Portfolio</div>
+      <h1>Joaquim<br><span>Salles</span></h1>
+      <div class="hero-role">System Architect & AI Developer</div>
+      <div class="hero-age">16 anos</div>
+      <div class="hero-tese">
+        "Voce perde horas em tarefas que uma maquina poderia fazer. Eu construo o sistema que devolve esse tempo."
+      </div>
+      <p class="hero-bio">
+        Arquiteto de sistemas End-to-End com IA integrada. Separa inteligencia humana (decisao) de inteligencia artificial (execucao) e constroi ecossistemas que automatizam o maximo possivel. Experiencia real em producao com clientes, ONGs e operacoes criticas.
+      </p>
+      <div class="hero-tags">
+        <span class="tag">System Architecture</span>
+        <span class="tag">AI Integration</span>
+        <span class="tag">Automacao</span>
+        <span class="tag">Landing Pages</span>
+        <span class="tag">Sites de Conversao</span>
+        <span class="tag">Supabase</span>
+        <span class="tag">TypeScript</span>
+        <span class="tag">Vibe Coding</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FILOSOFIA -->
+<section class="section white">
+  <div class="container">
+    <div class="section-title">Tese Operacional</div>
+    <h2 class="section-heading">A Filosofia por Tras do Codigo</h2>
+    <div class="filosofia-box">
+      <blockquote>"Todo processo que ainda <span>depende de voce</span> e tempo que ainda nao te pertence."</blockquote>
+      <div class="filosofia-autor">Joaquim Salles — Principio Central de Arquitetura</div>
+    </div>
+    <p style="font-size:1rem; color:#444; line-height:1.8; max-width:680px;">
+      A abordagem de Joaquim parte de um diagnostico simples: a maioria das empresas desperdiça horas em tarefas repetitivas que poderiam ser executadas por sistemas inteligentes. O papel do arquiteto nao e automatizar tudo — e identificar onde a maquina executa melhor que o humano e construir o cockpit que da ao gestor visibilidade e controle real sem precisar estar no operacional.
+    </p>
+    <div class="counter-row">
+      <div class="counter-box">
+        <span class="counter-num">15+</span>
+        <span class="counter-label">Ferramentas Dominadas</span>
+      </div>
+      <div class="counter-box">
+        <span class="counter-num">3</span>
+        <span class="counter-label">Sistemas em Producao</span>
+      </div>
+      <div class="counter-box">
+        <span class="counter-num">2</span>
+        <span class="counter-label">Anos em ONG</span>
+      </div>
+      <div class="counter-box">
+        <span class="counter-num">16</span>
+        <span class="counter-label">Anos de Idade</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJETOS -->
+<section class="section light">
+  <div class="container">
+    <div class="section-title">Projetos em Producao</div>
+    <h2 class="section-heading">Sistemas Construidos e Testados</h2>
+    <div class="projects-grid">
+
+      <!-- VAV CENTRAL -->
+      <div class="project-card">
+        <div class="project-header">
+          <div>
+            <div class="project-badge">Sistema Nucleo</div>
+            <div class="project-name">VAV Central</div>
+          </div>
+          <div>
+            <div class="project-status">Em Producao</div>
+            <div class="project-type">Sistema Integrado</div>
+          </div>
+        </div>
+        <div class="project-body">
+          <div class="project-client">ONG Viva a Vida</div>
+          <div class="project-desc">
+            Sistema central construido do zero para unificar administracao, comunicacao e gestao pedagogica da ONG Viva a Vida. Antes do VAV Central, a operacao dependia de papel, planilhas soltas e comunicacao fragmentada. O sistema integrou tudo em um cockpit unico — do controle de presenca ao acompanhamento pedagogico dos alunos.
+          </div>
+          <div class="project-impact">
+            <div class="project-impact-label">Impacto Real</div>
+            <div class="project-impact-text">Eliminou dependencia de papel e planilhas soltas. Administracao, comunicacao e gestao pedagogica unificadas em um unico sistema.</div>
+          </div>
+          <ul class="feature-list">
+            <li>Gestao de administracao</li>
+            <li>Sistema de comunicacao interna</li>
+            <li>Controle pedagogico</li>
+            <li>Dashboard gerencial</li>
+            <li>Eliminacao de papel</li>
+            <li>Operacao 100% digital</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- TIME TRACK -->
+      <div class="project-card">
+        <div class="project-header">
+          <div>
+            <div class="project-badge">Gestao de Equipe</div>
+            <div class="project-name">Time Track</div>
+          </div>
+          <div>
+            <div class="project-status">Em Producao</div>
+            <div class="project-type">Sistema de Gestao</div>
+          </div>
+        </div>
+        <div class="project-body">
+          <div class="project-client">Operacao Interna</div>
+          <div class="project-desc">
+            Sistema completo de gestao de equipe com foco em visibilidade operacional. O gestor ve em tempo real quem esta presente, quem atrasou, quais demandas estao em andamento e quais foram entregues — tudo em um dashboard centralizado. Substituiu controles manuais e eliminando o "acho que ta sendo feito" do vocabulario da equipe.
+          </div>
+          <div class="project-impact">
+            <div class="project-impact-label">Impacto Real</div>
+            <div class="project-impact-text">Visibilidade completa sobre presenca, atrasos e entrega de tarefas. Fim do controle manual de ponto e demandas.</div>
+          </div>
+          <ul class="feature-list">
+            <li>Sistema de ponto digital</li>
+            <li>Rastreamento de demandas</li>
+            <li>Dashboards gerenciais</li>
+            <li>Controle de atrasos</li>
+            <li>Historico de entregas</li>
+            <li>Visibilidade em tempo real</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- CGR1-PLANNER -->
+      <div class="project-card">
+        <div class="project-header">
+          <div>
+            <div class="project-badge">Planejamento</div>
+            <div class="project-name">CGR1-Planner</div>
+          </div>
+          <div>
+            <div class="project-status">Em Producao</div>
+            <div class="project-type">Produtividade</div>
+          </div>
+        </div>
+        <div class="project-body">
+          <div class="project-client">Uso Interno</div>
+          <div class="project-desc">
+            Sistema de planejamento semanal com gamificacao integrada. Transforma o processo de planejamento — normalmente ignorado ou abandonado em semanas — em um habito consistente atraves de XP, recompensas e sincronizacao com Google Calendar. O que antes era uma lista perdida no papel virou um cockpit de habitos com historico e progresso visivel.
+          </div>
+          <div class="project-impact">
+            <div class="project-impact-label">Proposta de Valor</div>
+            <div class="project-impact-text">Transformar planejamento em habito consistente via gamificacao — XP, recompensas e sincronizacao com Google Calendar.</div>
+          </div>
+          <ul class="feature-list">
+            <li>Planejamento semanal digital</li>
+            <li>Sistema de XP e recompensas</li>
+            <li>Gamificacao de habitos</li>
+            <li>Sincronizacao Google Calendar</li>
+            <li>Historico de progresso</li>
+            <li>Interface motivacional</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- STACK -->
+<div class="stack-section">
+  <div class="container">
+    <div class="section-title" style="color:var(--accent)">Stack Tecnologico</div>
+    <h2 class="section-heading" style="color:var(--light); border-color:rgba(245,240,232,0.15)">15 Ferramentas. Um Ecossistema. Zero Improviso.</h2>
+    <div class="stack-categories">
+      <div class="stack-cat">
+        <div class="stack-cat-name">Frontend</div>
+        <div class="stack-items">
+          <span class="stack-item">TypeScript</span>
+          <span class="stack-item">HTML5</span>
+          <span class="stack-item">CSS3</span>
+          <span class="stack-item">Tailwind</span>
+          <span class="stack-item">Next.js</span>
+        </div>
+      </div>
+      <div class="stack-cat">
+        <div class="stack-cat-name">Backend & Infra</div>
+        <div class="stack-items">
+          <span class="stack-item">Supabase</span>
+          <span class="stack-item">Firebase</span>
+          <span class="stack-item">Google Cloud</span>
+          <span class="stack-item">Vercel</span>
+          <span class="stack-item">Cloudflare</span>
+        </div>
+      </div>
+      <div class="stack-cat">
+        <div class="stack-cat-name">IA & Modelos</div>
+        <div class="stack-items">
+          <span class="stack-item">Claude (Anthropic)</span>
+          <span class="stack-item">OpenAI GPT</span>
+          <span class="stack-item">Gemini</span>
+        </div>
+      </div>
+      <div class="stack-cat">
+        <div class="stack-cat-name">Ferramentas</div>
+        <div class="stack-items">
+          <span class="stack-item">VS Code</span>
+          <span class="stack-item">GitHub</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SKILLS -->
+<section class="section white">
+  <div class="container">
+    <div class="section-title">Habilidades</div>
+    <h2 class="section-heading">O Que Joaquim Entrega</h2>
+    <div class="skills-grid">
+      <div class="skill-item">
+        <span class="skill-icon">🏗️</span>
+        <div class="skill-name">Arquitetura de Sistemas</div>
+        <div class="skill-desc">Desenha sistemas End-to-End do zero: banco de dados, autenticacao, frontend, integrações e automacoes em um ecossistema coeso.</div>
+      </div>
+      <div class="skill-item">
+        <span class="skill-icon">🤖</span>
+        <div class="skill-name">Integracao de IA</div>
+        <div class="skill-desc">Conecta Claude, GPT e Gemini em sistemas reais — nao como demo, mas como componente operacional que executa tarefas de forma autonoma.</div>
+      </div>
+      <div class="skill-item">
+        <span class="skill-icon">⚡</span>
+        <div class="skill-name">Automacao de Processos</div>
+        <div class="skill-desc">Identifica gargalos operacionais e constroii automacoes que eliminam trabalho manual sem criar dependencia de TI.</div>
+      </div>
+      <div class="skill-item">
+        <span class="skill-icon">🎯</span>
+        <div class="skill-name">Landing Pages de Conversao</div>
+        <div class="skill-desc">Sites estaticos de alta performance focados em conversao — sem frameworks pesados, carregamento rapido, CTA claro.</div>
+      </div>
+      <div class="skill-item">
+        <span class="skill-icon">📊</span>
+        <div class="skill-name">Dashboards Gerenciais</div>
+        <div class="skill-desc">Paineis de controle em tempo real que dao ao gestor visibilidade operacional sem depender de relatorios manuais.</div>
+      </div>
+      <div class="skill-item">
+        <span class="skill-icon">🔗</span>
+        <div class="skill-name">Plataformas de Automacao</div>
+        <div class="skill-desc">Dominio de plataformas no-code e low-code para conectar sistemas, disparar fluxos e eliminar tarefas repetitivas.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INFLUENCIA -->
+<section class="section light">
+  <div class="container">
+    <div class="section-title">Formacao & Referencia</div>
+    <h2 class="section-heading">Guiado pela Maior Referencia de IA do Brasil</h2>
+    <div class="influencia-card">
+      <div class="influencia-icon">★</div>
+      <div>
+        <div class="influencia-nome">Thales Laray</div>
+        <div class="influencia-titulo">Maior Referencia em IA Aplicada do Brasil</div>
+        <div class="influencia-desc">
+          A formacao tecnica e filosofica de Joaquim e diretamente influenciada por Thales Laray — referencia numero um em aplicacao pratica de IA no Brasil. Essa influencia se reflete na abordagem: nao e sobre usar ferramentas de IA, e sobre integra-las em sistemas que geram resultado operacional real. O conhecimento nao e teorico — e aplicado, testado e validado em projetos reais com clientes e ONGs.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <strong>Triforce Auto</strong>
+  Portfolio de Equipe — Joaquim Salles · 2026
+</footer>
+
+</body>
+</html>
