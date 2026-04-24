@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfólio — Matteo | Triforce Auto</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap');
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --laranja: #FF6600;
+  --preto: #050505;
+  --creme: #F5F0E8;
+  --cinza: #666;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  background: var(--preto);
+  color: var(--creme);
+  line-height: 1.6;
+}
+
+/* COVER — full bleed com foto */
+.cover {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  position: relative;
+  overflow: hidden;
+  border-bottom: 4px solid var(--laranja);
+}
+
+.cover-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 80px 60px;
+  position: relative;
+  z-index: 2;
+}
+
+.cover-tag {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--laranja);
+  margin-bottom: 32px;
+}
+
+.cover h1 {
+  font-size: clamp(3rem, 6vw, 6rem);
+  font-weight: 900;
+  line-height: 0.95;
+  letter-spacing: -3px;
+  text-transform: uppercase;
+  margin-bottom: 24px;
+}
+
+.cover h1 span { color: var(--laranja); }
+
+.cover-role {
+  font-size: clamp(0.9rem, 1.5vw, 1.1rem);
+  font-weight: 600;
+  color: rgba(245,240,232,0.7);
+  max-width: 360px;
+  margin-bottom: 48px;
+  line-height: 1.6;
+}
+
+.cover-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.pill {
+  border: 1px solid rgba(255,102,0,0.4);
+  color: var(--laranja);
+  padding: 7px 18px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+/* Foto hero lado direito */
+.cover-visual {
+  position: relative;
+  overflow: hidden;
+}
+
+.cover-visual img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.75) contrast(1.1);
+}
+
+.cover-visual::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right, var(--preto) 0%, transparent 30%);
+}
+
+.cover-empresa {
+  position: absolute;
+  bottom: 40px;
+  left: 60px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  opacity: 0.3;
+  z-index: 3;
+}
+
+/* SECTIONS */
+section {
+  padding: 80px 60px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.section-label {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--laranja);
+  margin-bottom: 16px;
+}
+
+h2 {
+  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+  font-weight: 900;
+  line-height: 1.1;
+  letter-spacing: -1px;
+  text-transform: uppercase;
+  margin-bottom: 40px;
+  color: var(--creme);
+}
+
+h2 span { color: var(--laranja); }
+
+/* SOBRE */
+.sobre-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 60px;
+  align-items: start;
+}
+
+.sobre-texto p {
+  font-size: 1.05rem;
+  color: rgba(245,240,232,0.8);
+  line-height: 1.8;
+  margin-bottom: 20px;
+}
+
+.sobre-ferramentas {
+  background: #0a0a0a;
+  border: 1px solid #1a1a1a;
+  padding: 32px;
+}
+
+.ferr-label {
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--laranja);
+  margin-bottom: 16px;
+}
+
+.ferr-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.ferr-item {
+  background: #111;
+  padding: 14px 18px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.ferr-dot {
+  width: 6px;
+  height: 6px;
+  background: var(--laranja);
+  flex-shrink: 0;
+}
+
+.ferr-item span {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: rgba(245,240,232,0.8);
+}
+
+/* GALERIA */
+.galeria-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: auto;
+  gap: 4px;
+}
+
+.foto-card {
+  position: relative;
+  overflow: hidden;
+  background: #0a0a0a;
+  aspect-ratio: 4/3;
+}
+
+.foto-card.tall {
+  grid-row: span 2;
+  aspect-ratio: auto;
+}
+
+.foto-card.wide {
+  grid-column: span 2;
+}
+
+.foto-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: brightness(0.85) contrast(1.05);
+  transition: transform 0.4s ease, filter 0.3s ease;
+}
+
+.foto-card:hover img {
+  transform: scale(1.03);
+  filter: brightness(0.95) contrast(1.1);
+}
+
+.foto-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(transparent, rgba(5,5,5,0.85));
+  padding: 20px 18px 16px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.foto-card:hover .foto-overlay { opacity: 1; }
+
+.foto-cat {
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--laranja);
+  margin-bottom: 4px;
+}
+
+.foto-desc {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--creme);
+}
+
+/* CATEGORIAS */
+.cat-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+}
+
+.cat-card {
+  background: #0a0a0a;
+  border: 1px solid #1a1a1a;
+  padding: 32px 28px;
+  transition: border-color 0.2s;
+}
+
+.cat-card:hover { border-color: var(--laranja); }
+
+.cat-num {
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: #1a1a1a;
+  line-height: 1;
+  margin-bottom: 16px;
+}
+
+.cat-card h3 {
+  font-size: 0.88rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--laranja);
+  margin-bottom: 10px;
+}
+
+.cat-card p {
+  font-size: 0.8rem;
+  color: var(--cinza);
+  line-height: 1.6;
+}
+
+/* ASSINATURA VISUAL */
+.assin-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+}
+
+.assin-lado {
+  background: #0a0a0a;
+  border: 1px solid #1a1a1a;
+  padding: 36px;
+}
+
+.assin-label {
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--laranja);
+  margin-bottom: 20px;
+}
+
+.assin-item {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 18px;
+  align-items: flex-start;
+}
+
+.assin-item:last-child { margin-bottom: 0; }
+
+.assin-icon {
+  font-size: 1.2rem;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.assin-item h4 {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--creme);
+  margin-bottom: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.assin-item p {
+  font-size: 0.78rem;
+  color: var(--cinza);
+  line-height: 1.5;
+}
+
+/* DIVIDER */
+.divider {
+  height: 1px;
+  background: #1a1a1a;
+  margin: 0 60px;
+}
+
+/* QUOTE */
+.quote-block {
+  background: var(--laranja);
+  padding: 60px;
+}
+
+.quote-block blockquote {
+  font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+  font-weight: 800;
+  color: var(--preto);
+  line-height: 1.35;
+  text-transform: uppercase;
+  letter-spacing: -0.5px;
+  max-width: 750px;
+}
+
+.quote-block cite {
+  display: block;
+  margin-top: 20px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(5,5,5,0.5);
+  font-style: normal;
+}
+
+/* FOOTER */
+footer {
+  background: #0a0a0a;
+  border-top: 1px solid #1a1a1a;
+  padding: 40px 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-logo {
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--laranja);
+}
+
+.footer-copy {
+  font-size: 0.65rem;
+  color: var(--cinza);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+@media (max-width: 900px) {
+  .cover { grid-template-columns: 1fr; }
+  .cover-visual { height: 50vw; min-height: 280px; }
+  .cover-visual::after { background: linear-gradient(to bottom, transparent 60%, var(--preto)); }
+  section { padding: 48px 24px; }
+  .sobre-grid { grid-template-columns: 1fr; }
+  .galeria-grid { grid-template-columns: 1fr 1fr; }
+  .foto-card.tall { grid-row: span 1; aspect-ratio: 4/3; }
+  .foto-card.wide { grid-column: span 1; }
+  .cat-grid { grid-template-columns: 1fr; }
+  .assin-grid { grid-template-columns: 1fr; }
+  footer { flex-direction: column; gap: 12px; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover">
+  <div class="cover-content">
+    <div class="cover-tag">Triforce Auto — Portfólio</div>
+    <h1>Matteo<br><span>Vieira</span></h1>
+    <div class="cover-role">Fotógrafo, Editor Visual e Designer<br>Visão cinemática para criar qualquer coisa</div>
+    <div class="cover-pills">
+      <span class="pill">Fotografia</span>
+      <span class="pill">Edição de Vídeo</span>
+      <span class="pill">Design Visual</span>
+      <span class="pill">Visão Artística</span>
+    </div>
+  </div>
+  <div class="cover-visual">
+    <img src="fotos-matteo/20251004_164202.jpg" alt="Fotografia Matteo — Paisagem dramática">
+  </div>
+  <div class="cover-empresa">Triforce Auto · 2026</div>
+</div>
+
+<!-- SOBRE -->
+<section>
+  <div class="section-label">Quem é</div>
+  <h2>Olhar que<br><span>cria matéria</span></h2>
+  <div class="sobre-grid">
+    <div class="sobre-texto">
+      <p>Matteo Vieira é o criativo com visão fotográfica e artística ampla que a equipe precisa para produzir qualquer ativo visual — do produto ao ambiental, do estático ao movimento.</p>
+      <p>Seu olhar vai além do registro: encontra o ângulo que não é óbvio, a luz que define o tom, o momento que transforma o ordinário em imagem que para quem está rolando o feed. Essa sensibilidade é treinada — com câmera nas mãos desde cedo, portfólio que vai de macro cultural a paisagem dramática, de street noturno a natureza cinemática.</p>
+      <p>No lado técnico: alto domínio de ferramentas de design e edição de vídeo. Snapseed, pós-processamento avançado, edição não linear. Não entrega arquivo bruto — entrega narrativa visual com tratamento de cor e composição deliberados.</p>
+    </div>
+    <div class="sobre-ferramentas">
+      <div class="ferr-label">Ferramentas e capacidades</div>
+      <div class="ferr-list">
+        <div class="ferr-item">
+          <div class="ferr-dot"></div>
+          <span>Fotografia com câmera digital e smartphone</span>
+        </div>
+        <div class="ferr-item">
+          <div class="ferr-dot"></div>
+          <span>Pós-processamento avançado (Snapseed + desktop)</span>
+        </div>
+        <div class="ferr-item">
+          <div class="ferr-dot"></div>
+          <span>Edição de vídeo — corte, cor, motion</span>
+        </div>
+        <div class="ferr-item">
+          <div class="ferr-dot"></div>
+          <span>Design gráfico — layout, tipografia, composição</span>
+        </div>
+        <div class="ferr-item">
+          <div class="ferr-dot"></div>
+          <span>Tratamento de cor cinemático</span>
+        </div>
+        <div class="ferr-item">
+          <div class="ferr-dot"></div>
+          <span>Direção de arte para conteúdo de redes sociais</span>
+        </div>
+        <div class="ferr-item">
+          <div class="ferr-dot"></div>
+          <span>Fotografia de produto e ambiente</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- GALERIA -->
+<section style="max-width: 100%; padding: 80px 0;">
+  <div style="padding: 0 60px; max-width: 1200px; margin: 0 auto;">
+    <div class="section-label">Portfólio fotográfico</div>
+    <h2 style="padding: 0;">Trabalhos<br><span>realizados</span></h2>
+  </div>
+  <div style="padding: 0 60px; max-width: 1200px; margin: 40px auto 0;">
+    <div class="galeria-grid">
+
+      <!-- Linha 1 -->
+      <div class="foto-card tall">
+        <img src="fotos-matteo/DSCN6402.jpg" alt="Fitas do Senhor do Bonfim — Salvador">
+        <div class="foto-overlay">
+          <div class="foto-cat">Cultural · Macro</div>
+          <div class="foto-desc">Fitas do Bonfim — Salvador, BA</div>
+        </div>
+      </div>
+
+      <div class="foto-card">
+        <img src="fotos-matteo/DSCN6384.jpg" alt="Baía de Todos os Santos">
+        <div class="foto-overlay">
+          <div class="foto-cat">Paisagem Marítima</div>
+          <div class="foto-desc">Baía de Todos os Santos ao entardecer</div>
+        </div>
+      </div>
+
+      <div class="foto-card">
+        <img src="fotos-matteo/20250303_100233.jpg" alt="Baía — vista urbana">
+        <div class="foto-overlay">
+          <div class="foto-cat">Urbano · Marítimo</div>
+          <div class="foto-desc">Skyline de Salvador pela baía</div>
+        </div>
+      </div>
+
+      <!-- Linha 2 (tall continua) -->
+      <div class="foto-card">
+        <img src="fotos-matteo/20251004_164202.jpg" alt="Rochas e céu dramático">
+        <div class="foto-overlay">
+          <div class="foto-cat">Paisagem · Dramática</div>
+          <div class="foto-desc">Pedras e pôr do sol tempestuoso</div>
+        </div>
+      </div>
+
+      <div class="foto-card">
+        <img src="fotos-matteo/20241211_014600.jpg" alt="Isqueiro noturno">
+        <div class="foto-overlay">
+          <div class="foto-cat">Street · Noturno</div>
+          <div class="foto-desc">Luz e sombra — starburst manual</div>
+        </div>
+      </div>
+
+      <!-- Linha 3 -->
+      <div class="foto-card">
+        <img src="fotos-matteo/20250419_065208.jpg" alt="Mata Atlântica">
+        <div class="foto-overlay">
+          <div class="foto-cat">Natureza · Floresta</div>
+          <div class="foto-desc">Mata Atlântica — verde profundo</div>
+        </div>
+      </div>
+
+      <div class="foto-card wide">
+        <img src="fotos-matteo/20251004_161924.jpg" alt="Praia rochosa">
+        <div class="foto-overlay">
+          <div class="foto-cat">Costeiro · Textural</div>
+          <div class="foto-desc">Rochas na maré baixa — perspectiva rente ao chão</div>
+        </div>
+      </div>
+
+      <div class="foto-card">
+        <img src="fotos-matteo/IMG_0576.jpg" alt="Palmeiras tropicais">
+        <div class="foto-overlay">
+          <div class="foto-cat">Natureza · Tropical</div>
+          <div class="foto-desc">Palmeiras — vista de baixo para cima</div>
+        </div>
+      </div>
+
+      <div class="foto-card">
+        <img src="fotos-matteo/20250730_104429.jpg" alt="Interior de museu">
+        <div class="foto-overlay">
+          <div class="foto-cat">Arte · Interior</div>
+          <div class="foto-desc">Instalação artística — composição de corredor</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CATEGORIAS -->
+<section>
+  <div class="section-label">O que cobre</div>
+  <h2>Categorias<br><span>fotográficas</span></h2>
+  <div class="cat-grid">
+    <div class="cat-card">
+      <div class="cat-num">01</div>
+      <h3>Paisagem e Natureza</h3>
+      <p>Costa, mata, praia, floresta tropical. Composição que respeita a escala do ambiente e encontra o ponto de vista que muda tudo.</p>
+    </div>
+    <div class="cat-card">
+      <div class="cat-num">02</div>
+      <h3>Cultural e Macro</h3>
+      <p>Objetos, texturas, elementos culturais em detalhe extremo. Fitas do Bonfim, instalações, arte urbana — o que o olho comum passa sem ver.</p>
+    </div>
+    <div class="cat-card">
+      <div class="cat-num">03</div>
+      <h3>Street e Noturno</h3>
+      <p>Luz artificial, neón, fogo, ambientes escuros. Pós-processamento que amplifica o clima sem destruir a autenticidade.</p>
+    </div>
+    <div class="cat-card">
+      <div class="cat-num">04</div>
+      <h3>Urbano e Marítimo</h3>
+      <p>Cidade encontrando o mar. Baía de Salvador, barcos, skylines. Saturação e contraste com intenção estética.</p>
+    </div>
+    <div class="cat-card">
+      <div class="cat-num">05</div>
+      <h3>Arte e Interior</h3>
+      <p>Museus, instalações, ambientes internos com iluminação controlada. Composição que lê o espaço antes de enquadrar.</p>
+    </div>
+    <div class="cat-card">
+      <div class="cat-num">06</div>
+      <h3>Edição de Vídeo</h3>
+      <p>Reels, clipes curtos, conteúdo social. Corte rítmico, color grading e narrativa visual aplicada ao formato mobile.</p>
+    </div>
+  </div>
+</section>
+
+<!-- QUOTE -->
+<div class="quote-block">
+  <blockquote>
+    "Todo frame tem um ponto de vista. A diferença é se você escolheu o seu — ou deixou o acaso escolher."
+  </blockquote>
+  <cite>— Assinatura visual · Matteo Vieira</cite>
+</div>
+
+<!-- ASSINATURA VISUAL -->
+<section>
+  <div class="section-label">Como pensa</div>
+  <h2>Assinatura<br><span>visual</span></h2>
+  <div class="assin-grid">
+    <div class="assin-lado">
+      <div class="assin-label">Abordagem técnica</div>
+      <div class="assin-item">
+        <div class="assin-icon">🎞</div>
+        <div>
+          <h4>Tratamento cinemático</h4>
+          <p>Pós-processamento com intenção. Tons escuros com toques de luz dramática, não filtro genérico aplicado em cima.</p>
+        </div>
+      </div>
+      <div class="assin-item">
+        <div class="assin-icon">📐</div>
+        <div>
+          <h4>Composição deliberada</h4>
+          <p>Ângulo baixo, perspectiva incomum, detalhe que o enquadramento padrão ignora. O frame é uma decisão.</p>
+        </div>
+      </div>
+      <div class="assin-item">
+        <div class="assin-icon">💡</div>
+        <div>
+          <h4>Leitura de luz</h4>
+          <p>Luz natural do entardecer, contraluz, luz artificial no escuro. Cada condição tem sua gramática — Matteo a conhece.</p>
+        </div>
+      </div>
+    </div>
+    <div class="assin-lado">
+      <div class="assin-label">Aplicação comercial</div>
+      <div class="assin-item">
+        <div class="assin-icon">📸</div>
+        <div>
+          <h4>Fotografia de produto</h4>
+          <p>Contexto, textura, luz — produto que parece produto premium antes de qualquer retoque.</p>
+        </div>
+      </div>
+      <div class="assin-item">
+        <div class="assin-icon">🎬</div>
+        <div>
+          <h4>Conteúdo para redes sociais</h4>
+          <p>Reels, stories, carrossel — produção que entende o formato mobile e o comportamento de quem assiste.</p>
+        </div>
+      </div>
+      <div class="assin-item">
+        <div class="assin-icon">🎨</div>
+        <div>
+          <h4>Identidade visual</h4>
+          <p>Design gráfico com visão fotográfica — layouts que têm alma, não só geometria.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Triforce Auto</div>
+  <div class="footer-copy">Matteo Vieira · Portfólio 2026</div>
+</footer>
+
+</body>
+</html>

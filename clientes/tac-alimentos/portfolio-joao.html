@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfólio — João | Triforce Auto</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap');
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --laranja: #FF6600;
+  --preto: #050505;
+  --creme: #F5F0E8;
+  --cinza: #888;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  background: var(--preto);
+  color: var(--creme);
+  line-height: 1.6;
+}
+
+/* COVER */
+.cover {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 80px 60px;
+  position: relative;
+  overflow: hidden;
+  border-bottom: 4px solid var(--laranja);
+}
+
+.cover::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 15% 50%, rgba(255,102,0,0.15), transparent 50%),
+    radial-gradient(circle at 85% 20%, rgba(255,102,0,0.08), transparent 40%);
+  pointer-events: none;
+}
+
+.cover-tag {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--laranja);
+  margin-bottom: 32px;
+}
+
+.cover h1 {
+  font-size: clamp(3rem, 8vw, 7rem);
+  font-weight: 900;
+  line-height: 0.95;
+  letter-spacing: -3px;
+  text-transform: uppercase;
+  margin-bottom: 24px;
+}
+
+.cover h1 span { color: var(--laranja); }
+
+.cover-role {
+  font-size: clamp(1rem, 2vw, 1.4rem);
+  font-weight: 600;
+  color: var(--creme);
+  opacity: 0.7;
+  max-width: 500px;
+  margin-bottom: 48px;
+  line-height: 1.5;
+}
+
+.cover-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.pill {
+  border: 2px solid var(--laranja);
+  color: var(--laranja);
+  padding: 8px 20px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+.cover-empresa {
+  position: absolute;
+  bottom: 40px;
+  right: 60px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  opacity: 0.4;
+}
+
+/* SECTIONS */
+section {
+  padding: 80px 60px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.section-label {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--laranja);
+  margin-bottom: 16px;
+}
+
+h2 {
+  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+  font-weight: 900;
+  line-height: 1.1;
+  letter-spacing: -1px;
+  text-transform: uppercase;
+  margin-bottom: 40px;
+  color: var(--creme);
+}
+
+h2 span { color: var(--laranja); }
+
+/* SOBRE */
+.sobre-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: start;
+}
+
+.sobre-texto p {
+  font-size: 1.05rem;
+  color: rgba(245,240,232,0.8);
+  line-height: 1.8;
+  margin-bottom: 20px;
+}
+
+.sobre-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+}
+
+.stat-box {
+  background: #111;
+  border: 1px solid #222;
+  padding: 28px 24px;
+}
+
+.stat-box:first-child {
+  border-top: 3px solid var(--laranja);
+}
+
+.stat-num {
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: var(--laranja);
+  line-height: 1;
+  margin-bottom: 6px;
+}
+
+.stat-label {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--cinza);
+}
+
+/* ESPECIALIDADES */
+.esp-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+}
+
+.esp-card {
+  background: #0d0d0d;
+  border: 1px solid #1a1a1a;
+  padding: 32px 28px;
+  transition: border-color 0.2s;
+}
+
+.esp-card:hover { border-color: var(--laranja); }
+
+.esp-icon {
+  font-size: 1.8rem;
+  margin-bottom: 16px;
+}
+
+.esp-card h3 {
+  font-size: 0.9rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--creme);
+  margin-bottom: 10px;
+}
+
+.esp-card p {
+  font-size: 0.82rem;
+  color: var(--cinza);
+  line-height: 1.6;
+}
+
+/* PROJETOS */
+.projeto-block {
+  border-left: 4px solid var(--laranja);
+  margin-bottom: 60px;
+  padding-left: 32px;
+}
+
+.projeto-cliente {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--laranja);
+  margin-bottom: 8px;
+}
+
+.projeto-block h3 {
+  font-size: 1.6rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: -0.5px;
+  color: var(--creme);
+  margin-bottom: 12px;
+}
+
+.projeto-desc {
+  font-size: 0.95rem;
+  color: rgba(245,240,232,0.7);
+  line-height: 1.7;
+  margin-bottom: 24px;
+  max-width: 680px;
+}
+
+.entregas-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 2px;
+}
+
+.entrega-card {
+  background: #0d0d0d;
+  border: 1px solid #1a1a1a;
+  padding: 20px 22px;
+}
+
+.entrega-tipo {
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--laranja);
+  margin-bottom: 8px;
+}
+
+.entrega-card h4 {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--creme);
+  margin-bottom: 6px;
+}
+
+.entrega-card p {
+  font-size: 0.78rem;
+  color: var(--cinza);
+  line-height: 1.5;
+}
+
+/* DIVIDER */
+.divider {
+  width: 100%;
+  height: 1px;
+  background: #1a1a1a;
+  margin: 0 60px;
+  width: calc(100% - 120px);
+}
+
+/* METODOLOGIA */
+.met-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2px;
+}
+
+.met-step {
+  background: #0d0d0d;
+  border: 1px solid #1a1a1a;
+  padding: 28px 24px;
+  position: relative;
+}
+
+.met-num {
+  font-size: 3rem;
+  font-weight: 900;
+  color: #1a1a1a;
+  line-height: 1;
+  margin-bottom: 16px;
+}
+
+.met-step h3 {
+  font-size: 0.82rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--laranja);
+  margin-bottom: 10px;
+}
+
+.met-step p {
+  font-size: 0.78rem;
+  color: var(--cinza);
+  line-height: 1.6;
+}
+
+/* QUOTE */
+.quote-block {
+  background: var(--laranja);
+  padding: 48px 60px;
+  margin: 0;
+}
+
+.quote-block blockquote {
+  font-size: clamp(1.2rem, 2.5vw, 2rem);
+  font-weight: 800;
+  color: var(--preto);
+  line-height: 1.3;
+  text-transform: uppercase;
+  letter-spacing: -0.5px;
+  max-width: 800px;
+}
+
+.quote-block cite {
+  display: block;
+  margin-top: 20px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(5,5,5,0.5);
+  font-style: normal;
+}
+
+/* FOOTER */
+footer {
+  background: #0a0a0a;
+  border-top: 1px solid #1a1a1a;
+  padding: 40px 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-logo {
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--laranja);
+}
+
+.footer-copy {
+  font-size: 0.65rem;
+  color: var(--cinza);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+@media (max-width: 768px) {
+  .cover, section, footer { padding: 48px 24px; }
+  .sobre-grid { grid-template-columns: 1fr; }
+  .esp-grid { grid-template-columns: 1fr; }
+  .met-grid { grid-template-columns: 1fr 1fr; }
+  .cover h1 { letter-spacing: -1px; }
+  .cover-empresa { display: none; }
+  footer { flex-direction: column; gap: 12px; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover">
+  <div class="cover-tag">Triforce Auto — Portfólio</div>
+  <h1>João<br><span>Alves</span></h1>
+  <div class="cover-role">Copywriter e Estrategista de Conteúdo<br>Especialista em varejo físico e campanhas de alta conversão</div>
+  <div class="cover-pills">
+    <span class="pill">Copy de Resposta Direta</span>
+    <span class="pill">Roteiros de Vídeo</span>
+    <span class="pill">Benchmarks Competitivos</span>
+    <span class="pill">Campanhas Sazonais</span>
+  </div>
+  <div class="cover-empresa">Triforce Auto · 2026</div>
+</div>
+
+<!-- SOBRE -->
+<section>
+  <div class="section-label">Quem é</div>
+  <h2>Copy que<br><span>fecha negócio</span></h2>
+  <div class="sobre-grid">
+    <div class="sobre-texto">
+      <p>João formou sua visão de copy dentro da <strong style="color:var(--creme)">Flip Up 360</strong>, agência especializada em varejo físico de alto ticket. Lá produziu roteiros, campanhas e análises competitivas para marcas de colchões premium em múltiplas praças do Nordeste.</p>
+      <p>Seu método parte do comportamento real do comprador: ele não escreve para impressionar, escreve para mover. Cada roteiro tem estrutura cena a cena, variações de abordagem e um objetivo de conversão claro antes de uma palavra ser escrita.</p>
+      <p>Trabalha com varejo que tem showroom, produto consultivo e ciclo de venda longo — o ambiente onde copy genérico não funciona e especificidade converte.</p>
+    </div>
+    <div class="sobre-stats">
+      <div class="stat-box">
+        <div class="stat-num">4</div>
+        <div class="stat-label">Marcas atendidas</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num">11</div>
+        <div class="stat-label">Peças entregues</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num">4</div>
+        <div class="stat-label">Praças no Nordeste</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num">3</div>
+        <div class="stat-label">Benchmarks competitivos</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ESPECIALIDADES -->
+<section>
+  <div class="section-label">O que faz</div>
+  <h2>Especialidades</h2>
+  <div class="esp-grid">
+    <div class="esp-card">
+      <div class="esp-icon">🎬</div>
+      <h3>Roteiro de Vídeo</h3>
+      <p>Estrutura cena a cena com marcação de tempo, enquadramento, fala e objetivo por cena. Entrega com variações para teste.</p>
+    </div>
+    <div class="esp-card">
+      <div class="esp-icon">📣</div>
+      <h3>Copy de Campanha</h3>
+      <p>Black Friday, liquidações e lançamentos. Headlines que qualificam o comprador antes de ele entrar na loja.</p>
+    </div>
+    <div class="esp-card">
+      <div class="esp-icon">🔎</div>
+      <h3>Benchmark Competitivo</h3>
+      <p>Mapeamento de concorrentes por plataforma — Instagram, TikTok — com diagnóstico de conteúdo, engajamento e estrutura comercial.</p>
+    </div>
+    <div class="esp-card">
+      <div class="esp-icon">💬</div>
+      <h3>Copy de Resposta Direta</h3>
+      <p>Textos que levam o leitor a uma ação específica. Sem enrolação, sem genérico. Cada palavra tem função.</p>
+    </div>
+    <div class="esp-card">
+      <div class="esp-icon">🛒</div>
+      <h3>Varejo de Alto Ticket</h3>
+      <p>Especialista em produto consultivo com ciclo de venda longo: colchões, móveis, serviços B2B.</p>
+    </div>
+    <div class="esp-card">
+      <div class="esp-icon">📍</div>
+      <h3>Multi-praça</h3>
+      <p>Experiência com campanhas simultâneas em Salvador, São Luís, Fortaleza e Aracaju com adaptação de tom por mercado.</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PROJETOS -->
+<section>
+  <div class="section-label">Trabalhos realizados</div>
+  <h2>Projetos na<br><span>Flip Up 360</span></h2>
+
+  <!-- SLEEPHOUSE -->
+  <div class="projeto-block">
+    <div class="projeto-cliente">Cliente 01 — Flip Up 360</div>
+    <h3>Sleep House</h3>
+    <p class="projeto-desc">Marca premium de colchões. Posicionamento de alto padrão com foco em sono como investimento de qualidade de vida. Campanhas de Black Friday e lançamento de produto com estilo elegante e consultivo.</p>
+    <div class="entregas-grid">
+      <div class="entrega-card">
+        <div class="entrega-tipo">Roteiro de Vídeo</div>
+        <h4>Black Friday V2</h4>
+        <p>Série de roteiros com variações. Tema: "Você vive bem, mas dorme bem?" Abordagem reflexiva e elegante.</p>
+      </div>
+      <div class="entrega-card">
+        <div class="entrega-tipo">Roteiro de Vídeo</div>
+        <h4>Black do Milhão</h4>
+        <p>Roteiro para colchão Linum Plush Pikolin. Estilo envolvente e consultivo, showroom refinado.</p>
+      </div>
+      <div class="entrega-card">
+        <div class="entrega-tipo">Roteiro de Vídeo</div>
+        <h4>Box Baú V1</h4>
+        <p>Foco em funcionalidade com sofisticação. Benefício principal: mais espaço sem perder elegância.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ANJOS -->
+  <div class="projeto-block">
+    <div class="projeto-cliente">Cliente 02 — Flip Up 360</div>
+    <h3>Anjos Colchões & Sofás</h3>
+    <p class="projeto-desc">Rede com presença em São Luís e Fortaleza. Múltiplas campanhas sazonais com estilo direto, provocativo e consultivo. Benchmark competitivo completo da praça de Fortaleza.</p>
+    <div class="entregas-grid">
+      <div class="entrega-card">
+        <div class="entrega-tipo">Roteiro de Vídeo</div>
+        <h4>Black Friday São Luís V1</h4>
+        <p>"Black Friday? Tem. Mas não é feirão de colchão." Copy que qualifica antes de vender.</p>
+      </div>
+      <div class="entrega-card">
+        <div class="entrega-tipo">Roteiro de Vídeo</div>
+        <h4>Black Friday Anjos V2</h4>
+        <p>Contraste com compras impulsivas. Escolha inteligente de longo prazo. Tom direto e elegante.</p>
+      </div>
+      <div class="entrega-card">
+        <div class="entrega-tipo">Roteiro de Vídeo</div>
+        <h4>Liquida Anjos V2</h4>
+        <p>Campanha de liquidação — 3 colchões (Geniale, Differenza, Neve) sem perder o posicionamento premium.</p>
+      </div>
+      <div class="entrega-card">
+        <div class="entrega-tipo">Benchmark</div>
+        <h4>Análise Fortaleza</h4>
+        <p>Mapeamento de concorrentes em Fortaleza — Instagram, frequência, engajamento, estrutura comercial e diferenciais.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- KABRAL -->
+  <div class="projeto-block">
+    <div class="projeto-cliente">Cliente 03 — Flip Up 360</div>
+    <h3>Kabral Colchões</h3>
+    <p class="projeto-desc">Loja em Aracaju (região Grageru/Jardins). Campanha de Black Friday com análise do cenário competitivo local — 4 concorrentes mapeados.</p>
+    <div class="entregas-grid">
+      <div class="entrega-card">
+        <div class="entrega-tipo">Roteiro de Vídeo</div>
+        <h4>Black Friday V2</h4>
+        <p>"Quem entende, aproveita primeiro." Tom leve, dinâmico e envolvente. Humor elegante com foco em decisão inteligente.</p>
+      </div>
+      <div class="entrega-card">
+        <div class="entrega-tipo">Benchmark</div>
+        <h4>Análise Aracaju</h4>
+        <p>4 concorrentes analisados (Rei dos Colchões, Master, Hiper, Ortobom). Instagram, Facebook, site, estrutura de venda.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- RESTAURANTES + TIKTOK -->
+  <div class="projeto-block">
+    <div class="projeto-cliente">Outros trabalhos</div>
+    <h3>Copy & Análise de Mercado</h3>
+    <p class="projeto-desc">Peças avulsas de copy de resposta direta e análise de mercado no TikTok para o setor de varejo.</p>
+    <div class="entregas-grid">
+      <div class="entrega-card">
+        <div class="entrega-tipo">Copy</div>
+        <h4>Copy — Restaurantes</h4>
+        <p>"Cansado de 14 horas dentro do restaurante?" Copy para donos de restaurante que querem controle pelo celular.</p>
+      </div>
+      <div class="entrega-card">
+        <div class="entrega-tipo">Benchmark</div>
+        <h4>Análise de Mercado TikTok</h4>
+        <p>Mapeamento de perfis do setor de colchões no TikTok — performance, viralização, frequência e diagnóstico estratégico.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUOTE -->
+<div class="quote-block">
+  <blockquote>
+    "Copy não é o que você fala sobre o produto. É o que o comprador sente quando lê — e o que ele faz depois."
+  </blockquote>
+  <cite>— Princípio de trabalho · João Alves</cite>
+</div>
+
+<!-- METODOLOGIA -->
+<section>
+  <div class="section-label">Como trabalha</div>
+  <h2>Metodologia</h2>
+  <div class="met-grid">
+    <div class="met-step">
+      <div class="met-num">01</div>
+      <h3>Diagnóstico</h3>
+      <p>Entende o produto, o comprador, o concorrente e o momento antes de escrever uma palavra.</p>
+    </div>
+    <div class="met-step">
+      <div class="met-num">02</div>
+      <h3>Estrutura</h3>
+      <p>Define o arco da peça: abertura, desenvolvimento, virada e call to action. Nada é colocado por acaso.</p>
+    </div>
+    <div class="met-step">
+      <div class="met-num">03</div>
+      <h3>Variações</h3>
+      <p>Entrega múltiplas versões de cada peça — diferentes abordagens para teste e escolha.</p>
+    </div>
+    <div class="met-step">
+      <div class="met-num">04</div>
+      <h3>Refinamento</h3>
+      <p>Cada palavra revisada pelo critério: move o leitor para a próxima ação? Se não, sai.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Triforce Auto</div>
+  <div class="footer-copy">João Alves · Portfólio 2026</div>
+</footer>
+
+</body>
+</html>
