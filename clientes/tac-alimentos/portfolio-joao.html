@@ -3,390 +3,151 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Portfólio — João | Triforce Auto</title>
+<title>Portfolio — Joao Alves | Triforce Auto</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap');
 
-* { box-sizing: border-box; margin: 0; padding: 0; }
-
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 :root {
-  --laranja: #FF6600;
-  --preto: #050505;
-  --creme: #F5F0E8;
-  --cinza: #888;
+  --laranja:#FF6600; --preto:#050505; --creme:#F5F0E8;
+  --cinza:#555; --dark1:#0a0a0a; --dark2:#111; --border:#1e1e1e;
 }
+body { font-family:'Montserrat',sans-serif;background:var(--preto);color:var(--creme);line-height:1.6; }
+@keyframes fadeUp { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:translateY(0)} }
 
-body {
-  font-family: 'Montserrat', sans-serif;
-  background: var(--preto);
-  color: var(--creme);
-  line-height: 1.6;
-}
-
-/* COVER */
+/* ─── COVER ─── */
 .cover {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 80px 60px;
-  position: relative;
-  overflow: hidden;
-  border-bottom: 4px solid var(--laranja);
+  min-height:100vh;display:flex;flex-direction:column;justify-content:center;
+  padding:80px 60px;position:relative;overflow:hidden;
+  border-bottom:4px solid var(--laranja);
 }
-
 .cover::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(circle at 15% 50%, rgba(255,102,0,0.15), transparent 50%),
-    radial-gradient(circle at 85% 20%, rgba(255,102,0,0.08), transparent 40%);
-  pointer-events: none;
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(circle at 15% 50%, rgba(255,102,0,.16), transparent 50%),
+             radial-gradient(circle at 80% 20%, rgba(255,102,0,.06), transparent 40%);
+  pointer-events:none;
 }
+.cover-tag { font-size:.65rem;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--laranja);margin-bottom:28px; }
+.cover h1 { font-size:clamp(3.5rem,7vw,7rem);font-weight:900;line-height:.93;letter-spacing:-3px;text-transform:uppercase;margin-bottom:20px; }
+.cover h1 span { color:var(--laranja); }
+.cover-role { font-size:clamp(.9rem,1.5vw,1.2rem);font-weight:600;color:rgba(245,240,232,.65);max-width:520px;margin-bottom:44px;line-height:1.55; }
+.cover-pills { display:flex;flex-wrap:wrap;gap:8px;margin-bottom:44px; }
+.pill { border:1px solid rgba(255,102,0,.45);color:var(--laranja);padding:6px 16px;font-size:.65rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase; }
+.cover-stats { display:flex;gap:36px;flex-wrap:wrap; }
+.cstat-num { font-size:2.2rem;font-weight:900;color:var(--laranja);line-height:1; }
+.cstat-label { font-size:.58rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--cinza); }
+.cover-empresa { position:absolute;bottom:32px;right:60px;font-size:.6rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;opacity:.25; }
 
-.cover-tag {
-  font-size: 0.7rem;
-  font-weight: 700;
-  letter-spacing: 4px;
-  text-transform: uppercase;
-  color: var(--laranja);
-  margin-bottom: 32px;
+/* ─── LAYOUT ─── */
+section { padding:80px 60px;max-width:1120px;margin:0 auto; }
+.section-label { font-size:.6rem;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--laranja);margin-bottom:14px; }
+h2 { font-size:clamp(1.8rem,3.5vw,2.6rem);font-weight:900;line-height:1.1;letter-spacing:-1px;text-transform:uppercase;margin-bottom:36px;color:var(--creme); }
+h2 span { color:var(--laranja); }
+.divider { height:1px;background:var(--border);margin:0 60px; }
+
+/* ─── SOBRE ─── */
+.sobre-grid { display:grid;grid-template-columns:1.2fr 1fr;gap:52px;align-items:start; }
+.sobre-texto p { font-size:1rem;color:rgba(245,240,232,.8);line-height:1.85;margin-bottom:18px; }
+.stats-box { display:grid;grid-template-columns:1fr 1fr;gap:2px; }
+.stat-card { background:var(--dark1);border:1px solid var(--border);padding:26px 22px; }
+.stat-card:first-child { border-top:3px solid var(--laranja); }
+.stat-num { font-size:2.4rem;font-weight:900;color:var(--laranja);line-height:1;margin-bottom:5px; }
+.stat-lbl { font-size:.58rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--cinza); }
+
+/* ─── ESPECIALIDADES ─── */
+.esp-grid { display:grid;grid-template-columns:repeat(3,1fr);gap:2px; }
+.esp-card { background:var(--dark1);border:1px solid var(--border);padding:30px 26px;transition:border-color .2s; }
+.esp-card:hover { border-color:var(--laranja); }
+.esp-icon { font-size:1.6rem;margin-bottom:14px; }
+.esp-card h3 { font-size:.82rem;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--creme);margin-bottom:10px; }
+.esp-card p { font-size:.78rem;color:var(--cinza);line-height:1.65; }
+
+/* ─── PROJETOS (cliente block) ─── */
+.cliente-block { margin-bottom:72px; }
+.cliente-block:last-child { margin-bottom:0; }
+.cliente-header {
+  display:flex;align-items:center;gap:16px;
+  padding:18px 24px;background:var(--laranja);margin-bottom:2px;
 }
+.cliente-num { font-size:.65rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--preto); }
+.cliente-header h3 { font-size:1.2rem;font-weight:900;text-transform:uppercase;letter-spacing:-.3px;color:var(--preto); }
+.cliente-desc { background:var(--dark1);border:1px solid var(--border);border-top:none;padding:28px 28px 24px;margin-bottom:2px; }
+.cliente-desc p { font-size:.9rem;color:rgba(245,240,232,.72);line-height:1.8; }
 
-.cover h1 {
-  font-size: clamp(3rem, 8vw, 7rem);
-  font-weight: 900;
-  line-height: 0.95;
-  letter-spacing: -3px;
-  text-transform: uppercase;
-  margin-bottom: 24px;
+/* Script preview card */
+.scripts-grid { display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:2px; }
+.script-card {
+  background:var(--dark2);border:1px solid var(--border);overflow:hidden;
+  transition:border-color .2s;
 }
-
-.cover h1 span { color: var(--laranja); }
-
-.cover-role {
-  font-size: clamp(1rem, 2vw, 1.4rem);
-  font-weight: 600;
-  color: var(--creme);
-  opacity: 0.7;
-  max-width: 500px;
-  margin-bottom: 48px;
-  line-height: 1.5;
+.script-card:hover { border-color:var(--laranja); }
+.script-top {
+  background:#080808;border-bottom:1px solid var(--border);
+  padding:14px 18px;display:flex;justify-content:space-between;align-items:center;
 }
+.script-tipo { font-size:.55rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--laranja); }
+.script-style { font-size:.55rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--cinza); }
+.script-body { padding:20px 18px; }
+.script-titulo { font-size:.95rem;font-weight:800;text-transform:uppercase;letter-spacing:-.2px;color:var(--creme);margin-bottom:10px; }
+.script-meta { display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px; }
+.script-tag { font-size:.55rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;background:#0f0f0f;border:1px solid #222;color:var(--cinza);padding:3px 10px; }
+.script-cena { background:#080808;border:1px solid var(--border);border-left:3px solid var(--laranja);padding:14px 16px;margin-bottom:12px; }
+.cena-num { font-size:.55rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--cinza);margin-bottom:6px; }
+.cena-fala { font-size:.82rem;font-weight:600;color:var(--creme);line-height:1.55;font-style:italic; }
+.script-feats { display:flex;flex-direction:column;gap:6px; }
+.script-feat { display:flex;gap:10px;align-items:flex-start; }
+.script-feat-dot { width:5px;height:5px;background:var(--laranja);flex-shrink:0;margin-top:6px; }
+.script-feat span { font-size:.75rem;color:var(--cinza);line-height:1.5; }
 
-.cover-pills {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
+/* Benchmark card */
+.bench-card {
+  background:var(--dark1);border:1px solid var(--border);overflow:hidden;margin-bottom:2px;
 }
+.bench-header { background:#080808;border-bottom:1px solid var(--border);padding:14px 20px;display:flex;justify-content:space-between;align-items:center; }
+.bench-tipo { font-size:.55rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--laranja); }
+.bench-data { font-size:.55rem;font-weight:600;color:var(--cinza); }
+.bench-body { padding:22px 20px; }
+.bench-titulo { font-size:1rem;font-weight:800;text-transform:uppercase;letter-spacing:-.3px;color:var(--creme);margin-bottom:16px; }
+.bench-competidores { display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:2px;margin-bottom:16px; }
+.bench-comp { background:#080808;border:1px solid var(--border);padding:12px 14px; }
+.bench-comp-nome { font-size:.72rem;font-weight:700;color:var(--creme);margin-bottom:4px; }
+.bench-comp-seg { font-size:.65rem;color:var(--laranja);font-weight:700; }
+.bench-comp-info { font-size:.65rem;color:var(--cinza);line-height:1.5;margin-top:4px; }
+.bench-insight { background:var(--laranja);padding:12px 16px;margin-top:2px; }
+.bench-insight p { font-size:.78rem;font-weight:700;color:var(--preto);line-height:1.5; }
 
-.pill {
-  border: 2px solid var(--laranja);
-  color: var(--laranja);
-  padding: 8px 20px;
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
+/* Copy preview */
+.copy-card {
+  background:var(--dark1);border:1px solid var(--border);padding:36px;
 }
+.copy-card .copy-tipo { font-size:.58rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--laranja);margin-bottom:16px; }
+.copy-headline { font-size:clamp(1rem,2vw,1.4rem);font-weight:800;color:var(--creme);line-height:1.4;border-left:4px solid var(--laranja);padding-left:20px; }
+.copy-context { font-size:.82rem;color:rgba(245,240,232,.6);margin-top:16px;line-height:1.7; }
 
-.cover-empresa {
-  position: absolute;
-  bottom: 40px;
-  right: 60px;
-  font-size: 0.7rem;
-  font-weight: 700;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  opacity: 0.4;
-}
+/* ─── METODOLOGIA ─── */
+.met-grid { display:grid;grid-template-columns:repeat(4,1fr);gap:2px; }
+.met-card { background:var(--dark1);border:1px solid var(--border);padding:28px 22px; }
+.met-num { font-size:3rem;font-weight:900;color:#1a1a1a;line-height:1;margin-bottom:14px; }
+.met-card h3 { font-size:.8rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:var(--laranja);margin-bottom:10px; }
+.met-card p { font-size:.76rem;color:var(--cinza);line-height:1.65; }
 
-/* SECTIONS */
-section {
-  padding: 80px 60px;
-  max-width: 1100px;
-  margin: 0 auto;
-}
+/* ─── QUOTE ─── */
+.quote-wrap { background:var(--laranja);padding:56px 60px; }
+.quote-wrap blockquote { font-size:clamp(1.1rem,2.2vw,1.7rem);font-weight:800;color:var(--preto);line-height:1.35;text-transform:uppercase;letter-spacing:-.5px;max-width:700px; }
+.quote-wrap cite { display:block;margin-top:18px;font-size:.65rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(5,5,5,.5);font-style:normal; }
 
-.section-label {
-  font-size: 0.65rem;
-  font-weight: 700;
-  letter-spacing: 4px;
-  text-transform: uppercase;
-  color: var(--laranja);
-  margin-bottom: 16px;
-}
+/* ─── FOOTER ─── */
+footer { background:#080808;border-top:1px solid var(--border);padding:36px 60px;display:flex;justify-content:space-between;align-items:center; }
+.footer-logo { font-size:.7rem;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:var(--laranja); }
+.footer-copy { font-size:.6rem;color:var(--cinza);letter-spacing:1px;text-transform:uppercase; }
 
-h2 {
-  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
-  font-weight: 900;
-  line-height: 1.1;
-  letter-spacing: -1px;
-  text-transform: uppercase;
-  margin-bottom: 40px;
-  color: var(--creme);
-}
-
-h2 span { color: var(--laranja); }
-
-/* SOBRE */
-.sobre-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 60px;
-  align-items: start;
-}
-
-.sobre-texto p {
-  font-size: 1.05rem;
-  color: rgba(245,240,232,0.8);
-  line-height: 1.8;
-  margin-bottom: 20px;
-}
-
-.sobre-stats {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2px;
-}
-
-.stat-box {
-  background: #111;
-  border: 1px solid #222;
-  padding: 28px 24px;
-}
-
-.stat-box:first-child {
-  border-top: 3px solid var(--laranja);
-}
-
-.stat-num {
-  font-size: 2.5rem;
-  font-weight: 900;
-  color: var(--laranja);
-  line-height: 1;
-  margin-bottom: 6px;
-}
-
-.stat-label {
-  font-size: 0.7rem;
-  font-weight: 600;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  color: var(--cinza);
-}
-
-/* ESPECIALIDADES */
-.esp-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2px;
-}
-
-.esp-card {
-  background: #0d0d0d;
-  border: 1px solid #1a1a1a;
-  padding: 32px 28px;
-  transition: border-color 0.2s;
-}
-
-.esp-card:hover { border-color: var(--laranja); }
-
-.esp-icon {
-  font-size: 1.8rem;
-  margin-bottom: 16px;
-}
-
-.esp-card h3 {
-  font-size: 0.9rem;
-  font-weight: 800;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  color: var(--creme);
-  margin-bottom: 10px;
-}
-
-.esp-card p {
-  font-size: 0.82rem;
-  color: var(--cinza);
-  line-height: 1.6;
-}
-
-/* PROJETOS */
-.projeto-block {
-  border-left: 4px solid var(--laranja);
-  margin-bottom: 60px;
-  padding-left: 32px;
-}
-
-.projeto-cliente {
-  font-size: 0.65rem;
-  font-weight: 700;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  color: var(--laranja);
-  margin-bottom: 8px;
-}
-
-.projeto-block h3 {
-  font-size: 1.6rem;
-  font-weight: 900;
-  text-transform: uppercase;
-  letter-spacing: -0.5px;
-  color: var(--creme);
-  margin-bottom: 12px;
-}
-
-.projeto-desc {
-  font-size: 0.95rem;
-  color: rgba(245,240,232,0.7);
-  line-height: 1.7;
-  margin-bottom: 24px;
-  max-width: 680px;
-}
-
-.entregas-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 2px;
-}
-
-.entrega-card {
-  background: #0d0d0d;
-  border: 1px solid #1a1a1a;
-  padding: 20px 22px;
-}
-
-.entrega-tipo {
-  font-size: 0.6rem;
-  font-weight: 700;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: var(--laranja);
-  margin-bottom: 8px;
-}
-
-.entrega-card h4 {
-  font-size: 0.88rem;
-  font-weight: 700;
-  color: var(--creme);
-  margin-bottom: 6px;
-}
-
-.entrega-card p {
-  font-size: 0.78rem;
-  color: var(--cinza);
-  line-height: 1.5;
-}
-
-/* DIVIDER */
-.divider {
-  width: 100%;
-  height: 1px;
-  background: #1a1a1a;
-  margin: 0 60px;
-  width: calc(100% - 120px);
-}
-
-/* METODOLOGIA */
-.met-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 2px;
-}
-
-.met-step {
-  background: #0d0d0d;
-  border: 1px solid #1a1a1a;
-  padding: 28px 24px;
-  position: relative;
-}
-
-.met-num {
-  font-size: 3rem;
-  font-weight: 900;
-  color: #1a1a1a;
-  line-height: 1;
-  margin-bottom: 16px;
-}
-
-.met-step h3 {
-  font-size: 0.82rem;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  color: var(--laranja);
-  margin-bottom: 10px;
-}
-
-.met-step p {
-  font-size: 0.78rem;
-  color: var(--cinza);
-  line-height: 1.6;
-}
-
-/* QUOTE */
-.quote-block {
-  background: var(--laranja);
-  padding: 48px 60px;
-  margin: 0;
-}
-
-.quote-block blockquote {
-  font-size: clamp(1.2rem, 2.5vw, 2rem);
-  font-weight: 800;
-  color: var(--preto);
-  line-height: 1.3;
-  text-transform: uppercase;
-  letter-spacing: -0.5px;
-  max-width: 800px;
-}
-
-.quote-block cite {
-  display: block;
-  margin-top: 20px;
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: rgba(5,5,5,0.5);
-  font-style: normal;
-}
-
-/* FOOTER */
-footer {
-  background: #0a0a0a;
-  border-top: 1px solid #1a1a1a;
-  padding: 40px 60px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.footer-logo {
-  font-size: 0.75rem;
-  font-weight: 800;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  color: var(--laranja);
-}
-
-.footer-copy {
-  font-size: 0.65rem;
-  color: var(--cinza);
-  letter-spacing: 1px;
-  text-transform: uppercase;
-}
-
-@media (max-width: 768px) {
-  .cover, section, footer { padding: 48px 24px; }
-  .sobre-grid { grid-template-columns: 1fr; }
-  .esp-grid { grid-template-columns: 1fr; }
-  .met-grid { grid-template-columns: 1fr 1fr; }
-  .cover h1 { letter-spacing: -1px; }
-  .cover-empresa { display: none; }
-  footer { flex-direction: column; gap: 12px; text-align: center; }
+@media (max-width:768px) {
+  .cover,section,.quote-wrap,footer { padding:48px 24px; }
+  .sobre-grid { grid-template-columns:1fr; }
+  .esp-grid { grid-template-columns:1fr; }
+  .met-grid { grid-template-columns:1fr 1fr; }
+  footer { flex-direction:column;gap:12px;text-align:center; }
+  .cover-empresa { display:none; }
 }
 </style>
 </head>
@@ -394,45 +155,40 @@ footer {
 
 <!-- COVER -->
 <div class="cover">
-  <div class="cover-tag">Triforce Auto — Portfólio</div>
-  <h1>João<br><span>Alves</span></h1>
-  <div class="cover-role">Copywriter e Estrategista de Conteúdo<br>Especialista em varejo físico e campanhas de alta conversão</div>
+  <div class="cover-tag">Triforce Auto — Portfolio</div>
+  <h1>Joao<br><span>Alves</span></h1>
+  <div class="cover-role">Copywriter e Estrategista de Conteudo<br>Especialista em varejo fisico, campanhas sazonais e copy de alta conversao</div>
   <div class="cover-pills">
     <span class="pill">Copy de Resposta Direta</span>
-    <span class="pill">Roteiros de Vídeo</span>
-    <span class="pill">Benchmarks Competitivos</span>
+    <span class="pill">Roteiros de Video</span>
+    <span class="pill">Benchmark Competitivo</span>
     <span class="pill">Campanhas Sazonais</span>
+    <span class="pill">Varejo de Alto Ticket</span>
+  </div>
+  <div class="cover-stats">
+    <div><div class="cstat-num">4</div><div class="cstat-label">Marcas atendidas</div></div>
+    <div><div class="cstat-num">11</div><div class="cstat-label">Pecas entregues</div></div>
+    <div><div class="cstat-num">4</div><div class="cstat-label">Pracas no Nordeste</div></div>
+    <div><div class="cstat-num">3</div><div class="cstat-label">Benchmarks</div></div>
   </div>
   <div class="cover-empresa">Triforce Auto · 2026</div>
 </div>
 
 <!-- SOBRE -->
 <section>
-  <div class="section-label">Quem é</div>
-  <h2>Copy que<br><span>fecha negócio</span></h2>
+  <div class="section-label">Quem e</div>
+  <h2>Copy que <span>fecha negocio</span></h2>
   <div class="sobre-grid">
     <div class="sobre-texto">
-      <p>João formou sua visão de copy dentro da <strong style="color:var(--creme)">Flip Up 360</strong>, agência especializada em varejo físico de alto ticket. Lá produziu roteiros, campanhas e análises competitivas para marcas de colchões premium em múltiplas praças do Nordeste.</p>
-      <p>Seu método parte do comportamento real do comprador: ele não escreve para impressionar, escreve para mover. Cada roteiro tem estrutura cena a cena, variações de abordagem e um objetivo de conversão claro antes de uma palavra ser escrita.</p>
-      <p>Trabalha com varejo que tem showroom, produto consultivo e ciclo de venda longo — o ambiente onde copy genérico não funciona e especificidade converte.</p>
+      <p>Joao formou sua visao de copy dentro da <strong style="color:var(--creme)">Flip Up 360</strong>, agencia especializada em varejo fisico de alto ticket. Produziu roteiros, benchmarks e copy para marcas de colchoes premium em multiplas pracas do Nordeste: Salvador, Sao Luis, Fortaleza e Aracaju.</p>
+      <p>Seu metodo parte do comportamento real do comprador. Ele nao escreve para impressionar — escreve para mover. Cada roteiro tem estrutura cena a cena, marcacao de tempo precisa, variacao de abordagem e objetivo claro antes de uma palavra ser escrita.</p>
+      <p>Especialista em produto consultivo de ciclo longo: colchoes premium, moveis de alto padrao, servicos B2B. O ambiente onde copy generico nao funciona e especificidade converte — e onde Joao entrega resultado.</p>
     </div>
-    <div class="sobre-stats">
-      <div class="stat-box">
-        <div class="stat-num">4</div>
-        <div class="stat-label">Marcas atendidas</div>
-      </div>
-      <div class="stat-box">
-        <div class="stat-num">11</div>
-        <div class="stat-label">Peças entregues</div>
-      </div>
-      <div class="stat-box">
-        <div class="stat-num">4</div>
-        <div class="stat-label">Praças no Nordeste</div>
-      </div>
-      <div class="stat-box">
-        <div class="stat-num">3</div>
-        <div class="stat-label">Benchmarks competitivos</div>
-      </div>
+    <div class="stats-box">
+      <div class="stat-card"><div class="stat-num">4</div><div class="stat-lbl">Marcas atendidas</div></div>
+      <div class="stat-card"><div class="stat-num">9</div><div class="stat-lbl">Roteiros de video</div></div>
+      <div class="stat-card"><div class="stat-num">4</div><div class="stat-lbl">Pracas no Nordeste</div></div>
+      <div class="stat-card"><div class="stat-num">3</div><div class="stat-lbl">Benchmarks competitivos</div></div>
     </div>
   </div>
 </section>
@@ -444,36 +200,12 @@ footer {
   <div class="section-label">O que faz</div>
   <h2>Especialidades</h2>
   <div class="esp-grid">
-    <div class="esp-card">
-      <div class="esp-icon">🎬</div>
-      <h3>Roteiro de Vídeo</h3>
-      <p>Estrutura cena a cena com marcação de tempo, enquadramento, fala e objetivo por cena. Entrega com variações para teste.</p>
-    </div>
-    <div class="esp-card">
-      <div class="esp-icon">📣</div>
-      <h3>Copy de Campanha</h3>
-      <p>Black Friday, liquidações e lançamentos. Headlines que qualificam o comprador antes de ele entrar na loja.</p>
-    </div>
-    <div class="esp-card">
-      <div class="esp-icon">🔎</div>
-      <h3>Benchmark Competitivo</h3>
-      <p>Mapeamento de concorrentes por plataforma — Instagram, TikTok — com diagnóstico de conteúdo, engajamento e estrutura comercial.</p>
-    </div>
-    <div class="esp-card">
-      <div class="esp-icon">💬</div>
-      <h3>Copy de Resposta Direta</h3>
-      <p>Textos que levam o leitor a uma ação específica. Sem enrolação, sem genérico. Cada palavra tem função.</p>
-    </div>
-    <div class="esp-card">
-      <div class="esp-icon">🛒</div>
-      <h3>Varejo de Alto Ticket</h3>
-      <p>Especialista em produto consultivo com ciclo de venda longo: colchões, móveis, serviços B2B.</p>
-    </div>
-    <div class="esp-card">
-      <div class="esp-icon">📍</div>
-      <h3>Multi-praça</h3>
-      <p>Experiência com campanhas simultâneas em Salvador, São Luís, Fortaleza e Aracaju com adaptação de tom por mercado.</p>
-    </div>
+    <div class="esp-card"><div class="esp-icon">🎬</div><h3>Roteiro de Video</h3><p>Estrutura cena a cena com marcacao de tempo, enquadramento, fala e objetivo por cena. Entrega multiplas variacoes para teste A/B em campo.</p></div>
+    <div class="esp-card"><div class="esp-icon">📣</div><h3>Copy de Campanha</h3><p>Black Friday, liquidacoes, lancamentos. Headlines que qualificam o comprador antes de ele entrar na loja — filtrando quem compra de quem so quer desconto.</p></div>
+    <div class="esp-card"><div class="esp-icon">🔎</div><h3>Benchmark Competitivo</h3><p>Mapeamento de concorrentes por plataforma com diagnostico de conteudo, frequencia, engajamento e estrutura comercial. Entrega insight acionavel.</p></div>
+    <div class="esp-card"><div class="esp-icon">💬</div><h3>Copy de Resposta Direta</h3><p>Cada palavra tem funcao. Sem enrolacao, sem generico. Texto que leva o leitor a uma acao especifica com o menor atrito possivel.</p></div>
+    <div class="esp-card"><div class="esp-icon">🛒</div><h3>Varejo de Alto Ticket</h3><p>Especialista em produto consultivo com ciclo de venda longo. Sabe como falar com quem compra por qualidade, nao por preco.</p></div>
+    <div class="esp-card"><div class="esp-icon">📍</div><h3>Multi-praca</h3><p>Campanhas em Salvador, Sao Luis, Fortaleza e Aracaju — com adaptacao de tom e posicionamento por mercado e concorrencia local.</p></div>
   </div>
 </section>
 
@@ -481,107 +213,325 @@ footer {
 
 <!-- PROJETOS -->
 <section>
-  <div class="section-label">Trabalhos realizados</div>
-  <h2>Projetos na<br><span>Flip Up 360</span></h2>
+  <div class="section-label">Trabalhos realizados — Flip Up 360</div>
+  <h2>Roteiros e <span>copy em campo</span></h2>
 
-  <!-- SLEEPHOUSE -->
-  <div class="projeto-block">
-    <div class="projeto-cliente">Cliente 01 — Flip Up 360</div>
-    <h3>Sleep House</h3>
-    <p class="projeto-desc">Marca premium de colchões. Posicionamento de alto padrão com foco em sono como investimento de qualidade de vida. Campanhas de Black Friday e lançamento de produto com estilo elegante e consultivo.</p>
-    <div class="entregas-grid">
-      <div class="entrega-card">
-        <div class="entrega-tipo">Roteiro de Vídeo</div>
-        <h4>Black Friday V2</h4>
-        <p>Série de roteiros com variações. Tema: "Você vive bem, mas dorme bem?" Abordagem reflexiva e elegante.</p>
+  <!-- SLEEP HOUSE -->
+  <div class="cliente-block">
+    <div class="cliente-header">
+      <span class="cliente-num">Cliente 01</span>
+      <h3>Sleep House</h3>
+    </div>
+    <div class="cliente-desc">
+      <p>Marca premium de colchoes com posicionamento de alto padrao. Foco em sono como investimento de qualidade de vida, nao produto de preco. Tom elegante, reflexivo e consultivo. 3 roteiros entregues — Black Friday V2, Black do Milhao e Box Bau.</p>
+    </div>
+    <div class="scripts-grid">
+
+      <div class="script-card">
+        <div class="script-top">
+          <span class="script-tipo">Roteiro de Video</span>
+          <span class="script-style">Reflexivo · Elegante</span>
+        </div>
+        <div class="script-body">
+          <div class="script-titulo">Black Friday V2</div>
+          <div class="script-meta">
+            <span class="script-tag">Campanha Black Friday</span>
+            <span class="script-tag">Showroom premium</span>
+          </div>
+          <div class="script-cena">
+            <div class="cena-num">Abertura · CENA 01 · 00s – 03s</div>
+            <div class="cena-fala">"Voce trabalha muito, investe no melhor, vive intensamente... Mas — voce dorme bem?"</div>
+          </div>
+          <div class="script-feats">
+            <div class="script-feat"><div class="script-feat-dot"></div><span>Especialista ja posicionado, cenario com iluminacao suave</span></div>
+            <div class="script-feat"><div class="script-feat-dot"></div><span>Provoca reflexao antes de mencionar qualquer produto</span></div>
+            <div class="script-feat"><div class="script-feat-dot"></div><span>2 variacoes de abertura para teste</span></div>
+          </div>
+        </div>
       </div>
-      <div class="entrega-card">
-        <div class="entrega-tipo">Roteiro de Vídeo</div>
-        <h4>Black do Milhão</h4>
-        <p>Roteiro para colchão Linum Plush Pikolin. Estilo envolvente e consultivo, showroom refinado.</p>
+
+      <div class="script-card">
+        <div class="script-top">
+          <span class="script-tipo">Roteiro de Video</span>
+          <span class="script-style">Envolvente · Consultivo</span>
+        </div>
+        <div class="script-body">
+          <div class="script-titulo">Black do Milhao</div>
+          <div class="script-meta">
+            <span class="script-tag">Produto: Linum Plush Pikolin</span>
+            <span class="script-tag">Alto padrao</span>
+          </div>
+          <div class="script-cena">
+            <div class="cena-num">Abertura · CENA 01 · 00s – 03s</div>
+            <div class="cena-fala">"O colchao Linum Plush da Pikolin esta aqui, na Sleep House — e a Black do Milhao e aqui."</div>
+          </div>
+          <div class="script-cena">
+            <div class="cena-num">CENA 02 · 03s – 10s</div>
+            <div class="cena-fala">"E sim, ele esta com ate 40% de desconto nesta Black do Milhao. Um dos melhores colchoes da linha Pikolin, agora ao seu alcance."</div>
+          </div>
+          <div class="script-feats">
+            <div class="script-feat"><div class="script-feat-dot"></div><span>32cm de conforto macio, estrutura premium e design elegante</span></div>
+            <div class="script-feat"><div class="script-feat-dot"></div><span>Cena a cena com close nos detalhes do produto</span></div>
+          </div>
+        </div>
       </div>
-      <div class="entrega-card">
-        <div class="entrega-tipo">Roteiro de Vídeo</div>
-        <h4>Box Baú V1</h4>
-        <p>Foco em funcionalidade com sofisticação. Benefício principal: mais espaço sem perder elegância.</p>
+
+      <div class="script-card">
+        <div class="script-top">
+          <span class="script-tipo">Roteiro de Video</span>
+          <span class="script-style">Sofisticado · Funcional</span>
+        </div>
+        <div class="script-body">
+          <div class="script-titulo">Box Bau V1</div>
+          <div class="script-meta">
+            <span class="script-tag">Produto: Box Bau</span>
+            <span class="script-tag">Espaco + elegancia</span>
+          </div>
+          <div class="script-cena">
+            <div class="cena-num">Abertura · CENA 01 · 00s – 03s</div>
+            <div class="cena-fala">"Quer mais espaco no quarto sem abrir mao da elegancia?"</div>
+          </div>
+          <div class="script-feats">
+            <div class="script-feat"><div class="script-feat-dot"></div><span>Plano frontal com bau semiaberto em destaque</span></div>
+            <div class="script-feat"><div class="script-feat-dot"></div><span>Luz clara e equilibrada que valoriza produto e especialista</span></div>
+            <div class="script-feat"><div class="script-feat-dot"></div><span>Beneficio principal na abertura — nao no final</span></div>
+          </div>
+        </div>
       </div>
+
     </div>
   </div>
 
   <!-- ANJOS -->
-  <div class="projeto-block">
-    <div class="projeto-cliente">Cliente 02 — Flip Up 360</div>
-    <h3>Anjos Colchões & Sofás</h3>
-    <p class="projeto-desc">Rede com presença em São Luís e Fortaleza. Múltiplas campanhas sazonais com estilo direto, provocativo e consultivo. Benchmark competitivo completo da praça de Fortaleza.</p>
-    <div class="entregas-grid">
-      <div class="entrega-card">
-        <div class="entrega-tipo">Roteiro de Vídeo</div>
-        <h4>Black Friday São Luís V1</h4>
-        <p>"Black Friday? Tem. Mas não é feirão de colchão." Copy que qualifica antes de vender.</p>
+  <div class="cliente-block">
+    <div class="cliente-header">
+      <span class="cliente-num">Cliente 02</span>
+      <h3>Anjos Colchoes e Sofas</h3>
+    </div>
+    <div class="cliente-desc">
+      <p>Rede com presenca em Sao Luis e Fortaleza. Multiplas campanhas sazonais com estilo direto, provocativo e consultivo. Tom que qualifica o comprador antes de vender. 4 entregas: 2 roteiros de Black Friday, Liquida Anjos e benchmark competitivo de Fortaleza.</p>
+    </div>
+    <div class="scripts-grid">
+
+      <div class="script-card">
+        <div class="script-top">
+          <span class="script-tipo">Roteiro de Video</span>
+          <span class="script-style">Direto · Qualificador</span>
+        </div>
+        <div class="script-body">
+          <div class="script-titulo">Black Friday Sao Luis V1</div>
+          <div class="script-meta">
+            <span class="script-tag">Sao Luis · MA</span>
+            <span class="script-tag">Posicionamento premium</span>
+          </div>
+          <div class="script-cena">
+            <div class="cena-num">CENA 01 · 00s – 03s</div>
+            <div class="cena-fala">"Black Friday? Tem. Mas nao e feirao de colchao."</div>
+          </div>
+          <div class="script-feats">
+            <div class="script-feat"><div class="script-feat-dot"></div><span>Filtra comprador de preco na abertura — so continua quem quer qualidade</span></div>
+            <div class="script-feat"><div class="script-feat-dot"></div><span>Estilo consultivo, elegante com ritmo firme e provocativo</span></div>
+          </div>
+        </div>
       </div>
-      <div class="entrega-card">
-        <div class="entrega-tipo">Roteiro de Vídeo</div>
-        <h4>Black Friday Anjos V2</h4>
-        <p>Contraste com compras impulsivas. Escolha inteligente de longo prazo. Tom direto e elegante.</p>
+
+      <div class="script-card">
+        <div class="script-top">
+          <span class="script-tipo">Roteiro de Video</span>
+          <span class="script-style">Direto · Inteligente</span>
+        </div>
+        <div class="script-body">
+          <div class="script-titulo">Black Friday Anjos V2</div>
+          <div class="script-meta">
+            <span class="script-tag">Contraste com impulso</span>
+            <span class="script-tag">Decisao de longo prazo</span>
+          </div>
+          <div class="script-cena">
+            <div class="cena-num">Abertura · 00s – 03s</div>
+            <div class="cena-fala">"Black Friday de Verdade Muda Sua Rotina — Nao So Seu Carrinho"</div>
+          </div>
+          <div class="script-feats">
+            <div class="script-feat"><div class="script-feat-dot"></div><span>Foco: contraste com compras impulsivas de Black Friday</span></div>
+            <div class="script-feat"><div class="script-feat-dot"></div><span>Posiciona colchao como escolha inteligente, nao promocional</span></div>
+          </div>
+        </div>
       </div>
-      <div class="entrega-card">
-        <div class="entrega-tipo">Roteiro de Vídeo</div>
-        <h4>Liquida Anjos V2</h4>
-        <p>Campanha de liquidação — 3 colchões (Geniale, Differenza, Neve) sem perder o posicionamento premium.</p>
+
+      <div class="script-card">
+        <div class="script-top">
+          <span class="script-tipo">Roteiro de Video</span>
+          <span class="script-style">Empatico · Showroom</span>
+        </div>
+        <div class="script-body">
+          <div class="script-titulo">Liquida Anjos V2</div>
+          <div class="script-meta">
+            <span class="script-tag">3 colchoes: Geniale, Differenza, Neve</span>
+          </div>
+          <div class="script-cena">
+            <div class="cena-num">Abertura — Variacao 1</div>
+            <div class="cena-fala">"Voce acorda ja cansado? E ai o cafe nao resolve, o humor nao vem... As vezes, nao e o dia que ta puxado. E a noite que nao ta ajudando."</div>
+          </div>
+          <div class="script-cena">
+            <div class="cena-num">Abertura — Variacao 3</div>
+            <div class="cena-fala">"Todo mundo tem aquele momento de lucidez no fim do dia: 'eu merecia dormir melhor'. A diferenca e que agora voce pode."</div>
+          </div>
+          <div class="script-feats">
+            <div class="script-feat"><div class="script-feat-dot"></div><span>3 variacoes de abertura para teste — cada uma com angulo diferente</span></div>
+            <div class="script-feat"><div class="script-feat-dot"></div><span>Campanha de liquidacao sem perder posicionamento premium</span></div>
+          </div>
+        </div>
       </div>
-      <div class="entrega-card">
-        <div class="entrega-tipo">Benchmark</div>
-        <h4>Análise Fortaleza</h4>
-        <p>Mapeamento de concorrentes em Fortaleza — Instagram, frequência, engajamento, estrutura comercial e diferenciais.</p>
+
+      <div class="bench-card">
+        <div class="bench-header">
+          <span class="bench-tipo">Benchmark Competitivo</span>
+          <span class="bench-data">Janeiro 2026</span>
+        </div>
+        <div class="bench-body">
+          <div class="bench-titulo">Analise de Concorrentes — Anjos Fortaleza</div>
+          <div class="bench-competidores">
+            <div class="bench-comp">
+              <div class="bench-comp-nome">Koala Colchoes</div>
+              <div class="bench-comp-seg">8.271 seguidores</div>
+              <div class="bench-comp-info">Reels com apresentadora, conteudo educativo, views ~10k</div>
+            </div>
+            <div class="bench-comp">
+              <div class="bench-comp-nome">Concorrentes mapeados</div>
+              <div class="bench-comp-seg">Instagram + site</div>
+              <div class="bench-comp-info">Frequencia, engajamento, estrutura comercial e LP</div>
+            </div>
+          </div>
+          <div class="bench-insight">
+            <p>Diagnostico entregue: frequencia de postagem, tipo de conteudo, engajamento medio, estrutura de venda e diferenciais por concorrente</p>
+          </div>
+        </div>
       </div>
+
     </div>
   </div>
 
   <!-- KABRAL -->
-  <div class="projeto-block">
-    <div class="projeto-cliente">Cliente 03 — Flip Up 360</div>
-    <h3>Kabral Colchões</h3>
-    <p class="projeto-desc">Loja em Aracaju (região Grageru/Jardins). Campanha de Black Friday com análise do cenário competitivo local — 4 concorrentes mapeados.</p>
-    <div class="entregas-grid">
-      <div class="entrega-card">
-        <div class="entrega-tipo">Roteiro de Vídeo</div>
-        <h4>Black Friday V2</h4>
-        <p>"Quem entende, aproveita primeiro." Tom leve, dinâmico e envolvente. Humor elegante com foco em decisão inteligente.</p>
+  <div class="cliente-block">
+    <div class="cliente-header">
+      <span class="cliente-num">Cliente 03</span>
+      <h3>Kabral Colchoes</h3>
+    </div>
+    <div class="cliente-desc">
+      <p>Loja em Aracaju, regiao Grageru/Jardins. Campanha de Black Friday com mapeamento competitivo completo da praca — 4 concorrentes analisados. Tom leve, dinamico e envolvente com humor elegante.</p>
+    </div>
+    <div class="scripts-grid">
+
+      <div class="script-card">
+        <div class="script-top">
+          <span class="script-tipo">Roteiro de Video</span>
+          <span class="script-style">Leve · Humor Elegante</span>
+        </div>
+        <div class="script-body">
+          <div class="script-titulo">Black Friday V2</div>
+          <div class="script-meta">
+            <span class="script-tag">Aracaju · SE</span>
+            <span class="script-tag">Ate 50% em alto padrao</span>
+          </div>
+          <div class="script-cena">
+            <div class="cena-num">CENA 01 · 00s – 03s</div>
+            <div class="cena-fala">"Tem gente que chega cedo na Black pra pegar TV... e tem quem chega pra garantir boas noites pelos proximos anos."</div>
+          </div>
+          <div class="script-cena">
+            <div class="cena-num">CENA 04 · 20s – 35s</div>
+            <div class="cena-fala">"Nao e so sobre desconto. E sobre escolher o certo antes que acabe."</div>
+          </div>
+          <div class="script-feats">
+            <div class="script-feat"><div class="script-feat-dot"></div><span>Contraste TV vs colchao — posiciona a decisao como inteligencia</span></div>
+            <div class="script-feat"><div class="script-feat-dot"></div><span>Urgencia sem pressao — "antes que acabe" pelo valor, nao pelo medo</span></div>
+          </div>
+        </div>
       </div>
-      <div class="entrega-card">
-        <div class="entrega-tipo">Benchmark</div>
-        <h4>Análise Aracaju</h4>
-        <p>4 concorrentes analisados (Rei dos Colchões, Master, Hiper, Ortobom). Instagram, Facebook, site, estrutura de venda.</p>
+
+      <div class="bench-card">
+        <div class="bench-header">
+          <span class="bench-tipo">Benchmark Competitivo</span>
+          <span class="bench-data">Dezembro 2025</span>
+        </div>
+        <div class="bench-body">
+          <div class="bench-titulo">4 Concorrentes — Aracaju (Grageru/Jardins)</div>
+          <div class="bench-competidores">
+            <div class="bench-comp">
+              <div class="bench-comp-nome">Rei dos Colchoes</div>
+              <div class="bench-comp-seg">33.000 seguidores</div>
+              <div class="bench-comp-info">Presenca ativa, videos de produto, muito "Valor?" nos comentarios</div>
+            </div>
+            <div class="bench-comp">
+              <div class="bench-comp-nome">Master Colchoes</div>
+              <div class="bench-comp-seg">31.000 seguidores</div>
+              <div class="bench-comp-info">Conteudo humanizado, campanhas de natal com preco visivel</div>
+            </div>
+            <div class="bench-comp">
+              <div class="bench-comp-nome">Hiper Colchoes</div>
+              <div class="bench-comp-seg">Aracaju</div>
+              <div class="bench-comp-info">Mapeado em Instagram e Facebook</div>
+            </div>
+            <div class="bench-comp">
+              <div class="bench-comp-nome">Ortobom Francisco Porto</div>
+              <div class="bench-comp-seg">526</div>
+              <div class="bench-comp-info">Estrutura comercial, site e LP analisados</div>
+            </div>
+          </div>
+          <div class="bench-insight">
+            <p>Diagnostico completo: Instagram, Facebook, site, LP, preco visivel vs oculto, frequencia e oportunidades de diferenciacao para a Kabral</p>
+          </div>
+        </div>
       </div>
+
     </div>
   </div>
 
-  <!-- RESTAURANTES + TIKTOK -->
-  <div class="projeto-block">
-    <div class="projeto-cliente">Outros trabalhos</div>
-    <h3>Copy & Análise de Mercado</h3>
-    <p class="projeto-desc">Peças avulsas de copy de resposta direta e análise de mercado no TikTok para o setor de varejo.</p>
-    <div class="entregas-grid">
-      <div class="entrega-card">
-        <div class="entrega-tipo">Copy</div>
-        <h4>Copy — Restaurantes</h4>
-        <p>"Cansado de 14 horas dentro do restaurante?" Copy para donos de restaurante que querem controle pelo celular.</p>
+  <!-- COPY + TIKTOK -->
+  <div class="cliente-block">
+    <div class="cliente-header">
+      <span class="cliente-num">Outros trabalhos</span>
+      <h3>Copy e Analise de Mercado</h3>
+    </div>
+    <div class="scripts-grid">
+
+      <div class="copy-card">
+        <div class="copy-tipo">Copy de Resposta Direta — Restaurantes</div>
+        <div class="copy-headline">"Cansado de 14 horas dentro do restaurante todo dia? Torne-se o dono que controla faturamento, mesas e pedidos direto pelo celular — sem precisar estar la."</div>
+        <div class="copy-context">Headline de resposta direta para donos de restaurante. Atinge a dor central (tempo preso) e entrega a promessa (controle pelo celular). Cada palavra escolhida para qualificar e converter.</div>
       </div>
-      <div class="entrega-card">
-        <div class="entrega-tipo">Benchmark</div>
-        <h4>Análise de Mercado TikTok</h4>
-        <p>Mapeamento de perfis do setor de colchões no TikTok — performance, viralização, frequência e diagnóstico estratégico.</p>
+
+      <div class="bench-card">
+        <div class="bench-header">
+          <span class="bench-tipo">Analise de Mercado</span>
+          <span class="bench-data">Novembro 2025</span>
+        </div>
+        <div class="bench-body">
+          <div class="bench-titulo">Benchmark TikTok — Setor de Colchoes</div>
+          <div class="bench-competidores">
+            <div class="bench-comp">
+              <div class="bench-comp-nome">@sonho.store</div>
+              <div class="bench-comp-seg">3.737 seguidores</div>
+              <div class="bench-comp-info">3 videos acima de 100k views, 1 com ~900k — viraliza pontualmente</div>
+            </div>
+            <div class="bench-comp">
+              <div class="bench-comp-nome">Diagnostico</div>
+              <div class="bench-comp-seg">TikTok</div>
+              <div class="bench-comp-info">Frequencia, performance, engajamento e estrategia de conteudo analisados</div>
+            </div>
+          </div>
+          <div class="bench-insight">
+            <p>Insight: perfil pequeno com viralidade pontual. Conteudo relevante supera escala de seguidores no TikTok — oportunidade para marcas novas</p>
+          </div>
+        </div>
       </div>
+
     </div>
   </div>
 </section>
 
 <!-- QUOTE -->
-<div class="quote-block">
-  <blockquote>
-    "Copy não é o que você fala sobre o produto. É o que o comprador sente quando lê — e o que ele faz depois."
-  </blockquote>
-  <cite>— Princípio de trabalho · João Alves</cite>
+<div class="quote-wrap">
+  <blockquote>"Copy nao e o que voce fala sobre o produto. E o que o comprador sente quando le — e o que ele faz depois."</blockquote>
+  <cite>— Principio de trabalho · Joao Alves</cite>
 </div>
 
 <!-- METODOLOGIA -->
@@ -589,33 +539,17 @@ footer {
   <div class="section-label">Como trabalha</div>
   <h2>Metodologia</h2>
   <div class="met-grid">
-    <div class="met-step">
-      <div class="met-num">01</div>
-      <h3>Diagnóstico</h3>
-      <p>Entende o produto, o comprador, o concorrente e o momento antes de escrever uma palavra.</p>
-    </div>
-    <div class="met-step">
-      <div class="met-num">02</div>
-      <h3>Estrutura</h3>
-      <p>Define o arco da peça: abertura, desenvolvimento, virada e call to action. Nada é colocado por acaso.</p>
-    </div>
-    <div class="met-step">
-      <div class="met-num">03</div>
-      <h3>Variações</h3>
-      <p>Entrega múltiplas versões de cada peça — diferentes abordagens para teste e escolha.</p>
-    </div>
-    <div class="met-step">
-      <div class="met-num">04</div>
-      <h3>Refinamento</h3>
-      <p>Cada palavra revisada pelo critério: move o leitor para a próxima ação? Se não, sai.</p>
-    </div>
+    <div class="met-card"><div class="met-num">01</div><h3>Diagnostico</h3><p>Entende o produto, o comprador, o concorrente e o momento antes de escrever uma palavra. Sem briefing, sem copy.</p></div>
+    <div class="met-card"><div class="met-num">02</div><h3>Estrutura</h3><p>Define o arco da peca: abertura, desenvolvimento, virada e call to action. Cada cena tem objetivo antes de ter texto.</p></div>
+    <div class="met-card"><div class="met-num">03</div><h3>Variacoes</h3><p>Entrega multiplas versoes de abertura e abordagem para teste em campo. O mercado decide, nao a opiniao.</p></div>
+    <div class="met-card"><div class="met-num">04</div><h3>Refinamento</h3><p>Cada palavra revisada pelo criterio: move o leitor para a proxima acao? Se nao, sai. Zero palavra decorativa.</p></div>
   </div>
 </section>
 
 <!-- FOOTER -->
 <footer>
   <div class="footer-logo">Triforce Auto</div>
-  <div class="footer-copy">João Alves · Portfólio 2026</div>
+  <div class="footer-copy">Joao Alves · Portfolio 2026</div>
 </footer>
 
 </body>

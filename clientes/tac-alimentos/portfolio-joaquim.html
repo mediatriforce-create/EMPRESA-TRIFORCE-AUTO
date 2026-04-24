@@ -3,460 +3,233 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Portfólio — Joaquim | Triforce Auto</title>
+<title>Portfolio — Joaquim Salles | Triforce Auto</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;700&display=swap');
 
-* { box-sizing: border-box; margin: 0; padding: 0; }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
   --laranja: #FF6600;
   --preto: #050505;
   --creme: #F5F0E8;
-  --cinza: #666;
+  --cinza: #555;
   --verde: #00ff66;
+  --dark1: #0a0a0a;
+  --dark2: #111;
+  --border: #1e1e1e;
 }
 
-body {
-  font-family: 'Montserrat', sans-serif;
-  background: var(--preto);
-  color: var(--creme);
-  line-height: 1.6;
-}
+body { font-family: 'Montserrat', sans-serif; background: var(--preto); color: var(--creme); line-height: 1.6; }
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+@keyframes fadeUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
 
-/* COVER */
+/* ─── COVER ─── */
 .cover {
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 80px 60px;
+  display: grid;
+  grid-template-columns: 1fr 420px;
   position: relative;
   overflow: hidden;
   border-bottom: 4px solid var(--laranja);
 }
-
-.cover-grid {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  gap: 40px;
-  align-items: end;
-}
-
 .cover::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(circle at 80% 30%, rgba(0,255,102,0.05), transparent 50%),
-    radial-gradient(circle at 10% 70%, rgba(255,102,0,0.12), transparent 45%);
-  pointer-events: none;
+  content:'';
+  position:absolute;inset:0;
+  background: radial-gradient(circle at 20% 60%, rgba(255,102,0,.12), transparent 45%),
+              radial-gradient(circle at 70% 20%, rgba(0,255,102,.05), transparent 50%);
+  pointer-events:none;
 }
-
-/* Terminal blink animation */
-@keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
-
-.cover-tag {
-  font-size: 0.7rem;
-  font-weight: 700;
-  letter-spacing: 4px;
-  text-transform: uppercase;
-  color: var(--laranja);
-  margin-bottom: 32px;
-}
-
-.cover h1 {
-  font-size: clamp(3rem, 7vw, 6.5rem);
-  font-weight: 900;
-  line-height: 0.95;
-  letter-spacing: -3px;
-  text-transform: uppercase;
-  margin-bottom: 24px;
-}
-
-.cover h1 span { color: var(--laranja); }
-
-.cover-tagline {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: clamp(0.85rem, 1.5vw, 1.05rem);
-  color: var(--verde);
-  margin-bottom: 48px;
-  line-height: 1.6;
-  max-width: 600px;
-}
-
-.cover-tagline::after {
-  content: '█';
-  animation: blink 1.2s step-end infinite;
-  color: var(--verde);
-}
-
-.cover-pills {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-
-.pill {
-  border: 1px solid rgba(255,102,0,0.4);
-  color: var(--laranja);
-  padding: 7px 18px;
-  font-size: 0.7rem;
-  font-weight: 700;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-}
-
-.cover-age {
-  font-size: 0.65rem;
-  font-weight: 700;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  color: var(--cinza);
-  text-align: right;
-  line-height: 2;
-}
-
-.age-big {
-  display: block;
-  font-size: 5rem;
-  font-weight: 900;
-  letter-spacing: -3px;
-  color: #111;
-  line-height: 1;
-}
-
-.cover-empresa {
-  position: absolute;
-  bottom: 40px;
-  right: 60px;
-  font-size: 0.7rem;
-  font-weight: 700;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  opacity: 0.3;
-}
-
-/* SECTIONS */
-section {
+.cover-left {
+  display:flex;flex-direction:column;justify-content:center;
   padding: 80px 60px;
-  max-width: 1100px;
-  margin: 0 auto;
+  position:relative;z-index:2;
 }
-
-.section-label {
-  font-size: 0.65rem;
-  font-weight: 700;
-  letter-spacing: 4px;
-  text-transform: uppercase;
-  color: var(--laranja);
-  margin-bottom: 16px;
+.cover-tag {
+  font-size:.65rem;font-weight:700;letter-spacing:4px;
+  text-transform:uppercase;color:var(--laranja);margin-bottom:28px;
 }
-
-h2 {
-  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
-  font-weight: 900;
-  line-height: 1.1;
-  letter-spacing: -1px;
-  text-transform: uppercase;
-  margin-bottom: 40px;
-  color: var(--creme);
+.cover h1 {
+  font-size: clamp(3.5rem,6vw,6rem);
+  font-weight:900;line-height:.92;letter-spacing:-3px;
+  text-transform:uppercase;margin-bottom:20px;
 }
+.cover h1 span { color:var(--laranja); }
+.cover-sub {
+  font-size:.8rem;font-weight:700;letter-spacing:2px;
+  text-transform:uppercase;color:var(--cinza);margin-bottom:28px;
+}
+.cover-tagline {
+  font-family:'JetBrains Mono',monospace;
+  font-size:clamp(.8rem,1.3vw,.95rem);
+  color:var(--verde);margin-bottom:40px;line-height:1.7;max-width:480px;
+}
+.cover-tagline::after { content:'█';animation:blink 1.2s step-end infinite; }
+.cover-pills { display:flex;flex-wrap:wrap;gap:8px;margin-bottom:40px; }
+.pill {
+  border:1px solid rgba(255,102,0,.5);color:var(--laranja);
+  padding:6px 16px;font-size:.65rem;font-weight:700;
+  letter-spacing:1.5px;text-transform:uppercase;
+}
+.cover-stats { display:flex;gap:32px; }
+.cstat-num { font-size:2rem;font-weight:900;color:var(--laranja);line-height:1; }
+.cstat-label { font-size:.6rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--cinza); }
 
-h2 span { color: var(--laranja); }
+.cover-right {
+  position:relative;overflow:hidden;
+  background:#0a0a0a;
+  border-left:1px solid var(--border);
+}
+.cover-photo {
+  width:100%;height:100%;object-fit:cover;object-position:center top;
+  filter:brightness(.9) contrast(1.05);
+  display:block;
+}
+.cover-right::after {
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(to right, var(--preto) 0%, transparent 25%),
+             linear-gradient(to top, var(--preto) 0%, transparent 20%);
+}
+.cover-age-badge {
+  position:absolute;bottom:28px;right:28px;z-index:3;
+  background:var(--laranja);
+  padding:12px 20px;text-align:center;
+}
+.cover-age-badge .num { font-size:2.5rem;font-weight:900;color:var(--preto);line-height:1; }
+.cover-age-badge .label { font-size:.55rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--preto); }
+.cover-empresa { position:absolute;bottom:32px;left:60px;font-size:.6rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;opacity:.25;z-index:3; }
 
-/* TESE */
+/* ─── SECTIONS ─── */
+section { padding:80px 60px;max-width:1120px;margin:0 auto; }
+.section-label { font-size:.6rem;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--laranja);margin-bottom:14px; }
+h2 { font-size:clamp(1.8rem,3.5vw,2.6rem);font-weight:900;line-height:1.1;letter-spacing:-1px;text-transform:uppercase;margin-bottom:36px;color:var(--creme); }
+h2 span { color:var(--laranja); }
+.divider { height:1px;background:var(--border);margin:0 60px; }
+
+/* ─── TESE ─── */
 .tese-block {
-  background: #0a0a0a;
-  border: 1px solid #1a1a1a;
-  border-left: 4px solid var(--verde);
-  padding: 40px;
-  margin-bottom: 40px;
+  background:var(--dark1);border:1px solid var(--border);
+  border-left:4px solid var(--verde);padding:40px;margin-bottom:24px;
+}
+.tese-block p { font-size:1rem;color:rgba(245,240,232,.82);line-height:1.85;margin-bottom:18px; }
+.tese-block p:last-of-type { margin-bottom:0; }
+.tese-block strong { color:var(--creme); }
+.axioma {
+  font-family:'JetBrains Mono',monospace;font-size:.9rem;color:var(--verde);
+  border-top:1px solid var(--border);padding-top:22px;margin-top:22px;line-height:1.6;
 }
 
-.tese-block p {
-  font-size: 1.1rem;
-  line-height: 1.8;
-  color: rgba(245,240,232,0.85);
-  margin-bottom: 16px;
+/* ─── ESCOLA ─── */
+.escola-section {
+  background: linear-gradient(135deg, #050505 0%, #0c0c0c 100%);
+  border-top:4px solid var(--laranja);border-bottom:4px solid var(--laranja);
+  padding:80px 60px;
+}
+.escola-inner { max-width:1120px;margin:0 auto; }
+.escola-header { display:grid;grid-template-columns:1fr auto;align-items:start;gap:40px;margin-bottom:48px; }
+.escola-badge {
+  background:var(--laranja);color:var(--preto);
+  padding:4px 14px;font-size:.6rem;font-weight:800;
+  letter-spacing:2px;text-transform:uppercase;margin-bottom:14px;display:inline-block;
+}
+.escola-header h2 { margin-bottom:12px; }
+.escola-header p { font-size:.95rem;color:rgba(245,240,232,.75);line-height:1.8;max-width:600px; }
+.escola-num-block { text-align:center;background:var(--dark1);border:1px solid var(--border);border-top:3px solid var(--laranja);padding:28px 36px; }
+.escola-num-block .big { font-size:4rem;font-weight:900;color:var(--laranja);line-height:1; }
+.escola-num-block .lbl { font-size:.6rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--cinza);margin-top:6px; }
+
+.escola-grid { display:grid;grid-template-columns:1fr 1fr;gap:2px;margin-bottom:40px; }
+.escola-card { background:var(--dark1);border:1px solid var(--border);padding:32px; }
+.escola-card-label { font-size:.58rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--laranja);margin-bottom:14px; }
+.escola-card h3 { font-size:1rem;font-weight:800;text-transform:uppercase;letter-spacing:.5px;color:var(--creme);margin-bottom:12px; }
+.escola-card p { font-size:.85rem;color:rgba(245,240,232,.7);line-height:1.7; }
+
+.ferr-pills { display:flex;flex-wrap:wrap;gap:8px;margin-top:16px; }
+.ferr-pill {
+  font-family:'JetBrains Mono',monospace;font-size:.72rem;font-weight:700;
+  color:var(--verde);background:#0d0d0d;border:1px solid rgba(0,255,102,.25);
+  padding:5px 14px;
 }
 
-.tese-block p:last-child { margin-bottom: 0; }
-
-.tese-axioma {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 1rem;
-  color: var(--verde);
-  border-top: 1px solid #1a1a1a;
-  padding-top: 24px;
-  margin-top: 24px;
-  line-height: 1.6;
+.credencial-block {
+  background:var(--laranja);padding:36px 40px;
+  display:grid;grid-template-columns:auto 1fr;gap:28px;align-items:center;
 }
+.credencial-icon { font-size:2.8rem; }
+.credencial-block h3 { font-size:1.1rem;font-weight:900;text-transform:uppercase;letter-spacing:-.3px;color:var(--preto);margin-bottom:8px; }
+.credencial-block p { font-size:.88rem;color:rgba(5,5,5,.75);line-height:1.65; }
 
-/* PROJETOS */
-.proj-card {
-  background: #0a0a0a;
-  border: 1px solid #1a1a1a;
-  margin-bottom: 2px;
-  overflow: hidden;
-  transition: border-color 0.2s;
+/* ─── PROJETOS ─── */
+.proj-block { margin-bottom:64px; }
+.proj-block:last-child { margin-bottom:0; }
+.proj-meta { display:flex;align-items:center;gap:16px;margin-bottom:20px; }
+.proj-num { font-family:'JetBrains Mono',monospace;font-size:.7rem;color:var(--cinza);font-weight:700; }
+.proj-badge { font-size:.58rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--laranja);border:1px solid var(--laranja);padding:3px 10px; }
+.proj-block h3 { font-size:1.6rem;font-weight:900;text-transform:uppercase;letter-spacing:-.5px;color:var(--creme);margin-bottom:12px; }
+.proj-desc { font-size:.95rem;color:rgba(245,240,232,.72);line-height:1.8;margin-bottom:28px;max-width:680px; }
+
+/* Browser mockup */
+.browser {
+  background:var(--dark1);border:1px solid var(--border);
+  border-radius:8px 8px 0 0;overflow:hidden;margin-bottom:24px;
+  box-shadow:0 20px 60px rgba(0,0,0,.6);
 }
-
-.proj-card:hover { border-color: var(--laranja); }
-
-.proj-header {
-  display: grid;
-  grid-template-columns: auto 1fr auto;
-  align-items: center;
-  gap: 24px;
-  padding: 32px 40px;
-  cursor: default;
+.browser-bar {
+  background:#1a1a1a;padding:10px 16px;
+  display:flex;align-items:center;gap:10px;
+  border-bottom:1px solid var(--border);
 }
-
-.proj-num {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.75rem;
-  color: var(--cinza);
-  font-weight: 700;
+.bdot { width:10px;height:10px;border-radius:50%; }
+.bdot.r { background:#ff5f57; }
+.bdot.y { background:#febc2e; }
+.bdot.g { background:#28c840; }
+.burl {
+  flex:1;background:#111;border:1px solid #222;border-radius:4px;
+  padding:4px 12px;font-family:'JetBrains Mono',monospace;font-size:.65rem;color:#555;
 }
+.browser img { width:100%;display:block; }
 
-.proj-header h3 {
-  font-size: 1.3rem;
-  font-weight: 900;
-  text-transform: uppercase;
-  letter-spacing: -0.5px;
-  color: var(--creme);
-}
+.proj-feats { display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:2px; }
+.feat { background:var(--dark1);border:1px solid var(--border);padding:18px 20px; }
+.feat-lbl { font-size:.55rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--verde);margin-bottom:6px; }
+.feat p { font-size:.78rem;color:var(--cinza);line-height:1.55; }
 
-.proj-badge {
-  font-size: 0.6rem;
-  font-weight: 700;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: var(--laranja);
-  border: 1px solid var(--laranja);
-  padding: 4px 12px;
-  white-space: nowrap;
-}
+/* ─── STACK ─── */
+.stack-grid { display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:2px; }
+.stack-cat { background:var(--dark1);border:1px solid var(--border);padding:28px; }
+.stack-cat-lbl { font-size:.58rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--laranja);margin-bottom:14px; }
+.tech-row { display:flex;flex-wrap:wrap;gap:6px; }
+.tech { font-family:'JetBrains Mono',monospace;font-size:.72rem;font-weight:700;color:var(--creme);background:#151515;border:1px solid #222;padding:5px 12px; }
 
-.proj-body {
-  padding: 0 40px 36px;
-  border-top: 1px solid #151515;
-}
+/* ─── FILOSOFIA ─── */
+.fil-grid { display:grid;grid-template-columns:1fr 1fr;gap:2px; }
+.fil-card { background:var(--dark1);border:1px solid var(--border);padding:36px; }
+.fil-card.accent { background:var(--laranja); }
+.fil-card .fl { font-size:.58rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--laranja);margin-bottom:12px; }
+.fil-card.accent .fl { color:var(--preto); }
+.fil-card h3 { font-size:.95rem;font-weight:800;text-transform:uppercase;letter-spacing:.5px;color:var(--creme);margin-bottom:12px; }
+.fil-card.accent h3 { color:var(--preto); }
+.fil-card p { font-size:.83rem;color:rgba(245,240,232,.65);line-height:1.7; }
+.fil-card.accent p { color:rgba(5,5,5,.7); }
 
-.proj-body p {
-  font-size: 0.95rem;
-  color: rgba(245,240,232,0.7);
-  line-height: 1.8;
-  margin-bottom: 24px;
-  padding-top: 24px;
-}
+/* ─── QUOTE ─── */
+.quote-wrap { background:var(--laranja);padding:56px 60px; }
+.quote-wrap blockquote { font-size:clamp(1.1rem,2.2vw,1.7rem);font-weight:800;color:var(--preto);line-height:1.35;text-transform:uppercase;letter-spacing:-.5px;max-width:700px; }
+.quote-wrap cite { display:block;margin-top:18px;font-size:.65rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(5,5,5,.5);font-style:normal; }
 
-.proj-features {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 2px;
-}
+/* ─── FOOTER ─── */
+footer { background:#080808;border-top:1px solid var(--border);padding:36px 60px;display:flex;justify-content:space-between;align-items:center; }
+.footer-logo { font-size:.7rem;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:var(--laranja); }
+.footer-copy { font-size:.6rem;color:var(--cinza);letter-spacing:1px;text-transform:uppercase; }
 
-.feat {
-  background: #111;
-  padding: 16px 20px;
-}
-
-.feat-label {
-  font-size: 0.6rem;
-  font-weight: 700;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: var(--verde);
-  margin-bottom: 6px;
-}
-
-.feat p {
-  font-size: 0.8rem;
-  color: var(--cinza);
-  line-height: 1.5;
-  padding-top: 0;
-  margin-bottom: 0;
-}
-
-/* STACK */
-.stack-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 2px;
-}
-
-.stack-cat {
-  background: #0a0a0a;
-  border: 1px solid #1a1a1a;
-  padding: 28px;
-}
-
-.stack-cat-label {
-  font-size: 0.6rem;
-  font-weight: 700;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  color: var(--laranja);
-  margin-bottom: 16px;
-}
-
-.tech-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-
-.tech {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.75rem;
-  font-weight: 700;
-  color: var(--creme);
-  background: #151515;
-  border: 1px solid #222;
-  padding: 6px 14px;
-}
-
-.stack-total {
-  border-top: 1px solid #1a1a1a;
-  padding-top: 24px;
-  margin-top: 24px;
-  text-align: center;
-}
-
-.stack-total-num {
-  font-size: 3.5rem;
-  font-weight: 900;
-  color: var(--laranja);
-  line-height: 1;
-  display: block;
-}
-
-.stack-total-label {
-  font-size: 0.65rem;
-  font-weight: 700;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: var(--cinza);
-}
-
-/* FILOSOFIA */
-.fil-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2px;
-}
-
-.fil-lado {
-  background: #0a0a0a;
-  border: 1px solid #1a1a1a;
-  padding: 40px;
-}
-
-.fil-lado.destaque {
-  background: var(--laranja);
-}
-
-.fil-lado h3 {
-  font-size: 1rem;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  color: var(--creme);
-  margin-bottom: 16px;
-}
-
-.fil-lado.destaque h3 { color: var(--preto); }
-
-.fil-lado p {
-  font-size: 0.88rem;
-  color: rgba(245,240,232,0.7);
-  line-height: 1.7;
-}
-
-.fil-lado.destaque p { color: var(--preto); opacity: 0.75; }
-
-.fil-tag {
-  font-size: 0.6rem;
-  font-weight: 700;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  color: var(--verde);
-  margin-bottom: 12px;
-}
-
-.fil-lado.destaque .fil-tag { color: var(--preto); }
-
-/* DIVIDER */
-.divider {
-  height: 1px;
-  background: #1a1a1a;
-  margin: 0 60px;
-}
-
-/* QUOTE */
-.quote-block {
-  background: var(--laranja);
-  padding: 60px;
-}
-
-.quote-block blockquote {
-  font-size: clamp(1.2rem, 2.5vw, 1.8rem);
-  font-weight: 800;
-  color: var(--preto);
-  line-height: 1.35;
-  text-transform: uppercase;
-  letter-spacing: -0.5px;
-  max-width: 750px;
-}
-
-.quote-block cite {
-  display: block;
-  margin-top: 20px;
-  font-size: 0.7rem;
-  font-weight: 700;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: rgba(5,5,5,0.5);
-  font-style: normal;
-}
-
-/* FOOTER */
-footer {
-  background: #0a0a0a;
-  border-top: 1px solid #1a1a1a;
-  padding: 40px 60px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.footer-logo {
-  font-size: 0.75rem;
-  font-weight: 800;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  color: var(--laranja);
-}
-
-.footer-copy {
-  font-size: 0.65rem;
-  color: var(--cinza);
-  letter-spacing: 1px;
-  text-transform: uppercase;
-}
-
-@media (max-width: 768px) {
-  .cover, section, footer, .quote-block { padding: 48px 24px; }
-  .cover-grid { grid-template-columns: 1fr; }
-  .cover-age { display: none; }
-  .fil-grid { grid-template-columns: 1fr; }
-  .proj-header { grid-template-columns: 1fr; gap: 12px; }
-  .proj-badge { align-self: flex-start; }
-  .proj-body { padding: 0 24px 28px; }
-  .cover-empresa { display: none; }
-  footer { flex-direction: column; gap: 12px; text-align: center; }
+@media (max-width:900px) {
+  .cover { grid-template-columns:1fr; }
+  .cover-right { height:60vw;max-height:400px; }
+  section,.escola-section,.quote-wrap,footer { padding:48px 24px; }
+  .escola-header { grid-template-columns:1fr; }
+  .escola-grid { grid-template-columns:1fr; }
+  .fil-grid { grid-template-columns:1fr; }
+  footer { flex-direction:column;gap:12px;text-align:center; }
 }
 </style>
 </head>
@@ -464,24 +237,39 @@ footer {
 
 <!-- COVER -->
 <div class="cover">
-  <div class="cover-tag">Triforce Auto — Portfólio</div>
-  <div class="cover-grid">
-    <div>
-      <h1>Joaquim<br><span>Salles</span></h1>
-      <div class="cover-tagline">
-        "Você perde horas em tarefas que uma máquina<br>poderia fazer. Eu construo o sistema que devolve esse tempo."
+  <div class="cover-left">
+    <div class="cover-tag">Triforce Auto — Portfolio</div>
+    <h1>Joaquim<br><span>Salles</span></h1>
+    <div class="cover-sub">System Architect &amp; AI Developer</div>
+    <div class="cover-tagline">"Voce perde horas em tarefas que uma maquina poderia fazer.<br>Eu construo o sistema que devolve esse tempo."</div>
+    <div class="cover-pills">
+      <span class="pill">System Architect</span>
+      <span class="pill">AI Developer</span>
+      <span class="pill">Designer</span>
+      <span class="pill">Automacao</span>
+      <span class="pill">Landing Pages</span>
+      <span class="pill">No-Code / Low-Code</span>
+    </div>
+    <div class="cover-stats">
+      <div>
+        <div class="cstat-num">4+</div>
+        <div class="cstat-label">Anos em design</div>
       </div>
-      <div class="cover-pills">
-        <span class="pill">System Architect</span>
-        <span class="pill">AI Developer</span>
-        <span class="pill">Designer</span>
-        <span class="pill">Automação</span>
-        <span class="pill">Landing Pages</span>
+      <div>
+        <div class="cstat-num">3</div>
+        <div class="cstat-label">Sistemas em producao</div>
+      </div>
+      <div>
+        <div class="cstat-num">15</div>
+        <div class="cstat-label">Ferramentas no stack</div>
       </div>
     </div>
-    <div class="cover-age">
-      <span class="age-big">16</span>
-      anos
+  </div>
+  <div class="cover-right">
+    <img class="cover-photo" src="prints-joaquim/profile.jpg" alt="Joaquim Salles">
+    <div class="cover-age-badge">
+      <div class="num">16</div>
+      <div class="label">anos</div>
     </div>
   </div>
   <div class="cover-empresa">Triforce Auto · 2026</div>
@@ -490,111 +278,154 @@ footer {
 <!-- TESE -->
 <section>
   <div class="section-label">Proposta de valor</div>
-  <h2>Do caos ao<br><span>cockpit</span></h2>
+  <h2>Do caos ao <span>cockpit</span></h2>
   <div class="tese-block">
-    <p>Joaquim Salles constrói sistemas que eliminam o trabalho que não deveria ser feito por humanos. A tese central é simples: toda empresa tem processos que consomem tempo humano sem precisar de inteligência humana — e isso é custo invisível todo dia.</p>
-    <p>Com 4 anos de experiência em design e 2 anos desenvolvendo sistemas reais para uma ONG, Joaquim passou da teoria para a produção. VAV Central, Time Track e CGR1-Planner não são projetos acadêmicos — são sistemas em uso, com usuários reais, resolvendo problemas reais.</p>
-    <p>Guiado pela metodologia de Thales Laray, maior referência de IA aplicada ao Brasil, Joaquim integra design, código e inteligência artificial num único ecossistema operacional. Mais do que aluno: é o <strong style="color:var(--creme)">testador oficial de skills da maior escola de automacao do Brasil</strong>, responsável por validar em ambiente real cada ferramenta desenvolvida no ecossistema Thales Laray antes de chegar ao mercado.</p>
-    <div class="tese-axioma">
-      // "Todo processo que ainda depende de você é tempo que ainda não te pertence."
-    </div>
+    <p>Joaquim Salles constroi sistemas que eliminam o trabalho que nao deveria ser feito por humanos. A tese central e simples: toda empresa tem processos que consomem tempo humano sem precisar de inteligencia humana — e isso e custo invisivel todo dia.</p>
+    <p>Com <strong>4 anos de experiencia em design</strong> e <strong>2 anos desenvolvendo sistemas reais para uma ONG</strong>, Joaquim passou da teoria para a producao. VAV Central, Time Track e CGR1-Planner nao sao projetos academicos — sao sistemas em uso, com usuarios reais, resolvendo problemas reais.</p>
+    <p>Vibe coder por natureza: constroi o que precisa existir, integra IA onde faz sentido e entrega design que nao parece amador. O ecossistema e end-to-end — da landing page ao banco de dados, do agente de IA ao dashboard gerencial.</p>
+    <div class="axioma">// "Todo processo que ainda depende de voce e tempo que ainda nao te pertence."</div>
   </div>
 </section>
 
 <div class="divider"></div>
 
-<!-- PROJETOS -->
-<section>
-  <div class="section-label">Sistemas construídos</div>
-  <h2>Projetos<br><span>em produção</span></h2>
-
-  <!-- VAV CENTRAL -->
-  <div class="proj-card">
-    <div class="proj-header">
-      <div class="proj-num">01</div>
-      <h3>VAV Central</h3>
-      <div class="proj-badge">Sistema Núcleo</div>
+<!-- ESCOLA DE AUTOMACAO -->
+<div class="escola-section">
+  <div class="escola-inner">
+    <div class="escola-header">
+      <div>
+        <div class="escola-badge">Credencial Oficial</div>
+        <h2>Escola de <span>Automacao e IA</span><br>Thales Laray</h2>
+        <p>Thales Laray e o maior nome de automacao e inteligencia artificial aplicada do Brasil — fundador da primeira e maior comunidade de automacao do pais. Joaquim nao e apenas aluno: e o <strong style="color:var(--creme)">testador oficial de skills</strong> da escola, responsavel por validar em ambiente real cada ferramenta desenvolvida antes de chegar ao mercado.</p>
+      </div>
+      <div class="escola-num-block">
+        <div class="big">4.000+</div>
+        <div class="lbl">alunos na escola</div>
+      </div>
     </div>
-    <div class="proj-body">
-      <p>Sistema central desenvolvido para a ONG Viva a Vida. Unificou em uma única plataforma tudo que antes vivia em papel, planilhas soltas e mensagens de WhatsApp — administração, comunicação e gestão pedagógica. Eliminou dependência de processos manuais e deu à equipe visibilidade total sobre a operação em tempo real.</p>
-      <div class="proj-features">
-        <div class="feat">
-          <div class="feat-label">Funcionalidade</div>
-          <p>Administração unificada de comunicação e gestão pedagógica</p>
-        </div>
-        <div class="feat">
-          <div class="feat-label">Impacto</div>
-          <p>Eliminou papel e planilhas da operação da ONG</p>
-        </div>
-        <div class="feat">
-          <div class="feat-label">Cliente</div>
-          <p>ONG Viva a Vida — 2 anos de uso</p>
-        </div>
-        <div class="feat">
-          <div class="feat-label">Tipo</div>
-          <p>Sistema web completo com dashboard operacional</p>
+
+    <div class="escola-grid">
+      <div class="escola-card">
+        <div class="escola-card-label">Sobre a escola</div>
+        <h3>Escola de Automacao e IA</h3>
+        <p>A maior escola de automacao e inteligencia artificial do Brasil. Forma Gestores de Automacao e IA — profissionais que criam solucoes inteligentes sem depender de programadores, usando plataformas no-code e low-code integradas com os principais modelos de IA do mercado.</p>
+      </div>
+      <div class="escola-card">
+        <div class="escola-card-label">O que e ensinado</div>
+        <h3>Ferramentas e plataformas</h3>
+        <p>Stack completo de automacao: desde conexoes simples entre ferramentas ate agentes de IA autonomos rodando 24 horas. Foco em monetizacao e aplicacao real — nao teoria.</p>
+        <div class="ferr-pills">
+          <span class="ferr-pill">n8n</span>
+          <span class="ferr-pill">Make</span>
+          <span class="ferr-pill">Manychat</span>
+          <span class="ferr-pill">WhatsApp API</span>
+          <span class="ferr-pill">ChatGPT</span>
+          <span class="ferr-pill">Zapier</span>
+          <span class="ferr-pill">Agentes de IA</span>
         </div>
       </div>
+      <div class="escola-card">
+        <div class="escola-card-label">Competencias formadas</div>
+        <h3>O que o aluno sai sabendo</h3>
+        <p>Criar automacoes inteligentes sem programacao. Usar IA em campanhas e atendimento. Montar robos de WhatsApp e chatbots. Integrar ferramentas de marketing. Construir e vender servicos de automacao para empresas.</p>
+      </div>
+      <div class="escola-card">
+        <div class="escola-card-label">Sobre Thales Laray</div>
+        <h3>Maior referencia de IA no Brasil</h3>
+        <p>Empresario, especialista em automacoes e fundador da primeira comunidade de automacao do Brasil. Pioneiro na aplicacao pratica de IA para negocios, com conteudo distribuido em todas as plataformas e base de mais de 4.000 alunos formados.</p>
+      </div>
+    </div>
+
+    <div class="credencial-block">
+      <div class="credencial-icon">🧪</div>
+      <div>
+        <h3>Testador Oficial de Skills — Joaquim Salles</h3>
+        <p>Cada skill, ferramenta e sistema desenvolvido por Thales Laray passa por Joaquim antes de ser lancado ao mercado. Ele testa em ambiente real, com casos reais, e valida se a logica funciona fora do ambiente controlado. Nao e um titulo honorario — e uma funcao operacional que exige dominio tecnico profundo de todo o ecossistema.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PROJETOS -->
+<section>
+  <div class="section-label">Sistemas construidos</div>
+  <h2>Projetos <span>em producao</span></h2>
+
+  <!-- VAV CENTRAL -->
+  <div class="proj-block">
+    <div class="proj-meta">
+      <span class="proj-num">01</span>
+      <span class="proj-badge">Sistema Nucleo</span>
+      <span class="proj-badge">ONG Viva a Vida</span>
+    </div>
+    <h3>VAV Central</h3>
+    <p class="proj-desc">Sistema central desenvolvido para a ONG Viva a Vida. Unificou em uma unica plataforma tudo que antes vivia em papel e planilhas soltas: administracao financeira e de recursos humanos, coordenacao de projetos, comunicacao interna e gestao pedagogica completa. Quatro modulos independentes, uma plataforma, zero improviso.</p>
+    <div class="browser">
+      <div class="browser-bar">
+        <span class="bdot r"></span><span class="bdot y"></span><span class="bdot g"></span>
+        <div class="burl">vav-central.app — Central Operacional</div>
+      </div>
+      <img src="prints-joaquim/vav-central.jpg" alt="VAV Central — dashboard com modulos Administracao, Coordenacao, Comunicacao e Pedagogia">
+    </div>
+    <div class="proj-feats">
+      <div class="feat"><div class="feat-lbl">Modulo 01</div><p>Administracao — gestao financeira e recursos humanos</p></div>
+      <div class="feat"><div class="feat-lbl">Modulo 02</div><p>Coordenacao — planejamento e supervisao de projetos</p></div>
+      <div class="feat"><div class="feat-lbl">Modulo 03</div><p>Comunicacao — marketing, avisos e redes sociais</p></div>
+      <div class="feat"><div class="feat-lbl">Modulo 04</div><p>Pedagogia — material didatico e acompanhamento</p></div>
+      <div class="feat"><div class="feat-lbl">Impacto</div><p>Eliminou papel e planilhas da operacao da ONG</p></div>
+      <div class="feat"><div class="feat-lbl">Uso</div><p>2 anos em producao com usuarios reais</p></div>
     </div>
   </div>
 
   <!-- TIME TRACK -->
-  <div class="proj-card">
-    <div class="proj-header">
-      <div class="proj-num">02</div>
-      <h3>Time Track</h3>
-      <div class="proj-badge">Gestão de Equipe</div>
+  <div class="proj-block">
+    <div class="proj-meta">
+      <span class="proj-num">02</span>
+      <span class="proj-badge">Gestao de Equipe</span>
+      <span class="proj-badge">Dashboard Admin</span>
     </div>
-    <div class="proj-body">
-      <p>Sistema de gestão de equipe com controle de ponto, rastreamento de demandas e dashboards gerenciais. Entrega o que todo gestor precisa e raramente tem: visibilidade real sobre presença, atrasos e entrega de tarefas — sem planilha, sem pergunta no WhatsApp.</p>
-      <div class="proj-features">
-        <div class="feat">
-          <div class="feat-label">Funcionalidade</div>
-          <p>Ponto digital, demandas e dashboards em tempo real</p>
-        </div>
-        <div class="feat">
-          <div class="feat-label">Impacto</div>
-          <p>Visibilidade completa sobre presença e entrega sem esforço</p>
-        </div>
-        <div class="feat">
-          <div class="feat-label">Aplicação</div>
-          <p>Testado em ambiente real — equipes operacionais</p>
-        </div>
-        <div class="feat">
-          <div class="feat-label">Tipo</div>
-          <p>Web app com autenticação, permissões e relatórios</p>
-        </div>
+    <h3>Time Track</h3>
+    <p class="proj-desc">Sistema de gestao de equipe com controle de ponto, rastreamento de demandas e dashboards gerenciais em tempo real. Entrega o que todo gestor precisa e raramente tem: visibilidade real sobre presenca, ativos agora, ausentes e inconsistencias — sem planilha, sem pergunta no WhatsApp.</p>
+    <div class="browser">
+      <div class="browser-bar">
+        <span class="bdot r"></span><span class="bdot y"></span><span class="bdot g"></span>
+        <div class="burl">timetrack.app — Admin — Visao Geral</div>
       </div>
+      <img src="prints-joaquim/time-track.jpg" alt="Time Track — dashboard com Equipe Total, Ativos Agora, Offline/Ausentes e monitoramento em tempo real">
+    </div>
+    <div class="proj-feats">
+      <div class="feat"><div class="feat-lbl">Metrica 01</div><p>Equipe Total — headcount completo da empresa</p></div>
+      <div class="feat"><div class="feat-lbl">Metrica 02</div><p>Ativos Agora — quem esta trabalhando neste momento</p></div>
+      <div class="feat"><div class="feat-lbl">Metrica 03</div><p>Offline / Ausentes — rastreamento de presenca</p></div>
+      <div class="feat"><div class="feat-lbl">Funcao</div><p>Monitoramento em Tempo Real com atualizacao automatica</p></div>
+      <div class="feat"><div class="feat-lbl">Painel</div><p>Visao Geral, Equipe, Inconsistencias e Configuracoes</p></div>
+      <div class="feat"><div class="feat-lbl">Aplicacao</div><p>Testado em ambiente real — equipes operacionais</p></div>
     </div>
   </div>
 
   <!-- CGR1 PLANNER -->
-  <div class="proj-card">
-    <div class="proj-header">
-      <div class="proj-num">03</div>
-      <h3>CGR1-Planner</h3>
-      <div class="proj-badge">Planejamento Pessoal</div>
+  <div class="proj-block">
+    <div class="proj-meta">
+      <span class="proj-num">03</span>
+      <span class="proj-badge">Produtividade</span>
+      <span class="proj-badge">Gamificacao</span>
     </div>
-    <div class="proj-body">
-      <p>Planner semanal gamificado com sincronização ao Google Calendar e sistema de recompensas por XP. Resolve o problema de planejamento que as pessoas sabem que precisam fazer mas nunca mantêm como hábito — transforma rotina em progressão.</p>
-      <div class="proj-features">
-        <div class="feat">
-          <div class="feat-label">Funcionalidade</div>
-          <p>Gamificação de hábitos + sync Google Calendar + XP</p>
-        </div>
-        <div class="feat">
-          <div class="feat-label">Impacto</div>
-          <p>Planejamento que vira hábito consistente</p>
-        </div>
-        <div class="feat">
-          <div class="feat-label">Diferencial</div>
-          <p>Sistema de recompensas que mantém engajamento de longo prazo</p>
-        </div>
-        <div class="feat">
-          <div class="feat-label">Tipo</div>
-          <p>Web app com integração de API externa</p>
-        </div>
+    <h3>CGR1-Planner</h3>
+    <p class="proj-desc">Planner semanal gamificado com sistema de XP, sincronizacao ao Google Calendar e dashboards de produtividade avancada. Transforma planejamento — que as pessoas sabem que precisam fazer mas nunca mantêm — em progressao com recompensas. Feed diario, visao semanal, modelos prontos e categorias personalizaveis.</p>
+    <div class="browser">
+      <div class="browser-bar">
+        <span class="bdot r"></span><span class="bdot y"></span><span class="bdot g"></span>
+        <div class="burl">cgr1-planner.app — Cloud Edition</div>
       </div>
+      <img src="prints-joaquim/cgr1-planner.jpg" alt="CGR1 Planner — interface com sistema de XP, Feed diario, Semana e Produtividade Avancada">
+    </div>
+    <div class="proj-feats">
+      <div class="feat"><div class="feat-lbl">Sistema XP</div><p>Nivel e pontos por atividade concluida — progressao visivel</p></div>
+      <div class="feat"><div class="feat-lbl">Feed Diario</div><p>Visao do dia com atividades e foco total planejado</p></div>
+      <div class="feat"><div class="feat-lbl">Semana</div><p>Planejamento semanal completo com visao de equilibrio</p></div>
+      <div class="feat"><div class="feat-lbl">Produtividade</div><p>Volume de tarefas planejadas vs focos concluidos</p></div>
+      <div class="feat"><div class="feat-lbl">Integracao</div><p>Sync com Google Calendar — automatico</p></div>
+      <div class="feat"><div class="feat-lbl">Modelos</div><p>Templates prontos para diferentes tipos de semana</p></div>
     </div>
   </div>
 </section>
@@ -604,82 +435,68 @@ footer {
 <!-- STACK -->
 <section>
   <div class="section-label">Ferramentas</div>
-  <h2>Stack:<br><span>15 ferramentas, zero improviso</span></h2>
+  <h2>Stack: <span>15 ferramentas, zero improviso</span></h2>
   <div class="stack-grid">
     <div class="stack-cat">
-      <div class="stack-cat-label">Frontend</div>
-      <div class="tech-list">
-        <span class="tech">TypeScript</span>
-        <span class="tech">HTML5</span>
-        <span class="tech">CSS3</span>
-        <span class="tech">Tailwind</span>
-        <span class="tech">Next.js</span>
+      <div class="stack-cat-lbl">Frontend</div>
+      <div class="tech-row">
+        <span class="tech">TypeScript</span><span class="tech">HTML5</span>
+        <span class="tech">CSS3</span><span class="tech">Tailwind</span><span class="tech">Next.js</span>
       </div>
     </div>
     <div class="stack-cat">
-      <div class="stack-cat-label">Backend & Infraestrutura</div>
-      <div class="tech-list">
-        <span class="tech">Supabase</span>
-        <span class="tech">Firebase</span>
-        <span class="tech">Google Cloud</span>
-        <span class="tech">Vercel</span>
-        <span class="tech">Cloudflare</span>
+      <div class="stack-cat-lbl">Backend e Infraestrutura</div>
+      <div class="tech-row">
+        <span class="tech">Supabase</span><span class="tech">Firebase</span>
+        <span class="tech">Google Cloud</span><span class="tech">Vercel</span><span class="tech">Cloudflare</span>
       </div>
     </div>
     <div class="stack-cat">
-      <div class="stack-cat-label">Inteligência Artificial</div>
-      <div class="tech-list">
-        <span class="tech">Claude API</span>
-        <span class="tech">OpenAI GPT</span>
-        <span class="tech">Gemini</span>
+      <div class="stack-cat-lbl">Inteligencia Artificial</div>
+      <div class="tech-row">
+        <span class="tech">Claude API</span><span class="tech">OpenAI GPT</span><span class="tech">Gemini</span>
       </div>
     </div>
     <div class="stack-cat">
-      <div class="stack-cat-label">Workflow & Deploy</div>
-      <div class="tech-list">
-        <span class="tech">GitHub</span>
-        <span class="tech">VS Code</span>
-      </div>
-      <div class="stack-total">
-        <span class="stack-total-num">15</span>
-        <span class="stack-total-label">ferramentas · um ecossistema</span>
+      <div class="stack-cat-lbl">Automacao e Workflow</div>
+      <div class="tech-row">
+        <span class="tech">n8n</span><span class="tech">Make</span>
+        <span class="tech">GitHub</span><span class="tech">VS Code</span>
       </div>
     </div>
   </div>
 </section>
 
 <!-- QUOTE -->
-<div class="quote-block">
-  <blockquote>
-    "Me conta o caos. Eu devolvo o controle."
-  </blockquote>
+<div class="quote-wrap">
+  <blockquote>"Me conta o caos. Eu devolvo o controle."</blockquote>
   <cite>— Call to action · Joaquim Salles</cite>
 </div>
 
 <!-- FILOSOFIA -->
 <section>
   <div class="section-label">Como pensa</div>
-  <h2>Arquitetura<br><span>operacional</span></h2>
+  <h2>Arquitetura <span>operacional</span></h2>
   <div class="fil-grid">
-    <div class="fil-lado">
-      <div class="fil-tag">Inteligência humana</div>
-      <h3>Decisão</h3>
-      <p>O humano decide o que importa: estratégia, prioridade, relacionamento, julgamento de contexto. Essas funções não são delegadas para máquina.</p>
+    <div class="fil-card">
+      <div class="fl">Inteligencia humana</div>
+      <h3>Decisao</h3>
+      <p>O humano decide o que importa: estrategia, prioridade, relacionamento, julgamento de contexto. Essas funcoes nao sao delegadas para maquina.</p>
     </div>
-    <div class="fil-lado destaque">
-      <div class="fil-tag">Inteligência artificial</div>
-      <h3>Execução</h3>
-      <p>Tudo que é repetitivo, previsível, estruturado e mensurável pode ser automatizado. E deve ser — para que o humano faça só o que só ele pode fazer.</p>
+    <div class="fil-card accent">
+      <div class="fl">Inteligencia artificial</div>
+      <h3>Execucao</h3>
+      <p>Tudo que e repetitivo, previsivel, estruturado e mensuravel pode ser automatizado. E deve ser — para que o humano faca so o que so ele pode fazer.</p>
     </div>
-    <div class="fil-lado">
-      <div class="fil-tag">Referência e Validacao</div>
+    <div class="fil-card">
+      <div class="fl">Referencia e validacao</div>
       <h3>Testador Oficial — Escola Thales Laray</h3>
       <p>Testador oficial de skills da maior escola de automacao do Brasil. Cada ferramenta desenvolvida por Thales Laray passa por Joaquim antes de chegar ao mercado — validacao em ambiente real, com casos reais.</p>
     </div>
-    <div class="fil-lado">
-      <div class="fil-tag">Especialidade</div>
-      <h3>Sites de Conversão</h3>
-      <p>Foco em landing pages e sites estáticos de alta conversão — design com intenção, sem elemento decorativo que não sirva ao objetivo.</p>
+    <div class="fil-card">
+      <div class="fl">Especialidade</div>
+      <h3>Sites de Conversao</h3>
+      <p>Foco em landing pages e sites estaticos de alta conversao — design com intencao, sem elemento decorativo que nao sirva ao objetivo de converter.</p>
     </div>
   </div>
 </section>
@@ -687,7 +504,7 @@ footer {
 <!-- FOOTER -->
 <footer>
   <div class="footer-logo">Triforce Auto</div>
-  <div class="footer-copy">Joaquim Salles · Portfólio 2026</div>
+  <div class="footer-copy">Joaquim Salles · Portfolio 2026</div>
 </footer>
 
 </body>
