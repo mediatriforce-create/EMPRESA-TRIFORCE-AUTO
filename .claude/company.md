@@ -16,7 +16,7 @@ tiers:
 
 Empresa de criação de landing pages e sistemas para pequenos negócios presenciais e empreendedores digitais. Entrega os três pilares no mesmo pacote: copy estruturada, design e sistema — sem precisar contratar três fornecedores diferentes.
 
-Faixa de preço: R$ 847 – R$ 1.997. Estágio: pré-receita (primeira venda ainda não realizada).
+Faixa de preço: R$ 847 – R$ 1.997. Estágio: em negociação (primeiro prospect ativo, 2026-04-24).
 
 ## Bylaws
 

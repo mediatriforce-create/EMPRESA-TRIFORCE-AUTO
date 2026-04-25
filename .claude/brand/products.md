@@ -27,5 +27,6 @@ Triforce Auto entrega os três pilares no mesmo pacote:
 - [ ] Produto recorrente / manutenção mensal (se houver)
 
 ## Métricas conhecidas
-- Receita realizada: R$ 0 (pré-receita — primeira venda ainda não fechada)
+- Receita realizada: R$ 0
+- Status: em negociação — primeiro prospect ativo (atualizado 2026-04-24)
 - Ticket médio alvo: R$ 1.200–1.400 (centro da faixa)
