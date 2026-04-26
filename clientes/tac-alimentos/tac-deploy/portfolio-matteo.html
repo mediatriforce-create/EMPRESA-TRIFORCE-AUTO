@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Matteo Rosendo — Portfolio Visual 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --accent:#FF6600;
+  --black:#050505;
+  --dark:#0d0d0d;
+  --dark2:#141414;
+  --light:#F5F0E8;
+  --light2:#E0DDD4;
+  --border:3px solid #050505;
+  --shadow:0 4px 0 #050505;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Montserrat',sans-serif;background:var(--dark);color:var(--light);overflow-x:hidden}
+
+.reveal,.reveal-l,.reveal-r{opacity:0;transition:opacity .7s ease,transform .7s ease}
+.reveal{transform:translateY(40px)}
+.reveal-l{transform:translateX(-50px)}
+.reveal-r{transform:translateX(50px)}
+.reveal.visible,.reveal-l.visible,.reveal-r.visible{opacity:1;transform:none}
+
+.orb{position:absolute;border-radius:50%;pointer-events:none;animation:orbFloat 8s ease-in-out infinite}
+@keyframes orbFloat{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-30px) scale(1.05)}}
+
+.grid-overlay{position:absolute;inset:0;background-image:linear-gradient(rgba(255,102,0,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(255,102,0,.07) 1px,transparent 1px);background-size:24px 24px;pointer-events:none}
+
+.watermark{position:absolute;font-size:clamp(6rem,15vw,14rem);font-weight:900;opacity:.04;pointer-events:none;user-select:none;color:#FF6600;right:40px;top:50%;transform:translateY(-50%);z-index:0}
+
+.section-dark{position:relative;background:var(--dark);overflow:hidden;padding:5rem 2rem}
+.section-light{position:relative;background:var(--light);overflow:hidden;padding:5rem 2rem}
+.container{max-width:1100px;margin:0 auto;position:relative;z-index:2}
+
+.orange-bar{width:56px;height:4px;background:linear-gradient(90deg,#FF6600,transparent);margin-bottom:1rem}
+
+.eyebrow{display:inline-block;font-size:.65rem;font-weight:800;text-transform:uppercase;letter-spacing:.15em;color:#FF6600;background:rgba(255,102,0,.1);border:1px solid rgba(255,102,0,.3);border-radius:.3rem;padding:.35rem 1rem;margin-bottom:1.25rem}
+
+.pill{display:inline-block;font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#FF6600;background:rgba(255,102,0,.1);border:1px solid rgba(255,102,0,.3);border-radius:.3rem;padding:.3rem .8rem;margin:.2rem .15rem}
+.pill-dark{color:#FF6600;background:rgba(255,102,0,.08);border:1px solid rgba(255,102,0,.2)}
+
+.btn-cartoon{display:inline-block;position:relative;background:#FF6600;color:#fff;font-family:'Montserrat',sans-serif;font-weight:800;font-size:.85rem;letter-spacing:.05em;text-transform:uppercase;padding:.85rem 2rem;border-radius:9999px;border:2px solid #050505;box-shadow:0 4px 0 #050505;cursor:pointer;text-decoration:none;overflow:hidden;transition:transform .15s,box-shadow .15s}
+.btn-cartoon::after{content:'';position:absolute;top:0;left:-100%;width:60%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.3),transparent);transition:left .5s}
+.btn-cartoon:hover{transform:translateY(-2px);box-shadow:0 6px 0 #050505}
+.btn-cartoon:hover::after{left:150%}
+.btn-cartoon:active{transform:translateY(2px);box-shadow:0 2px 0 #050505}
+
+.card-3d{background:#fff;border:3px solid #050505;box-shadow:0 6px 0 #050505;border-radius:.75rem;padding:1.5rem;transition:transform .2s,box-shadow .2s}
+.card-3d:hover{transform:translateY(-3px);box-shadow:0 9px 0 #050505}
+
+.card-3d-dark{background:#111113;border:3px solid #050505;box-shadow:0 6px 0 #050505;border-radius:.75rem;padding:1.5rem;transition:transform .2s,box-shadow .2s}
+.card-3d-dark:hover{transform:translateY(-3px);box-shadow:0 9px 0 #050505}
+
+.photo-hard{border:3px solid #050505;box-shadow:6px 6px 0 #050505;border-radius:.5rem}
+
+/* HERO */
+#hero{min-height:100vh;display:flex;align-items:flex-end;padding:0;position:relative;overflow:hidden}
+.hero-bg{position:absolute;inset:0;z-index:0}
+.hero-bg img{width:100%;height:100%;object-fit:cover;filter:brightness(.45) contrast(1.1)}
+.hero-bg-gradient{position:absolute;inset:0;background:linear-gradient(to top,rgba(5,5,5,.95) 0%,rgba(5,5,5,.5) 50%,rgba(5,5,5,.2) 100%)}
+.hero-content{position:relative;z-index:2;padding:3rem 2rem 4rem;width:100%;max-width:1100px;margin:0 auto}
+.hero-name{font-size:clamp(3rem,9vw,8rem);font-weight:900;line-height:.9;letter-spacing:-.04em;color:#fff}
+.hero-name span{color:#FF6600}
+.hero-role{font-size:1rem;font-weight:600;color:rgba(245,240,232,.7);margin:.75rem 0 1.25rem}
+.stats-row{display:flex;flex-wrap:wrap;gap:2rem;margin-top:1.75rem}
+.stat-item .num{font-size:2.25rem;font-weight:900;color:#FF6600;line-height:1}
+.stat-item .lbl{font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:rgba(245,240,232,.45);margin-top:.2rem}
+
+/* QUEM E SECTION */
+.quem-grid{display:grid;grid-template-columns:1.5fr 1fr;gap:2.5rem;align-items:start;margin-top:2rem}
+.quem-text{font-size:.9rem;color:#333;line-height:1.8}
+.quem-text p{margin-bottom:1rem}
+.ferramentas-card{background:#fff;border:3px solid #050505;box-shadow:0 6px 0 #050505;border-radius:.75rem;padding:1.5rem}
+.ferramentas-title{font-size:.65rem;font-weight:800;text-transform:uppercase;letter-spacing:.15em;color:#FF6600;margin-bottom:1rem}
+.ferr-list{list-style:none;display:flex;flex-direction:column;gap:.6rem}
+.ferr-list li{font-size:.8rem;color:#050505;font-weight:600;display:flex;align-items:center;gap:.5rem;padding:.4rem 0;border-bottom:1px solid rgba(5,5,5,.08)}
+.ferr-list li:last-child{border-bottom:none}
+.ferr-list li::before{content:'▸';color:#FF6600;font-size:.7rem;flex-shrink:0}
+
+/* GALLERY — FULL WIDTH, SEM PADDING LATERAL */
+.gallery-section{background:var(--light2);padding:5rem 0;overflow:hidden}
+.gallery-inner{padding:0 0;max-width:100%}
+.gallery-header{max-width:1100px;margin:0 auto 2rem;padding:0 2rem}
+.gallery-grid{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:220px;gap:6px;padding:0 6px}
+.gallery-item{position:relative;overflow:hidden;cursor:pointer}
+.gallery-item.tall{grid-row:span 2}
+.gallery-item.wide{grid-column:span 2}
+.gallery-item img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;filter:brightness(.9) contrast(1.05);transition:transform .4s ease,filter .3s ease}
+.gallery-item:hover img{transform:scale(1.04);filter:brightness(.7) contrast(1.1)}
+.gallery-caption{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(5,5,5,.9));padding:1.5rem .75rem .75rem;opacity:0;transition:opacity .3s ease;pointer-events:none}
+.gallery-item:hover .gallery-caption{opacity:1}
+.cap-category{font-size:.55rem;font-weight:800;text-transform:uppercase;letter-spacing:.15em;color:#FF6600;display:block;margin-bottom:.2rem}
+.cap-desc{font-size:.7rem;color:rgba(245,240,232,.85);font-weight:600}
+
+/* CATEGORIAS */
+.cat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.25rem;margin-top:2rem}
+.cat-card{background:#111113;border:3px solid #050505;box-shadow:0 6px 0 #050505;border-radius:.75rem;padding:1.5rem}
+.cat-icon{font-size:1.75rem;margin-bottom:.75rem}
+.cat-title{font-size:.95rem;font-weight:800;color:#fff;margin-bottom:.45rem}
+.cat-desc{font-size:.8rem;color:rgba(245,240,232,.5);line-height:1.6}
+
+/* ASSINATURA VISUAL */
+.assinatura-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:2rem}
+.assinatura-col-title{font-size:.65rem;font-weight:800;text-transform:uppercase;letter-spacing:.15em;color:#FF6600;margin-bottom:1rem}
+.assinatura-items{display:flex;flex-direction:column;gap:.85rem}
+.assinatura-item{background:#fff;border:3px solid #050505;box-shadow:0 6px 0 #050505;border-radius:.75rem;padding:1rem 1.25rem}
+.assinatura-item-title{font-size:.82rem;font-weight:800;color:#050505;margin-bottom:.25rem}
+.assinatura-item-desc{font-size:.75rem;color:#555;line-height:1.55}
+
+/* CAPACIDADES DARK */
+.cap-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-top:2rem}
+.cap-card{background:#111113;border:3px solid #050505;box-shadow:0 6px 0 #050505;border-radius:.75rem;padding:1.25rem;text-align:center}
+.cap-icon{font-size:1.5rem;margin-bottom:.5rem}
+.cap-title{font-size:.78rem;font-weight:800;color:#fff}
+
+/* QUOTE */
+.quote-full{background:rgba(255,102,0,.04);border-top:3px solid rgba(255,102,0,.15);border-bottom:3px solid rgba(255,102,0,.15);padding:4.5rem 2rem;text-align:center}
+.quote-text{font-size:clamp(1.1rem,2.5vw,1.75rem);font-weight:800;color:#FF6600;line-height:1.45;max-width:720px;margin:0 auto;letter-spacing:-.01em}
+.quote-author{margin-top:1rem;font-size:.7rem;font-weight:700;color:rgba(255,102,0,.5);letter-spacing:.15em;text-transform:uppercase}
+
+.section-title-dark{font-size:clamp(2rem,5vw,3.5rem);font-weight:900;color:#fff;line-height:1.05;letter-spacing:-.02em;margin-bottom:.75rem}
+.section-title-light{font-size:clamp(2rem,5vw,3.5rem);font-weight:900;color:#050505;line-height:1.05;letter-spacing:-.02em;margin-bottom:.75rem}
+
+/* FOOTER LIGHT */
+footer{background:var(--light);padding:2.5rem 2rem;text-align:center;border-top:3px solid #050505}
+.footer-brand{font-size:.7rem;font-weight:800;text-transform:uppercase;letter-spacing:.2em;color:#FF6600;margin-bottom:.5rem}
+.footer-copy{font-size:.7rem;color:rgba(5,5,5,.35);letter-spacing:.08em}
+
+@media(max-width:900px){
+  .quem-grid{grid-template-columns:1fr}
+  .cap-grid{grid-template-columns:repeat(2,1fr)}
+  .assinatura-grid{grid-template-columns:1fr}
+  .gallery-grid{grid-template-columns:repeat(2,1fr);grid-auto-rows:200px}
+  .gallery-item.wide{grid-column:span 1}
+}
+@media(max-width:600px){
+  .gallery-grid{grid-template-columns:repeat(2,1fr);grid-auto-rows:160px}
+  .cap-grid{grid-template-columns:repeat(2,1fr)}
+  .cat-grid{grid-template-columns:1fr}
+  .stats-row{gap:1rem}
+}
+@media(max-width:400px){
+  .gallery-grid{grid-template-columns:1fr;grid-auto-rows:260px}
+  .gallery-item.tall,.gallery-item.wide{grid-row:span 1;grid-column:span 1}
+  .cap-grid{grid-template-columns:1fr 1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- HERO DARK — BG FOTO -->
+<section id="hero">
+  <div class="hero-bg">
+    <img src="fotos-matteo/20251004_164202.jpg" alt="Matteo Rosendo — Background">
+    <div class="hero-bg-gradient"></div>
+  </div>
+  <div class="grid-overlay" style="z-index:1"></div>
+  <div class="watermark" style="z-index:1">VISUAL</div>
+  <div class="hero-content">
+    <div class="eyebrow reveal">Fotógrafo, Editor de Vídeo e Designer Visual</div>
+    <h1 class="hero-name reveal">MATTEO<br><span>ROSENDO</span></h1>
+    <p class="hero-role reveal">Fotografia. Vídeo. Design. Cada frame é uma decisão.</p>
+    <div style="display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:1.5rem" class="reveal">
+      <span class="pill">Fotografia Nikon</span>
+      <span class="pill">iPhone</span>
+      <span class="pill">Snapseed</span>
+      <span class="pill">Color Grading</span>
+      <span class="pill">Edição de Vídeo</span>
+      <span class="pill">Design Gráfico</span>
+    </div>
+    <div class="stats-row reveal">
+      <div class="stat-item"><div class="num">194</div><div class="lbl">Fotos</div></div>
+      <div class="stat-item"><div class="num">7+</div><div class="lbl">Categorias</div></div>
+      <div class="stat-item"><div class="num">Nikon + iPhone</div><div class="lbl">Equipamentos</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- QUEM E — LIGHT -->
+<section class="section-light">
+  <div class="container">
+    <div class="eyebrow reveal">Sobre</div>
+    <div class="orange-bar reveal"></div>
+    <h2 class="section-title-light reveal">Quem é Matteo Rosendo</h2>
+    <div class="quem-grid">
+      <div class="quem-text reveal">
+        <p>Matteo Rosendo é fotógrafo, editor de vídeo e designer visual com visão artística ampla e tecnicamente fundamentada. Sua fotografia transita entre paisagem, cultura, street e macro, sempre com leitura de luz, composição e narrativa.</p>
+        <p>Domina o fluxo completo de produção visual: da captura no campo com Nikon ou iPhone ao pós-processamento no Snapseed e desktop, com color grading cinemático e atenção a cada detalhe de contraste, saturação e temperatura.</p>
+        <p>Para Matteo, cada foto é uma decisão, não um clique. O enquadramento, a luz, o momento, a cor. Tudo é intencional.</p>
+        <p>Além de fotografia, atua em design gráfico, direção de arte, fotografia de produto e edição de vídeo, oferecendo uma produção visual integrada do conceito à entrega.</p>
+      </div>
+      <div class="reveal-r">
+        <div class="ferramentas-card">
+          <div class="ferramentas-title">Ferramentas e Competências</div>
+          <ul class="ferr-list">
+            <li>Fotografia Nikon (DSCN)</li>
+            <li>iPhone</li>
+            <li>Snapseed + pós-processamento</li>
+            <li>Color grading cinemático</li>
+            <li>Edição de vídeo</li>
+            <li>Design gráfico</li>
+            <li>Direção de arte</li>
+            <li>Fotografia de produto</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALERIA FULL WIDTH — SEM PADDING LATERAL -->
+<section class="gallery-section">
+  <div class="gallery-header reveal">
+    <div class="eyebrow">Portfolio Visual</div>
+    <h2 class="section-title-light">Galeria</h2>
+    <p style="font-size:.85rem;color:#555;margin-top:.5rem">194 fotos. 7 categorias. Cada frame com um ponto de vista.</p>
+  </div>
+  <div class="gallery-inner">
+    <div class="gallery-grid">
+
+      <!-- ROW 1: tall + 2 + wide -->
+      <div class="gallery-item tall">
+        <img src="fotos-matteo/DSCN6402.jpg" alt="Fitas do Bonfim">
+        <div class="gallery-caption">
+          <span class="cap-category">Cultural e Macro</span>
+          <span class="cap-desc">Fitas do Bonfim, Salvador. Cores vibrantes em macro.</span>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <img src="fotos-matteo/DSCN6384.jpg" alt="Baia de Todos os Santos">
+        <div class="gallery-caption">
+          <span class="cap-category">Urbano e Marítimo</span>
+          <span class="cap-desc">Baia de Todos os Santos. Bote, luz dourada, azul e amarelo.</span>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <img src="fotos-matteo/20250419_065208.jpg" alt="Mata Atlântica">
+        <div class="gallery-caption">
+          <span class="cap-category">Paisagem e Natureza</span>
+          <span class="cap-desc">Mata Atlântica densa. Verde profundo ao amanhecer.</span>
+        </div>
+      </div>
+      <div class="gallery-item wide">
+        <img src="fotos-matteo/20251004_164202.jpg" alt="Rochas e céu">
+        <div class="gallery-caption">
+          <span class="cap-category">Paisagem e Natureza</span>
+          <span class="cap-desc">Rochas e céu tempestuoso. O frame mais dramático do portfolio.</span>
+        </div>
+      </div>
+
+      <!-- ROW 2: 2 normais + tall -->
+      <div class="gallery-item">
+        <img src="fotos-matteo/IMG_0576.jpg" alt="Palmeiras tropicais">
+        <div class="gallery-caption">
+          <span class="cap-category">Paisagem e Natureza</span>
+          <span class="cap-desc">Palmeiras tropicais. Vista de baixo, perspectiva geométrica.</span>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <img src="fotos-matteo/20250730_104429.jpg" alt="Arte em museu">
+        <div class="gallery-caption">
+          <span class="cap-category">Cultural e Macro</span>
+          <span class="cap-desc">Corredor de museu com instalação artística. Composição forte.</span>
+        </div>
+      </div>
+      <div class="gallery-item tall">
+        <img src="fotos-matteo/20241211_014600.jpg" alt="Isqueiro noturno">
+        <div class="gallery-caption">
+          <span class="cap-category">Street e Noturno</span>
+          <span class="cap-desc">Isqueiro noturno. Starburst de luz. Longa exposição.</span>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <img src="fotos-matteo/20251004_161924.jpg" alt="Praia rochosa">
+        <div class="gallery-caption">
+          <span class="cap-category">Paisagem e Natureza</span>
+          <span class="cap-desc">Praia rochosa. Texturas e perspectiva baixa ao pôr do sol.</span>
+        </div>
+      </div>
+
+      <!-- ROW 3 -->
+      <div class="gallery-item wide">
+        <img src="fotos-matteo/20250303_100233.jpg" alt="Baia Salvador com carro">
+        <div class="gallery-caption">
+          <span class="cap-category">Urbano e Marítimo</span>
+          <span class="cap-desc">Baia de Salvador com carro. Saturação intensa, cores vivas.</span>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <img src="fotos-matteo/20240925_174916.jpg" alt="Retrovisor entardecer">
+        <div class="gallery-caption">
+          <span class="cap-category">Viagem e Movimento</span>
+          <span class="cap-desc">Retrovisor com entardecer dramático na rodovia.</span>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <img src="fotos-matteo/20250630_174725.jpg" alt="Noturno urbano azul">
+        <div class="gallery-caption">
+          <span class="cap-category">Street e Noturno</span>
+          <span class="cap-desc">Noturno urbano. Luzes azuis, palmeiras e raio de luz.</span>
+        </div>
+      </div>
+      <div class="gallery-item wide">
+        <img src="fotos-matteo/20240630_183133.jpg" alt="Noturno semáforo">
+        <div class="gallery-caption">
+          <span class="cap-category">Street e Noturno</span>
+          <span class="cap-desc">Noturno urbano com semáforo e luzes coloridas em movimento.</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CATEGORIAS — DARK -->
+<section class="section-dark">
+  <div class="grid-overlay"></div>
+  <div class="orb" style="width:450px;height:450px;background:rgba(255,102,0,.1);filter:blur(100px);top:-80px;right:-100px;animation-delay:2s"></div>
+  <div class="watermark">CAT</div>
+  <div class="container">
+    <div class="eyebrow reveal">Categorias</div>
+    <div class="orange-bar reveal"></div>
+    <h2 class="section-title-dark reveal">Onde Matteo atua</h2>
+    <div class="cat-grid">
+      <div class="cat-card reveal">
+        <div class="cat-icon">🌿</div>
+        <div class="cat-title">Paisagem e Natureza</div>
+        <div class="cat-desc">Mata Atlântica, praias rochosas, palmeiras, céus tempestuosos. Composição e luz natural como instrumento.</div>
+      </div>
+      <div class="cat-card reveal">
+        <div class="cat-icon">🏛️</div>
+        <div class="cat-title">Cultural e Macro</div>
+        <div class="cat-desc">Fitas do Bonfim, instalações artísticas, corredores de museu. Cultura capturada em detalhe.</div>
+      </div>
+      <div class="cat-card reveal">
+        <div class="cat-icon">🌙</div>
+        <div class="cat-title">Street e Noturno</div>
+        <div class="cat-desc">Luzes de semáforo, isqueiros, neon urbano e luz longa. A cidade como palco noturno.</div>
+      </div>
+      <div class="cat-card reveal">
+        <div class="cat-icon">⚓</div>
+        <div class="cat-title">Urbano e Marítimo</div>
+        <div class="cat-desc">Baia de Todos os Santos, carros, botes. Salvador entre o asfalto e a água.</div>
+      </div>
+      <div class="cat-card reveal">
+        <div class="cat-icon">🛣️</div>
+        <div class="cat-title">Viagem e Movimento</div>
+        <div class="cat-desc">Retrovisores, rodovias, pôr do sol em deslocamento. A narrativa do que está em trânsito.</div>
+      </div>
+      <div class="cat-card reveal">
+        <div class="cat-icon">🎬</div>
+        <div class="cat-title">Edição de Vídeo</div>
+        <div class="cat-desc">Corte, color grade, ritmo narrativo e entrega final. Da gravação ao produto acabado.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ASSINATURA VISUAL — LIGHT -->
+<section class="section-light">
+  <div class="container">
+    <div class="eyebrow reveal">Abordagem</div>
+    <div class="orange-bar reveal"></div>
+    <h2 class="section-title-light reveal">Assinatura visual de Matteo</h2>
+    <div class="assinatura-grid">
+      <div class="reveal-l">
+        <div class="assinatura-col-title">Técnica e Abordagem</div>
+        <div class="assinatura-items">
+          <div class="assinatura-item">
+            <div class="assinatura-item-title">Leitura de Luz</div>
+            <div class="assinatura-item-desc">Antes de clicar, lê a luz disponível. Sombra, dourado, contraluz, neon. Cada condição é uma escolha.</div>
+          </div>
+          <div class="assinatura-item">
+            <div class="assinatura-item-title">Composição Intencional</div>
+            <div class="assinatura-item-desc">Regra dos terços, perspectiva geométrica, linhas de fuga. Composição como idioma visual.</div>
+          </div>
+          <div class="assinatura-item">
+            <div class="assinatura-item-title">Color Grading Cinemático</div>
+            <div class="assinatura-item-desc">Pós-processamento no Snapseed e desktop com controle fino de temperatura, saturação e contraste.</div>
+          </div>
+          <div class="assinatura-item">
+            <div class="assinatura-item-title">Narrativa Visual</div>
+            <div class="assinatura-item-desc">Cada imagem conta algo. Contexto, tensão, atmosfera. Fotografia que não precisa de legenda.</div>
+          </div>
+        </div>
+      </div>
+      <div class="reveal-r">
+        <div class="assinatura-col-title">Aplicação Comercial</div>
+        <div class="assinatura-items">
+          <div class="assinatura-item">
+            <div class="assinatura-item-title">Fotografia de Produto</div>
+            <div class="assinatura-item-desc">Fundo limpo, luz controlada, ângulos que valorizam. Produto que vende pela imagem antes do preço.</div>
+          </div>
+          <div class="assinatura-item">
+            <div class="assinatura-item-title">Conteúdo para Redes Sociais</div>
+            <div class="assinatura-item-desc">Fotos e vídeos prontos para feed, reels e stories. Corte e formato já pensados para cada plataforma.</div>
+          </div>
+          <div class="assinatura-item">
+            <div class="assinatura-item-title">Direção de Arte</div>
+            <div class="assinatura-item-desc">Vai além da execução. Define paleta, conceito e tom visual da campanha antes da produção começar.</div>
+          </div>
+          <div class="assinatura-item">
+            <div class="assinatura-item-title">Design Gráfico</div>
+            <div class="assinatura-item-desc">Layout, tipografia e composição para materiais gráficos. Do digital ao impresso com consistência visual.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CAPACIDADES — DARK -->
+<section class="section-dark">
+  <div class="grid-overlay"></div>
+  <div class="orb" style="width:380px;height:380px;background:rgba(255,102,0,.09);filter:blur(90px);bottom:-60px;left:-80px;animation-delay:1s"></div>
+  <div class="watermark">SKILLS</div>
+  <div class="container">
+    <div class="eyebrow reveal">Capacidades</div>
+    <div class="orange-bar reveal"></div>
+    <h2 class="section-title-dark reveal">O que Matteo entrega</h2>
+    <div class="cap-grid">
+      <div class="cap-card reveal">
+        <div class="cap-icon">📦</div>
+        <div class="cap-title">Produto</div>
+      </div>
+      <div class="cap-card reveal">
+        <div class="cap-icon">🎞️</div>
+        <div class="cap-title">Vídeo</div>
+      </div>
+      <div class="cap-card reveal">
+        <div class="cap-icon">🎨</div>
+        <div class="cap-title">Design</div>
+      </div>
+      <div class="cap-card reveal">
+        <div class="cap-icon">🎬</div>
+        <div class="cap-title">Color Grading</div>
+      </div>
+      <div class="cap-card reveal">
+        <div class="cap-icon">🎯</div>
+        <div class="cap-title">Direção de Arte</div>
+      </div>
+      <div class="cap-card reveal">
+        <div class="cap-icon">🌆</div>
+        <div class="cap-title">Urbana</div>
+      </div>
+      <div class="cap-card reveal">
+        <div class="cap-icon">🌿</div>
+        <div class="cap-title">Natureza</div>
+      </div>
+      <div class="cap-card reveal">
+        <div class="cap-icon">✂️</div>
+        <div class="cap-title">Edição</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUOTE — DARK -->
+<section class="section-dark" style="padding-top:0">
+  <div class="container">
+    <div class="quote-full reveal">
+      <div class="quote-text">"Todo frame tem um ponto de vista. A diferença é se você escolheu o seu ou deixou o acaso escolher."</div>
+      <div class="quote-author">Matteo Rosendo</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER LIGHT -->
+<footer>
+  <div class="footer-brand">Triforce Auto</div>
+  <div class="footer-copy">Matteo Rosendo &middot; Portfolio Visual 2026</div>
+</footer>
+
+<script>
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal,.reveal-l,.reveal-r').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>

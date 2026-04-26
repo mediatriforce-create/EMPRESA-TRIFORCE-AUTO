@@ -1,0 +1,2724 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Triforce Auto · Apresentação TAC</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+
+/* ============================================================
+   RESET + BASE
+   ============================================================ */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html,body{height:100%;overflow:hidden;}
+body{font-family:'Montserrat',sans-serif;background:#0d0d0d;color:#fff;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+a{text-decoration:none;color:inherit;}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important;}}
+
+/* ============================================================
+   TOKENS
+   ============================================================ */
+:root{
+  --accent:    #FF6600;
+  --accent-d:  #CC5200;
+  --accent-gl: rgba(255,102,0,.12);
+  --black:     #050505;
+  --dark:      #0d0d0d;
+  --dark2:     #141414;
+  --light:     #F5F0E8;
+  --light2:    #E0DDD4;
+  --white:     #fff;
+  --muted:     rgba(255,255,255,.55);
+  --muted-lgt: rgba(0,0,0,.6);
+  --border:    3px solid #050505;
+  --shadow:    0 4px 0 #050505;
+  --shadow-sm: 0 2px 0 #050505;
+  --shadow-lg: 0 6px 0 #050505;
+  --font:      'Montserrat',sans-serif;
+  --nav-w:     100px;
+}
+
+/* ============================================================
+   LAYOUT PRINCIPAL
+   ============================================================ */
+.app{
+  display:flex;
+  height:100vh;
+  width:100vw;
+  overflow:hidden;
+}
+
+/* ============================================================
+   PILAR NAV — SIDEBAR ESQUERDA
+   ============================================================ */
+.pilar-nav{
+  width:var(--nav-w);
+  min-width:var(--nav-w);
+  height:100vh;
+  background:#050505;
+  border-right:1px solid rgba(255,102,0,.12);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  padding:2rem 0;
+  position:relative;
+  z-index:100;
+  flex-shrink:0;
+}
+
+.pilar-brand{
+  position:absolute;
+  top:1.5rem;
+  left:50%;
+  transform:translateX(-50%);
+  font-size:.55rem;
+  font-weight:900;
+  letter-spacing:3px;
+  text-transform:uppercase;
+  color:var(--accent);
+  white-space:nowrap;
+  writing-mode:vertical-rl;
+  text-orientation:mixed;
+}
+
+.pilar-items{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:0;
+}
+
+.pilar-item{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  cursor:pointer;
+}
+
+.pilar-dot{
+  width:44px;
+  height:44px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:.7rem;
+  font-weight:900;
+  letter-spacing:.02em;
+  border:2px solid rgba(255,255,255,.15);
+  color:rgba(255,255,255,.35);
+  background:transparent;
+  cursor:pointer;
+  transition:all .3s cubic-bezier(.22,.61,.36,1);
+  position:relative;
+}
+
+.pilar-dot.active{
+  background:var(--accent);
+  border-color:var(--accent);
+  color:#000;
+  box-shadow:0 0 0 4px rgba(255,102,0,.2), 0 0 20px rgba(255,102,0,.3);
+}
+
+.pilar-item:hover .pilar-dot:not(.active){
+  border-color:rgba(255,102,0,.4);
+  color:var(--accent);
+  background:rgba(255,102,0,.05);
+}
+
+.pilar-label{
+  font-size:.48rem;
+  font-weight:800;
+  text-transform:uppercase;
+  letter-spacing:.12em;
+  color:rgba(255,255,255,.25);
+  margin-top:.4rem;
+  text-align:center;
+  line-height:1.3;
+  transition:color .25s;
+  padding:0 .25rem;
+}
+
+.pilar-item:hover .pilar-label,
+.pilar-item.active-item .pilar-label{
+  color:var(--accent);
+}
+
+.pilar-line{
+  width:2px;
+  height:36px;
+  background:rgba(255,102,0,.15);
+  margin:.3rem auto;
+  border-radius:1px;
+  transition:background .3s;
+}
+
+.pilar-item.active-item + .pilar-line,
+.pilar-line.lit{
+  background:rgba(255,102,0,.4);
+}
+
+.pilar-copyright{
+  position:absolute;
+  bottom:1.5rem;
+  font-size:.45rem;
+  font-weight:700;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  color:rgba(255,255,255,.12);
+  writing-mode:vertical-rl;
+}
+
+/* ============================================================
+   CONTENT AREA
+   ============================================================ */
+.content-area{
+  flex:1;
+  height:100vh;
+  overflow:hidden;
+  position:relative;
+}
+
+.module{
+  position:absolute;
+  inset:0;
+  opacity:0;
+  pointer-events:none;
+  transition:opacity .45s cubic-bezier(.22,.61,.36,1), transform .45s cubic-bezier(.22,.61,.36,1);
+  transform:translateY(12px);
+  overflow-y:auto;
+}
+
+.module.active{
+  opacity:1;
+  pointer-events:all;
+  transform:translateY(0);
+}
+
+/* ============================================================
+   BACKGROUNDS + GRID OVERLAY + ORBS
+   ============================================================ */
+.bg-dark{background:#0d0d0d;}
+.bg-dark2{background:#141414;}
+.bg-light{background:#F5F0E8;}
+
+.grid-overlay{
+  position:absolute;inset:0;pointer-events:none;
+  background-image:linear-gradient(var(--accent) 1px,transparent 1px),linear-gradient(90deg,var(--accent) 1px,transparent 1px);
+  background-size:24px 24px;opacity:.055;z-index:0;
+}
+.grid-overlay-light{
+  position:absolute;inset:0;pointer-events:none;
+  background-image:linear-gradient(#000 1px,transparent 1px),linear-gradient(90deg,#000 1px,transparent 1px);
+  background-size:28px 28px;opacity:.035;z-index:0;
+}
+
+@keyframes ao-float-1{0%,100%{transform:translate(0,0) scale(1);}33%{transform:translate(50px,-35px) scale(1.12);}66%{transform:translate(-30px,45px) scale(.9);}}
+@keyframes ao-float-2{0%,100%{transform:translate(0,0) scale(1);}33%{transform:translate(-40px,30px) scale(1.15);}66%{transform:translate(55px,-40px) scale(.88);}}
+.ao{position:absolute;border-radius:50%;pointer-events:none;filter:blur(100px);z-index:0;will-change:transform;}
+@media(max-width:767px){.ao{filter:blur(55px)!important;animation:none!important;}}
+
+/* ============================================================
+   SECTION WATERMARK
+   ============================================================ */
+.section-watermark{
+  position:absolute;font-size:clamp(5rem,16vw,13rem);font-weight:900;
+  text-transform:uppercase;white-space:nowrap;pointer-events:none;user-select:none;
+  letter-spacing:-.02em;line-height:1;z-index:0;color:rgba(255,255,255,.03);
+}
+.section-watermark.wm-dark{color:rgba(0,0,0,.04);}
+
+/* ============================================================
+   CONTAINER
+   ============================================================ */
+.container{width:100%;max-width:1060px;margin:0 auto;padding:0 2.5rem;}
+@media(max-width:480px){.container{padding:0 1.25rem;}}
+
+/* ============================================================
+   TYPOGRAPHY
+   ============================================================ */
+.t-hero{
+  font-size:clamp(2.8rem,8vw,7rem);font-weight:900;line-height:.92;
+  letter-spacing:-.04em;text-transform:uppercase;
+  text-shadow:0 3px 0 rgba(5,5,5,.4);
+  text-wrap:balance;
+}
+.t-hero .hl{color:var(--accent);}
+.t-hero .hl-glow{
+  color:var(--accent);
+  animation:glow-pulse 3s ease-in-out infinite;
+}
+@keyframes glow-pulse{
+  0%,100%{text-shadow:0 3px 0 rgba(5,5,5,.4),0 0 30px rgba(255,102,0,.5),0 0 60px rgba(255,102,0,.15);}
+  50%{text-shadow:0 3px 0 rgba(5,5,5,.4),0 0 50px rgba(255,102,0,.9),0 0 90px rgba(255,102,0,.3);}
+}
+
+.t-section{
+  font-size:clamp(1.75rem,4vw,2.8rem);font-weight:900;line-height:1.05;
+  letter-spacing:-.035em;text-transform:uppercase;
+}
+.t-section.on-dark{color:#fff;text-shadow:0 3px 0 rgba(255,102,0,.2),0 6px 30px rgba(255,102,0,.08);}
+.t-section.on-light{color:#050505;text-shadow:0 3px 0 rgba(5,5,5,.12);}
+.t-section .hl{color:var(--accent);}
+
+.t-body{font-size:clamp(.88rem,1.6vw,1rem);line-height:1.75;}
+.t-small{font-size:.875rem;line-height:1.65;}
+.t-xs{font-size:.75rem;letter-spacing:.04em;}
+.c-accent{color:var(--accent);}
+.c-muted{color:var(--muted);}
+.c-muted-lgt{color:var(--muted-lgt);}
+.c-white{color:#E0E0DA;}
+.c-dark{color:#050505;}
+
+.orange-bar{width:56px;height:4px;background:linear-gradient(90deg,var(--accent),transparent);border-radius:2px;margin-bottom:1rem;}
+
+/* ============================================================
+   PILL / BADGE
+   ============================================================ */
+.pill{
+  display:inline-flex;align-items:center;gap:.5rem;
+  background:rgba(255,102,0,.1);border:1px solid rgba(255,102,0,.3);
+  border-radius:.3rem;padding:.35rem 1rem;
+  font-size:.72rem;font-weight:700;color:var(--accent);
+  text-transform:uppercase;letter-spacing:.06em;
+}
+.pill.dark{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.12);color:rgba(255,255,255,.7);}
+
+.sh-eyebrow{
+  display:inline-block;font-size:.65rem;font-weight:800;
+  text-transform:uppercase;letter-spacing:.15em;color:var(--accent);
+  background:rgba(255,102,0,.1);border:1px solid rgba(255,102,0,.3);
+  border-radius:.3rem;padding:.35rem 1rem;margin-bottom:1rem;
+}
+.sh-eyebrow.dark{color:var(--black);background:rgba(0,0,0,.08);border-color:rgba(0,0,0,.2);}
+
+/* ============================================================
+   BTN CARTOON
+   ============================================================ */
+@keyframes cta-pulse{0%,100%{opacity:1;}50%{opacity:.88;}}
+
+.btn-cartoon{
+  position:relative;display:inline-flex;align-items:center;justify-content:center;gap:.75rem;
+  padding:1rem 2rem;background:var(--accent);color:#fff;
+  font-weight:700;font-family:var(--font);font-size:1rem;
+  border-radius:9999px;border:2px solid var(--black);
+  box-shadow:0 4px 0 var(--black);
+  transition:transform .15s ease,box-shadow .15s ease;cursor:pointer;
+  text-transform:uppercase;letter-spacing:.02em;overflow:hidden;text-decoration:none;
+}
+.btn-cartoon::after{
+  content:'';position:absolute;top:0;left:-100%;width:60%;height:100%;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.4),transparent);
+  transform:skewX(-20deg);transition:left .55s ease;pointer-events:none;
+}
+.btn-cartoon:hover{transform:translateY(-2px);box-shadow:0 6px 0 var(--black);}
+.btn-cartoon:hover::after{left:140%;}
+.btn-cartoon:active{transform:translateY(0);box-shadow:0 2px 0 var(--black);}
+.btn-cartoon.btn-xl{padding:1.25rem 2.75rem;font-size:1.1rem;animation:cta-pulse 2.5s ease-in-out infinite;}
+.btn-cartoon.btn-outline{background:transparent;color:#fff;border:2px solid rgba(255,255,255,.3);box-shadow:none;}
+.btn-cartoon.btn-outline:hover{border-color:var(--accent);box-shadow:0 4px 0 var(--accent);color:var(--accent);}
+.btn-cartoon.btn-dark-outline{background:transparent;color:var(--black);border:2px solid rgba(0,0,0,.3);box-shadow:none;}
+.btn-cartoon.btn-dark-outline:hover{border-color:var(--accent);color:var(--accent);}
+
+/* ============================================================
+   SCROLL REVEAL
+   ============================================================ */
+.reveal{opacity:0;transform:translateY(24px) scale(.97);transition:opacity .6s cubic-bezier(.22,.61,.36,1),transform .6s cubic-bezier(.22,.61,.36,1);}
+.reveal.visible{opacity:1;transform:translateY(0) scale(1);}
+.reveal-l{opacity:0;transform:translateX(-28px);transition:opacity .6s cubic-bezier(.22,.61,.36,1),transform .6s cubic-bezier(.22,.61,.36,1);}
+.reveal-l.visible{opacity:1;transform:translateX(0);}
+.reveal-r{opacity:0;transform:translateX(28px);transition:opacity .6s cubic-bezier(.22,.61,.36,1),transform .6s cubic-bezier(.22,.61,.36,1);}
+.reveal-r.visible{opacity:1;transform:translateX(0);}
+.d1{transition-delay:.08s;}
+.d2{transition-delay:.18s;}
+.d3{transition-delay:.28s;}
+.d4{transition-delay:.38s;}
+.d5{transition-delay:.48s;}
+
+/* ============================================================
+   FEATURES TICKER
+   ============================================================ */
+.features-ticker{
+  overflow:hidden;padding:.8rem 0;
+  border-top:1px solid rgba(255,102,0,.18);border-bottom:1px solid rgba(255,102,0,.18);
+  background:rgba(255,102,0,.03);
+}
+.features-track{display:flex;width:max-content;animation:features-scroll 28s linear infinite;}
+.features-item{
+  white-space:nowrap;padding:0 1.5rem;
+  font-size:.72rem;font-weight:800;color:var(--accent);
+  letter-spacing:.06em;text-transform:uppercase;
+}
+.features-item::after{content:"•";margin-left:1.5rem;color:rgba(255,102,0,.35);font-size:.6rem;}
+@keyframes features-scroll{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
+
+/* ============================================================
+   GRIDS
+   ============================================================ */
+.grid3{display:grid;grid-template-columns:1fr;gap:1.5rem;}
+@media(min-width:640px){.grid3{grid-template-columns:repeat(2,1fr);}}
+@media(min-width:1024px){.grid3{grid-template-columns:repeat(3,1fr);}}
+.grid4{display:grid;grid-template-columns:1fr;gap:1.25rem;}
+@media(min-width:640px){.grid4{grid-template-columns:repeat(2,1fr);}}
+@media(min-width:1024px){.grid4{grid-template-columns:repeat(2,1fr);}}
+
+/* ============================================================
+   INTRO — STAGE
+   ============================================================ */
+.intro-stage{
+  position:relative;
+  height:100vh;
+  background:#0d0d0d;
+  display:flex;
+  flex-direction:column;
+  padding:0 5vw;
+  overflow:hidden;
+}
+.intro-topbar{
+  display:flex;
+  align-items:center;
+  gap:1.2rem;
+  padding:1.8rem 0 0;
+  position:relative;
+  z-index:2;
+}
+.intro-topbar-label{
+  font-size:.55rem;
+  font-weight:700;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  color:rgba(255,255,255,.3);
+  white-space:nowrap;
+}
+.intro-topbar-line{
+  flex:1;
+  height:1px;
+  background:rgba(255,255,255,.08);
+}
+
+/* LOGO */
+.intro-logo-wrap{
+  flex:1;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:flex-start;
+  position:relative;
+  z-index:2;
+  min-height:0;
+}
+.intro-logo-img{
+  width:clamp(420px,72vw,900px);
+  height:auto;
+  mix-blend-mode:screen;
+  display:block;
+  margin-left:-3vw;
+}
+.intro-rule{
+  width:100%;
+  height:2px;
+  background:linear-gradient(90deg,var(--accent),rgba(255,102,0,0));
+  margin-top:1.8rem;
+}
+
+/* BOTTOM */
+.intro-bottom{
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  padding-bottom:5rem;
+  gap:2rem;
+  position:relative;
+  z-index:2;
+}
+.intro-sub{
+  font-size:clamp(.6rem,1.1vw,.85rem);
+  font-weight:800;
+  letter-spacing:.3em;
+  text-transform:uppercase;
+  color:rgba(255,255,255,.35);
+  white-space:nowrap;
+}
+.intro-bottom-right{
+  display:flex;
+  flex-direction:column;
+  align-items:flex-end;
+  gap:1.2rem;
+}
+.intro-desc{
+  font-size:.82rem;
+  line-height:1.7;
+  color:rgba(255,255,255,.45);
+  font-weight:500;
+  max-width:320px;
+  text-align:right;
+}
+
+/* ============================================================
+   MODULE 1 — INTRO (DARK)
+   ============================================================ */
+#mod-intro{
+  background:var(--dark);
+  overflow:hidden;
+}
+.intro-split{
+  display:grid;
+  grid-template-columns:58% 42%;
+  height:100vh;
+  position:relative;
+}
+.intro-left{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  padding:4rem 3rem 3rem 4rem;
+  position:relative;
+  z-index:2;
+}
+.intro-right{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  position:relative;
+  overflow:hidden;
+}
+.intro-aaa-ghost{
+  font-size:20rem;
+  font-weight:900;
+  color:rgba(255,102,0,.07);
+  line-height:.82;
+  letter-spacing:-.04em;
+  text-align:center;
+  transform:rotate(-8deg) translateX(10%);
+  pointer-events:none;
+  user-select:none;
+  animation:ao-float-1 8s ease-in-out infinite;
+}
+
+/* AAA pillar cards */
+.aaa-cards{
+  display:grid;
+  grid-template-columns:1fr 1fr 1fr;
+  gap:.75rem;
+  margin:1.75rem 0;
+}
+.aaa-card{
+  border:1px solid rgba(255,102,0,.18);
+  border-top:2px solid var(--accent);
+  border-radius:.75rem;
+  padding:1.1rem .9rem;
+  background:rgba(255,102,0,.04);
+  transition:background .2s, border-color .2s;
+  cursor:pointer;
+}
+.aaa-card:hover{
+  background:rgba(255,102,0,.08);
+  border-color:rgba(255,102,0,.4);
+}
+.aaa-card-letter{
+  font-size:2rem;
+  font-weight:900;
+  color:var(--accent);
+  line-height:1;
+}
+.aaa-card-title{
+  font-size:.6rem;
+  font-weight:900;
+  text-transform:uppercase;
+  letter-spacing:.12em;
+  color:#fff;
+  margin-top:.35rem;
+}
+.aaa-card-desc{
+  font-size:.72rem;
+  color:rgba(255,255,255,.42);
+  margin-top:.4rem;
+  line-height:1.5;
+}
+
+/* ============================================================
+   MODULE 2 — QUEM SOMOS
+   Light editorial. Sem orbs. Neo-brutalist.
+   ============================================================ */
+#mod-quem{ background:var(--light); }
+
+/* HERO — light, headline enorme */
+.qs-hero{
+  background:var(--light);
+  padding:4rem 5vw 0;
+  position:relative;overflow:hidden;
+}
+.qs-topbar{
+  display:flex;align-items:center;justify-content:space-between;
+  border-bottom:3px solid var(--black);
+  padding-bottom:1.1rem;margin-bottom:3rem;
+}
+.qs-topbar-num{
+  font-size:.5rem;font-weight:900;
+  text-transform:uppercase;letter-spacing:.3em;
+  color:var(--accent);
+}
+.qs-topbar-label{
+  font-size:.5rem;font-weight:900;
+  text-transform:uppercase;letter-spacing:.2em;
+  color:rgba(0,0,0,.3);
+}
+.qs-headline{
+  font-size:clamp(3.5rem,8vw,7.5rem);
+  font-weight:900;line-height:.88;
+  letter-spacing:-.05em;
+  text-transform:uppercase;
+  color:var(--black);
+  margin-bottom:2.5rem;
+}
+.qs-headline b{ color:var(--accent); }
+.qs-hero-body{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:3rem;
+  border-top:3px solid var(--black);
+  padding-top:2rem;
+  padding-bottom:4rem;
+}
+.qs-statement{
+  font-size:.9rem;font-weight:600;
+  line-height:1.75;color:rgba(0,0,0,.6);
+}
+.qs-hero-r{
+  display:flex;flex-direction:column;
+  justify-content:space-between;gap:1.5rem;
+}
+.qs-manifesto{
+  font-size:1.05rem;font-weight:800;
+  color:var(--black);line-height:1.5;
+}
+.qs-manifesto b{ color:var(--accent); }
+
+/* PILARES — black bg band */
+.qs-pilares{
+  background:var(--black);
+  padding:3.5rem 5vw;
+}
+.qs-pil-eye{
+  font-size:.48rem;font-weight:900;
+  text-transform:uppercase;letter-spacing:.25em;
+  color:var(--accent);margin-bottom:2rem;
+  display:flex;align-items:center;gap:.75rem;
+}
+.qs-pil-eye::after{ content:'';flex:1;height:1px;background:var(--accent);opacity:.25; }
+.qs-pil-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:0;border:var(--border);
+}
+.qs-pil-card{
+  padding:2.25rem 2rem;
+  border-right:3px solid #050505;
+  position:relative;
+}
+.qs-pil-card:last-child{ border-right:none; }
+.qs-pil-card::after{
+  content:'';position:absolute;
+  bottom:0;left:0;right:0;height:3px;
+  background:var(--accent);
+  transform:scaleX(0);transform-origin:left;
+  transition:transform .35s ease;
+}
+.qs-pil-card:hover::after{ transform:scaleX(1); }
+.qs-pil-num{
+  font-size:.45rem;font-weight:900;
+  text-transform:uppercase;letter-spacing:.22em;
+  color:var(--accent);margin-bottom:.75rem;
+}
+.qs-pil-name{
+  font-size:1.85rem;font-weight:900;
+  text-transform:uppercase;letter-spacing:-.03em;
+  color:#fff;margin-bottom:.85rem;line-height:1;
+}
+.qs-pil-desc{
+  font-size:.76rem;font-weight:600;
+  color:rgba(255,255,255,.45);line-height:1.65;
+}
+
+/* DEPOIMENTOS — light */
+.qs-dep{
+  background:var(--light);
+  padding:3.5rem 5vw 4rem;
+}
+.qs-dep-eye{
+  font-size:.48rem;font-weight:900;
+  text-transform:uppercase;letter-spacing:.25em;
+  color:var(--accent);margin-bottom:2rem;
+  display:flex;align-items:center;gap:.75rem;
+}
+.qs-dep-eye::after{ content:'';flex:1;height:1px;background:var(--black);opacity:.12; }
+.qs-dep-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:1.5rem;margin-bottom:2.5rem;
+}
+.qs-dep-card{
+  background:#fff;
+  border:var(--border);
+  box-shadow:var(--shadow);
+  padding:2rem 1.75rem;
+  display:flex;flex-direction:column;
+  min-height:220px;
+  position:relative;
+}
+.qs-dep-card-top{
+  flex:1;display:flex;align-items:center;justify-content:center;
+  flex-direction:column;gap:.5rem;
+}
+.qs-dep-placeholder-label{
+  font-size:.48rem;font-weight:900;
+  text-transform:uppercase;letter-spacing:.2em;
+  color:rgba(0,0,0,.18);
+  text-align:center;
+}
+.qs-dep-placeholder-icon{
+  font-size:2rem;opacity:.12;margin-bottom:.5rem;
+}
+.qs-dep-footer{
+  border-top:2px solid rgba(0,0,0,.07);
+  padding-top:1rem;
+  display:flex;align-items:center;gap:.85rem;
+}
+.qs-dep-avatar{
+  width:36px;height:36px;border-radius:50%;
+  background:rgba(0,0,0,.06);
+  border:2px solid rgba(0,0,0,.08);
+  flex-shrink:0;
+}
+.qs-dep-name{
+  font-size:.72rem;font-weight:900;color:rgba(0,0,0,.18);
+}
+.qs-dep-role-txt{
+  font-size:.6rem;font-weight:600;color:rgba(0,0,0,.12);
+}
+.qs-dep-cta{
+  display:flex;align-items:center;justify-content:space-between;gap:2rem;
+}
+.qs-dep-cta-text{
+  font-size:.88rem;font-weight:700;color:rgba(0,0,0,.5);
+}
+.qs-dep-cta-text b{ color:var(--black); }
+
+@keyframes dot-pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.4;transform:scale(.6);}}
+
+/* ============================================================
+   MODULE 3 — EQUIPE (LIGHT, SUB-MODULES)
+   ============================================================ */
+#mod-equipe{ background:#fff; overflow:hidden; }
+.equipe-stage{
+  position:relative; width:100%; height:100vh;
+  overflow:hidden; background:#fff;
+}
+
+/* Top bar */
+.equipe-topbar{
+  position:absolute; top:0; left:0; right:0; z-index:10;
+  display:flex; align-items:center; justify-content:space-between;
+  padding:1.75rem 3.5rem;
+  background:linear-gradient(180deg,rgba(255,255,255,.97) 0%,transparent 100%);
+}
+.equipe-topbar-left{
+  display:flex; align-items:center; gap:1.5rem;
+}
+.equipe-member-count{
+  font-size:.55rem; font-weight:900;
+  text-transform:uppercase; letter-spacing:.18em;
+  color:rgba(0,0,0,.3);
+}
+
+/* Sub-nav dots */
+.equipe-sub-nav{ display:flex; align-items:center; gap:.5rem; }
+.esub-dot{
+  width:38px; height:38px; border-radius:50%;
+  border:2px solid rgba(0,0,0,.12);
+  background:transparent; color:rgba(0,0,0,.3);
+  font-size:.56rem; font-weight:900;
+  font-family:'Montserrat',sans-serif; letter-spacing:.06em;
+  cursor:pointer; transition:all .25s ease;
+  display:flex; align-items:center; justify-content:center;
+}
+.esub-dot:hover{ border-color:var(--accent); color:var(--accent); }
+.esub-dot.esub-active{
+  background:var(--accent); border-color:var(--accent);
+  color:#fff; box-shadow:0 4px 16px rgba(255,102,0,.35);
+}
+.esub-connector{ width:24px; height:1px; background:rgba(0,0,0,.1); }
+
+/* Sub-module layout */
+.esub-stage{ position:relative; width:100%; height:100%; }
+.equipe-submodule{
+  position:absolute; inset:0;
+  display:grid; grid-template-columns:42% 58%;
+  opacity:0; pointer-events:none;
+  transition:opacity .5s ease;
+}
+.equipe-submodule.esub-active{ opacity:1; pointer-events:all; }
+
+/* Right info panel */
+.esub-left{
+  display:flex; flex-direction:column; justify-content:center;
+  padding:5.5rem 4rem 4rem 2.5rem;
+  position:relative; z-index:2;
+  border-left:1px solid rgba(0,0,0,.06);
+}
+
+/* Eyebrow */
+.esub-eyebrow{
+  display:flex; align-items:center; gap:.75rem;
+  margin-bottom:1.5rem;
+}
+.esub-eyebrow-dot{
+  width:8px; height:8px; border-radius:50%;
+  background:var(--accent);
+  box-shadow:0 0 8px rgba(255,102,0,.5);
+  flex-shrink:0;
+}
+.esub-eyebrow-text{
+  font-size:.62rem; font-weight:900;
+  text-transform:uppercase; letter-spacing:.15em;
+  color:rgba(0,0,0,.6);
+}
+
+/* Ghost number behind name */
+.esub-name-block{ position:relative; margin-bottom:.25rem; }
+.esub-num{
+  position:absolute;
+  top:-1.5rem; left:-.25rem;
+  font-size:7rem; font-weight:900;
+  color:rgba(255,102,0,.07);
+  line-height:1; letter-spacing:-.04em;
+  pointer-events:none; user-select:none;
+}
+.esub-name{
+  position:relative;
+  font-size:3.25rem; font-weight:900;
+  color:#0d0d0d;
+  text-transform:uppercase;
+  letter-spacing:-.02em; line-height:.95;
+}
+
+/* Role with accent bar */
+.esub-role-block{
+  display:flex; align-items:center; gap:.75rem;
+  margin-top:.75rem; margin-bottom:1.5rem;
+}
+.esub-role-bar{
+  width:28px; height:3px;
+  background:var(--accent); border-radius:2px; flex-shrink:0;
+}
+.esub-role{
+  font-size:.68rem; font-weight:900;
+  text-transform:uppercase; letter-spacing:.15em;
+  color:var(--accent);
+}
+
+/* Divider */
+.esub-divider{
+  width:100%; height:1px;
+  background:linear-gradient(90deg,rgba(255,102,0,.2),transparent);
+  margin-bottom:1.5rem;
+}
+
+/* Bio */
+.esub-bio{
+  font-size:.95rem; line-height:1.75;
+  color:rgba(0,0,0,.72); max-width:380px;
+  margin-bottom:1.5rem;
+}
+
+/* Skills */
+.esub-skills{ display:flex; flex-direction:column; gap:.5rem; margin-bottom:2rem; }
+.esub-skill{
+  display:flex; align-items:center; gap:.75rem;
+}
+.esub-skill-bar-track{
+  flex:1; height:4px; background:rgba(0,0,0,.08);
+  border-radius:2px; max-width:140px;
+}
+.esub-skill-bar{
+  height:100%; background:var(--accent); border-radius:2px;
+  transition:width 1s ease;
+}
+.esub-skill-name{
+  font-size:.65rem; font-weight:900;
+  text-transform:uppercase; letter-spacing:.08em;
+  color:rgba(0,0,0,.7); white-space:nowrap;
+  min-width:90px;
+}
+
+/* Navigation bottom */
+.esub-nav-bottom{
+  display:flex; align-items:center; justify-content:space-between;
+  padding-top:1.5rem;
+  border-top:1px solid rgba(0,0,0,.07);
+}
+.esub-nav-arrows{ display:flex; gap:.5rem; }
+.esub-btn-nav{
+  width:40px; height:40px; border-radius:50%;
+  border:1.5px solid rgba(0,0,0,.15);
+  background:transparent; color:rgba(0,0,0,.4);
+  font-size:1rem; cursor:pointer;
+  display:flex; align-items:center; justify-content:center;
+  transition:all .2s; font-family:'Montserrat',sans-serif;
+}
+.esub-btn-nav:hover{ border-color:var(--accent); color:var(--accent); }
+.esub-btn-nav.esub-btn-primary{
+  background:var(--accent); border-color:var(--accent);
+  color:#fff; box-shadow:0 4px 14px rgba(255,102,0,.3);
+}
+.esub-btn-nav.esub-btn-primary:hover{ background:var(--accent-d); }
+.esub-btn-cta{
+  font-size:.58rem; font-weight:900;
+  text-transform:uppercase; letter-spacing:.14em;
+  color:rgba(0,0,0,.35); background:none;
+  border:1.5px solid rgba(0,0,0,.12); border-radius:2rem;
+  padding:.5rem 1.1rem; cursor:pointer;
+  transition:all .2s; font-family:'Montserrat',sans-serif;
+}
+.esub-btn-cta:hover{ border-color:var(--accent); color:var(--accent); }
+.esub-btn-cta.cta-main{
+  background:#111; border-color:#111; color:#fff;
+}
+.esub-btn-cta.cta-main:hover{ background:var(--accent); border-color:var(--accent); }
+
+/* Photo panel */
+.esub-photo{
+  position:relative; overflow:hidden; height:100vh;
+  display:flex; align-items:flex-end; justify-content:center;
+}
+.esub-photo img{
+  width:100%; height:100%;
+  object-fit:contain; object-position:bottom center;
+  transition:transform .8s ease;
+}
+.equipe-submodule.esub-active .esub-photo img{ transform:scale(1.02); }
+
+/* Photo — regular jpeg: dark overlay gradient to blend */
+.esub-photo-cover{
+  position:absolute; inset:0;
+  background:linear-gradient(180deg,rgba(255,255,255,.15) 0%,transparent 30%,transparent 70%,rgba(255,255,255,.4) 100%);
+  pointer-events:none;
+}
+
+/* Progress bar bottom-left */
+.equipe-progress{
+  position:absolute; bottom:2.25rem; left:3.5rem; z-index:10;
+  display:flex; gap:.35rem; align-items:center;
+}
+.eprogress-bar{
+  height:3px; width:24px; background:rgba(0,0,0,.1);
+  border-radius:2px; transition:all .4s ease;
+}
+.eprogress-bar.active{
+  background:var(--accent); width:48px;
+  box-shadow:0 0 6px rgba(255,102,0,.35);
+}
+
+/* ============================================================
+   MODULE 4 — SERVIÇOS (DARK)
+   ============================================================ */
+#mod-servicos{ background:#0d0d0d; }
+
+.srv-stage{
+  position:relative;
+  min-height:100vh;
+  padding:5rem 4vw 5rem;
+  overflow:hidden;
+}
+
+/* Header */
+.srv-header{
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  gap:2rem;
+  margin-bottom:3rem;
+  position:relative;
+  z-index:2;
+}
+.srv-header-left{}
+.srv-eyebrow{
+  font-size:.6rem;
+  font-weight:900;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  color:var(--accent);
+  display:flex;
+  align-items:center;
+  gap:.6rem;
+  margin-bottom:.9rem;
+}
+.srv-eyebrow::before{
+  content:'';
+  width:20px;height:2px;
+  background:var(--accent);
+  border-radius:2px;
+}
+.srv-headline{
+  font-size:clamp(2.4rem,5vw,4.2rem);
+  font-weight:900;
+  letter-spacing:-.04em;
+  text-transform:uppercase;
+  color:#fff;
+  line-height:.92;
+}
+.srv-headline .hl{ color:var(--accent); }
+.srv-sub{
+  font-size:.82rem;
+  font-weight:600;
+  color:rgba(255,255,255,.4);
+  max-width:280px;
+  line-height:1.6;
+  text-align:right;
+}
+
+/* Grid */
+.srv-grid{
+  display:flex;
+  flex-wrap:wrap;
+  gap:1rem;
+  justify-content:center;
+  position:relative;
+  z-index:2;
+}
+
+/* Card */
+.srv-card{
+  flex:1 1 280px;
+  max-width:calc(33.333% - .68rem);
+  background:#111;
+  border:1px solid rgba(255,255,255,.07);
+  border-radius:.85rem;
+  padding:1.9rem 1.75rem;
+  position:relative;
+  overflow:hidden;
+  transition:transform .25s ease, border-color .25s ease;
+  cursor:default;
+}
+.srv-card::before{
+  content:'';
+  position:absolute;
+  top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,var(--accent) 0%,transparent 100%);
+}
+.srv-card:hover{
+  transform:translateY(-5px);
+  border-color:rgba(255,102,0,.35);
+}
+.srv-card-top{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:1.4rem;
+}
+.srv-num{
+  font-size:.58rem;
+  font-weight:900;
+  letter-spacing:.22em;
+  color:var(--accent);
+}
+.srv-tag{
+  font-size:.5rem;
+  font-weight:900;
+  text-transform:uppercase;
+  letter-spacing:.12em;
+  color:rgba(255,255,255,.22);
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:2rem;
+  padding:.22rem .7rem;
+}
+.srv-name{
+  font-size:1.45rem;
+  font-weight:900;
+  text-transform:uppercase;
+  letter-spacing:-.025em;
+  color:#fff;
+  line-height:.95;
+  margin-bottom:.9rem;
+}
+.srv-desc{
+  font-size:.78rem;
+  line-height:1.68;
+  color:rgba(255,255,255,.38);
+  margin-bottom:1.4rem;
+}
+.srv-deliver{
+  display:flex;
+  align-items:center;
+  gap:.55rem;
+  font-size:.68rem;
+  font-weight:700;
+  color:var(--accent);
+  border-top:1px solid rgba(255,255,255,.06);
+  padding-top:1rem;
+}
+.srv-deliver-arrow{
+  font-size:.9rem;
+  line-height:1;
+}
+.srv-ghost{
+  position:absolute;
+  bottom:-1.2rem;right:-.4rem;
+  font-size:7rem;font-weight:900;
+  color:rgba(255,255,255,.025);
+  line-height:1;
+  pointer-events:none;user-select:none;
+  letter-spacing:-.05em;
+}
+
+/* ============================================================
+   MODULE 5 — PROPOSTA
+   Design system: orbs + grid-overlay + watermark + reveal + btn-cartoon
+   Ritmo: dark › light › dark › light › dark › light › dark
+   ============================================================ */
+#mod-proposta{ background:#0d0d0d; }
+.prop-stage{ padding:0; }
+
+/* secoes genericas */
+.p5{ padding:4rem 5vw; position:relative; overflow:hidden; }
+.p5-dk{ background:#0d0d0d; color:#fff; }
+.p5-dk2{ background:#141414; color:#fff; }
+.p5-lgt{ background:var(--light); color:var(--black); }
+
+/* eyebrow linha */
+.p5-eye{
+  font-size:.48rem;font-weight:900;
+  text-transform:uppercase;letter-spacing:.25em;
+  color:var(--accent);margin-bottom:1.75rem;
+  display:flex;align-items:center;gap:.75rem;
+}
+.p5-lgt .p5-eye{ color:var(--accent); }
+.p5-eye::after{ content:'';flex:1;height:1px;background:var(--accent);opacity:.22; }
+
+/* secao titulo + lead */
+.p5-h{
+  font-size:clamp(2.2rem,4.5vw,4rem);
+  font-weight:900;line-height:1.02;
+  letter-spacing:-.03em;margin-bottom:1rem;
+}
+.p5-dk .p5-h{ color:#fff; }
+.p5-lgt .p5-h{ color:var(--black); }
+.p5-h b{ color:var(--accent); }
+.p5-lead{
+  font-size:.95rem;font-weight:600;line-height:1.7;
+  max-width:680px;
+}
+.p5-dk .p5-lead{ color:rgba(255,255,255,.6); }
+.p5-lgt .p5-lead{ color:rgba(0,0,0,.6); }
+
+/* ── S1: HERO ── */
+.p5-hero-grid{
+  display:grid;grid-template-columns:58% 42%;
+  gap:0;align-items:stretch;
+  min-height:38vh;
+}
+.p5-hero-l{
+  padding:0 4vw 0 0;
+  border-right:1px solid rgba(255,255,255,.07);
+  display:flex;flex-direction:column;justify-content:center;
+}
+.p5-hero-r{
+  padding:0 0 0 4vw;
+  display:flex;flex-direction:column;justify-content:center;gap:1.5rem;
+}
+.p5-hero-chip{
+  display:inline-flex;align-items:center;gap:.5rem;
+  background:rgba(255,102,0,.12);
+  border:1px solid rgba(255,102,0,.3);
+  color:var(--accent);
+  font-size:.5rem;font-weight:900;
+  text-transform:uppercase;letter-spacing:.14em;
+  padding:.45rem 1rem;border-radius:2rem;
+  width:fit-content;
+}
+
+/* ── S2: SITUACAO HOJE (light) ── */
+.p5-diag-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:1.5rem;margin-bottom:2.5rem;
+}
+.p5-diag-card{
+  background:#fff;
+  border:var(--border);
+  box-shadow:var(--shadow);
+  padding:1.85rem 1.65rem;
+}
+.p5-diag-n{
+  font-size:clamp(2.5rem,5vw,4.2rem);
+  font-weight:900;line-height:.85;
+  letter-spacing:-.04em;color:var(--black);
+  margin-bottom:.65rem;
+}
+.p5-diag-n b{ color:var(--accent); }
+.p5-diag-tag{
+  font-size:.45rem;font-weight:900;
+  text-transform:uppercase;letter-spacing:.2em;
+  color:var(--accent);margin-bottom:.5rem;
+}
+.p5-diag-desc{
+  font-size:.78rem;font-weight:600;
+  color:rgba(0,0,0,.6);line-height:1.6;
+}
+.p5-quote{
+  background:var(--black);color:#fff;
+  border:var(--border);box-shadow:var(--shadow);
+  padding:1.75rem 2rem;
+  font-size:clamp(.85rem,1.4vw,1.1rem);
+  font-weight:700;line-height:1.6;
+}
+.p5-quote b{ color:var(--accent); }
+
+/* ── S3: PROMESSA (dark) ── */
+.p5-promise-big{
+  font-size:clamp(1.3rem,2.5vw,2rem);
+  font-weight:900;line-height:1.35;
+  color:#fff;margin-bottom:2rem;
+  max-width:860px;
+}
+.p5-promise-big b{ color:var(--accent); }
+.p5-bullets{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:1.25rem;
+}
+.p5-bullet{
+  border-left:3px solid var(--accent);
+  padding:1rem 1.25rem;
+  background:rgba(255,255,255,.03);
+}
+.p5-bullet-title{
+  font-size:.75rem;font-weight:900;
+  color:#fff;margin-bottom:.4rem;
+}
+.p5-bullet-desc{
+  font-size:.75rem;font-weight:600;
+  color:rgba(255,255,255,.55);line-height:1.55;
+}
+
+/* ── S4: PROTOCOLO AAA (light) ── */
+.p5-aaa{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:1.5rem;
+}
+.p5-aaa-card{
+  background:#fff;
+  border:var(--border);
+  box-shadow:var(--shadow);
+}
+.p5-aaa-head{
+  background:var(--black);
+  padding:1.25rem 1.5rem;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.p5-aaa-name{
+  font-size:1.2rem;font-weight:900;
+  letter-spacing:-.01em;color:#fff;
+}
+.p5-aaa-name span{ color:var(--accent); }
+.p5-aaa-fase{
+  font-size:.42rem;font-weight:900;
+  text-transform:uppercase;letter-spacing:.18em;
+  color:rgba(255,255,255,.4);
+}
+.p5-aaa-body{ padding:1.35rem 1.5rem; }
+.p5-aaa-when{
+  font-size:.42rem;font-weight:900;
+  text-transform:uppercase;letter-spacing:.18em;
+  color:var(--accent);margin-bottom:.9rem;
+}
+.p5-aaa-item{
+  display:flex;align-items:flex-start;gap:.6rem;
+  font-size:.75rem;font-weight:600;
+  color:rgba(0,0,0,.7);line-height:1.5;
+  margin-bottom:.55rem;
+}
+.p5-aaa-item::before{
+  content:'';width:4px;height:4px;border-radius:50%;
+  background:var(--accent);flex-shrink:0;margin-top:.55rem;
+}
+
+/* ── S5: O QUE A TAC RECEBE (dark) ── */
+.p5-scope-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:1.25rem;
+}
+.p5-scope-block{
+  border-top:3px solid var(--accent);
+  padding-top:1.35rem;
+}
+.p5-scope-period{
+  font-size:.42rem;font-weight:900;
+  text-transform:uppercase;letter-spacing:.2em;
+  color:var(--accent);margin-bottom:.65rem;
+}
+.p5-scope-title{
+  font-size:.9rem;font-weight:900;
+  color:#fff;margin-bottom:1rem;
+}
+.p5-scope-item{
+  display:flex;align-items:flex-start;gap:.55rem;
+  font-size:.75rem;font-weight:600;
+  color:rgba(255,255,255,.6);line-height:1.5;
+  margin-bottom:.5rem;
+}
+.p5-scope-item::before{
+  content:'→';color:var(--accent);
+  flex-shrink:0;font-weight:900;font-size:.65rem;
+  margin-top:.1rem;
+}
+.p5-tools{
+  margin-top:2.5rem;
+  border:1px solid rgba(255,102,0,.25);
+  background:rgba(255,102,0,.06);
+  padding:1.25rem 1.5rem;
+  display:flex;align-items:center;gap:1.5rem;
+}
+.p5-tools-label{
+  font-size:.42rem;font-weight:900;
+  text-transform:uppercase;letter-spacing:.2em;
+  color:var(--accent);white-space:nowrap;flex-shrink:0;
+}
+.p5-tools-desc{
+  font-size:.78rem;font-weight:600;
+  color:rgba(255,255,255,.65);line-height:1.5;
+}
+
+/* ── S6: COMPROMISOS (light) ── */
+.p5-comp-grid{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:1.25rem;
+}
+.p5-comp-item{
+  background:#fff;
+  border:var(--border);
+  box-shadow:var(--shadow);
+  padding:1.35rem 1.5rem;
+  display:flex;align-items:flex-start;gap:1rem;
+}
+.p5-comp-icon{
+  width:38px;height:38px;flex-shrink:0;
+  background:var(--black);
+  display:flex;align-items:center;justify-content:center;
+  font-size:.55rem;font-weight:900;
+  color:var(--accent);letter-spacing:.05em;
+  text-transform:uppercase;
+}
+.p5-comp-body-title{
+  font-size:.78rem;font-weight:900;
+  color:var(--black);margin-bottom:.3rem;
+}
+.p5-comp-body-desc{
+  font-size:.73rem;font-weight:600;
+  color:rgba(0,0,0,.55);line-height:1.5;
+}
+.p5-pos3m{
+  margin-top:1.5rem;
+  border-left:4px solid var(--accent);
+  padding:1rem 1.35rem;
+  background:#fff;
+  border-top:var(--border);border-right:var(--border);border-bottom:var(--border);
+  box-shadow:var(--shadow);
+}
+.p5-pos3m-label{
+  font-size:.42rem;font-weight:900;
+  text-transform:uppercase;letter-spacing:.2em;
+  color:rgba(0,0,0,.35);margin-bottom:.4rem;
+}
+.p5-pos3m-text{
+  font-size:.8rem;font-weight:600;
+  color:rgba(0,0,0,.7);line-height:1.6;
+}
+
+/* ── S7: INVESTIMENTO (dark) ── */
+.p5-invest-grid{
+  display:grid;grid-template-columns:1.2fr 1fr;
+  gap:3rem;align-items:start;
+}
+.p5-anchor-mkt{
+  font-size:1rem;font-weight:800;
+  color:rgba(255,255,255,.28);
+  text-decoration:line-through;
+  text-decoration-color:rgba(255,102,0,.6);
+  text-decoration-thickness:2px;
+  margin-bottom:.5rem;
+}
+.p5-price-row{
+  display:flex;align-items:baseline;gap:.4rem;
+  line-height:1;margin-bottom:.65rem;
+}
+.p5-price-rs{ font-size:1.8rem;font-weight:900;color:var(--accent); }
+.p5-price-val{
+  font-size:clamp(4rem,7vw,6.5rem);
+  font-weight:900;color:#fff;
+  letter-spacing:-.04em;
+}
+.p5-price-per{
+  font-size:.8rem;font-weight:700;
+  color:rgba(255,255,255,.4);
+  align-self:flex-end;padding-bottom:.7rem;
+}
+.p5-price-badge{
+  display:inline-flex;align-items:center;gap:.5rem;
+  background:var(--accent);color:#fff;
+  font-size:.55rem;font-weight:900;
+  text-transform:uppercase;letter-spacing:.1em;
+  padding:.5rem 1.1rem;
+  border:var(--border);box-shadow:var(--shadow);
+  margin-bottom:2rem;
+}
+.p5-price-rows{
+  border-top:2px solid rgba(255,255,255,.1);
+}
+.p5-price-row-item{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:.7rem 0;
+  border-bottom:1px solid rgba(255,255,255,.07);
+  font-size:.8rem;font-weight:600;
+  color:rgba(255,255,255,.55);
+}
+.p5-price-row-item:last-child{
+  border-bottom:none;font-weight:900;
+  font-size:.92rem;color:#fff;
+}
+.p5-price-row-item:last-child .p5-price-rv{ color:var(--accent); }
+.p5-price-rv{ color:#fff; }
+.p5-verba-note{
+  margin-top:1.25rem;
+  font-size:.73rem;font-weight:600;
+  color:rgba(255,255,255,.4);line-height:1.6;
+  border-top:1px solid rgba(255,255,255,.07);
+  padding-top:1.25rem;
+}
+.p5-porq-title{
+  font-size:.42rem;font-weight:900;
+  text-transform:uppercase;letter-spacing:.2em;
+  color:var(--accent);margin-bottom:1rem;
+}
+.p5-porq-item{
+  display:flex;align-items:flex-start;gap:.6rem;
+  font-size:.76rem;font-weight:600;
+  color:rgba(255,255,255,.6);line-height:1.5;
+  margin-bottom:.7rem;
+}
+.p5-porq-item::before{
+  content:'';width:4px;height:4px;border-radius:50%;
+  background:var(--accent);flex-shrink:0;margin-top:.55rem;
+}
+
+/* ── S8: PROXIMOS PASSOS (light) ── */
+.p5-steps-grid{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:3rem;align-items:start;
+}
+.p5-steps{ display:flex;flex-direction:column;gap:1rem; }
+.p5-step{
+  display:flex;align-items:flex-start;gap:1rem;
+  background:#fff;
+  border:var(--border);box-shadow:var(--shadow);
+  padding:1rem 1.35rem;
+}
+.p5-step-n{
+  width:32px;height:32px;flex-shrink:0;
+  background:var(--black);color:var(--accent);
+  display:flex;align-items:center;justify-content:center;
+  font-size:.62rem;font-weight:900;
+}
+.p5-step-text{
+  font-size:.8rem;font-weight:600;
+  color:rgba(0,0,0,.7);line-height:1.55;
+  padding-top:.25rem;
+}
+.p5-steps-cta{
+  display:flex;flex-direction:column;
+  justify-content:center;gap:1rem;
+}
+.p5-steps-cta-text{
+  font-size:clamp(1.1rem,2vw,1.6rem);
+  font-weight:900;color:var(--black);line-height:1.3;
+}
+.p5-steps-cta-text b{ color:var(--accent); }
+.p5-steps-cta-sub{
+  font-size:.75rem;font-weight:600;
+  color:rgba(0,0,0,.5);
+}
+.p5-validity{
+  font-size:.6rem;font-weight:800;
+  color:rgba(0,0,0,.35);
+  text-transform:uppercase;letter-spacing:.15em;
+  margin-top:.5rem;
+}
+
+/* ── S9: ADICIONAL SITE (dark) ── */
+.p5-site-grid{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:2.5rem;align-items:center;
+}
+.p5-site-price{
+  font-size:clamp(3rem,5vw,4.5rem);
+  font-weight:900;color:var(--accent);
+  line-height:1;margin-bottom:.65rem;
+  letter-spacing:-.03em;
+}
+.p5-site-items{ display:flex;flex-direction:column;gap:.55rem;margin-top:1.25rem; }
+.p5-site-item{
+  display:flex;align-items:flex-start;gap:.6rem;
+  font-size:.78rem;font-weight:600;
+  color:rgba(255,255,255,.65);line-height:1.5;
+}
+.p5-site-item::before{
+  content:'→';color:var(--accent);font-weight:900;flex-shrink:0;
+}
+.p5-site-note{
+  font-size:.75rem;font-weight:600;
+  color:rgba(255,255,255,.45);line-height:1.6;
+  margin-top:1.5rem;
+  border-top:1px solid rgba(255,255,255,.08);
+  padding-top:1.25rem;
+}
+
+/* ============================================================
+   MOBILE NAV — horizontal top bar
+   ============================================================ */
+@media(max-width:767px){
+  :root{ --nav-w: 0px; }
+  .app{ flex-direction:column; }
+  .pilar-nav{
+    width:100%;
+    height:64px;
+    min-width:0;
+    flex-direction:row;
+    justify-content:center;
+    gap:.75rem;
+    padding:.75rem 1rem;
+    border-right:none;
+    border-bottom:1px solid rgba(255,102,0,.12);
+  }
+  .pilar-brand{ display:none; }
+  .pilar-copyright{ display:none; }
+  .pilar-items{
+    flex-direction:row;
+    gap:.5rem;
+    align-items:center;
+  }
+  .pilar-item{
+    flex-direction:row;
+    align-items:center;
+    gap:.4rem;
+  }
+  .pilar-line{
+    width:24px;
+    height:2px;
+    margin:0;
+  }
+  .pilar-label{ display:none; }
+  .pilar-dot{ width:38px; height:38px; font-size:.65rem; }
+  .content-area{ height:calc(100vh - 64px); }
+  .pilar-nav .pilar-item:last-child .pilar-line{ display:none; }
+}
+@media(min-width:768px){
+  .pilar-items > .pilar-item:last-child + *{ display:none; }
+}
+
+/* ============================================================
+   MOBILE — RESPONSIVE (max 767px)
+   ============================================================ */
+@media(max-width:767px){
+
+  /* ── BASE ── */
+  html,body{ overflow:hidden; }
+  .features-ticker{ display:none; }
+  .section-watermark{ display:none; }
+  .grid-overlay,.grid-overlay-light{ display:none; }
+  .btn-cartoon{ width:100%; text-align:center; justify-content:center; }
+
+  /* ── INTRO ── */
+  .intro-stage{
+    padding:0 1.1rem;
+    height:calc(100vh - 64px);
+  }
+  .intro-topbar{
+    padding:.9rem 0 0;
+    gap:.6rem;
+  }
+  .intro-topbar-label{ font-size:.46rem; }
+  .intro-topbar-line{ flex:1; }
+  .intro-logo-wrap{ justify-content:center; min-height:0; }
+  .intro-logo-img{
+    width:calc(100% + 2.2rem);
+    max-width:calc(100% + 2.2rem);
+    margin-left:-1.1rem;
+  }
+  .intro-rule{ margin-top:.5rem; }
+  .intro-bottom{
+    flex-direction:column;
+    align-items:stretch;
+    padding-bottom:1.75rem;
+    gap:.85rem;
+  }
+  .intro-sub{
+    font-size:.5rem;
+    letter-spacing:.16em;
+    text-align:center;
+  }
+  .intro-desc{ display:none; }
+  .intro-bottom-right{
+    align-items:stretch;
+    gap:.85rem;
+  }
+
+  /* ── QUEM SOMOS ── */
+  #mod-quem{ overflow-y:auto; }
+  .quem-stage{
+    grid-template-columns:1fr;
+    height:auto;
+    min-height:calc(100vh - 64px);
+  }
+  .quem-left{
+    padding:2.25rem 1.25rem 2rem;
+    border-right:none;
+    border-bottom:1.5px solid rgba(5,5,5,.07);
+  }
+  .quem-ghost{ display:none; }
+  .quem-eyebrow{ margin-bottom:.75rem; }
+  .quem-headline{
+    font-size:2.2rem;
+    line-height:.94;
+    margin-bottom:1rem;
+  }
+  .quem-statement{
+    font-size:.83rem;
+    max-width:100%;
+    margin-bottom:1.75rem;
+    line-height:1.7;
+  }
+  .quem-right{ height:auto; }
+  .quem-right-header{ display:none; }
+  .quem-pillar{
+    flex:none;
+    padding:1.4rem 1.25rem;
+    border-bottom:1px solid rgba(255,255,255,.07);
+    min-height:0;
+  }
+  .quem-pillar:last-child{ border-bottom:none; }
+  .quem-pillar-num{ margin-bottom:.35rem; }
+  .quem-pillar-name{ font-size:1.55rem; margin-bottom:.4rem; }
+  .quem-pillar-desc{ font-size:.74rem; max-width:100%; line-height:1.6; }
+
+  /* ── EQUIPE ── */
+  #mod-equipe{ overflow-y:auto; }
+  .equipe-stage{
+    height:auto;
+    min-height:calc(100vh - 64px);
+    overflow:visible;
+    display:flex;
+    flex-direction:column;
+  }
+  .equipe-topbar{
+    position:relative;
+    top:auto; left:auto; right:auto;
+    padding:1rem 1.25rem;
+    background:#fff;
+    border-bottom:1px solid rgba(0,0,0,.07);
+    flex-shrink:0;
+  }
+  .equipe-member-count{ display:none; }
+  .esub-connector{ width:14px; }
+  .esub-dot{ width:36px; height:36px; font-size:.52rem; }
+  .equipe-topbar-left gap{ gap:.75rem; }
+  .esub-stage{ position:relative; height:auto; flex:1; }
+  .equipe-submodule{
+    position:relative !important;
+    inset:auto !important;
+    display:none !important;
+    grid-template-columns:1fr !important;
+    opacity:1 !important;
+    pointer-events:all !important;
+    transition:none !important;
+  }
+  .equipe-submodule.esub-active{ display:grid !important; }
+  /* foto no topo */
+  .esub-photo{
+    order:-1;
+    height:70vw;
+    max-height:340px;
+  }
+  .esub-photo img{ object-fit:contain; object-position:bottom center; }
+  /* texto abaixo */
+  .esub-left{
+    order:1;
+    padding:1.75rem 1.25rem 2.5rem;
+    border-left:none;
+    border-top:1px solid rgba(0,0,0,.06);
+    justify-content:flex-start;
+  }
+  .esub-eyebrow{ margin-bottom:1rem; }
+  .esub-name-block{ margin-bottom:.5rem; }
+  .esub-name{ font-size:2.6rem; line-height:.9; }
+  .esub-num{ font-size:5rem; top:-1.2rem; left:-.15rem; }
+  .esub-role-block{ margin-top:.6rem; margin-bottom:1.25rem; }
+  .esub-divider{ margin-bottom:1.25rem; }
+  .esub-bio{
+    font-size:.84rem;
+    max-width:100%;
+    margin-bottom:1.5rem;
+    line-height:1.72;
+  }
+  .esub-skills{ margin-bottom:1.75rem; }
+  .esub-skill-name{ min-width:80px; font-size:.6rem; }
+  .esub-skill-bar-track{ max-width:none; flex:1; }
+  .esub-nav-bottom{
+    padding-top:1.25rem;
+    flex-wrap:nowrap;
+    gap:.75rem;
+  }
+  .esub-btn-nav{ width:44px; height:44px; }
+  .esub-btn-cta{ font-size:.54rem; padding:.55rem 1rem; }
+  .equipe-progress{ display:none; }
+
+  /* ── SERVIÇOS ── */
+  .srv-stage{ padding:2rem 1.25rem 3rem; }
+  .srv-header{ flex-direction:column; align-items:flex-start; gap:1rem; margin-bottom:2rem; }
+  .srv-headline{ font-size:2.2rem; }
+  .srv-sub{ text-align:left; max-width:100%; font-size:.8rem; }
+  .srv-grid{ flex-direction:column; gap:.85rem; }
+  .srv-card{ max-width:100%; flex:none; }
+  .srv-name{ font-size:1.35rem; }
+  .srv-desc{ font-size:.8rem; }
+
+  /* ── QUEM SOMOS ── */
+  .qs-hero{ padding:2.5rem 1.35rem 0; }
+  .qs-headline{ font-size:2.4rem; }
+  .qs-hero-body{ grid-template-columns:1fr; gap:1.5rem; padding-bottom:2.5rem; }
+  .qs-pilares{ padding:2.5rem 1.35rem; }
+  .qs-pil-grid{ grid-template-columns:1fr; }
+  .qs-pil-card{ border-right:none; border-bottom:3px solid #050505; }
+  .qs-pil-card:last-child{ border-bottom:none; }
+  .qs-dep{ padding:2.5rem 1.35rem; }
+  .qs-dep-grid{ grid-template-columns:1fr; gap:1rem; }
+  .qs-dep-cta{ flex-direction:column; align-items:flex-start; gap:1rem; }
+
+  /* ── PROPOSTA ── */
+  .p5{ padding:2.5rem 1.35rem; }
+  .p5-hero-grid{ grid-template-columns:1fr; min-height:auto; gap:1.5rem; }
+  .p5-hero-l{ border-right:none; border-bottom:1px solid rgba(255,255,255,.07); padding:0 0 1.5rem; }
+  .p5-hero-r{ padding:0; }
+  .p5-h{ font-size:2rem; }
+  .p5-diag-grid{ grid-template-columns:1fr; gap:1rem; margin-bottom:1.5rem; }
+  .p5-bullets{ grid-template-columns:1fr; gap:.85rem; }
+  .p5-aaa{ grid-template-columns:1fr; gap:1rem; }
+  .p5-scope-grid{ grid-template-columns:1fr; gap:1.5rem; }
+  .p5-tools{ flex-direction:column; align-items:flex-start; gap:.65rem; }
+  .p5-comp-grid{ grid-template-columns:1fr; gap:1rem; }
+  .p5-invest-grid{ grid-template-columns:1fr; gap:2rem; }
+  .p5-price-val{ font-size:4rem; }
+  .p5-steps-grid{ grid-template-columns:1fr; gap:2rem; }
+  .p5-site-grid{ grid-template-columns:1fr; gap:2rem; }
+}
+
+/* ============================================================
+   FULL-HEIGHT MODULE SCROLL
+   ============================================================ */
+.module-scroll{
+  height:100%;
+  overflow-y:auto;
+  scrollbar-width:thin;
+  scrollbar-color:rgba(255,102,0,.2) transparent;
+}
+.module-scroll::-webkit-scrollbar{width:4px;}
+.module-scroll::-webkit-scrollbar-track{background:transparent;}
+.module-scroll::-webkit-scrollbar-thumb{background:rgba(255,102,0,.2);border-radius:2px;}
+
+</style>
+</head>
+<body>
+
+<div class="app">
+
+  <!-- ============================================================
+       PILAR NAV
+       ============================================================ -->
+  <nav class="pilar-nav" role="navigation" aria-label="Navegação por módulos">
+
+    <div class="pilar-brand">TRIFORCE AUTO</div>
+
+    <div class="pilar-items">
+
+      <div class="pilar-item active-item" data-module="mod-intro" onclick="goTo('mod-intro',this)">
+        <div class="pilar-dot active" id="dot-mod-intro">01</div>
+        <div class="pilar-label">Intro</div>
+      </div>
+
+      <div class="pilar-line" id="line-1"></div>
+
+      <div class="pilar-item" data-module="mod-quem" onclick="goTo('mod-quem',this)">
+        <div class="pilar-dot" id="dot-mod-quem">02</div>
+        <div class="pilar-label">Quem</div>
+      </div>
+
+      <div class="pilar-line" id="line-2"></div>
+
+      <div class="pilar-item" data-module="mod-equipe" onclick="goTo('mod-equipe',this)">
+        <div class="pilar-dot" id="dot-mod-equipe">03</div>
+        <div class="pilar-label">Equipe</div>
+      </div>
+
+      <div class="pilar-line" id="line-3"></div>
+
+      <div class="pilar-item" data-module="mod-servicos" onclick="goTo('mod-servicos',this)">
+        <div class="pilar-dot" id="dot-mod-servicos">04</div>
+        <div class="pilar-label">Serviços</div>
+      </div>
+
+      <div class="pilar-line" id="line-4"></div>
+
+      <div class="pilar-item" data-module="mod-proposta" onclick="goTo('mod-proposta',this)">
+        <div class="pilar-dot" id="dot-mod-proposta">05</div>
+        <div class="pilar-label">Proposta</div>
+      </div>
+
+    </div>
+
+    <div class="pilar-copyright">2026</div>
+
+  </nav>
+
+  <!-- ============================================================
+       CONTENT AREA
+       ============================================================ -->
+  <main class="content-area">
+
+    <!-- ==========================
+         MODULE 1 — INTRO (DARK)
+         ========================== -->
+    <div class="module active" id="mod-intro">
+      <div class="intro-stage">
+
+        <div class="grid-overlay"></div>
+        <!-- orb sutil atrás do logo -->
+        <div class="ao" style="width:700px;height:700px;background:rgba(255,102,0,.07);top:-200px;left:-100px;animation:ao-float-2 18s ease-in-out infinite;pointer-events:none;"></div>
+
+        <!-- TOP BAR -->
+        <div class="intro-topbar reveal">
+          <span class="intro-topbar-label">Triforce Auto</span>
+          <div class="intro-topbar-line"></div>
+          <span class="intro-topbar-label">Reunião TAC · 2026</span>
+        </div>
+
+        <!-- LOGO HERO -->
+        <div class="intro-logo-wrap reveal d1">
+          <img src="logo-protocolo-aaa.png" class="intro-logo-img" alt="Protocolo AAA">
+          <div class="intro-rule reveal d2"></div>
+        </div>
+
+        <!-- BOTTOM INFO -->
+        <div class="intro-bottom reveal d3">
+          <p class="intro-sub">Ativar &nbsp;·&nbsp; Atrair &nbsp;·&nbsp; Acompanhar</p>
+          <div class="intro-bottom-right">
+            <p class="intro-desc">Um sistema para negócios que cansaram de depender de sorte. Três pilares, um resultado.</p>
+            <button class="btn-cartoon" onclick="goTo('mod-quem', document.querySelector('[data-module=mod-quem]'))">
+              Começar Apresentação
+            </button>
+          </div>
+        </div>
+
+        <!-- Ticker -->
+        <div class="features-ticker">
+          <div class="features-track">
+            <span class="features-item">PROTOCOLO AAA</span>
+            <span class="features-item">ATIVAR</span>
+            <span class="features-item">ATRAIR</span>
+            <span class="features-item">ACOMPANHAR</span>
+            <span class="features-item">TRIFORCE AUTO</span>
+            <span class="features-item">COPY</span>
+            <span class="features-item">DESIGN</span>
+            <span class="features-item">AUTOMAÇÃO</span>
+            <span class="features-item">PROTOCOLO AAA</span>
+            <span class="features-item">ATIVAR</span>
+            <span class="features-item">ATRAIR</span>
+            <span class="features-item">ACOMPANHAR</span>
+            <span class="features-item">TRIFORCE AUTO</span>
+            <span class="features-item">COPY</span>
+            <span class="features-item">DESIGN</span>
+            <span class="features-item">AUTOMAÇÃO</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ==========================
+         MODULE 2 — QUEM SOMOS
+         ========================== -->
+    <div class="module" id="mod-quem">
+      <div class="module-scroll">
+
+        <!-- S1: HERO — light, editorial, sem orbs -->
+        <div class="qs-hero">
+          <div class="qs-topbar reveal d1">
+            <span class="qs-topbar-num">02 — Quem Somos</span>
+            <span class="qs-topbar-label">Triforce Auto · Marketing de Resultado</span>
+          </div>
+          <h2 class="qs-headline reveal d2">Nao somos<br><b>uma agencia.</b></h2>
+          <div class="qs-hero-body">
+            <div class="qs-statement reveal d3">
+              Vimos negocios bons perderem dinheiro para quem entrega pouco, cobra muito e some depois do contrato.<br><br>
+              A Triforce nasceu para acabar com isso. Copy, design e tecnologia na mesma equipe, sem terceirizar, sem enrolacao, sem caixa-preta.<br><br>
+              Resultado mensuravel ou a gente nao dorme.
+            </div>
+            <div class="qs-hero-r reveal d4">
+              <p class="qs-manifesto">Trabalhamos para quem quer crescer de verdade, nao para quem quer apenas <b>parecer</b> que cresce.</p>
+              <div style="display:flex;flex-wrap:wrap;gap:.6rem;margin:.5rem 0 1.5rem;">
+                <span style="font-size:.52rem;font-weight:900;text-transform:uppercase;letter-spacing:.15em;padding:.4rem .85rem;border:2px solid var(--black);color:var(--black);">Copy</span>
+                <span style="font-size:.52rem;font-weight:900;text-transform:uppercase;letter-spacing:.15em;padding:.4rem .85rem;border:2px solid var(--black);color:var(--black);">Design</span>
+                <span style="font-size:.52rem;font-weight:900;text-transform:uppercase;letter-spacing:.15em;padding:.4rem .85rem;border:2px solid var(--black);color:var(--black);">Sistema</span>
+                <span style="font-size:.52rem;font-weight:900;text-transform:uppercase;letter-spacing:.15em;padding:.4rem .85rem;background:var(--accent);border:2px solid var(--accent);color:#fff;">Resultado</span>
+              </div>
+              <button class="btn-cartoon" onclick="goTo('mod-equipe', document.querySelector('[data-module=mod-equipe]'))">Conhecer a Equipe</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- S2: PILARES — black band -->
+        <div class="qs-pilares">
+          <p class="qs-pil-eye reveal">Os tres pilares</p>
+          <div class="qs-pil-grid">
+            <div class="qs-pil-card reveal d1">
+              <p class="qs-pil-num">01</p>
+              <h3 class="qs-pil-name">Copy</h3>
+              <p class="qs-pil-desc">Textos que param o scroll, criam desejo e convertem. Cada palavra construida para o avatar certo, no momento certo da jornada. Direto ao ponto que faz o cliente agir.</p>
+            </div>
+            <div class="qs-pil-card reveal d2">
+              <p class="qs-pil-num">02</p>
+              <h3 class="qs-pil-name">Design</h3>
+              <p class="qs-pil-desc">Visual que comunica antes de qualquer texto. Criativos que destacam no feed, materiais que geram autoridade. Identidade que o mercado reconhece e respeita.</p>
+            </div>
+            <div class="qs-pil-card reveal d3">
+              <p class="qs-pil-num">03</p>
+              <h3 class="qs-pil-name">Sistema</h3>
+              <p class="qs-pil-desc">Automacao e tecnologia que escalam o que funciona. O negocio cresce sem depender de mais horas. Trafego pago, pixel, dashboard e integracao rodando juntos.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- S3: DEPOIMENTOS — light -->
+        <div class="qs-dep">
+          <p class="qs-dep-eye reveal">O que dizem sobre nos</p>
+          <div class="qs-dep-grid">
+
+            <div class="qs-dep-card reveal d1">
+              <div class="qs-dep-card-top">
+                <div class="qs-dep-placeholder-icon">&#8220;</div>
+                <p class="qs-dep-placeholder-label">Depoimento em breve</p>
+              </div>
+              <div class="qs-dep-footer">
+                <div class="qs-dep-avatar"></div>
+                <div>
+                  <div class="qs-dep-name">Nome do cliente</div>
+                  <div class="qs-dep-role-txt">Empresa · Cidade</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="qs-dep-card reveal d2">
+              <div class="qs-dep-card-top">
+                <div class="qs-dep-placeholder-icon">&#8220;</div>
+                <p class="qs-dep-placeholder-label">Depoimento em breve</p>
+              </div>
+              <div class="qs-dep-footer">
+                <div class="qs-dep-avatar"></div>
+                <div>
+                  <div class="qs-dep-name">Nome do cliente</div>
+                  <div class="qs-dep-role-txt">Empresa · Cidade</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="qs-dep-card reveal d3">
+              <div class="qs-dep-card-top">
+                <div class="qs-dep-placeholder-icon">&#8220;</div>
+                <p class="qs-dep-placeholder-label">Depoimento em breve</p>
+              </div>
+              <div class="qs-dep-footer">
+                <div class="qs-dep-avatar"></div>
+                <div>
+                  <div class="qs-dep-name">Nome do cliente</div>
+                  <div class="qs-dep-role-txt">Empresa · Cidade</div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <div class="qs-dep-cta reveal d4">
+            <p class="qs-dep-cta-text">Proximo passo: <b>conhecer quem faz acontecer.</b></p>
+            <button class="btn-cartoon" onclick="goTo('mod-equipe', document.querySelector('[data-module=mod-equipe]'))">Ver a Equipe</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ==========================
+         MODULE 3 — EQUIPE
+         ========================== -->
+    <div class="module" id="mod-equipe">
+      <div class="equipe-stage">
+
+        <div class="grid-overlay-light"></div>
+        <div class="section-watermark wm-dark" style="bottom:-10px;right:-20px;">EQUIPE</div>
+
+        <!-- Top bar -->
+        <div class="equipe-topbar">
+          <div class="equipe-topbar-left">
+            <span class="sh-eyebrow dark">03 — Equipe</span>
+            <span class="equipe-member-count">3 membros</span>
+          </div>
+          <div class="equipe-sub-nav">
+            <button class="esub-dot esub-active" onclick="goEquipe(0)">01</button>
+            <div class="esub-connector"></div>
+            <button class="esub-dot" onclick="goEquipe(1)">02</button>
+            <div class="esub-connector"></div>
+            <button class="esub-dot" onclick="goEquipe(2)">03</button>
+          </div>
+        </div>
+
+        <!-- Sub-module stage -->
+        <div class="esub-stage">
+
+          <!-- 01 — Joaquim Salles -->
+          <div class="equipe-submodule esub-active" id="esub-0">
+            <div class="esub-left">
+              <div class="esub-eyebrow reveal">
+                <div class="esub-eyebrow-dot"></div>
+                <span class="esub-eyebrow-text">Co-Fundador · Triforce Auto</span>
+              </div>
+              <div class="esub-name-block reveal d1">
+                <div class="esub-num">01</div>
+                <div class="esub-name">Joaquim<br>Salles</div>
+              </div>
+              <div class="esub-role-block reveal d2">
+                <div class="esub-role-bar"></div>
+                <span class="esub-role">Co-Fundador · Vibe Coding</span>
+              </div>
+              <div class="esub-divider reveal d2"></div>
+              <p class="esub-bio reveal d3">
+                A Triforce nasceu de uma ideia de Joaquim: unir tecnologia real com marketing. Com mais de 4 anos em design e obsessão por automação, ele domina vibe coding, que é a prática de orquestrar IAs para construir sistemas completos sem depender de times grandes. O resultado é velocidade, precisão e identidade visual em tudo que a Triforce entrega.
+              </p>
+              <div class="esub-skills reveal d4">
+                <div class="esub-skill">
+                  <span class="esub-skill-name">Vibe Coding</span>
+                  <div class="esub-skill-bar-track"><div class="esub-skill-bar" style="width:92%"></div></div>
+                </div>
+                <div class="esub-skill">
+                  <span class="esub-skill-name">Automação</span>
+                  <div class="esub-skill-bar-track"><div class="esub-skill-bar" style="width:88%"></div></div>
+                </div>
+                <div class="esub-skill">
+                  <span class="esub-skill-name">Design</span>
+                  <div class="esub-skill-bar-track"><div class="esub-skill-bar" style="width:80%"></div></div>
+                </div>
+              </div>
+              <div class="esub-nav-bottom reveal d5">
+                <div class="esub-nav-arrows">
+                  <button class="esub-btn-nav esub-btn-primary" onclick="goEquipe(1)" title="Próximo">›</button>
+                </div>
+                <button class="btn-cartoon" onclick="" id="btn-portfolio-0" style="font-size:.62rem;padding:.6rem 1.1rem;">Ver Portfólio</button>
+              </div>
+            </div>
+            <div class="esub-photo">
+              <img src="joaquim-ai.png" alt="Joaquim Salles">
+            </div>
+          </div>
+
+          <!-- 02 — João Fecchio -->
+          <div class="equipe-submodule" id="esub-1">
+            <div class="esub-left">
+              <div class="esub-eyebrow">
+                <div class="esub-eyebrow-dot"></div>
+                <span class="esub-eyebrow-text">Co-Fundador · Triforce Auto</span>
+              </div>
+              <div class="esub-name-block">
+                <div class="esub-num">02</div>
+                <div class="esub-name">João<br>Fecchio</div>
+              </div>
+              <div class="esub-role-block">
+                <div class="esub-role-bar"></div>
+                <span class="esub-role">Co-Fundador · Copywriter</span>
+              </div>
+              <div class="esub-divider"></div>
+              <p class="esub-bio">
+                Cofundador da Triforce ao lado de Joaquim, João é analista de marketing com passagem por agência, mais de um ano de experiência em copy de resposta direta e inglês avançado. Ele trouxe o lado que faz o dinheiro mover: persuasão aplicada, gestão de tráfego pago e visão de mercado. Ambicioso e orientado a resultado, é ele quem transforma o que a Triforce faz em mensagem que o cliente entende e quer comprar.
+              </p>
+              <div class="esub-skills">
+                <div class="esub-skill">
+                  <span class="esub-skill-name">Copy e Persuasão</span>
+                  <div class="esub-skill-bar-track"><div class="esub-skill-bar" style="width:95%"></div></div>
+                </div>
+                <div class="esub-skill">
+                  <span class="esub-skill-name">Tráfego Pago</span>
+                  <div class="esub-skill-bar-track"><div class="esub-skill-bar" style="width:90%"></div></div>
+                </div>
+                <div class="esub-skill">
+                  <span class="esub-skill-name">Gestão e Visão</span>
+                  <div class="esub-skill-bar-track"><div class="esub-skill-bar" style="width:88%"></div></div>
+                </div>
+              </div>
+              <div class="esub-nav-bottom">
+                <div class="esub-nav-arrows">
+                  <button class="esub-btn-nav" onclick="goEquipe(0)" title="Anterior">‹</button>
+                  <button class="esub-btn-nav esub-btn-primary" onclick="goEquipe(2)" title="Próximo">›</button>
+                </div>
+                <button class="btn-cartoon" onclick="" id="btn-portfolio-1" style="font-size:.62rem;padding:.6rem 1.1rem;">Ver Portfólio</button>
+              </div>
+            </div>
+            <div class="esub-photo">
+              <img src="fecchio-ai.png" alt="João Fecchio">
+            </div>
+          </div>
+
+          <!-- 03 — Matteo Rosendo -->
+          <div class="equipe-submodule" id="esub-2">
+            <div class="esub-left">
+              <div class="esub-eyebrow">
+                <div class="esub-eyebrow-dot"></div>
+                <span class="esub-eyebrow-text">Co-Fundador · Triforce Auto</span>
+              </div>
+              <div class="esub-name-block">
+                <div class="esub-num">03</div>
+                <div class="esub-name">Matteo<br>Rosendo</div>
+              </div>
+              <div class="esub-role-block">
+                <div class="esub-role-bar"></div>
+                <span class="esub-role">Co-Fundador e Diretor Criativo</span>
+              </div>
+              <div class="esub-divider"></div>
+              <p class="esub-bio">
+                Matteo entrou na Triforce trazendo o que nenhum dos outros tinha: sensibilidade artística real. Domina as principais ferramentas de edição do mercado, tem visão fotográfica apurada e transforma qualquer conceito em conteúdo visual que para o scroll. É ele quem faz o produto da Triforce parecer tão bom quanto funciona.
+              </p>
+              <div class="esub-skills">
+                <div class="esub-skill">
+                  <span class="esub-skill-name">Edição de Vídeo</span>
+                  <div class="esub-skill-bar-track"><div class="esub-skill-bar" style="width:95%"></div></div>
+                </div>
+                <div class="esub-skill">
+                  <span class="esub-skill-name">Fotografia e Arte</span>
+                  <div class="esub-skill-bar-track"><div class="esub-skill-bar" style="width:91%"></div></div>
+                </div>
+                <div class="esub-skill">
+                  <span class="esub-skill-name">Design Criativo</span>
+                  <div class="esub-skill-bar-track"><div class="esub-skill-bar" style="width:88%"></div></div>
+                </div>
+              </div>
+              <div class="esub-nav-bottom">
+                <div class="esub-nav-arrows">
+                  <button class="esub-btn-nav" onclick="goEquipe(1)" title="Anterior">‹</button>
+                </div>
+                <button class="btn-cartoon" onclick="" id="btn-portfolio-2" style="font-size:.62rem;padding:.6rem 1.1rem;">Ver Portfólio</button>
+              </div>
+            </div>
+            <div class="esub-photo">
+              <img src="matteo-ai.png" alt="Matteo Rosendo">
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Progress bars -->
+        <div class="equipe-progress" id="equipe-progress">
+          <div class="eprogress-bar active"></div>
+          <div class="eprogress-bar"></div>
+          <div class="eprogress-bar"></div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ==========================
+         MODULE 4 — SERVIÇOS (DARK)
+         ========================== -->
+    <div class="module" id="mod-servicos">
+      <div class="module-scroll">
+        <div class="srv-stage">
+
+          <div class="grid-overlay"></div>
+          <div class="ao" style="width:600px;height:600px;background:rgba(255,102,0,.07);top:-200px;right:-150px;animation:ao-float-1 20s ease-in-out infinite;pointer-events:none;"></div>
+
+          <!-- Header -->
+          <div class="srv-header reveal">
+            <div class="srv-header-left">
+              <div class="srv-eyebrow">04 &nbsp;·&nbsp; O que Entregamos</div>
+              <h2 class="srv-headline">Cinco frentes.<br><span class="hl">Um sistema.</span></h2>
+            </div>
+            <p class="srv-sub">Cada entrega resolve um problema real. Juntos, formam o Protocolo AAA em ação.</p>
+          </div>
+
+          <!-- Cards -->
+          <div class="srv-grid">
+
+            <!-- 01 Landing Pages -->
+            <div class="srv-card reveal d1">
+              <div class="srv-card-top">
+                <span class="srv-num">01</span>
+                <span class="srv-tag">Conversão</span>
+              </div>
+              <div class="srv-name">Criação de<br>Landing Pages</div>
+              <p class="srv-desc">Páginas que vendem antes de o visitante chegar ao botão. Copy, design e CTA integrados desde o primeiro pixel. Nada é decorativo.</p>
+              <div class="srv-deliver">
+                <span class="srv-deliver-arrow">→</span>
+                Mais conversão pelo mesmo tráfego
+              </div>
+              <div class="srv-ghost">01</div>
+            </div>
+
+            <!-- 02 Carrosséis -->
+            <div class="srv-card reveal d2">
+              <div class="srv-card-top">
+                <span class="srv-num">02</span>
+                <span class="srv-tag">Conteúdo</span>
+              </div>
+              <div class="srv-name">Carrosséis<br>em Massa</div>
+              <p class="srv-desc">Conteúdo que para o scroll, produzido em escala. Copy e design pensados juntos do primeiro ao último frame. Volume sem perder qualidade.</p>
+              <div class="srv-deliver">
+                <span class="srv-deliver-arrow">→</span>
+                Alcance e autoridade no Instagram
+              </div>
+              <div class="srv-ghost">02</div>
+            </div>
+
+            <!-- 03 Tráfego -->
+            <div class="srv-card reveal d3">
+              <div class="srv-card-top">
+                <span class="srv-num">03</span>
+                <span class="srv-tag">Tráfego</span>
+              </div>
+              <div class="srv-name">Gestão de<br>Tráfego Pago</div>
+              <p class="srv-desc">Anúncios que trazem lead qualificado, não só clique. Estratégia de campanha, criativos e otimização contínua com foco em custo por resultado.</p>
+              <div class="srv-deliver">
+                <span class="srv-deliver-arrow">→</span>
+                Leads prontos para fechar
+              </div>
+              <div class="srv-ghost">03</div>
+            </div>
+
+            <!-- 04 Design -->
+            <div class="srv-card reveal d4">
+              <div class="srv-card-top">
+                <span class="srv-num">04</span>
+                <span class="srv-tag">Identidade</span>
+              </div>
+              <div class="srv-name">Design<br>Profissional</div>
+              <p class="srv-desc">Identidade visual, criativos e materiais que geram autoridade antes da primeira palavra. Visual que comunica, convence e diferencia.</p>
+              <div class="srv-deliver">
+                <span class="srv-deliver-arrow">→</span>
+                Marca que transmite credibilidade
+              </div>
+              <div class="srv-ghost">04</div>
+            </div>
+
+            <!-- 05 Vídeo -->
+            <div class="srv-card reveal d5">
+              <div class="srv-card-top">
+                <span class="srv-num">05</span>
+                <span class="srv-tag">Vídeo</span>
+              </div>
+              <div class="srv-name">Edição de<br>Vídeos</div>
+              <p class="srv-desc">Edição que retém atenção, constrói narrativa e transforma conteúdo bruto em peça que vende. Para Reels, anúncios e conteúdo de autoridade.</p>
+              <div class="srv-deliver">
+                <span class="srv-deliver-arrow">→</span>
+                Vídeos que retêm e convertem
+              </div>
+              <div class="srv-ghost">05</div>
+            </div>
+
+          </div>
+
+          <!-- Final message -->
+          <div style="margin-top:2.5rem;padding:2rem 2.5rem;background:#111;border:1px solid rgba(255,102,0,.2);border-radius:.85rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;position:relative;z-index:2;" class="reveal d5">
+            <div>
+              <p style="font-size:.55rem;font-weight:900;text-transform:uppercase;letter-spacing:.2em;color:var(--accent);margin-bottom:.5rem;">Próximo passo</p>
+              <p style="font-size:1rem;font-weight:800;color:#fff;line-height:1.45;max-width:480px;">
+                Esses são os serviços. Agora veja o que montamos especificamente para a TAC.
+              </p>
+            </div>
+            <div style="flex-shrink:0;">
+              <button class="btn-cartoon" onclick="goTo('mod-proposta', document.querySelector('[data-module=mod-proposta]'))">Ver Proposta TAC ›</button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+         <!-- ========================
+         MODULE 5 — PROPOSTA
+         ======================== -->
+    <div class="module" id="mod-proposta">
+      <div class="module-scroll">
+        <div class="prop-stage">
+
+          <!-- S1: HERO dark -->
+          <div class="p5 p5-dk">
+            <div class="grid-overlay"></div>
+            <div class="ao" style="width:500px;height:500px;background:rgba(255,102,0,.13);top:-15%;left:-8%;animation:ao-float-1 14s ease-in-out infinite;"></div>
+            <div class="ao" style="width:350px;height:350px;background:rgba(255,102,0,.08);bottom:-10%;right:5%;animation:ao-float-2 18s ease-in-out infinite;"></div>
+            <div class="section-watermark">PROPOSTA</div>
+            <p class="p5-eye reveal">Proposta Comercial · TAC Distribuidora · 2026 · Validade 15 dias</p>
+            <div class="p5-hero-grid">
+              <div class="p5-hero-l reveal d1">
+                <h2 class="p5-h">25 anos de<br>CEASA.<br><b>Agora visivel.</b></h2>
+              </div>
+              <div class="p5-hero-r reveal d2">
+                <p class="p5-lead">A TAC tem produto, volume e reputacao real. O que falta e aparecer quando o comprador certo pesquisa fornecedor de hortifruti em volume na Bahia. Esse e o problema que a Triforce resolve em 90 dias.</p>
+                <div class="p5-hero-chip">Protocolo AAA · 90 dias · Resultado mensuravel</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- S2: SITUACAO HOJE light -->
+          <div class="p5 p5-lgt">
+            <p class="p5-eye reveal">A situacao hoje</p>
+            <div class="p5-diag-grid">
+              <div class="p5-diag-card reveal d1">
+                <div class="p5-diag-tag">Instagram Atual</div>
+                <div class="p5-diag-n"><b>3.357</b></div>
+                <p class="p5-diag-desc">Seguidores. Postagem irregular. Zero cotacao vindo de la. Concorrentes com menos historia aparecem antes em qualquer busca regional da Bahia.</p>
+              </div>
+              <div class="p5-diag-card reveal d2">
+                <div class="p5-diag-tag">Site Atual</div>
+                <div class="p5-diag-n" style="font-size:clamp(2rem,3.5vw,3.2rem);line-height:1.1;">SSL<br>Quebrado</div>
+                <p class="p5-diag-desc">Visitante ve alerta de site inseguro. Carregamento lento. Sem caminho claro pra pedir cotacao. Google Meu Negocio incompleto.</p>
+              </div>
+              <div class="p5-diag-card reveal d3">
+                <div class="p5-diag-tag">Reputacao Real</div>
+                <div class="p5-diag-n">25<b style="font-size:.45em;"> anos</b></div>
+                <p class="p5-diag-desc">De CEASA Bahia. Carteira solida de clientes. Historia que nenhum concorrente tem. Falta colocar na vitrine certa.</p>
+              </div>
+            </div>
+            <div class="p5-quote reveal d4">
+              Empresa nova abrindo na Bahia pesquisa fornecedor de hortifruti e vai pro concorrente. <b>Nao porque a TAC e pior. Porque a TAC simplesmente nao aparece.</b> 25 anos de reputacao, invisivel pra quem ainda nao te conhece.
+            </div>
+          </div>
+
+          <!-- S3: PROMESSA dark -->
+          <div class="p5 p5-dk2">
+            <div class="grid-overlay"></div>
+            <div class="ao" style="width:420px;height:420px;background:rgba(255,102,0,.1);top:-10%;right:8%;animation:ao-float-1 16s ease-in-out infinite;"></div>
+            <div class="section-watermark">90 DIAS</div>
+            <p class="p5-eye reveal">O que muda em 90 dias</p>
+            <p class="p5-promise-big reveal d1">Em 90 dias, empresa nova abrindo na Bahia vai pesquisar fornecedor de hortifruti e vai <b>encontrar a TAC.</b></p>
+            <div class="p5-bullets">
+              <div class="p5-bullet reveal d2">
+                <div class="p5-bullet-title">Instagram todo dia na frente de quem compra</div>
+                <div class="p5-bullet-desc">Restaurante, hotel, hospital e cozinha industrial vendo conteudo que mostra 25 anos de CEASA na pratica.</div>
+              </div>
+              <div class="p5-bullet reveal d3">
+                <div class="p5-bullet-title">Anuncio chegando em quem compra caixa</div>
+                <div class="p5-bullet-desc">Nao em quem compra 2 macas. Segmentado por cargo, interesse e regiao na Bahia.</div>
+              </div>
+              <div class="p5-bullet reveal d4">
+                <div class="p5-bullet-title">WhatsApp recebendo cotacao toda semana</div>
+                <div class="p5-bullet-desc">E o dono acompanha tudo em tempo real. Quantas empresas chegaram, quanto foi gasto, quantas viraram negocio.</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- S4: PROTOCOLO AAA light -->
+          <div class="p5 p5-lgt">
+            <p class="p5-eye reveal">Como fazemos: Protocolo AAA</p>
+            <div class="p5-aaa">
+              <div class="p5-aaa-card reveal d1">
+                <div class="p5-aaa-head">
+                  <div class="p5-aaa-name"><span>A</span>TIVAR</div>
+                  <div class="p5-aaa-fase">Fase 01</div>
+                </div>
+                <div class="p5-aaa-body">
+                  <p class="p5-aaa-when">Primeiros 15 dias · antes de qualquer anuncio</p>
+                  <div class="p5-aaa-item">SSL corrigido e dominio funcionando</div>
+                  <div class="p5-aaa-item">Google Meu Negocio completo e vivo</div>
+                  <div class="p5-aaa-item">LinkedIn da empresa atualizado</div>
+                  <div class="p5-aaa-item">Business Manager Meta com CNPJ verificado</div>
+                  <div class="p5-aaa-item">Pixel + Conversion API instalados e testados</div>
+                  <div class="p5-aaa-item">Quem pesquisar a TAC encontra empresa organizada</div>
+                </div>
+              </div>
+              <div class="p5-aaa-card reveal d2">
+                <div class="p5-aaa-head">
+                  <div class="p5-aaa-name"><span>A</span>TRAIR</div>
+                  <div class="p5-aaa-fase">Fase 02</div>
+                </div>
+                <div class="p5-aaa-body">
+                  <p class="p5-aaa-when">A partir do dia 16 · todo mes</p>
+                  <div class="p5-aaa-item">Identidade visual e linha editorial criadas</div>
+                  <div class="p5-aaa-item">5 a 7 posts/semana com dado real da operacao</div>
+                  <div class="p5-aaa-item">Stories diarios de bastidor e produto</div>
+                  <div class="p5-aaa-item">Reels curtos editados</div>
+                  <div class="p5-aaa-item">3 campanhas ativas no Meta Ads simultaneas</div>
+                  <div class="p5-aaa-item">Lead Ad + Click-to-WhatsApp configurados</div>
+                  <div class="p5-aaa-item">Testes A/B de headline, criativo e publico</div>
+                  <div class="p5-aaa-item">Retargeting de engajadores e visitantes</div>
+                  <div class="p5-aaa-item">Otimizacao diaria de verba com pausa de ruim</div>
+                </div>
+              </div>
+              <div class="p5-aaa-card reveal d3">
+                <div class="p5-aaa-head">
+                  <div class="p5-aaa-name"><span>A</span>COMPANHAR</div>
+                  <div class="p5-aaa-fase">Fase 03</div>
+                </div>
+                <div class="p5-aaa-body">
+                  <p class="p5-aaa-when">Durante os 3 meses · todo mes</p>
+                  <div class="p5-aaa-item">Dashboard aberto 24h em tempo real</div>
+                  <div class="p5-aaa-item">Relatorio semanal consolidado</div>
+                  <div class="p5-aaa-item">Reuniao mensal de calibracao com o dono</div>
+                  <div class="p5-aaa-item">Script de atendimento pra WhatsApp da TAC</div>
+                  <div class="p5-aaa-item">Treinamento do time de recepcao</div>
+                  <div class="p5-aaa-item">Loop de feedback com pedido teste fechado</div>
+                  <div class="p5-aaa-item">Nada fica escondido, nada sem explicacao</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- S5: O QUE A TAC RECEBE dark -->
+          <div class="p5 p5-dk">
+            <div class="grid-overlay"></div>
+            <div class="ao" style="width:450px;height:450px;background:rgba(255,102,0,.1);bottom:-15%;left:-5%;animation:ao-float-2 20s ease-in-out infinite;"></div>
+            <div class="section-watermark">ENTREGA</div>
+            <p class="p5-eye reveal">O que a TAC recebe</p>
+            <div class="p5-scope-grid">
+              <div class="p5-scope-block reveal d1">
+                <p class="p5-scope-period">Primeiros 15 dias</p>
+                <p class="p5-scope-title">ATIVAR completo</p>
+                <div class="p5-scope-item">Auditoria completa do site atual</div>
+                <div class="p5-scope-item">Correcao de SSL</div>
+                <div class="p5-scope-item">Google Meu Negocio otimizado</div>
+                <div class="p5-scope-item">LinkedIn da empresa atualizado</div>
+                <div class="p5-scope-item">Business Manager configurado</div>
+                <div class="p5-scope-item">Tudo funcionando antes do 1o anuncio</div>
+              </div>
+              <div class="p5-scope-block reveal d2">
+                <p class="p5-scope-period">Todo mes · Instagram</p>
+                <p class="p5-scope-title">Conteudo diario</p>
+                <div class="p5-scope-item">Biblioteca de templates (carrossel, reel, story)</div>
+                <div class="p5-scope-item">Calendario editorial do trimestre</div>
+                <div class="p5-scope-item">5 a 7 posts/semana com dado real da operacao</div>
+                <div class="p5-scope-item">Aprovacao via WhatsApp em 30 segundos</div>
+                <div class="p5-scope-item">Moderacao de DMs e comentarios</div>
+              </div>
+              <div class="p5-scope-block reveal d3">
+                <p class="p5-scope-period">Todo mes · Meta Ads</p>
+                <p class="p5-scope-title">Trafego pago</p>
+                <div class="p5-scope-item">Setup de Pixel e Conversion API</div>
+                <div class="p5-scope-item">Publicos por cargo, interesse e geo Bahia</div>
+                <div class="p5-scope-item">3 campanhas ativas simultaneas</div>
+                <div class="p5-scope-item">Criativos novos toda semana</div>
+                <div class="p5-scope-item">Testes A/B continuos</div>
+                <div class="p5-scope-item">Retargeting e otimizacao diaria</div>
+              </div>
+            </div>
+            <div class="p5-tools reveal d4">
+              <div class="p5-tools-label">Ferramentas incluidas</div>
+              <div class="p5-tools-desc">Claude Max 20x, Adobe Creative Cloud e dashboard de automacoes integradas. Custo absorvido pela Triforce. A TAC nao paga nada alem da mensalidade.</div>
+            </div>
+          </div>
+
+          <!-- S6: COMPROMISOS light -->
+          <div class="p5 p5-lgt">
+            <p class="p5-eye reveal">Compromisos da Triforce</p>
+            <div class="p5-comp-grid">
+              <div class="p5-comp-item reveal d1">
+                <div class="p5-comp-icon">24h</div>
+                <div>
+                  <p class="p5-comp-body-title">Painel aberto em tempo real</p>
+                  <p class="p5-comp-body-desc">O dono ve tudo: empresas chegando, verba gasta, cotacoes recebidas. Sem caixa-preta, sem resumo mensal que nao diz nada.</p>
+                </div>
+              </div>
+              <div class="p5-comp-item reveal d2">
+                <div class="p5-comp-icon">META</div>
+                <div>
+                  <p class="p5-comp-body-title">Meta declarada e publica</p>
+                  <p class="p5-comp-body-desc">Aos 60 dias, empresa nova chegando no WhatsApp da TAC. Nao e promessa vaga. E numero com prazo.</p>
+                </div>
+              </div>
+              <div class="p5-comp-item reveal d3">
+                <div class="p5-comp-icon">WPP</div>
+                <div>
+                  <p class="p5-comp-body-title">Comunicacao direta</p>
+                  <p class="p5-comp-body-desc">WhatsApp com o time responsavel. Sem fila de atendimento, sem intermediario, sem ticket de suporte.</p>
+                </div>
+              </div>
+              <div class="p5-comp-item reveal d4">
+                <div class="p5-comp-icon">100%</div>
+                <div>
+                  <p class="p5-comp-body-title">Escopo completo todo mes</p>
+                  <p class="p5-comp-body-desc">A Triforce entrega o que esta no contrato sem excecao. Reuniao de calibracao com o dono, nao com intermediario.</p>
+                </div>
+              </div>
+            </div>
+            <div class="p5-pos3m reveal d5">
+              <p class="p5-pos3m-label">Depois dos 3 meses</p>
+              <p class="p5-pos3m-text">Reuniao de fechamento com resultado na mesa. Quer continuar: reajuste conforme entrega ampliada, opcao de contrato anual com preco travado e 1 mes gratis. Quer sair: sem multa. A Triforce entrega todos os acessos, materiais e dashboards. A TAC fica com tudo que foi construido no periodo.</p>
+            </div>
+          </div>
+
+          <!-- S7: INVESTIMENTO dark -->
+          <div class="p5 p5-dk">
+            <div class="grid-overlay"></div>
+            <div class="ao" style="width:500px;height:500px;background:rgba(255,102,0,.12);top:-20%;right:-8%;animation:ao-float-1 15s ease-in-out infinite;"></div>
+            <div class="section-watermark">R$ 9.000</div>
+            <p class="p5-eye reveal">Ancoragem e investimento</p>
+            <div class="p5-invest-grid">
+              <div class="reveal d1">
+                <p class="p5-anchor-mkt">R$ 109.250 se contratado separado no mercado</p>
+                <div class="p5-price-row">
+                  <span class="p5-price-rs">R$</span>
+                  <span class="p5-price-val">9.000</span>
+                  <span class="p5-price-per">total · 3 meses</span>
+                </div>
+                <div class="p5-price-badge">92% abaixo do valor de mercado</div>
+                <div class="p5-price-rows">
+                  <div class="p5-price-row-item">
+                    <span>Setup ATIVAR (taxa unica)</span>
+                    <span class="p5-price-rv">R$ 1.500</span>
+                  </div>
+                  <div class="p5-price-row-item">
+                    <span>Mensalidade Triforce (x3)</span>
+                    <span class="p5-price-rv">R$ 2.500/mes</span>
+                  </div>
+                  <div class="p5-price-row-item">
+                    <span>Total do projeto</span>
+                    <span class="p5-price-rv">R$ 9.000</span>
+                  </div>
+                </div>
+                <p class="p5-verba-note">A verba de anuncio e paga diretamente pela TAC ao Meta. A Triforce gere, otimiza e presta contas, mas nao recebe nem movimenta essa verba.</p>
+              </div>
+              <div class="reveal d2">
+                <p class="p5-porq-title">Por que a Triforce consegue esse valor</p>
+                <div class="p5-porq-item">Time integrado, nao 3 profissionais avulsos contratados separado</div>
+                <div class="p5-porq-item">Ferramentas ja pagas e custo absorvido internamente</div>
+                <div class="p5-porq-item">A TAC e o primeiro cliente da Triforce, condicao especial em troca de depoimento e case</div>
+                <div class="p5-porq-item">Preco de entrada estrategico pra abrir a operacao com dedicacao total</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- S8: PROXIMOS PASSOS light -->
+          <div class="p5 p5-lgt">
+            <p class="p5-eye reveal">Fechando hoje</p>
+            <div class="p5-steps-grid">
+              <div class="p5-steps">
+                <div class="p5-step reveal d1">
+                  <div class="p5-step-n">1</div>
+                  <p class="p5-step-text">Assinatura do contrato simplificado de 3 meses</p>
+                </div>
+                <div class="p5-step reveal d2">
+                  <div class="p5-step-n">2</div>
+                  <p class="p5-step-text">Pagamento do setup R$ 1.500 + primeira mensalidade R$ 2.500</p>
+                </div>
+                <div class="p5-step reveal d3">
+                  <div class="p5-step-n">3</div>
+                  <p class="p5-step-text">Reuniao de kickoff em ate 48 horas</p>
+                </div>
+                <div class="p5-step reveal d4">
+                  <div class="p5-step-n">4</div>
+                  <p class="p5-step-text">Entrega da FASE 1 (ATIVAR) nos primeiros 15 dias</p>
+                </div>
+                <div class="p5-step reveal d5">
+                  <div class="p5-step-n">5</div>
+                  <p class="p5-step-text">ATRAIR e ACOMPANHAR comecando no dia 16</p>
+                </div>
+              </div>
+              <div class="p5-steps-cta reveal d3">
+                <p class="p5-steps-cta-text">Feche hoje.<br><b>Resultados na semana 2.</b></p>
+                <p class="p5-steps-cta-sub">Quem Ativa antes de Atrair nao queima verba. Quem Acompanha nao perde cliente no caminho.</p>
+                <button class="btn-cartoon" onclick="window.open('https://wa.me/5571999999999','_blank')">Fechar pelo WhatsApp</button>
+                <p class="p5-validity">Proposta valida por 15 dias · Triforce Auto · 2026</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- S9: ADICIONAL SITE dark -->
+          <div class="p5 p5-dk2">
+            <div class="grid-overlay"></div>
+            <div class="ao" style="width:380px;height:380px;background:rgba(255,102,0,.09);top:-10%;right:15%;animation:ao-float-2 17s ease-in-out infinite;"></div>
+            <p class="p5-eye reveal">Adicional opcional</p>
+            <div class="p5-site-grid">
+              <div class="reveal d1">
+                <div class="p5-site-price">R$ 2.800</div>
+                <h3 class="p5-h" style="font-size:1.5rem;margin-bottom:1rem;">Site novo de conversao</h3>
+                <p class="p5-lead">O site atual nao converte. Quem chega pelo anuncio encontra SSL quebrado e sem caminho pra cotacao. Comprador profissional fecha a aba e vai pro proximo fornecedor da lista.</p>
+                <p class="p5-site-note">Nao e obrigatorio pra comecar. E o passo seguinte natural quando a TAC quiser parar de mandar trafego pago pra uma pagina que nao fecha negocio. Dominio e todos os acessos ficam com a TAC para sempre.</p>
+              </div>
+              <div class="reveal d2">
+                <p class="p5-porq-title">O que inclui</p>
+                <div class="p5-site-items">
+                  <div class="p5-site-item">Formulario de cotacao direto na home</div>
+                  <div class="p5-site-item">Pagina de produtos por categoria</div>
+                  <div class="p5-site-item">Prova social e depoimentos</div>
+                  <div class="p5-site-item">SSL e velocidade otimizada pra celular</div>
+                  <div class="p5-site-item">Integracao com WhatsApp</div>
+                  <div class="p5-site-item">Pronto em ate 21 dias uteis</div>
+                  <div class="p5-site-item">Dominio e acessos ficam com a TAC para sempre</div>
+                </div>
+                <div style="margin-top:1.75rem;display:flex;gap:1rem;flex-wrap:wrap;align-items:center;">
+                  <button class="btn-cartoon" onclick="window.open('https://wa.me/5571999999999','_blank')">Quero o site tambem</button>
+                  <button style="background:none;border:none;color:rgba(255,255,255,.4);font-family:var(--font);font-size:.7rem;font-weight:800;text-decoration:underline;cursor:pointer;" onclick="goTo('mod-intro', document.querySelector('[data-module=mod-intro]'))">Recomecar do inicio</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<script>
+/* ============================================================
+   NAVEGACAO — PILAR
+   ============================================================ */
+let currentModule = 'mod-intro';
+
+function goTo(moduleId, clickedItem) {
+  if (moduleId === currentModule) return;
+
+  // Hide current module
+  const prev = document.getElementById(currentModule);
+  if (prev) {
+    prev.classList.remove('active');
+  }
+
+  // Show new module
+  const next = document.getElementById(moduleId);
+  if (next) {
+    next.classList.add('active');
+    // Scroll to top of new module
+    const scroll = next.querySelector('.module-scroll');
+    if (scroll) scroll.scrollTop = 0;
+  }
+
+  // Update dots
+  document.querySelectorAll('.pilar-dot').forEach(d => d.classList.remove('active'));
+  document.querySelectorAll('.pilar-item').forEach(i => i.classList.remove('active-item'));
+
+  const activeDot = document.getElementById('dot-' + moduleId);
+  if (activeDot) activeDot.classList.add('active');
+
+  // Find parent pilar-item of clicked dot and mark active
+  const allItems = document.querySelectorAll('.pilar-item');
+  allItems.forEach(item => {
+    if (item.dataset.module === moduleId) {
+      item.classList.add('active-item');
+    }
+  });
+
+  currentModule = moduleId;
+
+  // Trigger reveals in the newly active module
+  setTimeout(() => triggerReveals(next), 80);
+}
+
+/* ============================================================
+   SCROLL REVEAL
+   ============================================================ */
+function triggerReveals(container) {
+  if (!container) return;
+  const els = container.querySelectorAll('.reveal, .reveal-l, .reveal-r');
+  els.forEach((el, i) => {
+    // Reset for re-entry
+    el.classList.remove('visible');
+    setTimeout(() => {
+      el.classList.add('visible');
+    }, 40 + i * 30);
+  });
+}
+
+// Initial trigger for module 1
+document.addEventListener('DOMContentLoaded', () => {
+  const initial = document.getElementById('mod-intro');
+  setTimeout(() => triggerReveals(initial), 100);
+});
+
+// Also handle scroll-based reveals for modules with scroll
+function setupScrollObserver() {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.08 });
+
+  document.querySelectorAll('.reveal, .reveal-l, .reveal-r').forEach(el => {
+    observer.observe(el);
+  });
+}
+document.addEventListener('DOMContentLoaded', setupScrollObserver);
+
+/* ============================================================
+   MOUSE TRACK — phase-card glow radial
+   ============================================================ */
+function trackMouse(e, el) {
+  const rect = el.getBoundingClientRect();
+  const x = ((e.clientX - rect.left) / rect.width) * 100;
+  const y = ((e.clientY - rect.top) / rect.height) * 100;
+  el.style.setProperty('--mx', x + '%');
+  el.style.setProperty('--my', y + '%');
+}
+function resetMouse(el) {
+  el.style.setProperty('--mx', '50%');
+  el.style.setProperty('--my', '50%');
+}
+
+/* ============================================================
+   EQUIPE SUB-MODULE NAV
+   ============================================================ */
+let currentEquipeSub = 0;
+function goEquipe(idx) {
+  document.querySelectorAll('.equipe-submodule').forEach(el => el.classList.remove('esub-active'));
+  document.querySelectorAll('.esub-dot').forEach(el => el.classList.remove('esub-active'));
+  document.querySelectorAll('.eprogress-bar').forEach((el, i) => {
+    el.classList.toggle('active', i === idx);
+  });
+  const sub = document.getElementById('esub-' + idx);
+  if (sub) {
+    sub.classList.add('esub-active');
+    setTimeout(() => triggerReveals(sub), 50);
+  }
+  const dots = document.querySelectorAll('.esub-dot');
+  if (dots[idx]) dots[idx].classList.add('esub-active');
+  currentEquipeSub = idx;
+  // mobile: scroll equipe module back to top so user sees the new member
+  const modEl = document.getElementById('mod-equipe');
+  if (modEl) modEl.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+/* ============================================================
+   KEYBOARD NAV
+   ============================================================ */
+const moduleOrder = ['mod-intro','mod-quem','mod-equipe','mod-servicos','mod-proposta'];
+document.addEventListener('keydown', e => {
+  const idx = moduleOrder.indexOf(currentModule);
+  if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+    if (idx < moduleOrder.length - 1) {
+      const nextId = moduleOrder[idx + 1];
+      const item = document.querySelector('[data-module="' + nextId + '"]');
+      goTo(nextId, item);
+    }
+  } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+    if (idx > 0) {
+      const prevId = moduleOrder[idx - 1];
+      const item = document.querySelector('[data-module="' + prevId + '"]');
+      goTo(prevId, item);
+    }
+  }
+});
+</script>
+
+</body>
+</html>

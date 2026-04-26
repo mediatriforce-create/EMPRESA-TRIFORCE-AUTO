@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Oferta Comercial TAC — Triforce Auto</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap');
+
+@page { size: A4; margin: 18mm 16mm; }
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Montserrat', -apple-system, sans-serif;
+  color: #050505;
+  line-height: 1.55;
+  font-size: 10.5pt;
+  background: #F5F0E8;
+}
+
+.cover {
+  background: #0d0d0d;
+  color: #F5F0E8;
+  padding: 40mm 14mm;
+  margin: -18mm -16mm 24px -16mm;
+  text-align: center;
+  border-bottom: 4px solid #FF6600;
+  page-break-after: always;
+  min-height: 260mm;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+.cover::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 20% 30%, rgba(255,102,0,0.18), transparent 40%),
+    radial-gradient(circle at 80% 70%, rgba(255,102,0,0.12), transparent 45%);
+  pointer-events: none;
+}
+.cover-logo {
+  font-size: 14pt;
+  font-weight: 800;
+  letter-spacing: 4px;
+  color: #FF6600;
+  margin-bottom: 18px;
+  text-transform: uppercase;
+}
+.cover h1 {
+  font-size: 44pt;
+  font-weight: 900;
+  line-height: 1.05;
+  color: #F5F0E8;
+  border: none;
+  margin-bottom: 20px;
+  letter-spacing: -1px;
+  text-transform: uppercase;
+}
+.cover-accent {
+  color: #FF6600;
+}
+.cover-sub {
+  font-size: 13pt;
+  font-weight: 500;
+  color: #F5F0E8;
+  opacity: 0.82;
+  max-width: 120mm;
+  margin: 0 auto 40px;
+  line-height: 1.5;
+}
+.cover-meta {
+  border-top: 3px solid #FF6600;
+  padding-top: 20px;
+  font-size: 10pt;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  opacity: 0.75;
+}
+
+h1 {
+  color: #050505;
+  font-size: 22pt;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: -0.5px;
+  border-bottom: 3px solid #050505;
+  padding-bottom: 10px;
+  margin-top: 32px;
+  margin-bottom: 18px;
+  page-break-after: avoid;
+  page-break-before: always;
+}
+h1:first-of-type { page-break-before: auto; }
+
+h2 {
+  color: #050505;
+  font-size: 15pt;
+  font-weight: 800;
+  margin-top: 24px;
+  margin-bottom: 10px;
+  padding: 8px 14px;
+  background: #FF6600;
+  color: #050505;
+  border: 3px solid #050505;
+  box-shadow: 4px 4px 0 #050505;
+  display: inline-block;
+  text-transform: uppercase;
+  page-break-after: avoid;
+}
+
+h3 {
+  color: #050505;
+  font-size: 12.5pt;
+  font-weight: 800;
+  margin-top: 18px;
+  margin-bottom: 8px;
+  padding-left: 12px;
+  border-left: 4px solid #FF6600;
+  page-break-after: avoid;
+}
+
+h4 {
+  color: #050505;
+  font-size: 11pt;
+  font-weight: 700;
+  margin-top: 14px;
+  margin-bottom: 6px;
+}
+
+p {
+  margin: 10px 0;
+  text-align: left;
+  color: #050505;
+}
+
+ul, ol { margin: 10px 0; padding-left: 22px; }
+li { margin: 4px 0; }
+
+strong { color: #050505; font-weight: 800; }
+em { color: #050505; font-style: italic; }
+
+code {
+  background: #050505;
+  color: #FF6600;
+  padding: 2px 6px;
+  border-radius: 0;
+  font-family: 'Montserrat', monospace;
+  font-size: 9.5pt;
+  font-weight: 700;
+}
+
+blockquote {
+  border: 3px solid #050505;
+  background: #FF6600;
+  box-shadow: 4px 4px 0 #050505;
+  margin: 16px 4px;
+  padding: 14px 18px;
+  color: #050505;
+  font-weight: 700;
+  font-size: 12pt;
+  page-break-inside: avoid;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 14px 0;
+  font-size: 9.5pt;
+  page-break-inside: avoid;
+  background: #ffffff;
+  border: 3px solid #050505;
+  box-shadow: 4px 4px 0 #050505;
+}
+th {
+  background: #050505;
+  color: #FF6600;
+  padding: 9px 11px;
+  text-align: left;
+  font-weight: 800;
+  text-transform: uppercase;
+  font-size: 9pt;
+  letter-spacing: 0.5px;
+  border-bottom: 2px solid #FF6600;
+}
+td {
+  padding: 8px 11px;
+  border-bottom: 1px solid #050505;
+  vertical-align: top;
+  color: #050505;
+}
+tr:last-child td { border-bottom: none; }
+tr:nth-child(even) td { background: #F5F0E8; }
+
+hr {
+  border: none;
+  border-top: 3px solid #050505;
+  margin: 28px 0;
+}
+
+a {
+  color: #050505;
+  text-decoration: none;
+  font-weight: 700;
+  border-bottom: 2px solid #FF6600;
+}
+
+.footer-stamp {
+  margin-top: 40px;
+  padding: 20px;
+  background: #050505;
+  color: #F5F0E8;
+  text-align: center;
+  border: 3px solid #050505;
+  box-shadow: 4px 4px 0 #FF6600;
+}
+.footer-stamp strong {
+  color: #FF6600;
+  font-size: 14pt;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+</style>
+</head>
+<body>
+<div class="cover">
+  <div class="cover-logo">Triforce Auto</div>
+  <h1>Oferta<br><span class="cover-accent">Comercial</span></h1>
+  <div class="cover-sub">
+    Proposta Protocolo AAA para TAC Distribuidora<br>
+    Atração ativa de clientes B2B de hortifruti na Bahia.
+  </div>
+  <div class="cover-meta">Período Teste · 3 Meses · 2026</div>
+</div>
+<h1 id="oferta-comercial-tac-distribuidora">Oferta Comercial — TAC Distribuidora</h1>
+<p><strong>Cliente:</strong> TAC Distribuidora de Hortifruti
+<strong>Proposta por:</strong> Triforce Auto
+<strong>Data:</strong> 2026-04-24
+<strong>Validade:</strong> 15 dias</p>
+<hr />
+<h1 id="1-promessa">1. Promessa</h1>
+<p><strong>Tiramos a TAC da invisibilidade digital e colocamos na frente de quem compra hortifruti em volume na Bahia.</strong></p>
+<p>Hoje, empresa nova abrindo na Bahia pesquisa fornecedor de hortifruti e não encontra a TAC. O Instagram existe, mas não traz cotação. O site existe, mas não converte. Quem conhece, fecha. Quem não conhece, vai pro concorrente.</p>
+<p>Em 90 dias, isso vira o contrário.</p>
+<p>O Instagram da TAC passa a aparecer todo dia na frente de restaurante, hotel, hospital e cozinha industrial da Bahia — com conteúdo que mostra 25 anos de CEASA na prática. O anúncio chega em quem compra caixa, não em quem compra 2 maçãs. O WhatsApp recebe cotação de empresa nova toda semana. E o dono acompanha tudo em tempo real, sem caixa-preta.</p>
+<p>A TAC sai do silêncio. O mercado da Bahia começa a chegar sozinho.</p>
+<hr />
+<h1 id="2-mecanismo-unico-protocolo-aaa">2. Mecanismo Único — Protocolo AAA</h1>
+<p>Método da Triforce Auto em 3 fases sequenciais. Nenhuma fase pode ser pulada.</p>
+<h2 id="ativar">ATIVAR</h2>
+<p>Arrumar a casa antes de qualquer tiro. SSL corrigido, Google Meu Negócio vivo, LinkedIn atualizado, Business Manager Meta pronto. Quem pesquisar a TAC encontra uma empresa organizada. Sem essa base, gastar com anúncio é queimar dinheiro.</p>
+<h2 id="atrair">ATRAIR</h2>
+<p>Conteúdo diário rodando no Instagram com dado real da operação + anúncio segmentado chegando em quem compra hortifruti em volume na Bahia. Não é postar bonito. É construir presença que faz comprador profissional parar no scroll.</p>
+<h2 id="acompanhar">ACOMPANHAR</h2>
+<p>Painel aberto em tempo real. O dono vê todo dia quantas empresas chegaram, quanto foi gasto, quantas viraram cotação. Reunião mensal pra calibrar. Nada fica escondido.</p>
+<p><strong>Regra:</strong> Quem roda anúncio sem Ativar primeiro, queima verba. Quem Atrai sem Acompanhar, perde o cliente no caminho.</p>
+<hr />
+<h1 id="3-the-stack-o-que-a-tac-recebe">3. The Stack — O que a TAC recebe</h1>
+<h2 id="fase-1-ativar-entrega-unica-nos-primeiros-15-dias">FASE 1 — ATIVAR (entrega única nos primeiros 15 dias)</h2>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Valor separado de mercado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Auditoria do site atual + correção de SSL</td>
+<td>R$ 800</td>
+</tr>
+<tr>
+<td>Otimização completa de Google Meu Negócio</td>
+<td>R$ 700</td>
+</tr>
+<tr>
+<td>Atualização e otimização do LinkedIn da empresa</td>
+<td>R$ 500</td>
+</tr>
+<tr>
+<td>Criação e configuração de Business Manager Meta com CNPJ verificado</td>
+<td>R$ 600</td>
+</tr>
+<tr>
+<td><strong>Subtotal ATIVAR</strong></td>
+<td><strong>R$ 2.600</strong></td>
+</tr>
+</tbody>
+</table>
+<h2 id="fase-2-atrair-entrega-todo-mes">FASE 2 — ATRAIR (entrega todo mês)</h2>
+<h3 id="bloco-instagram-organico">Bloco Instagram orgânico</h3>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Valor separado de mercado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Criação de identidade visual e linha editorial</td>
+<td>R$ 2.500</td>
+</tr>
+<tr>
+<td>Biblioteca de templates (carrossel, reel, story, estático)</td>
+<td>R$ 1.800</td>
+</tr>
+<tr>
+<td>Calendário editorial trimestral</td>
+<td>R$ 900</td>
+</tr>
+<tr>
+<td>Produção de 5-7 posts por semana com dado real da operação</td>
+<td>R$ 3.500</td>
+</tr>
+<tr>
+<td>Stories diárias (bastidor, enquetes, produto do dia)</td>
+<td>R$ 1.200</td>
+</tr>
+<tr>
+<td>Edição de reels curtos</td>
+<td>R$ 1.500</td>
+</tr>
+<tr>
+<td>Redação de captions otimizadas</td>
+<td>R$ 800</td>
+</tr>
+<tr>
+<td>Fluxo de aprovação via WhatsApp em 30 segundos</td>
+<td>R$ 400</td>
+</tr>
+<tr>
+<td>Moderação de DMs e comentários</td>
+<td>R$ 600</td>
+</tr>
+<tr>
+<td><strong>Subtotal Instagram</strong></td>
+<td><strong>R$ 13.200</strong></td>
+</tr>
+</tbody>
+</table>
+<h3 id="bloco-meta-ads">Bloco Meta Ads</h3>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Valor separado de mercado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Setup de pixel + Conversion API</td>
+<td>R$ 1.500</td>
+</tr>
+<tr>
+<td>Mapeamento de públicos (cargos, interesses, geo BA)</td>
+<td>R$ 1.200</td>
+</tr>
+<tr>
+<td>Setup de Lead Ad com formulário qualificado</td>
+<td>R$ 900</td>
+</tr>
+<tr>
+<td>Integração Click-to-WhatsApp</td>
+<td>R$ 700</td>
+</tr>
+<tr>
+<td>Produção inicial de criativos (3 variações por etapa do funil)</td>
+<td>R$ 2.500</td>
+</tr>
+<tr>
+<td>Gestão de 3 campanhas ativas (topo, meio, fundo)</td>
+<td>R$ 2.800</td>
+</tr>
+<tr>
+<td>Produção semanal de novos criativos</td>
+<td>R$ 2.200</td>
+</tr>
+<tr>
+<td>Testes A/B de headline, criativo e público</td>
+<td>R$ 1.500</td>
+</tr>
+<tr>
+<td>Retargeting de engajadores e visitantes</td>
+<td>R$ 1.000</td>
+</tr>
+<tr>
+<td>Otimização diária de verba e pausa de criativos ruins</td>
+<td>R$ 1.200</td>
+</tr>
+<tr>
+<td><strong>Subtotal Ads</strong></td>
+<td><strong>R$ 15.500</strong></td>
+</tr>
+</tbody>
+</table>
+<h2 id="fase-3-acompanhar-entrega-todo-mes">FASE 3 — ACOMPANHAR (entrega todo mês)</h2>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Valor separado de mercado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Dashboard aberto em tempo real</td>
+<td>R$ 1.500</td>
+</tr>
+<tr>
+<td>Relatório semanal consolidado</td>
+<td>R$ 800</td>
+</tr>
+<tr>
+<td>Reunião mensal de calibração</td>
+<td>R$ 900</td>
+</tr>
+<tr>
+<td>Script de atendimento WhatsApp + treinamento do time TAC</td>
+<td>R$ 1.200</td>
+</tr>
+<tr>
+<td>Loop de feedback com pedido teste fechado</td>
+<td>R$ 700</td>
+</tr>
+<tr>
+<td><strong>Subtotal Acompanhar</strong></td>
+<td><strong>R$ 5.100</strong></td>
+</tr>
+</tbody>
+</table>
+<h2 id="ferramentas-da-triforce-custo-absorvido-pela-triforce-tac-nao-paga-a-parte">Ferramentas da Triforce (custo absorvido pela Triforce, TAC não paga à parte)</h2>
+<table>
+<thead>
+<tr>
+<th>Ferramenta</th>
+<th>Valor mensal se TAC contratasse sozinha</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Claude Max 20x (IA usada em toda a operação)</td>
+<td>R$ 1.000</td>
+</tr>
+<tr>
+<td>Adobe Creative Cloud (edição de imagem e vídeo)</td>
+<td>R$ 350</td>
+</tr>
+<tr>
+<td>Dashboard e automações integradas</td>
+<td>R$ 400</td>
+</tr>
+<tr>
+<td><strong>Subtotal Ferramentas</strong></td>
+<td><strong>R$ 1.750</strong></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h1 id="4-um-ponto-importante-o-site-atual">4. Um ponto importante: o site atual</h1>
+<p>O site da TAC existe. Mas ele não converte.</p>
+<p>Quem chega pelo anúncio, clica no link e encontra uma página lenta, sem hierarquia clara e sem um caminho direto pra pedir cotação. O SSL tem problema. O layout não passa confiança pra comprador profissional. É como ter uma loja com a porta emperrada.</p>
+<p>Nos 3 meses de teste, a Triforce trabalha com o que existe — corrigindo o SSL, ajustando o Google Meu Negócio, e direcionando tráfego pro WhatsApp. Isso já funciona.</p>
+<p><strong>Mas se a TAC quiser dar o passo seguinte:</strong></p>
+<p>A Triforce entrega um site novo de conversão B2B — construído pra receber o tráfego dos anúncios, com formulário de cotação, página de produtos, prova social e carregamento rápido no celular.</p>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Valor</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Site novo de conversão B2B (entrega em até 21 dias)</td>
+<td><strong>R$ 2.800</strong></td>
+</tr>
+</tbody>
+</table>
+<p>Esse valor é pago uma única vez, separado da mensalidade. Não é obrigatório pra começar. É a Fase 2 da parceria.</p>
+<hr />
+<h1 id="5-ancoragem-valor-real-de-mercado">5. Ancoragem — Valor real de mercado</h1>
+<h2 id="valor-se-a-tac-contratasse-cada-item-separado">Valor se a TAC contratasse cada item separado</h2>
+<table>
+<thead>
+<tr>
+<th>Bloco</th>
+<th>Mês 1</th>
+<th>Mês 2</th>
+<th>Mês 3</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>FASE 1 — ATIVAR (setup)</td>
+<td>R$ 2.600</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td>FASE 2 — ATRAIR</td>
+<td>R$ 28.700</td>
+<td>R$ 28.700</td>
+<td>R$ 28.700</td>
+</tr>
+<tr>
+<td>FASE 3 — ACOMPANHAR</td>
+<td>R$ 5.100</td>
+<td>R$ 5.100</td>
+<td>R$ 5.100</td>
+</tr>
+<tr>
+<td>Ferramentas</td>
+<td>R$ 1.750</td>
+<td>R$ 1.750</td>
+<td>R$ 1.750</td>
+</tr>
+<tr>
+<td><strong>TOTAL MÊS</strong></td>
+<td><strong>R$ 38.150</strong></td>
+<td><strong>R$ 35.550</strong></td>
+<td><strong>R$ 35.550</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Total de mercado nos 3 meses: R$ 109.250</strong></p>
+<hr />
+<h1 id="6-o-que-a-tac-paga">6. O que a TAC paga</h1>
+<h2 id="periodo-teste-3-meses-garantidos">Período teste — 3 meses garantidos</h2>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Valor</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Setup ATIVAR (pago uma vez)</td>
+<td><strong>R$ 1.500</strong></td>
+</tr>
+<tr>
+<td>Mensalidade Triforce (3 meses)</td>
+<td><strong>R$ 2.500/mês</strong></td>
+</tr>
+<tr>
+<td><strong>Total dos 3 meses de teste</strong></td>
+<td><strong>R$ 9.000</strong></td>
+</tr>
+</tbody>
+</table>
+<h2 id="verba-de-anuncios-a-parte">Verba de anúncios (à parte)</h2>
+<p>A verba investida em anúncios no Facebook e Instagram é <strong>paga diretamente pela TAC ao Meta</strong>, através do cartão cadastrado no Business Manager. Valor definido em conjunto na primeira reunião de planejamento. A Triforce gere, otimiza e presta contas — mas não recebe nem movimenta essa verba.</p>
+<hr />
+<h1 id="7-comparacao-final">7. Comparação final</h1>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Mercado separado</th>
+<th>Triforce</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Mês 1</td>
+<td>R$ 38.150</td>
+<td>R$ 4.000</td>
+</tr>
+<tr>
+<td>Mês 2</td>
+<td>R$ 35.550</td>
+<td>R$ 2.500</td>
+</tr>
+<tr>
+<td>Mês 3</td>
+<td>R$ 35.550</td>
+<td>R$ 2.500</td>
+</tr>
+<tr>
+<td><strong>TOTAL 3 MESES</strong></td>
+<td><strong>R$ 109.250</strong></td>
+<td><strong>R$ 9.000</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>A TAC paga R$ 9.000 por um serviço que contratado separado custaria R$ 109.250.</strong></p>
+<p><strong>Economia: R$ 100.250 — cerca de 92% abaixo do valor de mercado.</strong></p>
+<hr />
+<h1 id="8-por-que-a-triforce-entrega-por-esse-valor">8. Por que a Triforce entrega por esse valor</h1>
+<ol>
+<li><strong>Time integrado</strong>, não 3 profissionais avulsos contratados separado</li>
+<li><strong>Ferramentas já pagas</strong> (Claude Max, Adobe, automações) — custo absorvido pela Triforce</li>
+<li><strong>TAC é o primeiro cliente da Triforce</strong> — condição especial em troca de depoimento e case quando o resultado chegar</li>
+<li><strong>Preço de entrada estratégico</strong> pra abrir operação com dedicação total</li>
+</ol>
+<hr />
+<h1 id="9-como-funciona-depois-dos-3-meses-de-teste">9. Como funciona depois dos 3 meses de teste</h1>
+<p>Ao final do período teste, reunião de fechamento com resultado consolidado. Duas opções pra TAC:</p>
+<h2 id="se-quiser-continuar">Se quiser continuar</h2>
+<ul>
+<li>Reajuste de mensalidade conforme entrega ampliada</li>
+<li>Opção de contrato anual com preço travado e 1 mês grátis</li>
+<li>Gatilho pra discussão do site novo de conversão (Fase 2 da parceria)</li>
+</ul>
+<h2 id="se-quiser-sair">Se quiser sair</h2>
+<ul>
+<li>Sem multa, sem fidelidade</li>
+<li>Triforce entrega todos os acessos, materiais e dashboards produzidos</li>
+<li>TAC fica com tudo que foi construído no período</li>
+</ul>
+<hr />
+<h1 id="10-compromissos-da-triforce-nos-3-meses-de-teste">10. Compromissos da Triforce nos 3 meses de teste</h1>
+<ol>
+<li><strong>Entrega completa do escopo</strong> todo mês (conteúdo, ads, painel, reunião)</li>
+<li><strong>Painel aberto 24h</strong> — TAC vê tudo em tempo real, sem caixa-preta</li>
+<li><strong>Reunião mensal de calibração</strong> com o dono</li>
+<li><strong>Meta declarada aos 60 dias:</strong> empresa nova chegando no WhatsApp da TAC</li>
+<li><strong>Sem multa, sem fidelidade</strong> — TAC pode sair ao final dos 3 meses sem penalidade</li>
+<li><strong>Comunicação direta</strong> via WhatsApp com o time responsável pelo projeto</li>
+</ol>
+<hr />
+<h1 id="11-proximos-passos">11. Próximos passos</h1>
+<p>Fechando a proposta hoje:</p>
+<ol>
+<li>Assinatura do contrato simplificado de 3 meses</li>
+<li>Pagamento do setup (R$ 1.500) + primeira mensalidade (R$ 2.500)</li>
+<li>Reunião de kickoff em até 48 horas</li>
+<li>Entrega da FASE 1 (ATIVAR) nos primeiros 15 dias</li>
+<li>FASE 2 e 3 (ATRAIR + ACOMPANHAR) começando no dia 16</li>
+</ol>
+<hr />
+<p><strong>Proposta válida por 15 dias a partir da data de emissão.</strong>
+<strong>Triforce Auto — 2026</strong></p>
+<div class="footer-stamp">
+  <strong>Triforce Auto</strong><br>
+  <span style="font-size:9pt; letter-spacing:1px;">Máquinas de atração ativa · 2026</span>
+</div>
+</body>
+</html>

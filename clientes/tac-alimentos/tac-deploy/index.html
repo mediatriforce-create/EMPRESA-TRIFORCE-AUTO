@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TAC Alimentos — Distribuição de Hortifruti em Salvador</title>
+  <meta name="description" content="A TAC abastece restaurantes, hospitais e cozinhas industriais em Salvador com 142 produtos frescos, entrega no prazo toda semana. Há 25 anos." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --verde: #1a4a2e;
+      --verde-claro: #2d6b45;
+      --laranja: #e8611a;
+      --laranja-hover: #d0541a;
+      --branco: #ffffff;
+      --cinza-claro: #f7f7f5;
+      --cinza: #6b7280;
+      --cinza-escuro: #374151;
+      --texto: #111827;
+      --radius: 12px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--texto);
+      background: var(--branco);
+      line-height: 1.6;
+    }
+
+    /* ── HEADER ── */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--verde);
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.15);
+    }
+
+    .logo {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--branco);
+      letter-spacing: -0.5px;
+    }
+
+    .logo span { color: #7ec89a; }
+
+    .header-cta {
+      background: var(--laranja);
+      color: var(--branco);
+      border: none;
+      border-radius: 8px;
+      padding: 10px 20px;
+      font-size: 0.875rem;
+      font-weight: 700;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+
+    .header-cta:hover { background: var(--laranja-hover); }
+
+    /* ── HERO ── */
+    .hero {
+      background: linear-gradient(135deg, var(--verde) 0%, var(--verde-claro) 100%);
+      color: var(--branco);
+      padding: 80px 24px 96px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url('https://images.pexels.com/photos/1458694/pexels-photo-1458694.jpeg?auto=compress&cs=tinysrgb&w=1400') center/cover no-repeat;
+      opacity: 0.12;
+    }
+
+    .hero-inner {
+      position: relative;
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.25);
+      color: #b8e6c8;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      padding: 6px 16px;
+      border-radius: 99px;
+      margin-bottom: 24px;
+      text-transform: uppercase;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.2rem, 6vw, 3.8rem);
+      font-weight: 900;
+      line-height: 1.1;
+      letter-spacing: -1.5px;
+      margin-bottom: 24px;
+    }
+
+    .hero p {
+      font-size: clamp(1rem, 2.5vw, 1.2rem);
+      color: rgba(255,255,255,0.85);
+      max-width: 580px;
+      margin: 0 auto 40px;
+      line-height: 1.7;
+    }
+
+    .btn-primary {
+      display: inline-block;
+      background: var(--laranja);
+      color: var(--branco);
+      text-decoration: none;
+      padding: 18px 40px;
+      border-radius: 10px;
+      font-size: 1.05rem;
+      font-weight: 700;
+      transition: background 0.2s, transform 0.1s;
+      box-shadow: 0 4px 20px rgba(232,97,26,0.4);
+    }
+
+    .btn-primary:hover { background: var(--laranja-hover); transform: translateY(-1px); }
+    .btn-primary:active { transform: translateY(0); }
+
+    .hero-stats {
+      display: flex;
+      justify-content: center;
+      gap: 48px;
+      margin-top: 56px;
+      flex-wrap: wrap;
+    }
+
+    .stat { text-align: center; }
+    .stat-num { font-size: 2rem; font-weight: 900; color: #7ec89a; line-height: 1; }
+    .stat-label { font-size: 0.8rem; color: rgba(255,255,255,0.65); margin-top: 4px; text-transform: uppercase; letter-spacing: 0.5px; }
+
+    /* ── SECTIONS ── */
+    section { padding: 80px 24px; }
+
+    .container { max-width: 860px; margin: 0 auto; }
+
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--laranja);
+      margin-bottom: 12px;
+    }
+
+    h2 {
+      font-size: clamp(1.6rem, 4vw, 2.4rem);
+      font-weight: 800;
+      line-height: 1.2;
+      letter-spacing: -0.5px;
+      color: var(--texto);
+      margin-bottom: 24px;
+    }
+
+    /* ── PROBLEMA ── */
+    .sec-problema { background: var(--cinza-claro); }
+
+    .problema-texto p {
+      font-size: 1.05rem;
+      color: var(--cinza-escuro);
+      margin-bottom: 16px;
+      line-height: 1.75;
+    }
+
+    .alerta-box {
+      background: #fff4ed;
+      border-left: 4px solid var(--laranja);
+      border-radius: 0 8px 8px 0;
+      padding: 20px 24px;
+      margin-top: 32px;
+    }
+
+    .alerta-box p {
+      color: #92350a;
+      font-weight: 600;
+      font-size: 1rem;
+      margin: 0;
+    }
+
+    /* ── GUIA ── */
+    .sec-guia { background: var(--verde); color: var(--branco); }
+    .sec-guia .section-label { color: #7ec89a; }
+    .sec-guia h2 { color: var(--branco); }
+
+    .guia-texto p {
+      font-size: 1.05rem;
+      color: rgba(255,255,255,0.8);
+      margin-bottom: 16px;
+      line-height: 1.75;
+    }
+
+    .guia-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 36px;
+    }
+
+    .pill {
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.2);
+      color: var(--branco);
+      padding: 10px 20px;
+      border-radius: 99px;
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    /* ── COMO FUNCIONA ── */
+    .sec-como { background: var(--branco); }
+
+    .passos {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 32px;
+      margin-top: 48px;
+    }
+
+    .passo {
+      text-align: center;
+      padding: 32px 24px;
+      background: var(--cinza-claro);
+      border-radius: var(--radius);
+    }
+
+    .passo-num {
+      width: 56px;
+      height: 56px;
+      background: var(--verde);
+      color: var(--branco);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      font-weight: 900;
+      margin: 0 auto 20px;
+    }
+
+    .passo h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+      color: var(--texto);
+    }
+
+    .passo p {
+      font-size: 0.9rem;
+      color: var(--cinza);
+      line-height: 1.6;
+    }
+
+    /* ── PROVA ── */
+    .sec-prova { background: var(--cinza-claro); }
+
+    .prova-texto p {
+      font-size: 1.05rem;
+      color: var(--cinza-escuro);
+      margin-bottom: 16px;
+      line-height: 1.75;
+    }
+
+    .numeros {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 24px;
+      margin-top: 48px;
+    }
+
+    .numero-card {
+      background: var(--branco);
+      border-radius: var(--radius);
+      padding: 28px 20px;
+      text-align: center;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    }
+
+    .numero-card .num {
+      font-size: 2.2rem;
+      font-weight: 900;
+      color: var(--verde);
+      line-height: 1;
+    }
+
+    .numero-card .num-label {
+      font-size: 0.82rem;
+      color: var(--cinza);
+      margin-top: 6px;
+    }
+
+    .segmentos {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 36px;
+    }
+
+    .segmento {
+      background: var(--branco);
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      padding: 10px 18px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--verde);
+    }
+
+    /* ── OBJEÇÃO ── */
+    .sec-objecao { background: var(--branco); }
+
+    .objecao-box {
+      background: #f0faf4;
+      border: 1px solid #a7d7b8;
+      border-radius: var(--radius);
+      padding: 40px;
+      margin-top: 32px;
+    }
+
+    .objecao-box p {
+      font-size: 1rem;
+      color: var(--cinza-escuro);
+      margin-bottom: 14px;
+      line-height: 1.75;
+    }
+
+    .objecao-box p:last-child { margin-bottom: 0; font-weight: 600; color: var(--verde); }
+
+    /* ── CTA FINAL ── */
+    .sec-cta {
+      background: linear-gradient(135deg, var(--verde) 0%, var(--verde-claro) 100%);
+      color: var(--branco);
+      text-align: center;
+    }
+
+    .sec-cta h2 { color: var(--branco); }
+
+    .sec-cta p {
+      font-size: 1.05rem;
+      color: rgba(255,255,255,0.8);
+      max-width: 520px;
+      margin: 0 auto 40px;
+      line-height: 1.75;
+    }
+
+    .cta-secundario {
+      display: block;
+      margin-top: 16px;
+      color: rgba(255,255,255,0.6);
+      font-size: 0.9rem;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #0f2e1c;
+      color: rgba(255,255,255,0.5);
+      text-align: center;
+      padding: 32px 24px;
+      font-size: 0.82rem;
+      line-height: 1.8;
+    }
+
+    /* ── STICKY WHATSAPP (mobile) ── */
+    .sticky-wa {
+      display: none;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 999;
+      background: #25D366;
+      padding: 14px 24px;
+      text-align: center;
+    }
+
+    .sticky-wa a {
+      color: var(--branco);
+      font-weight: 700;
+      font-size: 1rem;
+      text-decoration: none;
+    }
+
+    @media (max-width: 640px) {
+      .sticky-wa { display: block; }
+      section { padding: 60px 20px; }
+      .hero { padding: 64px 20px 80px; }
+      .hero-stats { gap: 32px; }
+      .objecao-box { padding: 28px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="logo">TAC<span>.</span>Alimentos</div>
+  <a href="https://wa.me/5571996301977?text=Olá, gostaria de fazer uma cotação" target="_blank" class="header-cta">Fazer cotação</a>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-badge">Distribuição de Hortifruti em Salvador</div>
+    <h1>Sua cozinha não pode parar</h1>
+    <p>A TAC Alimentos abastece restaurantes, hospitais e cozinhas industriais em Salvador com 142 produtos frescos entregues no prazo toda semana. Sem surpresa. Sem improviso. Há 25 anos.</p>
+    <a href="https://wa.me/5571996301977?text=Olá, gostaria de fazer uma cotação" target="_blank" class="btn-primary">Quero fazer minha cotação agora</a>
+
+    <div class="hero-stats">
+      <div class="stat">
+        <div class="stat-num">25</div>
+        <div class="stat-label">Anos de mercado</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">142</div>
+        <div class="stat-label">Produtos no catálogo</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">BA</div>
+        <div class="stat-label">Salvador e interior</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEMA -->
+<section class="sec-problema">
+  <div class="container">
+    <div class="section-label">O Problema</div>
+    <h2>O problema não é falta de fornecedor. É fornecedor que falha na hora errada.</h2>
+    <div class="problema-texto">
+      <p>Você não pode chegar segunda-feira e descobrir que o pedido não chegou. Não dá para explicar para o cliente que a cozinha está parada porque o fornecedor não cumpriu.</p>
+      <p>Ir ao CEASA direto funciona uma vez. Duas. Na terceira semana você já sabe que não é rotina, é improviso. E improviso não abastece cozinha industrial.</p>
+      <p>O fornecedor que você tem hoje entrega na maior parte das vezes. Mas "maior parte das vezes" não é garantia. E você precisa de garantia.</p>
+    </div>
+    <div class="alerta-box">
+      <p>Cada vez que o abastecimento falha, quem paga o preço é a sua operação, não o fornecedor.</p>
+    </div>
+  </div>
+</section>
+
+<!-- GUIA -->
+<section class="sec-guia">
+  <div class="container">
+    <div class="section-label">Quem somos</div>
+    <h2>25 anos garantindo que as cozinhas de Salvador não param</h2>
+    <div class="guia-texto">
+      <p>A TAC Distribuidora nasceu em 2001 no CEASA de Salvador e desde então abastece restaurantes, hotéis, hospitais e cozinhas industriais na Bahia. Não como fornecedor ocasional. Como parceiro de abastecimento que entende que você não pode esperar.</p>
+      <p>Operamos com frota própria gerenciada, o que significa que a logística não depende de terceiro e não muda de humor de semana para semana. Cada pedido sai do nosso galpão com rota definida e prazo real.</p>
+      <p>Nosso catálogo tem 142 produtos, de frutas nacionais e importadas a hortaliças, legumes, condimentos e processados. Tudo em um pedido. Um contato. Uma entrega.</p>
+    </div>
+    <div class="guia-pills">
+      <span class="pill">Frota própria</span>
+      <span class="pill">142 produtos</span>
+      <span class="pill">Fundada em 2001</span>
+      <span class="pill">CEASA Salvador</span>
+      <span class="pill">Entrega garantida</span>
+    </div>
+  </div>
+</section>
+
+<!-- COMO FUNCIONA -->
+<section class="sec-como">
+  <div class="container">
+    <div class="section-label">Simples assim</div>
+    <h2>Como funciona</h2>
+    <div class="passos">
+      <div class="passo">
+        <div class="passo-num">1</div>
+        <h3>Você faz a cotação</h3>
+        <p>Manda mensagem pelo WhatsApp com o que você precisa. Sem formulário longo. Sem espera de dias.</p>
+      </div>
+      <div class="passo">
+        <div class="passo-num">2</div>
+        <h3>A gente monta o pedido</h3>
+        <p>Com base no seu volume e na sazonalidade da semana, nosso time organiza o que faz mais sentido para o seu estoque e para o seu bolso.</p>
+      </div>
+      <div class="passo">
+        <div class="passo-num">3</div>
+        <h3>Entrega na sua cozinha</h3>
+        <p>Frota própria, rota definida, produto fresco. Toda semana, sem surpresa.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROVA -->
+<section class="sec-prova">
+  <div class="container">
+    <div class="section-label">Quem confia</div>
+    <h2>Quem não pode errar no abastecimento escolhe a TAC</h2>
+    <div class="prova-texto">
+      <p>Há 25 anos a TAC abastece as cozinhas que menos podem falhar em Salvador: hospitais, redes de restaurantes, hotéis e empresas de catering. Esses clientes não escolhem fornecedor por preço. Eles escolhem por confiabilidade.</p>
+      <p>Nossa operação saiu do CEASA para a cozinha de quem mais exige. Se funciona para quem não tolera erro, funciona para você também.</p>
+    </div>
+
+    <div class="numeros">
+      <div class="numero-card">
+        <div class="num">25</div>
+        <div class="num-label">anos de mercado</div>
+      </div>
+      <div class="numero-card">
+        <div class="num">142</div>
+        <div class="num-label">produtos no catálogo</div>
+      </div>
+      <div class="numero-card">
+        <div class="num">1</div>
+        <div class="num-label">pedido, tudo incluído</div>
+      </div>
+      <div class="numero-card">
+        <div class="num">BA</div>
+        <div class="num-label">cobertura na Bahia</div>
+      </div>
+    </div>
+
+    <div class="segmentos">
+      <span class="segmento">Restaurantes</span>
+      <span class="segmento">Hotéis</span>
+      <span class="segmento">Hospitais</span>
+      <span class="segmento">Cozinhas industriais</span>
+      <span class="segmento">Catering</span>
+      <span class="segmento">Empresas públicas e privadas</span>
+    </div>
+  </div>
+</section>
+
+<!-- OBJEÇÃO -->
+<section class="sec-objecao">
+  <div class="container">
+    <div class="section-label">Já tem fornecedor?</div>
+    <h2>Você já tem fornecedor. Por que mudar?</h2>
+    <div class="objecao-box">
+      <p>Não estamos pedindo para você mudar agora. Estamos pedindo que você faça uma cotação e compare.</p>
+      <p>Se o que você tem hoje entrega o mesmo nível de variedade, confiabilidade e prazo que a TAC entrega, não tem motivo para mudar.</p>
+      <p>Mas se você já perdeu pedido por falta de produto, já recebeu entrega atrasada ou já precisou correr ao CEASA de improviso, então você já sabe que o que tem hoje não é suficiente para o que você precisa.</p>
+      <p>A cotação é gratuita. A conversa não compromete nada.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="sec-cta">
+  <div class="container">
+    <h2>Sua cozinha merece um fornecedor que não para</h2>
+    <p>Fale com a TAC agora pelo WhatsApp e faça sua cotação sem burocracia. Em 25 anos, aprendemos que quanto menos etapas no pedido, melhor para quem precisa abastecer.</p>
+    <a href="https://wa.me/5571996301977?text=Olá, gostaria de fazer uma cotação" target="_blank" class="btn-primary">Quero minha cotação agora</a>
+    <span class="cta-secundario">Ou ligue: (71) 3301-5662 / (71) 3301-6339</span>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p><strong style="color:rgba(255,255,255,0.8)">TAC Distribuidora de Hortifruti</strong></p>
+  <p>CEASA — Cia Aeroporto, BA-526, S/N, Galpão 01, Box 031 — Jardim das Margaridas, Salvador-BA</p>
+  <p>WhatsApp: (71) 9 9630-1977 · (71) 9 9612-4286 · Telefone: (71) 3301-5662</p>
+  <p style="margin-top:12px">© 2026 TAC Alimentos. Todos os direitos reservados.</p>
+</footer>
+
+<!-- STICKY WHATSAPP (mobile) -->
+<div class="sticky-wa">
+  <a href="https://wa.me/5571996301977?text=Olá, gostaria de fazer uma cotação" target="_blank">
+    📲 Fazer cotação pelo WhatsApp
+  </a>
+</div>
+
+</body>
+</html>

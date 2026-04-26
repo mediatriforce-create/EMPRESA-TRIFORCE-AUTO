@@ -1,0 +1,960 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Triforce Auto — Brand Preview</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --black: #050505;
+    --light: #F5F0E8;
+    --font: 'Montserrat', sans-serif;
+    --border: 3px solid #050505;
+    --shadow: 4px 4px 0 #050505;
+  }
+
+  body {
+    font-family: var(--font);
+    background: #111;
+    color: var(--light);
+    min-height: 100vh;
+    padding: 40px 20px 60px;
+  }
+
+  /* PAGE HEADER */
+  .page-header {
+    text-align: center;
+    margin-bottom: 48px;
+  }
+  .page-header h1 {
+    font-size: clamp(18px, 3vw, 28px);
+    font-weight: 900;
+    letter-spacing: -0.5px;
+    color: #fff;
+    text-transform: uppercase;
+  }
+  .page-header p {
+    font-size: 13px;
+    font-weight: 400;
+    color: #888;
+    margin-top: 6px;
+    letter-spacing: 0.5px;
+  }
+
+  /* GRID */
+  .options-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    max-width: 1480px;
+    margin: 0 auto;
+  }
+
+  @media (max-width: 1399px) and (min-width: 700px) {
+    .options-grid {
+      grid-template-columns: repeat(2, 1fr);
+      max-width: 860px;
+    }
+  }
+
+  @media (max-width: 699px) {
+    .options-grid {
+      grid-template-columns: 1fr;
+      max-width: 480px;
+    }
+  }
+
+  /* COLUMN */
+  .option-col {
+    display: flex;
+    flex-direction: column;
+    border: var(--border);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+  .option-col.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .option-col:nth-child(2) { transition-delay: 0.08s; }
+  .option-col:nth-child(3) { transition-delay: 0.16s; }
+  .option-col:nth-child(4) { transition-delay: 0.24s; }
+  .option-col:nth-child(5) { transition-delay: 0.10s; }
+  .option-col:nth-child(6) { transition-delay: 0.18s; }
+  .option-col:nth-child(7) { transition-delay: 0.26s; }
+  .option-col:nth-child(8) { transition-delay: 0.34s; }
+
+  @media (max-width: 699px) {
+    .option-col { transition-delay: 0s !important; }
+  }
+
+  /* LABEL STRIP */
+  .option-label {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 16px;
+    background: var(--black);
+    border-bottom: var(--border);
+  }
+  .option-label .opt-num {
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #555;
+  }
+  .option-label .opt-name {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  /* DARK SECTION */
+  .section-dark {
+    position: relative;
+    overflow: hidden;
+    padding: 36px 24px 40px;
+    background: var(--black);
+  }
+
+  /* BG GRID */
+  .bg-grid {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  /* AURORA ORB */
+  .aurora {
+    position: absolute;
+    width: 260px;
+    height: 260px;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.22;
+    top: -60px;
+    right: -60px;
+    pointer-events: none;
+  }
+
+  /* HERO */
+  .hero-eyebrow {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #666;
+    margin-bottom: 10px;
+    position: relative;
+  }
+  .hero-headline {
+    font-size: clamp(26px, 4vw, 36px);
+    font-weight: 900;
+    line-height: 1.0;
+    text-transform: uppercase;
+    color: #fff;
+    letter-spacing: -1px;
+    position: relative;
+    margin-bottom: 6px;
+  }
+  .hero-headline span.accent {
+    display: block;
+  }
+  .hero-sub {
+    font-size: 13px;
+    font-weight: 400;
+    color: #999;
+    position: relative;
+    margin-bottom: 24px;
+    line-height: 1.5;
+  }
+
+  /* CTA BUTTON */
+  .btn-cta {
+    display: inline-block;
+    font-family: var(--font);
+    font-size: 12px;
+    font-weight: 900;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 12px 22px;
+    border: var(--border);
+    box-shadow: var(--shadow);
+    cursor: pointer;
+    text-decoration: none;
+    position: relative;
+    transition: transform 0.1s, box-shadow 0.1s;
+    color: var(--black);
+  }
+  .btn-cta:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0 var(--black);
+  }
+  .btn-cta:active {
+    transform: translate(2px, 2px);
+    box-shadow: 2px 2px 0 var(--black);
+  }
+
+  /* LIGHT SECTION */
+  .section-light {
+    position: relative;
+    overflow: hidden;
+    padding: 28px 24px 32px;
+    background: var(--light);
+    border-top: var(--border);
+  }
+  .section-light .bg-grid {
+    opacity: 0.5;
+  }
+
+  /* CARD */
+  .service-card {
+    position: relative;
+    background: #fff;
+    border: var(--border);
+    box-shadow: var(--shadow);
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+  .card-tag {
+    font-size: 9px;
+    font-weight: 900;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    display: inline-block;
+    padding: 3px 8px;
+    border: 2px solid var(--black);
+  }
+  .card-title {
+    font-size: 16px;
+    font-weight: 900;
+    color: var(--black);
+    text-transform: uppercase;
+    letter-spacing: -0.5px;
+    margin-bottom: 6px;
+    line-height: 1.1;
+  }
+  .card-desc {
+    font-size: 12px;
+    font-weight: 400;
+    color: #444;
+    line-height: 1.5;
+    margin-bottom: 14px;
+  }
+  .card-metric {
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+  }
+  .metric-num {
+    font-size: 28px;
+    font-weight: 900;
+    color: var(--black);
+    line-height: 1;
+  }
+  .metric-label {
+    font-size: 10px;
+    font-weight: 700;
+    color: #777;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  /* BADGE */
+  .badge-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 16px;
+    position: relative;
+  }
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 6px 12px;
+    border: 2px solid var(--black);
+    box-shadow: 2px 2px 0 var(--black);
+    color: var(--black);
+  }
+  .badge-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--black);
+    flex-shrink: 0;
+  }
+
+  /* TEXT HIGHLIGHT */
+  .highlight-text {
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--black);
+    line-height: 1.6;
+    position: relative;
+  }
+  .highlight-text mark {
+    font-weight: 900;
+    background: none;
+    padding: 0 1px;
+  }
+
+  /* DIRECTION LINE */
+  .direction {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #aaa;
+    text-align: center;
+    padding: 10px;
+    border-top: var(--border);
+    background: var(--black);
+  }
+  .direction span {
+    font-weight: 900;
+  }
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <h1>Triforce Auto — Brand Identity Preview</h1>
+  <p>8 direcoes visuais — compare lado a lado</p>
+</div>
+
+<div class="options-grid">
+
+  <!-- ============================================================ -->
+  <!-- OPCAO 1 — AZUL ELETRICO -->
+  <!-- ============================================================ -->
+  <div class="option-col" id="col1">
+
+    <div class="option-label">
+      <span class="opt-num">Opcao 01</span>
+      <span class="opt-name" style="color:#0066FF;">Azul Eletrico</span>
+    </div>
+
+    <div class="section-dark">
+      <svg class="bg-grid" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <pattern id="grid1" width="28" height="28" patternUnits="userSpaceOnUse">
+            <path d="M 28 0 L 0 0 0 28" fill="none" stroke="#0066FF" stroke-width="0.5" opacity="0.12"/>
+          </pattern>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#grid1)"/>
+      </svg>
+      <div class="aurora" style="background:#0066FF;"></div>
+
+      <div class="hero-eyebrow">Landing Pages + Sistemas</div>
+      <h2 class="hero-headline">
+        Triforce<br>
+        <span class="accent" style="color:#0066FF;">Auto</span>
+      </h2>
+      <p class="hero-sub">LPs e sistemas que vendem.</p>
+      <a class="btn-cta" href="#" style="background:linear-gradient(135deg,#0066FF,#0044CC);">
+        Ver demo gratis
+      </a>
+    </div>
+
+    <div class="section-light">
+      <svg class="bg-grid" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <pattern id="grid1l" width="28" height="28" patternUnits="userSpaceOnUse">
+            <path d="M 28 0 L 0 0 0 28" fill="none" stroke="#0066FF" stroke-width="0.5" opacity="0.06"/>
+          </pattern>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#grid1l)"/>
+      </svg>
+
+      <div class="service-card">
+        <span class="card-tag" style="background:#0066FF;color:#fff;border-color:#0066FF;">Landing Page</span>
+        <div class="card-title">LP de Alta Conversao</div>
+        <p class="card-desc">Paginas otimizadas para transformar visitas em clientes pagantes.</p>
+        <div class="card-metric">
+          <span class="metric-num" style="color:#0066FF;">+340%</span>
+          <span class="metric-label">conversao media</span>
+        </div>
+      </div>
+
+      <div class="badge-row">
+        <div class="badge" style="background:#0066FF;color:#fff;border-color:#050505;">
+          <span class="badge-dot" style="background:#fff;"></span>
+          Tech / Confianca
+        </div>
+        <div class="badge" style="background:transparent;color:#050505;">
+          #0066FF
+        </div>
+      </div>
+
+      <p class="highlight-text">
+        Sua empresa local precisa de uma
+        <mark style="color:#0066FF;">presenca digital</mark>
+        que converta. Nao apenas bonita - mas construida para vender.
+      </p>
+    </div>
+
+    <div class="direction">
+      Direcao: <span style="color:#0066FF;">Tech / Confianca</span>
+    </div>
+
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- OPCAO 2 — ROXO -->
+  <!-- ============================================================ -->
+  <div class="option-col" id="col2">
+
+    <div class="option-label">
+      <span class="opt-num">Opcao 02</span>
+      <span class="opt-name" style="color:#7C3AED;">Roxo</span>
+    </div>
+
+    <div class="section-dark">
+      <svg class="bg-grid" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <pattern id="grid2" width="28" height="28" patternUnits="userSpaceOnUse">
+            <path d="M 28 0 L 0 0 0 28" fill="none" stroke="#7C3AED" stroke-width="0.5" opacity="0.12"/>
+          </pattern>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#grid2)"/>
+      </svg>
+      <div class="aurora" style="background:#7C3AED;"></div>
+
+      <div class="hero-eyebrow">Landing Pages + Sistemas</div>
+      <h2 class="hero-headline">
+        Triforce<br>
+        <span class="accent" style="color:#7C3AED;">Auto</span>
+      </h2>
+      <p class="hero-sub">LPs e sistemas que vendem.</p>
+      <a class="btn-cta" href="#" style="background:linear-gradient(135deg,#7C3AED,#5B21B6);">
+        Ver demo gratis
+      </a>
+    </div>
+
+    <div class="section-light">
+      <svg class="bg-grid" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <pattern id="grid2l" width="28" height="28" patternUnits="userSpaceOnUse">
+            <path d="M 28 0 L 0 0 0 28" fill="none" stroke="#7C3AED" stroke-width="0.5" opacity="0.06"/>
+          </pattern>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#grid2l)"/>
+      </svg>
+
+      <div class="service-card">
+        <span class="card-tag" style="background:#7C3AED;color:#fff;border-color:#7C3AED;">Landing Page</span>
+        <div class="card-title">LP de Alta Conversao</div>
+        <p class="card-desc">Paginas otimizadas para transformar visitas em clientes pagantes.</p>
+        <div class="card-metric">
+          <span class="metric-num" style="color:#7C3AED;">+340%</span>
+          <span class="metric-label">conversao media</span>
+        </div>
+      </div>
+
+      <div class="badge-row">
+        <div class="badge" style="background:#7C3AED;color:#fff;border-color:#050505;">
+          <span class="badge-dot" style="background:#fff;"></span>
+          IA / Exclusivo
+        </div>
+        <div class="badge" style="background:transparent;color:#050505;">
+          #7C3AED
+        </div>
+      </div>
+
+      <p class="highlight-text">
+        Sua empresa local precisa de uma
+        <mark style="color:#7C3AED;">presenca digital</mark>
+        que converta. Nao apenas bonita - mas construida para vender.
+      </p>
+    </div>
+
+    <div class="direction">
+      Direcao: <span style="color:#7C3AED;">IA / Exclusivo</span>
+    </div>
+
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- OPCAO 3 — VERDE-LIMAO -->
+  <!-- ============================================================ -->
+  <div class="option-col" id="col3">
+
+    <div class="option-label">
+      <span class="opt-num">Opcao 03</span>
+      <span class="opt-name" style="color:#A8FF00;">Verde-Limao</span>
+    </div>
+
+    <div class="section-dark">
+      <svg class="bg-grid" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <pattern id="grid3" width="28" height="28" patternUnits="userSpaceOnUse">
+            <path d="M 28 0 L 0 0 0 28" fill="none" stroke="#A8FF00" stroke-width="0.5" opacity="0.12"/>
+          </pattern>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#grid3)"/>
+      </svg>
+      <div class="aurora" style="background:#A8FF00;opacity:0.18;"></div>
+
+      <div class="hero-eyebrow">Landing Pages + Sistemas</div>
+      <h2 class="hero-headline">
+        Triforce<br>
+        <span class="accent" style="color:#A8FF00;">Auto</span>
+      </h2>
+      <p class="hero-sub">LPs e sistemas que vendem.</p>
+      <a class="btn-cta" href="#" style="background:linear-gradient(135deg,#A8FF00,#84CC00);color:#050505;">
+        Ver demo gratis
+      </a>
+    </div>
+
+    <div class="section-light">
+      <svg class="bg-grid" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <pattern id="grid3l" width="28" height="28" patternUnits="userSpaceOnUse">
+            <path d="M 28 0 L 0 0 0 28" fill="none" stroke="#A8FF00" stroke-width="0.5" opacity="0.06"/>
+          </pattern>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#grid3l)"/>
+      </svg>
+
+      <div class="service-card">
+        <span class="card-tag" style="background:#A8FF00;color:#050505;border-color:#050505;">Landing Page</span>
+        <div class="card-title">LP de Alta Conversao</div>
+        <p class="card-desc">Paginas otimizadas para transformar visitas em clientes pagantes.</p>
+        <div class="card-metric">
+          <span class="metric-num" style="color:#6BBF00;">+340%</span>
+          <span class="metric-label">conversao media</span>
+        </div>
+      </div>
+
+      <div class="badge-row">
+        <div class="badge" style="background:#A8FF00;color:#050505;border-color:#050505;">
+          <span class="badge-dot" style="background:#050505;"></span>
+          Agressivo / Diferente
+        </div>
+        <div class="badge" style="background:transparent;color:#050505;">
+          #A8FF00
+        </div>
+      </div>
+
+      <p class="highlight-text">
+        Sua empresa local precisa de uma
+        <mark style="color:#6BBF00;">presenca digital</mark>
+        que converta. Nao apenas bonita - mas construida para vender.
+      </p>
+    </div>
+
+    <div class="direction">
+      Direcao: <span style="color:#A8FF00;">Agressivo / Diferente</span>
+    </div>
+
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- OPCAO 4 — VERMELHO VIVO -->
+  <!-- ============================================================ -->
+  <div class="option-col" id="col4">
+
+    <div class="option-label">
+      <span class="opt-num">Opcao 04</span>
+      <span class="opt-name" style="color:#FF2D2D;">Vermelho Vivo</span>
+    </div>
+
+    <div class="section-dark">
+      <svg class="bg-grid" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <pattern id="grid4" width="28" height="28" patternUnits="userSpaceOnUse">
+            <path d="M 28 0 L 0 0 0 28" fill="none" stroke="#FF2D2D" stroke-width="0.5" opacity="0.12"/>
+          </pattern>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#grid4)"/>
+      </svg>
+      <div class="aurora" style="background:#FF2D2D;"></div>
+
+      <div class="hero-eyebrow">Landing Pages + Sistemas</div>
+      <h2 class="hero-headline">
+        Triforce<br>
+        <span class="accent" style="color:#FF2D2D;">Auto</span>
+      </h2>
+      <p class="hero-sub">LPs e sistemas que vendem.</p>
+      <a class="btn-cta" href="#" style="background:linear-gradient(135deg,#FF2D2D,#CC0000);color:#fff;">
+        Ver demo gratis
+      </a>
+    </div>
+
+    <div class="section-light">
+      <svg class="bg-grid" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <pattern id="grid4l" width="28" height="28" patternUnits="userSpaceOnUse">
+            <path d="M 28 0 L 0 0 0 28" fill="none" stroke="#FF2D2D" stroke-width="0.5" opacity="0.06"/>
+          </pattern>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#grid4l)"/>
+      </svg>
+
+      <div class="service-card">
+        <span class="card-tag" style="background:#FF2D2D;color:#fff;border-color:#FF2D2D;">Landing Page</span>
+        <div class="card-title">LP de Alta Conversao</div>
+        <p class="card-desc">Paginas otimizadas para transformar visitas em clientes pagantes.</p>
+        <div class="card-metric">
+          <span class="metric-num" style="color:#FF2D2D;">+340%</span>
+          <span class="metric-label">conversao media</span>
+        </div>
+      </div>
+
+      <div class="badge-row">
+        <div class="badge" style="background:#FF2D2D;color:#fff;border-color:#050505;">
+          <span class="badge-dot" style="background:#fff;"></span>
+          Urgencia / Impacto
+        </div>
+        <div class="badge" style="background:transparent;color:#050505;">
+          #FF2D2D
+        </div>
+      </div>
+
+      <p class="highlight-text">
+        Sua empresa local precisa de uma
+        <mark style="color:#FF2D2D;">presenca digital</mark>
+        que converta. Nao apenas bonita - mas construida para vender.
+      </p>
+    </div>
+
+    <div class="direction">
+      Direcao: <span style="color:#FF2D2D;">Urgencia / Impacto</span>
+    </div>
+
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- OPCAO 5 — CIANO / TEAL -->
+  <!-- ============================================================ -->
+  <div class="option-col" id="col5">
+
+    <div class="option-label">
+      <span class="opt-num">Opcao 05</span>
+      <span class="opt-name" style="color:#00D4C8;">Ciano / Teal</span>
+    </div>
+
+    <div class="section-dark">
+      <svg class="bg-grid" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <pattern id="grid5" width="28" height="28" patternUnits="userSpaceOnUse">
+            <path d="M 28 0 L 0 0 0 28" fill="none" stroke="#00D4C8" stroke-width="0.5" opacity="0.12"/>
+          </pattern>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#grid5)"/>
+      </svg>
+      <div class="aurora" style="background:#00D4C8;opacity:0.20;"></div>
+
+      <div class="hero-eyebrow">Landing Pages + Sistemas</div>
+      <h2 class="hero-headline">
+        Triforce<br>
+        <span class="accent" style="color:#00D4C8;">Auto</span>
+      </h2>
+      <p class="hero-sub">LPs e sistemas que vendem.</p>
+      <a class="btn-cta" href="#" style="background:linear-gradient(135deg,#00D4C8,#009E94);color:#050505;">
+        Ver demo gratis
+      </a>
+    </div>
+
+    <div class="section-light">
+      <svg class="bg-grid" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <pattern id="grid5l" width="28" height="28" patternUnits="userSpaceOnUse">
+            <path d="M 28 0 L 0 0 0 28" fill="none" stroke="#00D4C8" stroke-width="0.5" opacity="0.06"/>
+          </pattern>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#grid5l)"/>
+      </svg>
+
+      <div class="service-card">
+        <span class="card-tag" style="background:#00D4C8;color:#050505;border-color:#050505;">Landing Page</span>
+        <div class="card-title">LP de Alta Conversao</div>
+        <p class="card-desc">Paginas otimizadas para transformar visitas em clientes pagantes.</p>
+        <div class="card-metric">
+          <span class="metric-num" style="color:#009E94;">+340%</span>
+          <span class="metric-label">conversao media</span>
+        </div>
+      </div>
+
+      <div class="badge-row">
+        <div class="badge" style="background:#00D4C8;color:#050505;border-color:#050505;">
+          <span class="badge-dot" style="background:#050505;"></span>
+          Moderno / Fresco
+        </div>
+        <div class="badge" style="background:transparent;color:#050505;">
+          #00D4C8
+        </div>
+      </div>
+
+      <p class="highlight-text">
+        Sua empresa local precisa de uma
+        <mark style="color:#009E94;">presenca digital</mark>
+        que converta. Nao apenas bonita - mas construida para vender.
+      </p>
+    </div>
+
+    <div class="direction">
+      Direcao: <span style="color:#00D4C8;">Moderno / Fresco</span>
+    </div>
+
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- OPCAO 6 — DOURADO -->
+  <!-- ============================================================ -->
+  <div class="option-col" id="col6">
+
+    <div class="option-label">
+      <span class="opt-num">Opcao 06</span>
+      <span class="opt-name" style="color:#F5C518;">Dourado</span>
+    </div>
+
+    <div class="section-dark">
+      <svg class="bg-grid" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <pattern id="grid6" width="28" height="28" patternUnits="userSpaceOnUse">
+            <path d="M 28 0 L 0 0 0 28" fill="none" stroke="#F5C518" stroke-width="0.5" opacity="0.12"/>
+          </pattern>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#grid6)"/>
+      </svg>
+      <div class="aurora" style="background:#F5C518;opacity:0.20;"></div>
+
+      <div class="hero-eyebrow">Landing Pages + Sistemas</div>
+      <h2 class="hero-headline">
+        Triforce<br>
+        <span class="accent" style="color:#F5C518;">Auto</span>
+      </h2>
+      <p class="hero-sub">LPs e sistemas que vendem.</p>
+      <a class="btn-cta" href="#" style="background:linear-gradient(135deg,#F5C518,#C9980E);color:#050505;">
+        Ver demo gratis
+      </a>
+    </div>
+
+    <div class="section-light">
+      <svg class="bg-grid" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <pattern id="grid6l" width="28" height="28" patternUnits="userSpaceOnUse">
+            <path d="M 28 0 L 0 0 0 28" fill="none" stroke="#F5C518" stroke-width="0.5" opacity="0.06"/>
+          </pattern>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#grid6l)"/>
+      </svg>
+
+      <div class="service-card">
+        <span class="card-tag" style="background:#F5C518;color:#050505;border-color:#050505;">Landing Page</span>
+        <div class="card-title">LP de Alta Conversao</div>
+        <p class="card-desc">Paginas otimizadas para transformar visitas em clientes pagantes.</p>
+        <div class="card-metric">
+          <span class="metric-num" style="color:#C9980E;">+340%</span>
+          <span class="metric-label">conversao media</span>
+        </div>
+      </div>
+
+      <div class="badge-row">
+        <div class="badge" style="background:#F5C518;color:#050505;border-color:#050505;">
+          <span class="badge-dot" style="background:#050505;"></span>
+          Premium / Autoridade
+        </div>
+        <div class="badge" style="background:transparent;color:#050505;">
+          #F5C518
+        </div>
+      </div>
+
+      <p class="highlight-text">
+        Sua empresa local precisa de uma
+        <mark style="color:#C9980E;">presenca digital</mark>
+        que converta. Nao apenas bonita - mas construida para vender.
+      </p>
+    </div>
+
+    <div class="direction">
+      Direcao: <span style="color:#F5C518;">Premium / Autoridade</span>
+    </div>
+
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- OPCAO 7 — LARANJA REFINADO -->
+  <!-- ============================================================ -->
+  <div class="option-col" id="col7">
+
+    <div class="option-label">
+      <span class="opt-num">Opcao 07</span>
+      <span class="opt-name" style="color:#FF4500;">Laranja Refinado</span>
+    </div>
+
+    <div class="section-dark">
+      <svg class="bg-grid" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <pattern id="grid7" width="28" height="28" patternUnits="userSpaceOnUse">
+            <path d="M 28 0 L 0 0 0 28" fill="none" stroke="#FF4500" stroke-width="0.5" opacity="0.12"/>
+          </pattern>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#grid7)"/>
+      </svg>
+      <div class="aurora" style="background:#FF4500;opacity:0.22;"></div>
+
+      <div class="hero-eyebrow">Landing Pages + Sistemas</div>
+      <h2 class="hero-headline">
+        Triforce<br>
+        <span class="accent" style="color:#FF4500;">Auto</span>
+      </h2>
+      <p class="hero-sub">LPs e sistemas que vendem.</p>
+      <a class="btn-cta" href="#" style="background:linear-gradient(135deg,#FF4500,#CC3700);color:#fff;">
+        Ver demo gratis
+      </a>
+    </div>
+
+    <div class="section-light">
+      <svg class="bg-grid" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <pattern id="grid7l" width="28" height="28" patternUnits="userSpaceOnUse">
+            <path d="M 28 0 L 0 0 0 28" fill="none" stroke="#FF4500" stroke-width="0.5" opacity="0.06"/>
+          </pattern>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#grid7l)"/>
+      </svg>
+
+      <div class="service-card">
+        <span class="card-tag" style="background:#FF4500;color:#fff;border-color:#FF4500;">Landing Page</span>
+        <div class="card-title">LP de Alta Conversao</div>
+        <p class="card-desc">Paginas otimizadas para transformar visitas em clientes pagantes.</p>
+        <div class="card-metric">
+          <span class="metric-num" style="color:#FF4500;">+340%</span>
+          <span class="metric-label">conversao media</span>
+        </div>
+      </div>
+
+      <div class="badge-row">
+        <div class="badge" style="background:#FF4500;color:#fff;border-color:#050505;">
+          <span class="badge-dot" style="background:#fff;"></span>
+          Energia / Refinado
+        </div>
+        <div class="badge" style="background:transparent;color:#050505;">
+          #FF4500
+        </div>
+      </div>
+
+      <p class="highlight-text">
+        Sua empresa local precisa de uma
+        <mark style="color:#FF4500;">presenca digital</mark>
+        que converta. Nao apenas bonita - mas construida para vender.
+      </p>
+    </div>
+
+    <div class="direction">
+      Direcao: <span style="color:#FF4500;">Energia / Refinado</span>
+    </div>
+
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- OPCAO 8 — ROSA NEON -->
+  <!-- ============================================================ -->
+  <div class="option-col" id="col8">
+
+    <div class="option-label">
+      <span class="opt-num">Opcao 08</span>
+      <span class="opt-name" style="color:#FF2D78;">Rosa Neon</span>
+    </div>
+
+    <div class="section-dark">
+      <svg class="bg-grid" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <pattern id="grid8" width="28" height="28" patternUnits="userSpaceOnUse">
+            <path d="M 28 0 L 0 0 0 28" fill="none" stroke="#FF2D78" stroke-width="0.5" opacity="0.12"/>
+          </pattern>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#grid8)"/>
+      </svg>
+      <div class="aurora" style="background:#FF2D78;opacity:0.22;"></div>
+
+      <div class="hero-eyebrow">Landing Pages + Sistemas</div>
+      <h2 class="hero-headline">
+        Triforce<br>
+        <span class="accent" style="color:#FF2D78;">Auto</span>
+      </h2>
+      <p class="hero-sub">LPs e sistemas que vendem.</p>
+      <a class="btn-cta" href="#" style="background:linear-gradient(135deg,#FF2D78,#CC0055);color:#fff;">
+        Ver demo gratis
+      </a>
+    </div>
+
+    <div class="section-light">
+      <svg class="bg-grid" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <pattern id="grid8l" width="28" height="28" patternUnits="userSpaceOnUse">
+            <path d="M 28 0 L 0 0 0 28" fill="none" stroke="#FF2D78" stroke-width="0.5" opacity="0.06"/>
+          </pattern>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#grid8l)"/>
+      </svg>
+
+      <div class="service-card">
+        <span class="card-tag" style="background:#FF2D78;color:#fff;border-color:#FF2D78;">Landing Page</span>
+        <div class="card-title">LP de Alta Conversao</div>
+        <p class="card-desc">Paginas otimizadas para transformar visitas em clientes pagantes.</p>
+        <div class="card-metric">
+          <span class="metric-num" style="color:#FF2D78;">+340%</span>
+          <span class="metric-label">conversao media</span>
+        </div>
+      </div>
+
+      <div class="badge-row">
+        <div class="badge" style="background:#FF2D78;color:#fff;border-color:#050505;">
+          <span class="badge-dot" style="background:#fff;"></span>
+          Ousado / Memoravel
+        </div>
+        <div class="badge" style="background:transparent;color:#050505;">
+          #FF2D78
+        </div>
+      </div>
+
+      <p class="highlight-text">
+        Sua empresa local precisa de uma
+        <mark style="color:#FF2D78;">presenca digital</mark>
+        que converta. Nao apenas bonita - mas construida para vender.
+      </p>
+    </div>
+
+    <div class="direction">
+      Direcao: <span style="color:#FF2D78;">Ousado / Memoravel</span>
+    </div>
+
+  </div>
+
+</div><!-- /options-grid -->
+
+<script>
+  const cols = document.querySelectorAll('.option-col');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.05 });
+
+  cols.forEach(col => observer.observe(col));
+</script>
+
+</body>
+</html>

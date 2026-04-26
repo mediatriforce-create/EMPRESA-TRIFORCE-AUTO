@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Proposta Comercial TAC — Triforce Auto</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --accent: #FF6600;
+  --black: #050505;
+  --dark: #0d0d0d;
+  --dark2: #141414;
+  --light: #F5F0E8;
+  --border: 3px solid #050505;
+  --shadow: 4px 4px 0 #050505;
+  --font: 'Montserrat', sans-serif;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font);
+  background: var(--dark);
+  color: var(--light);
+  overflow-x: hidden;
+}
+
+/* ── REVEAL ────────────────────────────────────────────── */
+.reveal {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity .65s ease, transform .65s ease;
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.d1 { transition-delay: .05s; }
+.d2 { transition-delay: .15s; }
+.d3 { transition-delay: .25s; }
+.d4 { transition-delay: .35s; }
+.d5 { transition-delay: .45s; }
+
+/* ── GRID OVERLAY ──────────────────────────────────────── */
+.grid-overlay {
+  position: absolute; inset: 0; pointer-events: none;
+  background-image:
+    linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+/* ── AURORA ORBS ───────────────────────────────────────── */
+.ao {
+  position: absolute; border-radius: 50%;
+  filter: blur(72px); pointer-events: none;
+}
+@keyframes ao-float-1 { 0%,100%{transform:translate(0,0) scale(1);} 50%{transform:translate(30px,-25px) scale(1.07);} }
+@keyframes ao-float-2 { 0%,100%{transform:translate(0,0) scale(1);} 50%{transform:translate(-20px,30px) scale(.95);} }
+
+/* ── EYEBROW ───────────────────────────────────────────── */
+.eyebrow {
+  font-size: .55rem; font-weight: 900;
+  text-transform: uppercase; letter-spacing: .28em;
+  color: var(--accent); margin-bottom: 1rem;
+  display: flex; align-items: center; gap: .75rem;
+}
+.eyebrow::after { content: ''; flex: 1; height: 1px; background: rgba(255,102,0,.22); max-width: 80px; }
+
+/* ── SECTION WATERMARK ─────────────────────────────────── */
+.wm {
+  position: absolute; font-size: clamp(5rem,14vw,11rem);
+  font-weight: 900; text-transform: uppercase;
+  color: rgba(255,255,255,.025); letter-spacing: -.04em;
+  line-height: 1; pointer-events: none; user-select: none;
+  white-space: nowrap;
+}
+
+/* ── BTN ───────────────────────────────────────────────── */
+.btn-cartoon {
+  display: inline-flex; align-items: center; gap: .5rem;
+  padding: .85rem 1.8rem;
+  background: var(--accent);
+  color: var(--black);
+  border: var(--border);
+  box-shadow: var(--shadow);
+  font-family: var(--font);
+  font-size: .75rem; font-weight: 900;
+  text-transform: uppercase; letter-spacing: .1em;
+  cursor: pointer; text-decoration: none;
+  transition: transform .15s, box-shadow .15s;
+  position: relative; overflow: hidden;
+}
+.btn-cartoon::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(105deg, transparent 40%, rgba(255,255,255,.25) 50%, transparent 60%);
+  transform: translateX(-100%);
+}
+.btn-cartoon:hover { transform: translate(-2px,-2px); box-shadow: 6px 6px 0 var(--black); }
+.btn-cartoon:hover::after { transform: translateX(100%); transition: transform .5s ease; }
+.btn-cartoon:active { transform: translate(2px,2px); box-shadow: 2px 2px 0 var(--black); }
+
+/* ══════════════════════════════════════════════════════════
+   S1 — HERO
+══════════════════════════════════════════════════════════ */
+#hero {
+  min-height: 100vh; background: var(--dark);
+  position: relative; overflow: hidden;
+  display: flex; flex-direction: column;
+  justify-content: center; padding: 6rem 8vw 5rem;
+}
+.hero-top {
+  position: absolute; top: 2rem; left: 8vw; right: 8vw;
+  display: flex; justify-content: space-between; align-items: center;
+  z-index: 2;
+}
+.hero-logo { font-size: .6rem; font-weight: 900; letter-spacing: .3em; color: var(--accent); text-transform: uppercase; }
+.hero-badge {
+  background: var(--accent); color: var(--black);
+  font-size: .5rem; font-weight: 900; text-transform: uppercase;
+  letter-spacing: .15em; padding: .4rem .9rem;
+  border: 2px solid var(--black);
+}
+.hero-content { position: relative; z-index: 2; max-width: 900px; }
+.hero-eyebrow { font-size: .55rem; font-weight: 700; letter-spacing: .3em; color: rgba(255,102,0,.7); text-transform: uppercase; margin-bottom: 1.5rem; }
+.hero-h1 {
+  font-size: clamp(3.5rem, 10vw, 8.5rem);
+  font-weight: 900; line-height: .9;
+  text-transform: uppercase; letter-spacing: -.04em;
+  color: var(--light); margin-bottom: 1.5rem;
+}
+.hero-h1 span { color: var(--accent); }
+.hero-rule { width: 80px; height: 3px; background: var(--accent); margin-bottom: 1.5rem; }
+.hero-sub {
+  font-size: clamp(.85rem,1.8vw,1.1rem); font-weight: 500;
+  color: rgba(245,240,232,.62); max-width: 520px; line-height: 1.65;
+  margin-bottom: 2.5rem;
+}
+.hero-meta {
+  display: flex; gap: 2.5rem; margin-top: 3rem;
+  padding-top: 2rem; border-top: 1px solid rgba(255,102,0,.2);
+}
+.hero-meta-item {}
+.hero-meta-label { font-size: .45rem; font-weight: 900; letter-spacing: .25em; color: rgba(255,102,0,.55); text-transform: uppercase; margin-bottom: .3rem; }
+.hero-meta-value { font-size: .85rem; font-weight: 700; color: var(--light); }
+
+/* ══════════════════════════════════════════════════════════
+   S2 — SITUAÇÃO
+══════════════════════════════════════════════════════════ */
+#situacao {
+  background: var(--light); color: var(--black);
+  padding: 6rem 8vw; position: relative; overflow: hidden;
+}
+.sit-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 1.5rem; margin-bottom: 2rem;
+}
+@media(max-width:700px){ .sit-grid { grid-template-columns: 1fr; } }
+.sit-box {
+  padding: 1.75rem; border: var(--border);
+  transition: transform .2s, box-shadow .2s;
+}
+.sit-box:hover { transform: translate(-2px,-2px); box-shadow: var(--shadow); }
+.sit-box.bad  { background: #fff; }
+.sit-box.good { background: var(--black); color: var(--light); }
+.sit-label {
+  font-size: .48rem; font-weight: 900; letter-spacing: .2em;
+  text-transform: uppercase; margin-bottom: 1rem;
+  padding-bottom: .6rem; border-bottom: 2px solid;
+}
+.sit-box.bad  .sit-label { color: rgba(5,5,5,.35); border-color: rgba(5,5,5,.1); }
+.sit-box.good .sit-label { color: var(--accent); border-color: rgba(255,102,0,.3); }
+.sit-list { list-style: none; display: flex; flex-direction: column; gap: .6rem; }
+.sit-list li { font-size: .82rem; font-weight: 600; display: flex; align-items: flex-start; gap: .5rem; }
+.sit-box.bad  .sit-list li { color: rgba(5,5,5,.7); }
+.sit-box.good .sit-list li { color: rgba(245,240,232,.8); }
+.sit-list li::before { content: '→'; font-weight: 900; flex-shrink: 0; margin-top: 1px; }
+.sit-box.bad  .sit-list li::before { color: #ccc; }
+.sit-box.good .sit-list li::before { color: var(--accent); }
+
+.callout {
+  background: var(--accent); border: var(--border); box-shadow: var(--shadow);
+  padding: 1.25rem 1.5rem;
+  font-size: clamp(.9rem,1.8vw,1.15rem); font-weight: 800; color: var(--black);
+  line-height: 1.45;
+}
+
+/* ══════════════════════════════════════════════════════════
+   S3 — PROMESSA
+══════════════════════════════════════════════════════════ */
+#promessa {
+  background: var(--dark2); color: var(--light);
+  padding: 6rem 8vw; position: relative; overflow: hidden;
+}
+.promessa-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+@media(max-width:800px){ .promessa-grid { grid-template-columns: 1fr; } }
+.promessa-h {
+  font-size: clamp(2rem,5vw,4rem); font-weight: 900;
+  line-height: 1; letter-spacing: -.03em; text-transform: uppercase;
+}
+.promessa-h b { color: var(--accent); }
+.promessa-body { font-size: .88rem; color: rgba(245,240,232,.65); line-height: 1.8; }
+.promessa-body p { margin-bottom: 1rem; }
+.promessa-meta {
+  margin-top: 1.5rem; padding: 1.25rem 1.5rem;
+  background: rgba(255,102,0,.1); border-left: 4px solid var(--accent);
+  font-size: .82rem; font-weight: 700; color: var(--light);
+}
+
+/* ══════════════════════════════════════════════════════════
+   S4 — PROTOCOLO AAA
+══════════════════════════════════════════════════════════ */
+#protocolo {
+  background: var(--light); color: var(--black);
+  padding: 6rem 8vw; position: relative; overflow: hidden;
+}
+.aaa-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.25rem; margin-top: 3rem; }
+@media(max-width:800px){ .aaa-grid { grid-template-columns: 1fr; } }
+.aaa-card {
+  border: var(--border); overflow: hidden;
+  transition: transform .2s, box-shadow .2s;
+}
+.aaa-card:hover { transform: translate(-3px,-3px); box-shadow: var(--shadow); }
+.aaa-head {
+  background: var(--black); color: var(--light);
+  padding: 1.25rem; display: flex; align-items: center; gap: .75rem;
+}
+.aaa-num { font-size: 3rem; font-weight: 900; color: rgba(255,102,0,.2); line-height: 1; }
+.aaa-label { font-size: .45rem; font-weight: 700; letter-spacing: .2em; color: rgba(255,102,0,.55); text-transform: uppercase; }
+.aaa-name { font-size: 1.5rem; font-weight: 900; color: var(--accent); text-transform: uppercase; line-height: 1; }
+.aaa-body { padding: 1.25rem; background: var(--light); }
+.aaa-body-title { font-size: .55rem; font-weight: 800; text-transform: uppercase; letter-spacing: .12em; color: rgba(5,5,5,.4); margin-bottom: .6rem; }
+.aaa-body p { font-size: .83rem; color: rgba(5,5,5,.7); line-height: 1.65; }
+
+/* ══════════════════════════════════════════════════════════
+   S5 — ESCOPO
+══════════════════════════════════════════════════════════ */
+#escopo {
+  background: var(--dark); color: var(--light);
+  padding: 6rem 8vw; position: relative; overflow: hidden;
+}
+.escopo-tabs { display: flex; gap: 0; margin-bottom: 2rem; flex-wrap: wrap; }
+.etab {
+  padding: .65rem 1.25rem;
+  font-size: .55rem; font-weight: 900;
+  text-transform: uppercase; letter-spacing: .15em;
+  cursor: pointer; border: 2px solid rgba(255,255,255,.1);
+  color: rgba(245,240,232,.45); background: transparent;
+  font-family: var(--font);
+  transition: all .2s;
+}
+.etab.active {
+  background: var(--accent); color: var(--black);
+  border-color: var(--accent);
+}
+.etab:hover:not(.active) { border-color: rgba(255,102,0,.4); color: var(--accent); }
+.escopo-pane { display: none; }
+.escopo-pane.active { display: block; animation: fadeUp .35s ease; }
+@keyframes fadeUp { from{opacity:0;transform:translateY(12px);} to{opacity:1;transform:translateY(0);} }
+.escopo-group { margin-bottom: 1.5rem; }
+.escopo-group-title {
+  font-size: .5rem; font-weight: 900; text-transform: uppercase;
+  letter-spacing: .25em; color: var(--accent);
+  padding-bottom: .5rem; margin-bottom: .75rem;
+  border-bottom: 1px solid rgba(255,102,0,.2);
+}
+.escopo-items { display: flex; flex-direction: column; gap: .5rem; }
+.escopo-item {
+  display: flex; align-items: flex-start; gap: .75rem;
+  font-size: .83rem; color: rgba(245,240,232,.72); line-height: 1.5;
+}
+.escopo-item::before {
+  content: '✓'; color: var(--accent); font-weight: 900;
+  font-size: .75rem; flex-shrink: 0; margin-top: 1px;
+}
+
+/* ══════════════════════════════════════════════════════════
+   S6 — COMPROMISOS
+══════════════════════════════════════════════════════════ */
+#compromissos {
+  background: var(--light); color: var(--black);
+  padding: 6rem 8vw; position: relative; overflow: hidden;
+}
+.commit-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+@media(max-width:700px){ .commit-grid { grid-template-columns: 1fr; } }
+.commit-card {
+  border: var(--border); padding: 1.5rem; background: #fff;
+  transition: transform .2s, box-shadow .2s;
+}
+.commit-card:hover { transform: translate(-3px,-3px); box-shadow: var(--shadow); }
+.commit-icon { font-size: 1.75rem; margin-bottom: .75rem; }
+.commit-title { font-size: .82rem; font-weight: 900; text-transform: uppercase; letter-spacing: .04em; margin-bottom: .5rem; }
+.commit-body { font-size: .8rem; color: rgba(5,5,5,.58); line-height: 1.65; }
+.commit-footer {
+  margin-top: 2.5rem; padding: 1.25rem 1.5rem;
+  background: var(--black); color: rgba(245,240,232,.65);
+  font-size: .82rem; line-height: 1.7;
+}
+.commit-footer strong { color: var(--accent); }
+
+/* ══════════════════════════════════════════════════════════
+   S7 — INVESTIMENTO
+══════════════════════════════════════════════════════════ */
+#investimento {
+  background: var(--dark2); color: var(--light);
+  padding: 6rem 8vw; position: relative; overflow: hidden;
+}
+.invest-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: start; }
+@media(max-width:800px){ .invest-grid { grid-template-columns: 1fr; } }
+
+.anchor-table { width: 100%; border-collapse: collapse; margin-bottom: 1.5rem; }
+.anchor-table th {
+  background: rgba(255,255,255,.05); color: var(--accent);
+  padding: .6rem .9rem; text-align: left;
+  font-size: .5rem; font-weight: 900; text-transform: uppercase; letter-spacing: .1em;
+  border-bottom: 2px solid rgba(255,102,0,.3);
+}
+.anchor-table td {
+  padding: .55rem .9rem; border-bottom: 1px solid rgba(255,255,255,.06);
+  font-size: .78rem; color: rgba(245,240,232,.6); vertical-align: top;
+}
+.anchor-table tr:last-child td { border-bottom: none; }
+.anchor-table td.pc { text-align: right; font-weight: 700; white-space: nowrap; color: rgba(245,240,232,.45); }
+.anchor-table tfoot td {
+  background: rgba(255,102,0,.12); color: var(--light);
+  font-weight: 800; font-size: .88rem; padding: .75rem .9rem;
+  border-top: 2px solid rgba(255,102,0,.4);
+}
+.anchor-table tfoot td.pc { color: var(--accent); }
+
+.price-highlight {
+  border: 3px solid rgba(255,102,0,.3);
+  background: rgba(255,102,0,.06);
+  padding: 2rem;
+  position: sticky; top: 2rem;
+}
+.price-mkt { font-size: .82rem; font-weight: 700; color: rgba(245,240,232,.35); text-decoration: line-through; margin-bottom: 1.5rem; }
+.price-big { font-size: clamp(3rem,7vw,5.5rem); font-weight: 900; color: var(--accent); line-height: 1; letter-spacing: -.03em; }
+.price-period { font-size: .7rem; font-weight: 600; color: rgba(245,240,232,.45); margin-top: .35rem; margin-bottom: 2rem; }
+.price-rows { display: flex; flex-direction: column; gap: .75rem; padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,.08); }
+.price-row { display: flex; justify-content: space-between; align-items: baseline; font-size: .8rem; }
+.price-row span { color: rgba(245,240,232,.55); }
+.price-row strong { color: var(--accent); font-weight: 800; }
+.price-badge-big {
+  background: var(--accent); color: var(--black);
+  border: var(--border); box-shadow: var(--shadow);
+  padding: 1rem 1.25rem; text-align: center;
+  margin-top: 1.5rem;
+}
+.price-badge-big b { display: block; font-size: 1.15rem; font-weight: 900; text-transform: uppercase; }
+.price-badge-big span { font-size: .7rem; font-weight: 600; opacity: .7; }
+.price-note-web {
+  margin-top: 1rem; padding: .9rem 1rem;
+  background: rgba(255,255,255,.04); border-left: 3px solid var(--accent);
+  font-size: .75rem; color: rgba(245,240,232,.5); line-height: 1.6;
+}
+
+/* ══════════════════════════════════════════════════════════
+   S8 — PRÓXIMOS PASSOS
+══════════════════════════════════════════════════════════ */
+#passos {
+  background: var(--light); color: var(--black);
+  padding: 6rem 8vw; position: relative; overflow: hidden;
+}
+.steps { display: flex; flex-direction: column; max-width: 640px; }
+.step { display: flex; gap: 0; }
+.step-num-col { display: flex; flex-direction: column; align-items: center; flex-shrink: 0; width: 48px; }
+.step-num {
+  width: 48px; height: 48px;
+  background: var(--accent); border: var(--border);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.1rem; font-weight: 900; color: var(--black); flex-shrink: 0;
+}
+.step-line { width: 3px; background: var(--black); flex: 1; min-height: 16px; }
+.step:last-child .step-line { display: none; }
+.step-body { padding: .6rem 0 2rem 1.25rem; flex: 1; }
+.step-title { font-size: .88rem; font-weight: 900; text-transform: uppercase; letter-spacing: .04em; margin-bottom: .3rem; }
+.step-desc { font-size: .8rem; color: rgba(5,5,5,.55); line-height: 1.6; }
+
+.cta-block {
+  margin-top: 3rem; padding: 2.5rem;
+  background: var(--black); color: var(--light);
+  border: var(--border); box-shadow: var(--shadow);
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 2rem; flex-wrap: wrap;
+}
+.cta-text { font-size: clamp(1rem,2vw,1.35rem); font-weight: 900; line-height: 1.3; }
+.cta-text span { color: var(--accent); }
+
+/* ══════════════════════════════════════════════════════════
+   S9 — ADICIONAL
+══════════════════════════════════════════════════════════ */
+#adicional {
+  background: var(--dark); color: var(--light);
+  padding: 6rem 8vw; position: relative; overflow: hidden;
+}
+.adicional-card {
+  border: 2px solid rgba(255,102,0,.25);
+  background: rgba(255,102,0,.05); padding: 2.5rem;
+  max-width: 900px;
+}
+.adicional-head {
+  display: flex; align-items: center; justify-content: space-between;
+  padding-bottom: 1.5rem; margin-bottom: 1.5rem;
+  border-bottom: 1px solid rgba(255,102,0,.2); gap: 1rem; flex-wrap: wrap;
+}
+.adicional-title { font-size: clamp(1.1rem,2.5vw,1.6rem); font-weight: 900; text-transform: uppercase; }
+.adicional-price {
+  background: var(--accent); color: var(--black);
+  font-size: 1.25rem; font-weight: 900; padding: .5rem 1.25rem;
+  border: var(--border); flex-shrink: 0;
+}
+.adicional-desc { font-size: .83rem; color: rgba(245,240,232,.6); line-height: 1.7; margin-bottom: 1.5rem; }
+.adicional-items { display: grid; grid-template-columns: 1fr 1fr; gap: .5rem .75rem; }
+@media(max-width:600px){ .adicional-items { grid-template-columns: 1fr; } }
+.adicional-item { font-size: .82rem; color: rgba(245,240,232,.72); display: flex; align-items: baseline; gap: .5rem; }
+.adicional-item::before { content: '✓'; color: var(--accent); font-weight: 900; flex-shrink: 0; }
+
+/* ══════════════════════════════════════════════════════════
+   FOOTER
+══════════════════════════════════════════════════════════ */
+footer {
+  background: var(--black); padding: 2rem 8vw;
+  display: flex; align-items: center; justify-content: space-between;
+  border-top: 3px solid var(--accent); flex-wrap: wrap; gap: 1rem;
+}
+.footer-logo { font-size: .65rem; font-weight: 900; color: var(--accent); letter-spacing: .3em; text-transform: uppercase; }
+.footer-tag { font-size: .6rem; color: rgba(245,240,232,.3); letter-spacing: .15em; }
+
+/* ══════════════════════════════════════════════════════════
+   SECTION SHARED
+══════════════════════════════════════════════════════════ */
+.sec-eyebrow-dark { color: var(--accent); }
+.sec-title-dark {
+  font-size: clamp(2rem,5vw,3.5rem); font-weight: 900;
+  text-transform: uppercase; letter-spacing: -.03em; line-height: 1;
+  color: var(--light); margin-bottom: 1.25rem;
+}
+.sec-title-light {
+  font-size: clamp(2rem,5vw,3.5rem); font-weight: 900;
+  text-transform: uppercase; letter-spacing: -.03em; line-height: 1;
+  color: var(--black); margin-bottom: 1.25rem;
+  border-bottom: 3px solid var(--black); padding-bottom: .5rem;
+}
+
+/* mobile */
+@media(max-width:600px){
+  #hero { padding: 5rem 6vw 4rem; }
+  .hero-meta { flex-wrap: wrap; gap: 1.5rem; }
+  #situacao,#promessa,#protocolo,#escopo,#compromissos,#investimento,#passos,#adicional { padding: 4rem 6vw; }
+  .invest-grid { grid-template-columns: 1fr; }
+  .cta-block { flex-direction: column; }
+}
+</style>
+</head>
+<body>
+
+<!-- ══ S1 HERO ══════════════════════════════════════════ -->
+<section id="hero">
+  <div class="grid-overlay"></div>
+  <div class="ao" style="width:600px;height:600px;background:rgba(255,102,0,.14);top:-15%;right:-5%;animation:ao-float-1 18s ease-in-out infinite;"></div>
+  <div class="ao" style="width:350px;height:350px;background:rgba(255,102,0,.08);bottom:5%;left:-5%;animation:ao-float-2 24s ease-in-out infinite;"></div>
+  <div class="wm" style="bottom:-2rem;right:2vw;">PROPOSTA</div>
+
+  <div class="hero-top">
+    <div class="hero-logo">Triforce Auto</div>
+    <div class="hero-badge">Protocolo AAA</div>
+  </div>
+
+  <div class="hero-content">
+    <div class="hero-eyebrow reveal">Proposta Comercial · TAC Distribuidora · 2026</div>
+    <h1 class="hero-h1 reveal d1">Tirar a TAC<br>da <span>invisibilidade</span></h1>
+    <div class="hero-rule reveal d2"></div>
+    <p class="hero-sub reveal d2">Atração ativa de clientes B2B de hortifruti na Bahia. Protocolo AAA em 90 dias.</p>
+    <a href="#passos" class="btn-cartoon reveal d3">Ver proposta completa</a>
+    <div class="hero-meta reveal d4">
+      <div class="hero-meta-item">
+        <div class="hero-meta-label">Cliente</div>
+        <div class="hero-meta-value">TAC Distribuidora</div>
+      </div>
+      <div class="hero-meta-item">
+        <div class="hero-meta-label">Período</div>
+        <div class="hero-meta-value">3 meses</div>
+      </div>
+      <div class="hero-meta-item">
+        <div class="hero-meta-label">Emitida em</div>
+        <div class="hero-meta-value">24/04/2026</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ S2 SITUAÇÃO ══════════════════════════════════════ -->
+<section id="situacao">
+  <div class="wm" style="top:-1rem;left:-1rem;color:rgba(5,5,5,.04);">HOJE</div>
+  <div class="eyebrow reveal" style="color:rgba(5,5,5,.4);">01 / Diagnóstico</div>
+  <h2 class="sec-title-light reveal d1">A situação hoje</h2>
+
+  <div class="sit-grid">
+    <div class="sit-box bad reveal d1">
+      <div class="sit-label">O que existe hoje</div>
+      <ul class="sit-list">
+        <li>Instagram com 3.357 seguidores, postagem irregular</li>
+        <li>Zero cotação vindo das redes sociais</li>
+        <li>Site com SSL quebrado e carregamento lento</li>
+        <li>Sem caminho claro para pedir cotação</li>
+        <li>Google Meu Negócio incompleto</li>
+        <li>LinkedIn desatualizado</li>
+      </ul>
+    </div>
+    <div class="sit-box good reveal d2">
+      <div class="sit-label">O que a TAC tem de verdade</div>
+      <ul class="sit-list">
+        <li>25 anos de CEASA Bahia</li>
+        <li>Carteira sólida de clientes</li>
+        <li>Volume e capacidade de entrega</li>
+        <li>Reputação real no mercado físico</li>
+        <li>História que nenhum concorrente tem</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="callout reveal d3">
+    25 anos de reputação, invisível pra quem ainda não te conhece. Não porque a TAC é pior. Porque a TAC simplesmente não aparece.
+  </div>
+</section>
+
+<!-- ══ S3 PROMESSA ══════════════════════════════════════ -->
+<section id="promessa">
+  <div class="grid-overlay"></div>
+  <div class="ao" style="width:500px;height:500px;background:rgba(255,102,0,.1);top:-20%;right:-8%;animation:ao-float-1 16s ease-in-out infinite;"></div>
+  <div class="wm" style="bottom:-1rem;left:-1rem;">META</div>
+
+  <div class="promessa-grid">
+    <div>
+      <div class="eyebrow reveal">02 / Promessa</div>
+      <h2 class="sec-title-dark reveal d1">O que muda<br>em <b style="color:var(--accent)">90 dias</b></h2>
+      <div class="promessa-meta reveal d2">
+        Meta declarada: aos 60 dias, empresa nova chegando no WhatsApp da TAC pedindo cotação.
+      </div>
+    </div>
+    <div class="reveal d2">
+      <div class="promessa-body">
+        <p>Empresa nova abrindo na Bahia vai pesquisar fornecedor de hortifruti e vai encontrar a TAC.</p>
+        <p>O Instagram vai estar na frente de restaurante, hotel, hospital e cozinha industrial todos os dias, com conteúdo que mostra 25 anos de CEASA na prática.</p>
+        <p>O anúncio vai chegar em quem compra caixa, não em quem compra 2 maçãs. O WhatsApp vai receber cotação de empresa nova toda semana.</p>
+        <p>E o dono acompanha tudo em tempo real, sem caixa-preta.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ S4 PROTOCOLO AAA ═════════════════════════════════ -->
+<section id="protocolo">
+  <div class="wm" style="top:-1rem;right:-1rem;color:rgba(5,5,5,.04);">AAA</div>
+  <div class="eyebrow reveal" style="color:rgba(5,5,5,.4);">03 / Método</div>
+  <h2 class="sec-title-light reveal d1">Protocolo AAA</h2>
+  <p class="reveal d2" style="font-size:.88rem;color:rgba(5,5,5,.6);max-width:560px;line-height:1.7;">Três fases sequenciais. Nenhuma pode ser pulada. Quem roda anúncio sem Ativar queima verba. Quem Atrai sem Acompanhar perde o cliente no caminho.</p>
+
+  <div class="aaa-grid">
+    <div class="aaa-card reveal d1">
+      <div class="aaa-head">
+        <div class="aaa-num">1</div>
+        <div>
+          <div class="aaa-label">Fase 1 · Dias 1–15</div>
+          <div class="aaa-name">Ativar</div>
+        </div>
+      </div>
+      <div class="aaa-body">
+        <div class="aaa-body-title">Arrumar a casa antes de gastar um real</div>
+        <p>Correção de SSL, Google Meu Negócio completo e vivo, LinkedIn atualizado, Business Manager Meta configurado com CNPJ verificado.<br><br>Quem pesquisar a TAC vai encontrar uma empresa organizada e confiável.</p>
+      </div>
+    </div>
+    <div class="aaa-card reveal d2">
+      <div class="aaa-head">
+        <div class="aaa-num">2</div>
+        <div>
+          <div class="aaa-label">Fase 2 · Dia 16 em diante</div>
+          <div class="aaa-name">Atrair</div>
+        </div>
+      </div>
+      <div class="aaa-body">
+        <div class="aaa-body-title">Presença diária + anúncio segmentado</div>
+        <p>Conteúdo com dado real da operação: produto do dia, chegada de carga, volume disponível, bastidor do CEASA.<br><br>Anúncio chegando em compradores por cargo, interesse e região na Bahia.</p>
+      </div>
+    </div>
+    <div class="aaa-card reveal d3">
+      <div class="aaa-head">
+        <div class="aaa-num">3</div>
+        <div>
+          <div class="aaa-label">Fase 3 · Todo mês</div>
+          <div class="aaa-name">Acompanhar</div>
+        </div>
+      </div>
+      <div class="aaa-body">
+        <div class="aaa-body-title">Painel aberto, sem caixa-preta</div>
+        <p>O dono vê quantas empresas chegaram, quanto foi gasto, quantas viraram cotação.<br><br>Relatório toda semana. Reunião mensal de calibração com o dono, não com intermediário.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ S5 ESCOPO ════════════════════════════════════════ -->
+<section id="escopo">
+  <div class="grid-overlay"></div>
+  <div class="ao" style="width:450px;height:450px;background:rgba(255,102,0,.09);bottom:-15%;left:-8%;animation:ao-float-2 20s ease-in-out infinite;"></div>
+  <div class="wm" style="top:-1rem;right:-1rem;">ESCOPO</div>
+
+  <div class="eyebrow reveal">04 / Escopo</div>
+  <h2 class="sec-title-dark reveal d1">O que a Triforce entrega</h2>
+
+  <div class="escopo-tabs reveal d2">
+    <button class="etab active" onclick="showTab('ativar',this)">ATIVAR</button>
+    <button class="etab" onclick="showTab('atrair',this)">ATRAIR</button>
+    <button class="etab" onclick="showTab('acompanhar',this)">ACOMPANHAR</button>
+    <button class="etab" onclick="showTab('ferramentas',this)">Ferramentas</button>
+  </div>
+
+  <div id="tab-ativar" class="escopo-pane active">
+    <div class="escopo-group">
+      <div class="escopo-group-title">Entregue nos primeiros 15 dias</div>
+      <div class="escopo-items">
+        <div class="escopo-item">Auditoria completa do site atual</div>
+        <div class="escopo-item">Correção de SSL e otimização de velocidade</div>
+        <div class="escopo-item">Google Meu Negócio otimizado e verificado</div>
+        <div class="escopo-item">LinkedIn da empresa atualizado</div>
+        <div class="escopo-item">Business Manager Meta criado com CNPJ verificado</div>
+        <div class="escopo-item">Tudo funcionando antes do 1º anúncio ir ao ar</div>
+      </div>
+    </div>
+  </div>
+
+  <div id="tab-atrair" class="escopo-pane">
+    <div class="escopo-group">
+      <div class="escopo-group-title">Instagram — todo mês</div>
+      <div class="escopo-items">
+        <div class="escopo-item">Criação de identidade visual e linha editorial</div>
+        <div class="escopo-item">Biblioteca de templates: carrossel, reel, story e estático</div>
+        <div class="escopo-item">Calendário editorial do trimestre</div>
+        <div class="escopo-item">5 a 7 posts por semana com dado real da operação</div>
+        <div class="escopo-item">Stories diárias de bastidor e produto</div>
+        <div class="escopo-item">Edição de reels curtos e captions otimizadas</div>
+        <div class="escopo-item">Aprovação via WhatsApp em 30 segundos + moderação de DMs</div>
+      </div>
+    </div>
+    <div class="escopo-group">
+      <div class="escopo-group-title">Meta Ads — todo mês</div>
+      <div class="escopo-items">
+        <div class="escopo-item">Setup de Pixel e Conversion API</div>
+        <div class="escopo-item">Públicos por cargo, interesse e geo Bahia</div>
+        <div class="escopo-item">Lead Ad com formulário qualificado + Click-to-WhatsApp</div>
+        <div class="escopo-item">3 campanhas ativas rodando simultaneamente</div>
+        <div class="escopo-item">Criativos novos toda semana + testes A/B de headline e público</div>
+        <div class="escopo-item">Retargeting de engajadores e visitantes</div>
+        <div class="escopo-item">Otimização diária com pausa de criativos ruins</div>
+      </div>
+    </div>
+  </div>
+
+  <div id="tab-acompanhar" class="escopo-pane">
+    <div class="escopo-group">
+      <div class="escopo-group-title">Todo mês</div>
+      <div class="escopo-items">
+        <div class="escopo-item">Dashboard aberto em tempo real</div>
+        <div class="escopo-item">Relatório semanal consolidado</div>
+        <div class="escopo-item">Reunião mensal de calibração com o dono</div>
+        <div class="escopo-item">Script de atendimento para o WhatsApp da TAC + treinamento do time</div>
+        <div class="escopo-item">Loop de feedback com pedido teste fechado</div>
+      </div>
+    </div>
+  </div>
+
+  <div id="tab-ferramentas" class="escopo-pane">
+    <div class="escopo-group">
+      <div class="escopo-group-title">Usadas pela Triforce para executar o serviço</div>
+      <div class="escopo-items">
+        <div class="escopo-item">Claude Max 20x — IA de conteúdo e estratégia</div>
+        <div class="escopo-item">Adobe Creative Cloud — design e edição de vídeo</div>
+        <div class="escopo-item">Dashboard de automações integradas</div>
+        <div class="escopo-item">A TAC não recebe nem opera essas ferramentas. A Triforce usa, gerencia e paga. Custo absorvido — nada além da mensalidade.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ S6 COMPROMISOS ═══════════════════════════════════ -->
+<section id="compromissos">
+  <div class="wm" style="top:-1rem;left:-1rem;color:rgba(5,5,5,.04);">GARANTIA</div>
+  <div class="eyebrow reveal" style="color:rgba(5,5,5,.4);">05 / Compromissos</div>
+  <h2 class="sec-title-light reveal d1">O que a Triforce garante</h2>
+
+  <div class="commit-grid">
+    <div class="commit-card reveal d1">
+      <div class="commit-icon">📋</div>
+      <div class="commit-title">Escopo completo todo mês</div>
+      <div class="commit-body">Tudo que está neste documento é entregue sem exceção. Sem "ficou pra próxima reunião".</div>
+    </div>
+    <div class="commit-card reveal d2">
+      <div class="commit-icon">📊</div>
+      <div class="commit-title">Painel aberto 24 horas</div>
+      <div class="commit-body">O dono vê quantas empresas chegaram, quanto foi gasto, quantas viraram cotação — em tempo real.</div>
+    </div>
+    <div class="commit-card reveal d3">
+      <div class="commit-icon">🎯</div>
+      <div class="commit-title">Meta declarada e pública</div>
+      <div class="commit-body">Aos 60 dias, empresa nova chegando no WhatsApp da TAC. Não é promessa vaga. É número com prazo.</div>
+    </div>
+    <div class="commit-card reveal d4">
+      <div class="commit-icon">💬</div>
+      <div class="commit-title">Comunicação direta</div>
+      <div class="commit-body">WhatsApp com o time responsável. Reunião mensal com o dono, não com intermediário. Sem fila.</div>
+    </div>
+  </div>
+
+  <div class="commit-footer reveal d5">
+    <strong>Após os 3 meses:</strong> reunião de fechamento com resultado na mesa. Quer continuar: reajuste conforme entrega ampliada, opção de contrato anual com preço travado e 1 mês grátis. Quer sair: sem multa. A Triforce entrega todos os acessos, materiais e dashboards. A TAC fica com tudo que foi construído.
+  </div>
+</section>
+
+<!-- ══ S7 INVESTIMENTO ══════════════════════════════════ -->
+<section id="investimento">
+  <div class="grid-overlay"></div>
+  <div class="ao" style="width:550px;height:550px;background:rgba(255,102,0,.11);top:-20%;right:-10%;animation:ao-float-1 14s ease-in-out infinite;"></div>
+  <div class="wm" style="bottom:-1rem;left:-1rem;">R$ 9.000</div>
+
+  <div class="eyebrow reveal">06 / Investimento</div>
+  <h2 class="sec-title-dark reveal d1">Quanto isso custa</h2>
+
+  <div class="invest-grid">
+    <div class="reveal d1">
+      <table class="anchor-table">
+        <thead>
+          <tr><th>Profissional / Serviço</th><th style="text-align:right;">Mercado</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Social media sênior + conteúdo diário</td><td class="pc">R$ 15.000</td></tr>
+          <tr><td>Designer sênior · identidade e criativos</td><td class="pc">R$ 18.500</td></tr>
+          <tr><td>Gestor de tráfego Meta Ads B2B</td><td class="pc">R$ 13.500</td></tr>
+          <tr><td>Setup técnico · Pixel, CAPI, Lead Ad</td><td class="pc">R$ 6.800</td></tr>
+          <tr><td>Analista de dados · painel e relatórios</td><td class="pc">R$ 11.400</td></tr>
+          <tr><td>Copywriter · captions e scripts</td><td class="pc">R$ 9.600</td></tr>
+          <tr><td>Estrategista de marketing digital</td><td class="pc">R$ 14.400</td></tr>
+          <tr><td>Ferramentas · Adobe CC + IA + automações</td><td class="pc">R$ 5.550</td></tr>
+          <tr><td>Gestão de projeto + reuniões</td><td class="pc">R$ 7.500</td></tr>
+          <tr><td>Script de atendimento + treinamento</td><td class="pc">R$ 4.200</td></tr>
+          <tr><td>Auditoria · GMN, LinkedIn, SSL</td><td class="pc">R$ 3.300</td></tr>
+        </tbody>
+        <tfoot>
+          <tr><td><strong>Total de mercado (3 meses)</strong></td><td class="pc"><strong>R$ 109.250</strong></td></tr>
+        </tfoot>
+      </table>
+    </div>
+
+    <div class="reveal d2">
+      <div class="price-highlight">
+        <div class="price-mkt">R$ 109.250 se contratado separado</div>
+        <div class="price-big">R$ 9.000</div>
+        <div class="price-period">total · 3 meses · time integrado</div>
+        <div class="price-rows">
+          <div class="price-row"><span>Setup ATIVAR (única vez)</span><strong>R$ 1.500</strong></div>
+          <div class="price-row"><span>Mensalidade × 3 meses</span><strong>R$ 7.500</strong></div>
+          <div class="price-row"><span>Ferramentas</span><strong>incluso</strong></div>
+          <div class="price-row"><span>Verba de anúncio</span><strong>TAC paga direto</strong></div>
+        </div>
+        <div class="price-badge-big">
+          <b>92% abaixo do valor de mercado</b>
+          <span>Condição especial de primeiro cliente em troca de depoimento e case</span>
+        </div>
+        <div class="price-note-web">
+          A verba de anúncio é paga diretamente pela TAC ao Meta. A Triforce gere, otimiza e presta contas, mas não recebe nem movimenta essa verba.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ S8 PRÓXIMOS PASSOS ═══════════════════════════════ -->
+<section id="passos">
+  <div class="wm" style="top:-1rem;right:-1rem;color:rgba(5,5,5,.04);">AGORA</div>
+  <div class="eyebrow reveal" style="color:rgba(5,5,5,.4);">07 / Próximos passos</div>
+  <h2 class="sec-title-light reveal d1">Fechando hoje</h2>
+
+  <div class="steps">
+    <div class="step reveal d1">
+      <div class="step-num-col"><div class="step-num">1</div><div class="step-line"></div></div>
+      <div class="step-body">
+        <div class="step-title">Assinatura do contrato</div>
+        <div class="step-desc">Contrato simplificado de 3 meses. Sem burocracia, sem fidelidade forçada.</div>
+      </div>
+    </div>
+    <div class="step reveal d2">
+      <div class="step-num-col"><div class="step-num">2</div><div class="step-line"></div></div>
+      <div class="step-body">
+        <div class="step-title">Pagamento do setup + 1ª mensalidade</div>
+        <div class="step-desc">R$ 1.500 (setup ATIVAR) + R$ 2.500 (1ª mensalidade) = R$ 4.000 para iniciar.</div>
+      </div>
+    </div>
+    <div class="step reveal d3">
+      <div class="step-num-col"><div class="step-num">3</div><div class="step-line"></div></div>
+      <div class="step-body">
+        <div class="step-title">Reunião de kickoff em até 48 horas</div>
+        <div class="step-desc">Alinhamento de acessos, senhas e briefing inicial de conteúdo.</div>
+      </div>
+    </div>
+    <div class="step reveal d4">
+      <div class="step-num-col"><div class="step-num">4</div><div class="step-line"></div></div>
+      <div class="step-body">
+        <div class="step-title">ATIVAR — dias 1 a 15</div>
+        <div class="step-desc">SSL, Google Meu Negócio, LinkedIn e Business Manager entregues antes de qualquer anúncio.</div>
+      </div>
+    </div>
+    <div class="step reveal d5">
+      <div class="step-num-col"><div class="step-num">5</div><div class="step-line"></div></div>
+      <div class="step-body">
+        <div class="step-title">ATRAIR + ACOMPANHAR — dia 16 em diante</div>
+        <div class="step-desc">Conteúdo diário no ar. Anúncio rodando. Painel aberto. Meta em andamento.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cta-block reveal d5">
+    <div class="cta-text">Agradecemos a atenção.<br><span>Estamos à espera.</span></div>
+  </div>
+</section>
+
+<!-- ══ S9 ADICIONAL ═════════════════════════════════════ -->
+<section id="adicional">
+  <div class="grid-overlay"></div>
+  <div class="ao" style="width:400px;height:400px;background:rgba(255,102,0,.08);bottom:-10%;right:-5%;animation:ao-float-2 22s ease-in-out infinite;"></div>
+
+  <div class="eyebrow reveal">08 / Opcional</div>
+  <h2 class="sec-title-dark reveal d1">Site novo de conversão</h2>
+
+  <div class="adicional-card reveal d2">
+    <div class="adicional-head">
+      <div class="adicional-title">Site TAC — construído do zero para converter</div>
+      <div class="adicional-price">R$ 2.800</div>
+    </div>
+    <p class="adicional-desc">O site atual não converte. Comprador profissional que encontra SSL quebrado fecha a aba e vai pro próximo da lista. Não é obrigatório pra começar — é o passo seguinte natural quando a TAC quiser parar de mandar tráfego pago pra uma página que não fecha negócio. Domínio e acessos ficam com a TAC para sempre.</p>
+    <div class="adicional-items">
+      <div class="adicional-item">Formulário de cotação direto na home</div>
+      <div class="adicional-item">Página de produtos por categoria</div>
+      <div class="adicional-item">SSL e velocidade otimizada para celular</div>
+      <div class="adicional-item">Prova social e depoimentos</div>
+      <div class="adicional-item">Integração com WhatsApp</div>
+      <div class="adicional-item">Pronto em até 21 dias úteis</div>
+      <div class="adicional-item">Domínio e acessos ficam com a TAC</div>
+      <div class="adicional-item">Valor único, fora da mensalidade</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FOOTER ════════════════════════════════════════════ -->
+<footer>
+  <div class="footer-logo">Triforce Auto</div>
+  <div class="footer-tag">Máquinas de atração ativa · 2026</div>
+</footer>
+
+<script>
+// Reveal on scroll
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+}, { threshold: 0.12 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// Tabs
+function showTab(id, btn) {
+  document.querySelectorAll('.escopo-pane').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.etab').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + id).classList.add('active');
+  btn.classList.add('active');
+}
+</script>
+</body>
+</html>

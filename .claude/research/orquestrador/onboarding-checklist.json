@@ -1,0 +1,113 @@
+{
+  "employee_id": "orquestrador",
+  "name": "Eduardo",
+  "role": "Orquestrador de Equipe",
+  "hired_at": "2026-04-20",
+  "onboarding_checklist": [
+    {
+      "category": "Acesso ao time",
+      "items": [
+        {
+          "task": "Adicionar ao grupo de WhatsApp do time",
+          "tool": "WhatsApp",
+          "url": "https://whatsapp.com",
+          "status": "pending"
+        }
+      ]
+    },
+    {
+      "category": "Ferramentas de gestao",
+      "items": [
+        {
+          "task": "Criar workspace Notion para o board Kanban do Orquestrador (colunas: A Rotear / Em Andamento / Em Handoff / Em Revisao / Concluido / Bloqueado)",
+          "tool": "Notion",
+          "url": "https://notion.so",
+          "status": "pending"
+        },
+        {
+          "task": "Instalar extensao Scribe no Chrome para captura automatica de SOPs",
+          "tool": "Scribe",
+          "url": "https://scribehow.com",
+          "status": "pending"
+        }
+      ]
+    },
+    {
+      "category": "Leitura obrigatoria",
+      "items": [
+        {
+          "task": "Ler company.md — contexto da Triforce Auto",
+          "tool": "interno",
+          "url": null,
+          "status": "pending"
+        },
+        {
+          "task": "Ler employees.json — perfil completo de todos os especialistas do time",
+          "tool": "interno",
+          "url": null,
+          "status": "pending"
+        },
+        {
+          "task": "Ler SKILL.md do orquestrador — constraints, operacional, fluxo de trabalho e checklist de entrega",
+          "tool": "interno",
+          "url": null,
+          "status": "pending"
+        },
+        {
+          "task": "Ler references/operacional-roteamento.md — matriz de roteamento, brief 7 campos, SLAs",
+          "tool": "interno",
+          "url": null,
+          "status": "pending"
+        },
+        {
+          "task": "Ler references/operacional-handoffs.md — fluxos criticos LP e carrossel, pacote de handoff, mapa de capacidade",
+          "tool": "interno",
+          "url": null,
+          "status": "pending"
+        },
+        {
+          "task": "Ler references/estrategico-frameworks.md — Decision Rights Matrix, ICE, tiers de prioridade",
+          "tool": "interno",
+          "url": null,
+          "status": "pending"
+        },
+        {
+          "task": "Ler references/estrategico-nicho.md — armadilhas da Triforce, perfil do cliente brasileiro, QA checklist por especialista",
+          "tool": "interno",
+          "url": null,
+          "status": "pending"
+        }
+      ]
+    },
+    {
+      "category": "Primeiro ciclo operacional",
+      "items": [
+        {
+          "task": "Mapear capacidade atual de cada especialista (WhatsApp: 'o que voce tem em andamento hoje?')",
+          "tool": "WhatsApp",
+          "url": "https://whatsapp.com",
+          "status": "pending"
+        },
+        {
+          "task": "Criar cards no board Kanban para todas as tarefas em andamento no time",
+          "tool": "Notion",
+          "url": "https://notion.so",
+          "status": "pending"
+        },
+        {
+          "task": "Confirmar com o fundador quais tarefas sao Tier 1 (critico para receita) nesta semana",
+          "tool": "interno",
+          "url": null,
+          "status": "pending"
+        },
+        {
+          "task": "Revisar SLAs internos com cada especialista — apresentar como acordo mutuo, nao imposicao",
+          "tool": "WhatsApp",
+          "url": "https://whatsapp.com",
+          "status": "pending"
+        }
+      ]
+    }
+  ],
+  "notes": "Ferramentas listadas sao as confirmadas na pesquisa de etapa-1, etapa-2, etapa-3 e validacao-estrategica. Notion e Scribe confirmados como ferramentas ativas em 2026. WhatsApp e o canal de comunicacao async do time confirmado no contexto brasileiro. Nenhuma ferramenta foi inventada — apenas o que apareceu na pesquisa foi incluido."
+}

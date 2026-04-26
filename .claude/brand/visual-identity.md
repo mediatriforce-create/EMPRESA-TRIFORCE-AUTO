@@ -1,9 +1,13 @@
 ---
-sources: ["carrosséis do Instagram (@triforceauto)", "confirmado pelo fundador"]
+sources: ["carrosséis do Instagram (@triforceauto)", "confirmado pelo fundador", "design-system.html v1.0 abril 2026"]
 generated_at: 2026-04-19
+updated_at: 2026-04-23
 ---
 
 # Identidade Visual — Triforce Auto
+
+> **Design System completo:** `C:\Users\media\OneDrive\Desktop\EMPRESA TRIFORCE AUTO\design-system.html`
+> Leia o CLAUDE.md do projeto antes de qualquer entrega visual.
 
 > **Fonte de verdade.** Todo o time usa estas cores em todos os materiais — LP, carrosséis, cards, apresentações.
 
