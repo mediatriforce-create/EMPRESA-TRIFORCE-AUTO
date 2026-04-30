@@ -163,6 +163,21 @@
       "hired_by": "Gabriela"
     }
     ,{
+      "id": "dev-backend",
+      "name": "Pedro",
+      "role": "Dev Backend Sênior",
+      "seniority": "senior",
+      "tier": "standard",
+      "reports_to": "fullstack-lider",
+      "description": "Implementa APIs, lógica de negócio, sync Airtable→Supabase, jobs agendados e extrato financeiro. Node.js + TypeScript + Drizzle + Zod + Supabase Edge Functions.",
+      "specialty": "backend-api-business-logic-airtable-sync",
+      "teams": ["dev"],
+      "skills": ["dev-backend"],
+      "status": "hired",
+      "hired_at": "2026-04-30",
+      "hired_by": "Gabriela"
+    }
+    ,{
       "id": "estrategista-comercial",
       "name": "Clara",
       "role": "Estrategista Comercial Senior",
