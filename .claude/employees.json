@@ -162,5 +162,20 @@
       "hired_at": "2026-04-22",
       "hired_by": "Gabriela"
     }
+    ,{
+      "id": "dev-lider",
+      "name": "André",
+      "role": "Full-stack Developer Sênior Líder Técnico",
+      "seniority": "diretor",
+      "tier": "best",
+      "reports_to": "fundador",
+      "description": "Lidera a equipe-sistemas e desenvolve o sistema interno da Triforce Auto (CRM, Financeiro, Gestão de Time, Tarefas) integrado ao Airtable. Decide e documenta arquitetura via ADR. Faz code review de todo merge em main. Stack: Next.js 15, TypeScript, Supabase, Drizzle ORM, Vercel.",
+      "specialty": "fullstack-tech-lead-internal-systems",
+      "teams": ["equipe-sistemas"],
+      "skills": ["dev-lider", "nextjs-supabase-auth", "supabase-postgres-best-practices", "nextjs-react-typescript", "nextjs-typescript-supabase", "nextjs-shadcn", "vercel-react-best-practices", "vercel-composition-patterns", "deploy-to-vercel", "vercel-cli-with-tokens", "webapp-testing", "web-performance-optimization", "github-actions-docs", "cloudflare-workers", "code-reviewer", "senior-fullstack", "next-best-practices", "next-cache-components", "vercel-deployment", "drizzle-orm", "supabase", "airtable-automation", "c4-architecture", "architect-review", "mcp-builder", "claude-api"],
+      "status": "hired",
+      "hired_at": "2026-04-30",
+      "hired_by": "Gabriela"
+    }
   ]
 }
