@@ -5,9 +5,13 @@ Thumbs.db
 
 # Claude Code cache
 .claude/agent-memory/
+.claude/worktrees/
 
 # Segredos
 .env
+.env.local
+.env*.local
+tools/instagram_cookies.json
 
 # Plugins (repos externos)
 plugins/
@@ -15,3 +19,17 @@ plugins/
 # Cache
 __pycache__/
 .firecrawl/
+.wrangler/
+
+# Node / Next.js
+node_modules/
+.next/
+.vercel/
+*.tsbuildinfo
+
+# Sistemas (repos independentes — cada um tem seu próprio git)
+sistemas/
+
+# Imagens de produção grandes (banco local, não precisa no git)
+producao/banco-de-imagens/
+producao/carroseis-abril-2026/png/
