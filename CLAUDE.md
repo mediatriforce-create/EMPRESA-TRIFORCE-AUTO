@@ -1,3 +1,23 @@
+# Triforce Auto
+
+Empresa de IA gerida pelo plugin `empresa`.
+Se o plugin não estiver instalado: `claude plugins marketplace add thaleslaray/empresa`
+
+## Estrutura
+
+- `.claude/company.md` — identidade da empresa
+- `.claude/employees.json` — time ativo (11 especialistas)
+- `.claude/brand/` — voz, produtos, público, fundador, stack, learnings, visual-identity
+- `.claude/ops/` — estado operacional
+- `.claude/agents/` — definições dos agentes
+
+## Comandos disponíveis (requer plugin)
+
+`/empresa:contratar` · `/empresa:status` · `/empresa:ops` · `/empresa:diagnostico`
+`/empresa:treinar` · `/empresa:atualizar` · `/empresa:onboarding` · `/empresa:publicar`
+
+---
+
 # CLAUDE.md — Triforce Auto
 
 ## Regra de Design: LEIA ANTES DE QUALQUER ENTREGA VISUAL
