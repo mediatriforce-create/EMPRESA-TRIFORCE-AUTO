@@ -148,6 +148,21 @@
       "hired_by": "Gabriela"
     }
     ,{
+      "id": "fullstack-lider",
+      "name": "Lucas",
+      "role": "Full-stack Developer Sênior — Líder Técnico",
+      "seniority": "senior",
+      "tier": "best",
+      "reports_to": "fundador",
+      "description": "Arquiteta e constrói o sistema interno da Triforce Auto (CRM, extrato, financeiro, tarefas) em Next.js 15 + Supabase + Vercel. Integra Airtable API, define padrões de código e lidera o time de dev.",
+      "specialty": "fullstack-system-architecture-nextjs-supabase",
+      "teams": ["dev"],
+      "skills": ["fullstack-lider"],
+      "status": "hired",
+      "hired_at": "2026-04-30",
+      "hired_by": "Gabriela"
+    }
+    ,{
       "id": "estrategista-comercial",
       "name": "Clara",
       "role": "Estrategista Comercial Senior",
