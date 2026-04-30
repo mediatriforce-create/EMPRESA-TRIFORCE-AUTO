@@ -1832,9 +1832,81 @@ a{text-decoration:none;color:inherit;}
   .pilar-dot.hint-pulse{ animation:dot-hint .7s ease 2; }
 }
 
+/* ============================================================
+   ANIMAÇÕES EXTRAS — inspirado em Thales Laray
+   ============================================================ */
+
+/* Barra de progresso de módulo (topo) */
+#mod-progress{
+  position:fixed;top:0;left:0;height:3px;width:0%;
+  background:linear-gradient(90deg,var(--accent),#FF8C00);
+  z-index:9999;pointer-events:none;
+  transition:width .45s cubic-bezier(.22,.61,.36,1);
+}
+
+/* Orb float variante 3 */
+@keyframes ao-float-3{
+  0%,100%{transform:translate(0,0) scale(1);}
+  50%{transform:translate(-25px,-28px) scale(1.09);}
+}
+
+/* Typewriter cursor */
+.tw-cursor{
+  display:inline-block;color:var(--accent);font-weight:300;
+  animation:tw-blink .6s step-end infinite;margin-left:2px;
+}
+@keyframes tw-blink{0%,100%{opacity:1;}50%{opacity:0;}}
+
+/* Spotlight radial nos srv-cards (segue mouse) */
+.srv-card::after{
+  content:'';position:absolute;inset:0;border-radius:.85rem;
+  background:radial-gradient(circle 140px at var(--mx,50%) var(--my,50%),rgba(255,102,0,.13),transparent 70%);
+  opacity:0;transition:opacity .3s ease;pointer-events:none;z-index:1;
+}
+.srv-card:hover::after{opacity:1;}
+
+/* Hover lift + glow nos srv-cards */
+.srv-card:hover{
+  transform:translateY(-6px);
+  border-color:rgba(255,102,0,.4);
+  box-shadow:0 14px 40px rgba(255,102,0,.18),0 4px 16px rgba(0,0,0,.5);
+}
+
+/* Hover lift nos pil-cards */
+.qs-pil-card{
+  transition:transform .25s cubic-bezier(.22,.61,.36,1),box-shadow .25s ease;
+}
+.qs-pil-card:hover{
+  transform:translateY(-5px);
+  box-shadow:0 10px 30px rgba(255,102,0,.15),0 4px 12px rgba(0,0,0,.3);
+  z-index:2;
+}
+
+/* Urgency pulse no btn da proposta */
+@keyframes urgency-border{
+  0%,100%{box-shadow:0 4px 0 var(--black),0 0 0 0 rgba(255,102,0,.3);}
+  50%{box-shadow:0 4px 0 var(--black),0 0 0 5px rgba(255,102,0,0);}
+}
+.btn-cartoon.btn-urgent{
+  animation:cta-pulse 2.5s ease-in-out infinite,urgency-border 1.8s ease-in-out infinite;
+}
+
+/* 3D card dark (para proposta) */
+.card-3d-dark{
+  background:#111113;border-radius:.75rem;border:3px solid #050505;
+  box-shadow:0 6px 0 #050505,0 10px 20px rgba(0,0,0,.35);
+  transition:transform .2s ease,box-shadow .2s ease;
+}
+.card-3d-dark:hover{
+  transform:translateY(3px);
+  box-shadow:0 3px 0 #050505,0 6px 14px rgba(0,0,0,.3);
+}
+
 </style>
 </head>
 <body>
+
+<div id="mod-progress"></div>
 
 <div class="app">
 
@@ -1898,8 +1970,9 @@ a{text-decoration:none;color:inherit;}
       <div class="intro-stage">
 
         <div class="grid-overlay"></div>
-        <!-- orb sutil atrás do logo -->
+        <!-- orbs -->
         <div class="ao" style="width:700px;height:700px;background:rgba(255,102,0,.07);top:-200px;left:-100px;animation:ao-float-2 18s ease-in-out infinite;pointer-events:none;"></div>
+        <div class="ao" style="width:350px;height:350px;background:rgba(255,102,0,.05);bottom:-80px;right:10%;animation:ao-float-3 22s ease-in-out infinite;pointer-events:none;"></div>
 
         <!-- TOP BAR -->
         <div class="intro-topbar reveal">
@@ -2647,7 +2720,8 @@ a{text-decoration:none;color:inherit;}
               <div class="p5-steps-cta reveal d3">
                 <p class="p5-steps-cta-text">Agradecemos a atenção.<br><b>Estamos à espera.</b></p>
                 <p class="p5-steps-cta-sub">Quem Ativa antes de Atrair não queima verba. Quem Acompanha não perde cliente no caminho.</p>
-                <p class="p5-validity">Triforce Auto · 2026</p>
+                <a href="https://wa.me/5511999999999?text=Ol%C3%A1%2C%20quero%20fechar%20com%20a%20Triforce%20Auto" target="_blank" rel="noopener" class="btn-cartoon btn-xl btn-urgent" style="display:inline-block;text-decoration:none;margin-top:1.5rem;">Fechar agora via WhatsApp</a>
+                <p class="p5-validity" style="margin-top:1.25rem;">Triforce Auto · 2026</p>
               </div>
             </div>
           </div>
@@ -2693,6 +2767,31 @@ a{text-decoration:none;color:inherit;}
 /* ============================================================
    NAVEGACAO — PILAR
    ============================================================ */
+const MODULE_ORDER = ['mod-intro','mod-quem','mod-equipe','mod-servicos','mod-proposta'];
+
+function updateModProgress(moduleId) {
+  const idx = MODULE_ORDER.indexOf(moduleId);
+  const pct = idx < 0 ? 20 : ((idx + 1) / MODULE_ORDER.length) * 100;
+  const bar = document.getElementById('mod-progress');
+  if (bar) bar.style.width = pct + '%';
+}
+
+function setTwCursor(moduleId) {
+  // Remove cursor do módulo anterior
+  document.querySelectorAll('.tw-cursor').forEach(function(el) { el.remove(); });
+  // Adiciona cursor no primeiro h2 do módulo ativo
+  const mod = document.getElementById(moduleId);
+  if (!mod) return;
+  const h2 = mod.querySelector('h2');
+  if (!h2) return;
+  const cursor = document.createElement('span');
+  cursor.className = 'tw-cursor';
+  cursor.textContent = '|';
+  h2.appendChild(cursor);
+  // Remove após 2.8s
+  setTimeout(function() { cursor.remove(); }, 2800);
+}
+
 let currentModule = 'mod-intro';
 
 function goTo(moduleId) {
@@ -2722,6 +2821,12 @@ function goTo(moduleId) {
   });
 
   currentModule = moduleId;
+
+  // Barra de progresso
+  updateModProgress(moduleId);
+
+  // Cursor typewriter
+  setTimeout(function() { setTwCursor(moduleId); }, 120);
 
   // Reveal animations
   setTimeout(function() { triggerReveals(next); }, 80);
@@ -2775,6 +2880,23 @@ function setupScrollObserver() {
   });
 }
 document.addEventListener('DOMContentLoaded', setupScrollObserver);
+
+/* ============================================================
+   INIT — progresso inicial + spotlight nos srv-cards
+   ============================================================ */
+document.addEventListener('DOMContentLoaded', function() {
+  // Progresso inicial (módulo 1)
+  updateModProgress('mod-intro');
+
+  // Cursor typewriter no intro
+  setTimeout(function() { setTwCursor('mod-intro'); }, 600);
+
+  // Spotlight nos srv-cards
+  document.querySelectorAll('.srv-card').forEach(function(card) {
+    card.addEventListener('mousemove', function(e) { trackMouse(e, card); });
+    card.addEventListener('mouseleave', function() { resetMouse(card); });
+  });
+});
 
 /* ============================================================
    MOUSE TRACK — phase-card glow radial
