@@ -175,7 +175,8 @@
       "skills": ["dev-lider", "nextjs-supabase-auth", "supabase-postgres-best-practices", "nextjs-react-typescript", "nextjs-typescript-supabase", "nextjs-shadcn", "vercel-react-best-practices", "vercel-composition-patterns", "deploy-to-vercel", "vercel-cli-with-tokens", "webapp-testing", "web-performance-optimization", "github-actions-docs", "cloudflare-workers", "code-reviewer", "senior-fullstack", "next-best-practices", "next-cache-components", "vercel-deployment", "drizzle-orm", "supabase", "airtable-automation", "c4-architecture", "architect-review", "mcp-builder", "claude-api"],
       "status": "hired",
       "hired_at": "2026-04-30",
-      "hired_by": "Gabriela"
+      "hired_by": "Gabriela",
+      "onboarded_at": "2026-04-30"
     }
     ,{
       "id": "dev-backend",

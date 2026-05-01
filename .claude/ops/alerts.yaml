@@ -1,6 +1,35 @@
-version: "1.0"
-updated_at: 2026-04-13
+version: "1.1"
+updated_at: 2026-04-30
 
-ativos: []
+ativos:
+  - id: alert-001
+    severidade: medio
+    dominio: supabase
+    titulo: "Projeto CENTRAL VAV está INACTIVE"
+    descricao: "Projeto Supabase pausado por inatividade no free tier. Cold start de 5-10s na reativação. Decidir: reativar este projeto ou criar um novo para o sistema interno."
+    acao: "Fundador decide: reativar CENTRAL VAV ou criar projeto novo"
+    depende_de: fundador
+    criado_por: dev-lider
+    criado_em: 2026-04-30
+
+  - id: alert-002
+    severidade: baixo
+    dominio: vercel
+    titulo: "Projetos Vercel não visíveis via MCP"
+    descricao: "Erro ao listar projetos Vercel. Pode ser conta pessoal sem projetos ou problema de autenticação do MCP."
+    acao: "Verificar autenticação Vercel MCP na próxima sessão"
+    depende_de: dev-lider
+    criado_por: dev-lider
+    criado_em: 2026-04-30
+
+  - id: alert-003
+    severidade: baixo
+    dominio: cloudflare
+    titulo: "R2 não habilitado"
+    descricao: "Cloudflare R2 retorna 403. Precisa habilitar no dashboard se o sistema interno usar storage de assets."
+    acao: "Habilitar R2 no dashboard Cloudflare quando necessário"
+    depende_de: fundador
+    criado_por: dev-lider
+    criado_em: 2026-04-30
 
 resolvidos: []

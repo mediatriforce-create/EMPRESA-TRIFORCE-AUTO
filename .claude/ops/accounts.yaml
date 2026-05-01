@@ -1,26 +1,62 @@
-version: "1.0"
-updated_at: 2026-04-13
+version: "1.1"
+updated_at: 2026-04-30
+updated_by: dev-lider
 
 accounts:
-  - platform: GitHub
-    function: versionamento de código
-    owner: a_definir
+  - platform: Supabase
+    function: banco de dados, auth
+    owner: dev-lider
+    status: inativo
+    org_name: VIVA A VIDA
+    org_id: tiqwbqgdfqzgesauvokg
+    project_name: CENTRAL VAV
+    project_ref: xxwzrqaiujydyppkulue
+    region: sa-east-1
+    postgres_version: "17.6.1"
+    host: db.xxwzrqaiujydyppkulue.supabase.co
+    notes: "Projeto pausado por inatividade (free tier). Reativar ou criar novo para sistema interno."
+
+  - platform: Airtable
+    function: gestão pessoal do fundador (GTD)
+    owner: fundador
     status: ativo
+    base_name: GTD - JOAQUIM
+    base_id: appBEXjSfGpeMyWfT
+    notes: "Base pessoal. Sem base da Triforce Auto ainda."
 
   - platform: Vercel
     function: deploy de front-end
-    owner: a_definir
-    status: ativo
+    owner: dev-lider
+    status: nao_confirmado
+    notes: "Sem teams. Erro ao listar projetos via MCP — verificar auth."
 
   - platform: Cloudflare
-    function: DNS, CDN, proteção
-    owner: a_definir
+    function: DNS, CDN, Workers
+    owner: dev-lider
     status: ativo
+    account_email: Mediatriforce@gmail.com
+    account_id: c0b9bdff56ea855f2ca6cfb5346fea14
+    workers:
+      - name: cola-av3
+        last_modified: 2026-04-29
+      - name: isadora-lp
+        last_modified: 2026-04-19
+      - name: elenco-filme
+        last_modified: 2026-04-11
+      - name: joaquimsallesportifolio
+        last_modified: 2026-03-15
+      - name: triforce-gateway
+        last_modified: 2026-02-10
+    kv: vazio
+    d1: vazio
+    r2: nao_habilitado
+    notes: "5 Workers ativos. R2 requer habilitação manual no dashboard."
 
-  - platform: Supabase
-    function: banco de dados, auth
-    owner: a_definir
-    status: ativo
+  - platform: GitHub
+    function: versionamento de código
+    owner: dev-lider
+    status: nao_confirmado
+    notes: "MCP não instalado — aguardando GITHUB_PERSONAL_ACCESS_TOKEN."
 
   - platform: pagamentos
     function: cobrar clientes
