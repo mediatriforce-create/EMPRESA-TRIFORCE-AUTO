@@ -3,86 +3,94 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Proposta Comercial · Barbara Monize · Triforce Auto</title>
+<title>Proposta Comercial · Bárbara Monize · #TFA-0001</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
-/* ============================================================
-   RESET
-   ============================================================ */
+/* === RESET === */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 html{scroll-behavior:smooth;}
-body{font-family:'Montserrat',sans-serif;background:#0d0d0d;color:#fff;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+body{
+  font-family:'Montserrat',sans-serif;
+  background:#0d0d0d;color:#fff;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
 a{text-decoration:none;color:inherit;}
-img{max-width:100%;height:auto;display:block;}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important;}}
 
-/* ============================================================
-   TOKENS
-   ============================================================ */
+/* === TOKENS === */
 :root{
-  --accent:    #FF6600;
-  --accent-d:  #CC5200;
-  --accent-gl: rgba(255,102,0,.12);
-  --black:     #050505;
-  --dark:      #0d0d0d;
-  --dark2:     #141414;
-  --light:     #F5F0E8;
-  --light2:    #E0DDD4;
-  --white:     #fff;
-  --muted:     rgba(255,255,255,.55);
-  --muted-lgt: rgba(0,0,0,.6);
-  --border:    3px solid #050505;
-  --shadow:    0 4px 0 #050505;
-  --shadow-sm: 0 2px 0 #050505;
-  --shadow-lg: 0 6px 0 #050505;
-  --font:      'Montserrat',sans-serif;
+  --accent:#FF6600;
+  --accent-soft:rgba(255,102,0,.08);
+  --accent-glow:rgba(255,102,0,.12);
+  --black:#050505;
+  --dark:#0d0d0d;
+  --dark2:#141414;
+  --light:#F5F0E8;
+  --light2:#E0DDD4;
+  --white:#fff;
+  --text-dark:#1a1a1a;
+  --muted:rgba(255,255,255,.55);
+  --muted-dark:rgba(0,0,0,.6);
+  --border:3px solid #050505;
+  --shadow:0 4px 0 #050505;
+  --shadow-sm:0 2px 0 #050505;
+  --shadow-lg:0 6px 0 #050505;
+  --radius:12px;
+  --font:'Montserrat',sans-serif;
 }
 
-/* ============================================================
-   LAYOUT
-   ============================================================ */
-.container{width:100%;max-width:1100px;margin:0 auto;padding:0 1.5rem;}
-@media(max-width:480px){.container{padding:0 1rem;}}
-.s-py{padding-top:6rem;padding-bottom:6rem;}
-@media(max-width:1023px){.s-py{padding-top:4rem;padding-bottom:4rem;}}
-@media(max-width:600px){.s-py{padding-top:3rem;padding-bottom:3rem;}}
+/* === LAYOUT === */
+.wrap{max-width:960px;margin:0 auto;padding:0 2rem;}
+@media(max-width:480px){.wrap{padding:0 1.25rem;}}
 
-/* ============================================================
-   BACKGROUNDS
-   ============================================================ */
-.bg-dark {background:#0d0d0d;}
-.bg-dark2{background:#141414;}
-.bg-light{background:#F5F0E8;}
-.bg-light2{background:#E0DDD4;}
-
-/* Grid overlay */
-.grid-overlay{
-  position:absolute;inset:0;pointer-events:none;
-  background-image:linear-gradient(var(--accent) 1px,transparent 1px),linear-gradient(90deg,var(--accent) 1px,transparent 1px);
-  background-size:24px 24px;opacity:.05;z-index:0;
+/* === NAV === */
+nav{
+  position:sticky;top:0;z-index:100;
+  background:rgba(5,5,5,.95);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(255,102,0,.1);
 }
-.grid-overlay-light{
-  position:absolute;inset:0;pointer-events:none;
-  background-image:linear-gradient(#000 1px,transparent 1px),linear-gradient(90deg,#000 1px,transparent 1px);
-  background-size:28px 28px;opacity:.04;z-index:0;
+.nav-inner{
+  max-width:960px;margin:0 auto;padding:0 2rem;
+  display:flex;align-items:center;justify-content:space-between;height:54px;
+}
+.nav-brand{font-size:12px;font-weight:900;letter-spacing:2.5px;text-transform:uppercase;}
+.nav-brand span{color:var(--accent);}
+.nav-ref{font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.25);}
+@media(max-width:520px){.nav-ref{display:none;}}
+
+/* === SECTIONS === */
+.sec{padding:6rem 0;position:relative;overflow:hidden;}
+@media(max-width:768px){.sec{padding:4.5rem 0;}}
+@media(max-width:480px){.sec{padding:3rem 0;}}
+
+/* === AURORA ORBS === */
+.ao{position:absolute;border-radius:50%;pointer-events:none;filter:blur(120px);z-index:0;will-change:transform;}
+@keyframes ao-1{0%,100%{transform:translate(0,0) scale(1);}33%{transform:translate(40px,-30px) scale(1.1);}66%{transform:translate(-25px,35px) scale(.92);}}
+@keyframes ao-2{0%,100%{transform:translate(0,0) scale(1);}33%{transform:translate(-35px,25px) scale(1.12);}66%{transform:translate(45px,-35px) scale(.9);}}
+@media(max-width:768px){.ao{filter:blur(60px)!important;animation:none!important;}}
+
+/* === GRID OVERLAY === */
+.grid-ov::after{
+  content:'';position:absolute;inset:0;pointer-events:none;z-index:0;
+  background-image:linear-gradient(rgba(255,102,0,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,102,0,.03) 1px,transparent 1px);
+  background-size:32px 32px;
 }
 
-/* ============================================================
-   ANIMATED ORBS
-   ============================================================ */
-@keyframes ao-float-1{0%,100%{transform:translate(0,0) scale(1);}33%{transform:translate(50px,-35px) scale(1.12);}66%{transform:translate(-30px,45px) scale(.9);}}
-@keyframes ao-float-2{0%,100%{transform:translate(0,0) scale(1);}33%{transform:translate(-40px,30px) scale(1.15);}66%{transform:translate(55px,-40px) scale(.88);}}
-.ao{position:absolute;border-radius:50%;pointer-events:none;filter:blur(100px);z-index:0;will-change:transform;}
-.ao-1{width:520px;height:520px;background:rgba(255,102,0,.18);top:-120px;right:-100px;animation:ao-float-1 14s ease-in-out infinite;}
-.ao-2{width:400px;height:400px;background:rgba(255,102,0,.10);bottom:-80px;left:-80px;animation:ao-float-2 18s ease-in-out infinite;}
-.ao-3{width:300px;height:300px;background:rgba(255,102,0,.14);top:50%;left:50%;transform:translate(-50%,-50%);animation:ao-float-1 20s ease-in-out infinite reverse;}
-@media(max-width:767px){.ao{filter:blur(55px)!important;animation:none!important;}}
+/* === SECTION WATERMARK === */
+.wm{
+  position:absolute;font-size:clamp(5rem,16vw,11rem);font-weight:900;
+  text-transform:uppercase;white-space:nowrap;pointer-events:none;user-select:none;
+  letter-spacing:-.02em;line-height:1;z-index:0;color:rgba(255,255,255,.025);
+}
+.wm-light{color:rgba(0,0,0,.03);}
 
-/* ============================================================
-   SCROLL REVEAL
-   ============================================================ */
+/* === Z-INDEX LAYER === */
+.z{position:relative;z-index:1;}
+
+/* === SCROLL REVEAL === */
 .reveal{opacity:0;transform:translateY(28px) scale(.97);transition:opacity .65s cubic-bezier(.22,.61,.36,1),transform .65s cubic-bezier(.22,.61,.36,1);}
 .reveal.visible{opacity:1;transform:translateY(0) scale(1);}
 .reveal-l{opacity:0;transform:translateX(-32px);transition:opacity .65s cubic-bezier(.22,.61,.36,1),transform .65s cubic-bezier(.22,.61,.36,1);}
@@ -91,503 +99,559 @@ img{max-width:100%;height:auto;display:block;}
 .reveal-r.visible{opacity:1;transform:translateX(0);}
 .d1{transition-delay:.1s;}.d2{transition-delay:.2s;}.d3{transition-delay:.3s;}.d4{transition-delay:.4s;}.d5{transition-delay:.5s;}
 
-/* ============================================================
-   TYPOGRAPHY
-   ============================================================ */
-.t-hero{
-  font-size:clamp(2.6rem,8vw,6.5rem);font-weight:900;line-height:.94;
-  letter-spacing:-.04em;text-transform:uppercase;
-  text-shadow:0 3px 0 rgba(5,5,5,.4);text-wrap:balance;
+/* === ANIMATED COUNTER === */
+@keyframes count-pop{
+  0%{transform:scale(.6) translateY(20px);opacity:0;}
+  60%{transform:scale(1.08) translateY(-4px);opacity:1;}
+  100%{transform:scale(1) translateY(0);opacity:1;}
 }
-.t-hero .hl{color:var(--accent);}
+.stat-val.counted{animation:count-pop .6s cubic-bezier(.22,.61,.36,1) forwards;}
+
+/* === HERO GLOW TEXT === */
+@keyframes hero-glow{
+  0%,100%{text-shadow:0 3px 0 rgba(5,5,5,.4),0 0 40px rgba(255,102,0,.3),0 0 80px rgba(255,102,0,.1);}
+  50%{text-shadow:0 3px 0 rgba(5,5,5,.4),0 0 60px rgba(255,102,0,.6),0 0 120px rgba(255,102,0,.2);}
+}
+.hl-glow{animation:hero-glow 3s ease-in-out infinite;}
+
+/* === CARD TILT ON HOVER === */
+.card-3d{transition:all .3s cubic-bezier(.22,.61,.36,1);}
+.card-3d:hover{transform:translateY(3px) rotate(-.3deg);box-shadow:0 3px 0 var(--black),0 5px 10px rgba(0,0,0,.1);}
+
+/* === FLOATING BADGE === */
+@keyframes float-badge{
+  0%,100%{transform:translateY(0);}
+  50%{transform:translateY(-4px);}
+}
+.dlv-badge{transition:all .3s ease;}
+.dlv:hover .dlv-badge{animation:float-badge .8s ease-in-out infinite;box-shadow:0 4px 0 var(--black),0 6px 16px rgba(255,102,0,.2);}
+
+/* === TIMELINE DOT PULSE === */
+@keyframes dot-ping{
+  0%{box-shadow:0 0 0 0 rgba(255,102,0,.5);}
+  70%{box-shadow:0 0 0 10px rgba(255,102,0,0);}
+  100%{box-shadow:0 0 0 0 rgba(255,102,0,0);}
+}
+.tl-dot.active{animation:dot-ping 1.5s ease-in-out infinite;}
+
+/* === GRADIENT BORDER SWEEP (price card) === */
+@keyframes border-sweep{
+  0%{background-position:0% 50%;}
+  50%{background-position:100% 50%;}
+  100%{background-position:0% 50%;}
+}
+
+/* === TAG BOUNCE IN === */
+@keyframes tag-in{
+  0%{transform:scale(.8);opacity:.5;}
+  60%{transform:scale(1.1);opacity:1;}
+  100%{transform:scale(1);opacity:1;}
+}
+.tag{transition:transform .3s ease;}
+.tag.animated{animation:tag-in .4s cubic-bezier(.22,.61,.36,1) forwards;}
+
+/* === PILL SLIDE IN === */
+@keyframes pill-slide{
+  0%{transform:translateX(-20px);opacity:0;}
+  100%{transform:translateX(0);opacity:1;}
+}
+.pill{animation:pill-slide .5s .2s cubic-bezier(.22,.61,.36,1) both;}
+
+/* === PARALLAX ORB MOUSE === */
+.ao{transition:transform .3s ease-out;}
+
+/* === NUMBER TICKER === */
+@keyframes ticker-in{
+  0%{opacity:0;transform:translateY(100%);}
+  100%{opacity:1;transform:translateY(0);}
+}
+.metric-val{overflow:hidden;}
+.metric-val span{display:inline-block;}
+.metric-val.tick span{animation:ticker-in .5s cubic-bezier(.22,.61,.36,1) forwards;}
+.metric-val.tick span:nth-child(2){animation-delay:.05s;}
+.metric-val.tick span:nth-child(3){animation-delay:.1s;}
+
+/* === SMOOTH SECTION TRANSITIONS === */
+.sec{transition:background .4s ease;}
+
+/* === SOL-CARD HOVER LIFT === */
+.sol-card{transition:all .3s cubic-bezier(.22,.61,.36,1);}
+.sol-card:hover{transform:translateX(8px);box-shadow:0 3px 0 var(--black),0 8px 24px rgba(0,0,0,.12);}
+.sol-card:hover .sol-num{background:var(--black);color:var(--accent);}
+.sol-num{transition:all .3s ease;}
+
+/* === PHASE CARD GLOW === */
+.phase-card::after{
+  content:'';position:absolute;inset:0;border-radius:inherit;
+  background:radial-gradient(circle at var(--mx,50%) var(--my,50%),rgba(255,102,0,.08),transparent 60%);
+  opacity:0;transition:opacity .4s;pointer-events:none;
+}
+.phase-card:hover::after{opacity:1;}
+
+/* === TABLE ROW HIGHLIGHT === */
+table tbody tr{transition:all .2s ease;}
+table tbody tr:hover td{background:#fff5ed !important;}
+table tbody tr:hover td:last-child{background:#ffead6 !important;}
+
+/* === TEAM BORDER LEFT GROW === */
+@keyframes border-grow{
+  0%{height:0;}
+  100%{height:100%;}
+}
+
+/* === WATERMARK DRIFT === */
+@keyframes wm-drift{
+  0%{transform:translateX(0);}
+  100%{transform:translateX(-15px);}
+}
+.wm{animation:wm-drift 8s ease-in-out infinite alternate;}
+
+/* === TYPOGRAPHY === */
+.t-hero{
+  font-size:clamp(2.2rem,5.5vw,3.8rem);
+  font-weight:900;line-height:1.02;
+  letter-spacing:-.04em;text-transform:uppercase;
+  text-shadow:0 3px 0 rgba(5,5,5,.4);
+}
 .t-section{
-  font-size:clamp(1.6rem,4vw,2.8rem);font-weight:900;line-height:1.05;
+  font-size:clamp(1.5rem,3.8vw,2.4rem);
+  font-weight:900;line-height:1.08;
   letter-spacing:-.035em;text-transform:uppercase;
 }
-.t-section.on-dark{color:#fff;text-shadow:0 3px 0 rgba(255,102,0,.2);}
-.t-section.on-light{color:#050505;text-shadow:0 3px 0 rgba(5,5,5,.12);}
-.t-section .hl{color:var(--accent);}
-.t-body{font-size:clamp(.9rem,1.8vw,1.05rem);line-height:1.75;}
-.t-small{font-size:.875rem;line-height:1.65;}
-.t-xs{font-size:.75rem;letter-spacing:.04em;}
-.c-accent{color:var(--accent);}
-.c-muted{color:var(--muted);}
-.c-muted-lgt{color:var(--muted-lgt);}
-.orange-bar{width:56px;height:4px;background:linear-gradient(90deg,var(--accent),transparent);border-radius:2px;margin-bottom:1rem;}
+.t-section.on-dark{color:#fff;text-shadow:0 3px 0 rgba(255,102,0,.15);}
+.t-section.on-light{color:#050505;text-shadow:0 2px 0 rgba(5,5,5,.08);}
+.hl{color:var(--accent);}
+.t-body{font-size:clamp(.88rem,1.5vw,.98rem);line-height:1.8;}
+.t-sm{font-size:.84rem;line-height:1.75;}
+.t-xs{font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.12em;}
+.orange-bar{width:48px;height:4px;background:linear-gradient(90deg,var(--accent),transparent);border-radius:2px;margin-bottom:.75rem;}
 
-/* ============================================================
-   SECTION WATERMARK
-   ============================================================ */
-.section-watermark{
-  position:absolute;pointer-events:none;user-select:none;z-index:0;
-  font-size:clamp(5rem,18vw,14rem);font-weight:900;text-transform:uppercase;
-  letter-spacing:-.05em;white-space:nowrap;
-  color:rgba(255,102,0,.04);line-height:1;
-}
-
-/* ============================================================
-   NAV
-   ============================================================ */
-nav{
-  position:sticky;top:0;z-index:100;
-  background:rgba(5,5,5,.95);backdrop-filter:blur(12px);
-  border-bottom:1px solid rgba(255,102,0,.15);
-}
-.nav-inner{
-  max-width:1100px;margin:0 auto;padding:0 1.5rem;
-  display:flex;align-items:center;justify-content:space-between;height:52px;
-}
-.nav-brand{font-size:11px;font-weight:900;letter-spacing:2.5px;text-transform:uppercase;}
-.nav-brand span{color:var(--accent);}
-.nav-meta{font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.35);}
-@media(max-width:600px){.nav-meta{display:none;}}
-
-/* ============================================================
-   BTN CARTOON
-   ============================================================ */
-@keyframes cta-pulse{0%,100%{opacity:1;}50%{opacity:.88;}}
-.btn-cartoon{
-  position:relative;display:inline-flex;align-items:center;justify-content:center;gap:.75rem;
-  padding:1rem 2rem;background:var(--accent);color:#fff;
-  font-weight:700;font-family:var(--font);font-size:1rem;
-  border-radius:9999px;border:2px solid var(--black);
-  box-shadow:0 4px 0 var(--black);
-  transition:transform .15s ease,box-shadow .15s ease;cursor:pointer;
-  text-transform:uppercase;letter-spacing:.02em;overflow:hidden;text-decoration:none;
-}
-.btn-cartoon::after{
-  content:'';position:absolute;top:0;left:-100%;width:60%;height:100%;
-  background:linear-gradient(90deg,transparent,rgba(255,255,255,.4),transparent);
-  transform:skewX(-20deg);transition:left .55s ease;pointer-events:none;
-}
-.btn-cartoon:hover{transform:translateY(-2px);box-shadow:0 6px 0 var(--black);}
-.btn-cartoon:hover::after{left:140%;}
-.btn-cartoon:active{transform:translateY(0);box-shadow:0 2px 0 var(--black);}
-.btn-cartoon.btn-xl{padding:1.25rem 2.75rem;font-size:1.125rem;animation:cta-pulse 2.5s ease-in-out infinite;}
-.btn-cartoon.btn-dark{background:var(--black);color:#fff;}
-.btn-cartoon.btn-white{background:#fff;color:var(--black);}
-
-/* ============================================================
-   PILL / BADGE
-   ============================================================ */
+/* === PILL / BADGE === */
 .pill{
   display:inline-flex;align-items:center;gap:.5rem;
   background:rgba(255,102,0,.1);border:1px solid rgba(255,102,0,.3);
   border-radius:.3rem;padding:.35rem 1rem;
-  font-size:.72rem;font-weight:700;color:var(--accent);
-  text-transform:uppercase;letter-spacing:.08em;
-}
-.pill.on-light{background:rgba(255,102,0,.08);border-color:rgba(255,102,0,.25);}
-.badge{
-  display:inline-flex;align-items:center;gap:.4rem;
-  padding:.35rem .85rem;font-size:.7rem;font-weight:800;
-  border-radius:.3rem;text-transform:uppercase;letter-spacing:.1em;
-  background:#fff;color:var(--black);border:2px solid var(--black);box-shadow:0 2px 0 var(--black);
+  font-size:.65rem;font-weight:800;color:var(--accent);
+  text-transform:uppercase;letter-spacing:.1em;
 }
 
-/* ============================================================
-   CARDS
-   ============================================================ */
+/* === BTN CARTOON (CTA padrao) === */
+@keyframes cta-pulse{0%,100%{opacity:1;}50%{opacity:.88;}}
+@keyframes shimmer{0%{left:-100%;}100%{left:200%;}}
+.btn-cartoon{
+  position:relative;display:inline-flex;align-items:center;justify-content:center;gap:.75rem;
+  padding:1rem 2.2rem;background:var(--accent);color:#fff;
+  font-weight:700;font-family:var(--font);font-size:.95rem;
+  border-radius:9999px;border:2px solid var(--black);
+  box-shadow:var(--shadow);
+  transition:transform .15s ease,box-shadow .15s ease;cursor:pointer;
+  text-transform:uppercase;letter-spacing:.02em;overflow:hidden;text-decoration:none;
+  animation:cta-pulse 2.5s ease-in-out infinite;
+}
+.btn-cartoon::after{
+  content:'';position:absolute;top:0;left:-100%;width:60%;height:100%;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.35),transparent);
+  transform:skewX(-20deg);animation:shimmer 3s ease-in-out infinite;pointer-events:none;
+}
+.btn-cartoon:hover{transform:translateY(-2px);box-shadow:var(--shadow-lg);}
+.btn-cartoon:active{transform:translateY(0);box-shadow:var(--shadow-sm);}
+
+/* === CARD 3D (light) === */
 .card-3d{
   background:#fff;border-radius:.75rem;border:3px solid var(--black);
   box-shadow:0 6px 0 var(--black),0 10px 20px rgba(0,0,0,.15);
   transition:all .2s ease;overflow:hidden;
 }
-.card-3d:hover{transform:translateY(3px);box-shadow:0 3px 0 var(--black);}
+.card-3d:hover{transform:translateY(3px);box-shadow:0 3px 0 var(--black),0 5px 10px rgba(0,0,0,.1);}
+
+/* === CARD 3D DARK === */
 .card-3d-dark{
   background:#111113;border-radius:.75rem;border:3px solid var(--black);
-  box-shadow:0 6px 0 var(--black);
+  box-shadow:0 6px 0 var(--black),0 10px 20px rgba(0,0,0,.35);
   transition:all .2s ease;overflow:hidden;
 }
 .card-3d-dark:hover{transform:translateY(3px);box-shadow:0 3px 0 var(--black);}
 
-/* Phase card */
+/* === STAT CARD === */
+.stat-val{
+  font-size:clamp(1.8rem,5vw,3rem);
+  font-weight:900;color:var(--accent);line-height:1;
+}
+.stat-lbl{
+  font-size:.68rem;font-weight:600;
+  text-transform:uppercase;letter-spacing:.08em;
+  color:var(--muted);margin-top:.4rem;
+}
+
+/* === PHASE CARD (warm dark) === */
 .phase-card{
   background:linear-gradient(145deg,#1A1004,#120B02);
   border:1px solid rgba(255,102,0,.2);border-top:2px solid rgba(255,102,0,.4);
   border-radius:1.25rem;position:relative;overflow:hidden;padding:1.75rem 1.5rem;
   transition:all .25s ease;
 }
-.phase-card:hover{
-  border-color:rgba(255,102,0,.45);transform:translateY(-3px);
-  box-shadow:0 8px 28px rgba(255,102,0,.12);
+.phase-card:hover{border-color:rgba(255,102,0,.45);transform:translateY(-3px);box-shadow:0 8px 28px rgba(255,102,0,.1);}
+.phase-card::after{
+  content:'';position:absolute;inset:0;border-radius:1.25rem;
+  background:radial-gradient(circle at var(--mx,50%) var(--my,50%),rgba(255,102,0,.08) 0%,transparent 55%);
+  pointer-events:none;opacity:0;transition:opacity .3s ease;
 }
-.phase-tag{
-  display:inline-block;font-size:.65rem;font-weight:800;
-  text-transform:uppercase;letter-spacing:.18em;color:var(--accent);
-  margin-bottom:.6rem;padding-left:.9rem;position:relative;
-}
-.phase-tag::before{
-  content:'';position:absolute;left:0;top:50%;transform:translateY(-50%);
-  width:4px;height:100%;background:var(--accent);border-radius:2px;
-}
-.phase-title{font-size:1rem;font-weight:900;color:var(--accent);margin-bottom:.75rem;text-transform:uppercase;letter-spacing:.04em;}
-.phase-body{font-size:.88rem;color:rgba(224,220,210,.85);line-height:1.75;}
+.phase-card:hover::after{opacity:1;}
+.phase-num{font-size:clamp(2.5rem,10vw,4.5rem);font-weight:900;line-height:1;color:rgba(255,100,0,.06);position:absolute;top:-8px;right:10px;user-select:none;pointer-events:none;}
+.phase-tag{display:inline-block;font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:.18em;color:var(--accent);margin-bottom:.65rem;padding-left:.9rem;position:relative;}
+.phase-tag::before{content:'';position:absolute;left:0;top:50%;transform:translateY(-50%);width:4px;height:100%;background:var(--accent);border-radius:2px;}
+.phase-title{font-size:1rem;font-weight:900;color:var(--accent);margin-bottom:.7rem;text-transform:uppercase;letter-spacing:.03em;}
+.phase-body{font-size:.85rem;color:rgba(224,220,210,.8);line-height:1.75;}
 .phase-body strong{color:#fff;font-weight:700;}
 
-/* ============================================================
-   STAT CARDS
-   ============================================================ */
-.stat-card{
-  border:1px solid rgba(255,102,0,.2);border-radius:1rem;
-  padding:1.5rem 1.25rem;background:rgba(255,102,0,.04);
-  text-align:center;
+/* === TABLE === */
+.tbl-wrap{
+  overflow-x:auto;border-radius:.75rem;
+  border:3px solid var(--black);
+  box-shadow:0 6px 0 var(--black);
 }
-.stat-num{font-size:clamp(2rem,6vw,3.5rem);font-weight:900;color:var(--accent);line-height:1;}
-.stat-label{font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.55);margin-top:.5rem;}
-
-/* ============================================================
-   DELIVERABLE ITEM
-   ============================================================ */
-.deliv-item{
-  display:flex;gap:1.25rem;align-items:flex-start;
-  padding:1.5rem;border-bottom:1px solid rgba(5,5,5,.1);
-}
-.deliv-item:last-child{border-bottom:none;}
-.deliv-num{
-  flex-shrink:0;width:42px;height:42px;background:var(--accent);
-  border:2px solid var(--black);box-shadow:0 3px 0 var(--black);
-  border-radius:.5rem;display:flex;align-items:center;justify-content:center;
-  font-size:.8rem;font-weight:900;color:#fff;letter-spacing:.04em;
-}
-
-/* ============================================================
-   COMPARISON TABLE
-   ============================================================ */
-.compare-table{width:100%;border-collapse:collapse;}
-.compare-table th{
+table{width:100%;border-collapse:collapse;min-width:600px;}
+th{
   background:var(--black);color:#fff;
-  font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:.1em;
-  padding:.85rem 1rem;text-align:left;border-right:1px solid rgba(255,255,255,.08);
+  font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:.1em;
+  padding:.8rem 1rem;text-align:left;
 }
-.compare-table th:last-child{border-right:none;color:var(--accent);}
-.compare-table td{
-  padding:.9rem 1rem;font-size:.85rem;line-height:1.55;
-  border-bottom:1px solid rgba(5,5,5,.08);border-right:1px solid rgba(5,5,5,.06);
-  vertical-align:top;color:#333;
+th:last-child{color:var(--accent);}
+td{
+  padding:.8rem 1rem;font-size:.82rem;line-height:1.65;
+  color:#333;background:#fff;vertical-align:top;
+  border-bottom:1px solid rgba(0,0,0,.06);
 }
-.compare-table td:first-child{font-weight:700;color:#050505;background:rgba(255,102,0,.03);}
-.compare-table td:last-child{border-right:none;color:#050505;background:rgba(255,102,0,.06);}
-.compare-table tr:last-child td{border-bottom:none;}
-.compare-table td .tag-bad{
-  display:inline-block;font-size:.65rem;font-weight:800;text-transform:uppercase;
-  letter-spacing:.06em;color:#c0392b;background:rgba(192,57,43,.08);
-  border:1px solid rgba(192,57,43,.2);border-radius:.25rem;padding:.2rem .5rem;margin-bottom:.25rem;
-}
-.compare-table td .tag-good{
-  display:inline-block;font-size:.65rem;font-weight:800;text-transform:uppercase;
-  letter-spacing:.06em;color:var(--accent);background:rgba(255,102,0,.08);
-  border:1px solid rgba(255,102,0,.25);border-radius:.25rem;padding:.2rem .5rem;margin-bottom:.25rem;
-}
-.table-wrap{overflow-x:auto;border:3px solid var(--black);border-radius:.75rem;box-shadow:0 6px 0 var(--black);}
+tr:nth-child(odd) td{background:#faf9f6;}
+tr:nth-child(even) td{background:#fff;}
+td:first-child{font-weight:700;color:var(--text-dark);}
+tr:last-child td{border-bottom:none;}
+.tag{display:inline-block;font-size:.56rem;font-weight:800;text-transform:uppercase;letter-spacing:.05em;padding:.15rem .45rem;border-radius:3px;margin-bottom:.2rem;}
+.tag-red{color:#c0392b;background:rgba(192,57,43,.06);border:1px solid rgba(192,57,43,.12);}
+.tag-green{color:var(--accent);background:var(--accent-soft);border:1px solid rgba(255,102,0,.15);}
 
-/* ============================================================
-   TEAM CARD
-   ============================================================ */
+/* === DELIVERABLE === */
+.dlv{display:flex;gap:1.25rem;padding:1.35rem 1.5rem;border-bottom:1px solid rgba(0,0,0,.06);align-items:flex-start;}
+.dlv:last-child{border-bottom:none;}
+.dlv-badge{
+  flex-shrink:0;width:40px;height:40px;
+  background:var(--accent);color:#fff;
+  border:2px solid var(--black);box-shadow:0 3px 0 var(--black);
+  border-radius:8px;display:flex;align-items:center;justify-content:center;
+  font-size:.75rem;font-weight:900;
+}
+.dlv h3{font-size:.9rem;font-weight:800;color:var(--text-dark);text-transform:uppercase;margin-bottom:.3rem;letter-spacing:.02em;}
+.dlv p{font-size:.82rem;line-height:1.75;color:var(--muted-dark);}
+.disc-box{
+  background:var(--accent-soft);border:1px solid rgba(255,102,0,.12);
+  border-radius:8px;padding:.85rem 1rem;margin-top:.6rem;
+}
+
+/* === TIMELINE === */
+.timeline{position:relative;padding-left:36px;}
+.timeline::before{
+  content:'';position:absolute;left:15px;top:0;bottom:0;width:2px;
+  background:linear-gradient(to bottom,var(--accent),rgba(255,102,0,.1));
+  border-radius:2px;
+}
+.tl-item{position:relative;padding-bottom:2.5rem;}
+.tl-item:last-child{padding-bottom:0;}
+.tl-dot{
+  position:absolute;left:-36px;top:4px;
+  width:32px;height:32px;border-radius:50%;
+  background:var(--accent);border:2px solid var(--black);box-shadow:0 2px 0 var(--black);
+  display:flex;align-items:center;justify-content:center;
+  font-size:.6rem;font-weight:900;color:var(--black);z-index:1;
+}
+.tl-phase-label{
+  display:inline-block;font-size:.58rem;font-weight:900;text-transform:uppercase;
+  letter-spacing:.14em;color:var(--accent);
+  background:rgba(255,102,0,.1);border:1px solid rgba(255,102,0,.25);
+  border-radius:.25rem;padding:.2rem .6rem;margin-bottom:.4rem;
+}
+.tl-title{font-size:.95rem;font-weight:800;color:#fff;text-transform:uppercase;margin-bottom:.35rem;letter-spacing:.02em;}
+.tl-desc{font-size:.84rem;color:var(--muted);line-height:1.75;}
+.tl-desc strong{color:#fff;}
+
+/* === URGENCY === */
+@keyframes urgency-border{
+  0%,100%{box-shadow:0 6px 0 var(--accent),0 8px 20px rgba(255,102,0,.15);}
+  50%{box-shadow:0 6px 0 var(--accent),0 8px 30px rgba(255,102,0,.35);}
+}
+@keyframes urgency-dot{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.3;transform:scale(.6);}}
+
+/* === TEAM CARD === */
 .team-card{
   background:#fff;border:3px solid var(--black);border-radius:.75rem;
   box-shadow:0 6px 0 var(--black);overflow:hidden;
-  transition:transform .2s ease,box-shadow .2s ease;
+  transition:transform .2s,box-shadow .2s;
 }
 .team-card:hover{transform:translateY(3px);box-shadow:0 3px 0 var(--black);}
-.team-card-top{background:var(--accent);padding:1.5rem;border-bottom:3px solid var(--black);}
-.team-card-body{padding:1.5rem;}
+.team-hdr{background:var(--accent);padding:1.25rem 1.5rem;border-bottom:3px solid var(--black);}
+.team-body{padding:1.35rem 1.5rem;}
 
-/* ============================================================
-   URGENCY / ALERT BOX
-   ============================================================ */
-.alert-box{
-  border:3px solid var(--accent);border-radius:.75rem;
-  box-shadow:0 6px 0 var(--accent);background:rgba(255,102,0,.06);
-  padding:2rem;position:relative;overflow:hidden;
+/* === PRICE CARD === */
+@property --angle{syntax:'<angle>';initial-value:0deg;inherits:false;}
+@keyframes spin-border{from{--angle:0deg;}to{--angle:360deg;}}
+.price-border{
+  position:relative;border-radius:1.25rem;padding:3px;
 }
-.alert-box::before{
-  content:'';position:absolute;top:0;left:0;width:100%;height:4px;
-  background:linear-gradient(90deg,var(--accent),transparent);
+.price-border::before{
+  content:'';position:absolute;inset:0;border-radius:1.25rem;
+  background:conic-gradient(from var(--angle,0deg),var(--accent) 0%,rgba(255,102,0,.12) 40%,var(--accent) 60%,rgba(255,102,0,.12) 80%,var(--accent) 100%);
+  z-index:0;animation:spin-border 3s linear infinite;
 }
-
-/* ============================================================
-   INVESTMENT / PRICING
-   ============================================================ */
-.price-card{
-  border:3px solid var(--black);border-radius:.75rem;
-  box-shadow:0 8px 0 var(--black);background:#fff;overflow:hidden;
-}
-.price-header{background:var(--black);padding:1.5rem 2rem;border-bottom:3px solid var(--black);}
-.price-body{padding:2rem;}
-
-/* ============================================================
-   DISCLAIMER BOX
-   ============================================================ */
-.disclaimer{
-  background:rgba(255,102,0,.06);border:1px solid rgba(255,102,0,.2);
-  border-radius:.6rem;padding:1rem 1.25rem;margin-top:1rem;
+.price-border>*{position:relative;z-index:1;}
+.price-inner{
+  background:var(--dark);border-radius:calc(1.25rem - 3px);
+  box-shadow:0 20px 60px rgba(255,102,0,.15);
+  overflow:hidden;
 }
 
-/* ============================================================
-   CONTACT
-   ============================================================ */
-.contact-box{
-  background:var(--black);border:3px solid var(--accent);
-  border-radius:.75rem;box-shadow:0 6px 0 var(--accent);
-  padding:2rem;display:flex;flex-direction:column;gap:1rem;
+/* === CONTACT BOX === */
+.cbox{
+  background:var(--black);
+  border:2px solid rgba(255,102,0,.2);
+  border-radius:var(--radius);
+  padding:2rem;text-align:center;
+  max-width:460px;margin:0 auto;
 }
 
-/* ============================================================
-   FOOTER
-   ============================================================ */
+/* === FOOTER === */
 footer{
-  background:var(--black);border-top:1px solid rgba(255,102,0,.1);
-  padding:2rem 1.5rem;text-align:center;
+  background:var(--black);
+  border-top:1px solid rgba(255,255,255,.04);
+  padding:1.25rem 2rem;
+}
+footer .wrap{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.5rem;}
+
+/* === GRIDS === */
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;}
+@media(max-width:768px){.g3,.g2{grid-template-columns:1fr;}}
+
+/* === UTILS === */
+.mb-05{margin-bottom:.5rem;}.mb-1{margin-bottom:1rem;}.mb-15{margin-bottom:1.5rem;}.mb-2{margin-bottom:2rem;}.mb-3{margin-bottom:3rem;}.mb-4{margin-bottom:4rem;}
+.mt-05{margin-top:.5rem;}.mt-1{margin-top:1rem;}.mt-15{margin-top:1.5rem;}.mt-2{margin-top:2rem;}
+.tc{text-align:center;}.mx-auto{margin-left:auto;margin-right:auto;}
+.flex{display:flex;}.flex-col{flex-direction:column;}.gap-1{gap:1rem;}.gap-15{gap:1.5rem;}.gap-2{gap:2rem;}
+.items-start{align-items:flex-start;}.items-center{align-items:center;}
+.flex-wrap{flex-wrap:wrap;}
+
+/* === HERO METRICS BAR === */
+.metrics-bar{
+  display:flex;gap:0;border:3px solid var(--black);border-radius:.75rem;
+  box-shadow:0 5px 0 var(--black);overflow:hidden;max-width:520px;
+}
+.metric{
+  flex:1;padding:1rem 1.25rem;text-align:center;
+  border-right:2px solid var(--black);
+  background:#fff;
+}
+.metric:last-child{border-right:none;}
+.metric-val{font-size:clamp(1.2rem,3vw,1.6rem);font-weight:900;color:var(--accent);line-height:1.1;}
+.metric-lbl{font-size:.58rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--muted-dark);margin-top:.25rem;}
+
+/* === META ROW === */
+.meta-row{
+  display:flex;gap:0;border:1px solid rgba(255,255,255,.08);border-radius:.5rem;overflow:hidden;
+}
+.meta-item{
+  flex:1;padding:.75rem 1rem;text-align:center;
+  border-right:1px solid rgba(255,255,255,.08);
+}
+.meta-item:last-child{border-right:none;}
+.meta-label{font-size:.55rem;font-weight:800;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);margin-bottom:.2rem;}
+.meta-value{font-size:.82rem;font-weight:700;color:#fff;}
+
+/* === MISSY CASE SPECIAL === */
+.case-card{
+  display:grid;grid-template-columns:auto 1fr;gap:0;
+  border:2px solid rgba(255,102,0,.25);border-radius:1rem;overflow:hidden;
+  background:linear-gradient(145deg,#1A1004,#120B02);
+}
+.case-side{
+  background:var(--accent);padding:2rem 1.5rem;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  border-right:3px solid var(--black);min-width:140px;
+}
+.case-main{padding:1.75rem;}
+@media(max-width:640px){
+  .case-card{grid-template-columns:1fr;}
+  .case-side{border-right:none;border-bottom:3px solid var(--black);padding:1.25rem;}
 }
 
-/* ============================================================
-   UTILS
-   ============================================================ */
-.pos-rel{position:relative;}
-.z1{position:relative;z-index:1;}
-.flex-center{display:flex;align-items:center;justify-content:center;}
-.flex-col{display:flex;flex-direction:column;}
-.gap-1{gap:1rem;}.gap-2{gap:2rem;}.gap-3{gap:3rem;}
-.text-center{text-align:center;}
-.mb-05{margin-bottom:.5rem;}
-.mb-1{margin-bottom:1rem;}
-.mb-15{margin-bottom:1.5rem;}
-.mb-2{margin-bottom:2rem;}
-.mb-3{margin-bottom:3rem;}
-.mt-1{margin-top:1rem;}
-.mt-2{margin-top:2rem;}
-.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;}
-.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;}
-@media(max-width:900px){.grid-3{grid-template-columns:1fr;}.grid-2{grid-template-columns:1fr;}}
-@media(max-width:600px){.grid-2{grid-template-columns:1fr;}}
+/* === SOLUTION CARDS HORIZONTAL === */
+.sol-card{
+  display:grid;grid-template-columns:64px 1fr;gap:0;
+  background:#fff;border:3px solid var(--black);border-radius:.75rem;
+  box-shadow:0 5px 0 var(--black);overflow:hidden;
+  transition:all .2s ease;
+}
+.sol-card:hover{transform:translateY(3px);box-shadow:0 2px 0 var(--black);}
+.sol-num{
+  background:var(--accent);display:flex;align-items:center;justify-content:center;
+  font-size:1.2rem;font-weight:900;color:#fff;
+  border-right:3px solid var(--black);
+}
+.sol-content{padding:1.5rem;}
+
+/* === OPTIONAL CARD === */
+.opt-card{
+  background:var(--dark2);border:2px solid rgba(255,255,255,.08);
+  border-radius:.75rem;overflow:hidden;transition:border-color .3s;
+}
+.opt-card:hover{border-color:rgba(255,102,0,.2);}
+
+/* === INVESTIMENTO GRID === */
+.invest-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:1.5rem;align-items:start;}
+@media(max-width:768px){.invest-grid{grid-template-columns:1fr;}}
+
 </style>
 </head>
 <body>
 
-<!-- ============================================================
-     NAV
-     ============================================================ -->
+<!-- NAV -->
 <nav>
   <div class="nav-inner">
     <div class="nav-brand"><span>Triforce</span> Auto</div>
-    <div class="nav-meta">Proposta Comercial &middot; Barbara Monize &middot; #TFA-0001</div>
+    <div class="nav-ref">Proposta &middot; #TFA-0001</div>
   </div>
 </nav>
 
-<!-- ============================================================
-     HERO — DARK
-     ============================================================ -->
-<section class="pos-rel bg-dark s-py" style="overflow:hidden;">
-  <div class="grid-overlay"></div>
-  <div class="ao ao-1"></div>
-  <div class="ao ao-2"></div>
-  <div class="section-watermark" style="bottom:-2rem;right:-2rem;">PROPOSTA</div>
+<!-- ============ HERO (dark) ============ -->
+<section class="sec grid-ov" style="background:var(--dark);padding-top:7rem;padding-bottom:7rem;">
+  <div class="ao" style="width:380px;height:380px;background:rgba(255,102,0,.08);top:-100px;right:-60px;animation:ao-1 20s ease-in-out infinite;"></div>
+  <div class="ao" style="width:220px;height:220px;background:rgba(255,102,0,.05);bottom:-40px;left:-30px;animation:ao-2 24s ease-in-out infinite;"></div>
+  <span class="wm" style="top:50%;left:50%;transform:translate(-50%,-50%);">PROPOSTA</span>
 
-  <div class="container z1">
-    <div class="reveal mb-15">
-      <span class="pill">Proposta Comercial &middot; #TFA-0001</span>
-    </div>
+  <div class="wrap z">
+    <div class="reveal mb-1"><span class="pill">Proposta Comercial</span></div>
 
-    <h1 class="t-hero reveal d1 mb-2">
-      Sua loja no Instagram perde venda toda hora que<br>
-      <span class="hl">voce demora pra responder.</span>
+    <h1 class="t-hero mb-2 reveal d1" style="max-width:700px;">
+      Sua loja no Instagram <span class="hl hl-glow">perde venda</span> toda hora que você demora pra responder.
     </h1>
 
-    <p class="t-body c-muted reveal d2 mb-3" style="max-width:620px;">
-      A gente resolve isso em 14 dias: catalogo online, botao de WhatsApp por produto e controle de estoque. Tudo num sistema so, por R$ 1.397.
+    <p class="t-body mb-3 reveal d2" style="color:var(--muted);max-width:580px;">
+      A gente resolve isso em 14 dias: catálogo online, botão de contato direto por produto e controle de estoque. Tudo num sistema só, por R$ 1.397.
     </p>
 
-    <!-- Metrics -->
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;max-width:600px;" class="reveal d3 mb-3">
-      <div class="stat-card">
-        <div class="stat-num">14</div>
-        <div class="stat-label">dias do briefing ao ar</div>
+    <div class="metrics-bar mb-3 reveal d3">
+      <div class="metric">
+        <div class="metric-val">14</div>
+        <div class="metric-lbl">dias</div>
       </div>
-      <div class="stat-card">
-        <div class="stat-num" style="font-size:clamp(1.4rem,4vw,2.2rem);">R$&nbsp;1.397</div>
-        <div class="stat-label">investimento total</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-num">3em1</div>
-        <div class="stat-label">catalogo + WhatsApp + estoque</div>
+      <div class="metric">
+        <div class="metric-val">3 em 1</div>
+        <div class="metric-lbl">catálogo + contato + estoque</div>
       </div>
     </div>
 
-    <!-- Meta info -->
-    <div class="reveal d4" style="display:flex;gap:2rem;flex-wrap:wrap;">
-      <div>
-        <div class="t-xs c-muted" style="margin-bottom:.2rem;">DATA</div>
-        <div class="t-small" style="font-weight:700;">Abril 2026</div>
+    <div class="meta-row reveal d4" style="max-width:520px;">
+      <div class="meta-item">
+        <div class="meta-label">Data</div>
+        <div class="meta-value">1 de Maio de 2026</div>
       </div>
-      <div>
-        <div class="t-xs c-muted" style="margin-bottom:.2rem;">PARA</div>
-        <div class="t-small" style="font-weight:700;">Barbara Monize</div>
+      <div class="meta-item">
+        <div class="meta-label">Para</div>
+        <div class="meta-value">Bárbara Monize</div>
       </div>
-      <div>
-        <div class="t-xs c-muted" style="margin-bottom:.2rem;">VALIDADE</div>
-        <div class="t-small" style="font-weight:700;">Ate 30/04/2026</div>
-      </div>
-      <div>
-        <div class="t-xs c-muted" style="margin-bottom:.2rem;">REFERENCIA</div>
-        <div class="t-small" style="font-weight:700;color:var(--accent);">#TFA-0001</div>
+      <div class="meta-item">
+        <div class="meta-label">Ref</div>
+        <div class="meta-value hl">#TFA-0001</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ============================================================
-     PROBLEMA — LIGHT
-     ============================================================ -->
-<section class="pos-rel bg-light s-py" style="overflow:hidden;">
-  <div class="grid-overlay-light"></div>
-  <div class="section-watermark" style="bottom:-1rem;right:-1rem;color:rgba(5,5,5,.03);">PROBLEMA</div>
+<!-- ============ PROBLEMA (light) ============ -->
+<section class="sec" style="background:var(--light);">
+  <span class="wm wm-light" style="bottom:0;right:-20px;">CENÁRIO</span>
+  <div class="wrap z">
+    <div class="orange-bar reveal"></div>
+    <h2 class="t-section on-light mb-05 reveal d1">O Cenário <span class="hl">Atual</span></h2>
+    <p class="t-body mb-3 reveal d2" style="color:var(--muted-dark);max-width:480px;">O que está custando caro agora, mesmo sem você ver.</p>
 
-  <div class="container z1">
-    <div class="reveal mb-05">
-      <div class="orange-bar"></div>
-    </div>
-    <h2 class="t-section on-light reveal mb-1">O Cenario <span class="hl">Atual</span></h2>
-    <p class="t-body c-muted-lgt reveal d1 mb-3" style="max-width:520px;">O que esta custando caro agora, mesmo sem voce ver.</p>
-
-    <div class="grid-3">
-      <!-- Card 1 -->
-      <div class="card-3d reveal d1" style="padding:0;">
-        <div style="padding:.75rem 1rem;background:var(--accent);border-bottom:3px solid var(--black);">
-          <span style="font-size:.7rem;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:#fff;">01</span>
+    <div class="g3">
+      <div class="card-3d reveal d1">
+        <div style="background:#c0392b;padding:.6rem 1.25rem;border-bottom:3px solid var(--black);">
+          <span style="font-size:.7rem;font-weight:900;color:#fff;text-transform:uppercase;letter-spacing:.15em;">01</span>
         </div>
         <div style="padding:1.5rem;">
-          <h3 style="font-size:1.1rem;font-weight:900;color:#050505;margin-bottom:.75rem;text-transform:uppercase;letter-spacing:-.02em;">Venda fantasma</h3>
-          <p class="t-small c-muted-lgt">A cliente manda DM, voce demora pra responder, ela compra em outro lugar. Sem catalogo online, cada demora e uma venda que sai pelo ralo.</p>
+          <h3 style="font-size:.95rem;font-weight:800;color:var(--text-dark);text-transform:uppercase;margin-bottom:.5rem;">Venda fantasma</h3>
+          <p class="t-sm" style="color:var(--muted-dark);">A cliente manda DM, você demora pra responder, ela compra em outro lugar. Sem catálogo online, cada demora e uma venda que sai pelo ralo.</p>
         </div>
       </div>
-
-      <!-- Card 2 -->
-      <div class="card-3d reveal d2" style="padding:0;">
-        <div style="padding:.75rem 1rem;background:var(--accent);border-bottom:3px solid var(--black);">
-          <span style="font-size:.7rem;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:#fff;">02</span>
+      <div class="card-3d reveal d2">
+        <div style="background:var(--accent);padding:.6rem 1.25rem;border-bottom:3px solid var(--black);">
+          <span style="font-size:.7rem;font-weight:900;color:#fff;text-transform:uppercase;letter-spacing:.15em;">02</span>
         </div>
         <div style="padding:1.5rem;">
-          <h3 style="font-size:1.1rem;font-weight:900;color:#050505;margin-bottom:.75rem;text-transform:uppercase;letter-spacing:-.02em;">Atendimento que nao escala</h3>
-          <p class="t-small c-muted-lgt">Responder pergunta de tamanho, cor e preco no DM dezenas de vezes por dia toma tempo que podia estar indo pra produto, pra estoque, pra voce. Isso nao e atendimento, e desgaste.</p>
+          <h3 style="font-size:.95rem;font-weight:800;color:var(--text-dark);text-transform:uppercase;margin-bottom:.5rem;">Atendimento que não escala</h3>
+          <p class="t-sm" style="color:var(--muted-dark);">Responder pergunta de tamanho, cor e preço no DM dezenas de vezes por dia toma tempo que podia estar indo pra produto, pra estoque, pra você. Isso não e atendimento, é desgaste.</p>
         </div>
       </div>
-
-      <!-- Card 3 -->
-      <div class="card-3d reveal d3" style="padding:0;">
-        <div style="padding:.75rem 1rem;background:var(--accent);border-bottom:3px solid var(--black);">
-          <span style="font-size:.7rem;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:#fff;">03</span>
+      <div class="card-3d reveal d3">
+        <div style="background:var(--black);padding:.6rem 1.25rem;border-bottom:3px solid var(--black);">
+          <span style="font-size:.7rem;font-weight:900;color:#fff;text-transform:uppercase;letter-spacing:.15em;">03</span>
         </div>
         <div style="padding:1.5rem;">
-          <h3 style="font-size:1.1rem;font-weight:900;color:#050505;margin-bottom:.75rem;text-transform:uppercase;letter-spacing:-.02em;">Estoque no escuro</h3>
-          <p class="t-small c-muted-lgt">Sem controle centralizado, voce vende peca que nao tem, deixa de vender peca que esta parada e nao enxerga o que esta girando. E cegueira financeira com vendas abertas.</p>
+          <h3 style="font-size:.95rem;font-weight:800;color:var(--text-dark);text-transform:uppercase;margin-bottom:.5rem;">Estoque no escuro</h3>
+          <p class="t-sm" style="color:var(--muted-dark);">Sem controle centralizado, você vende peça que não tem, deixa de vender peça que está parada e não enxerga o que está girando. É cegueira financeira com vendas abertas.</p>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ============================================================
-     DADOS DE MERCADO — DARK
-     ============================================================ -->
-<section class="pos-rel bg-dark2 s-py" style="overflow:hidden;">
-  <div class="grid-overlay"></div>
-  <div class="ao ao-3"></div>
-  <div class="section-watermark" style="top:0;left:-2rem;">MERCADO</div>
+<!-- ============ NUMEROS (dark2) ============ -->
+<section class="sec grid-ov" style="background:var(--dark2);">
+  <div class="ao" style="width:300px;height:300px;background:rgba(255,102,0,.06);bottom:-60px;left:-50px;animation:ao-1 22s ease-in-out infinite;"></div>
+  <span class="wm" style="top:10%;right:-40px;">NUMEROS</span>
 
-  <div class="container z1">
-    <div class="reveal mb-05">
-      <div class="orange-bar"></div>
-    </div>
-    <h2 class="t-section on-dark reveal mb-1">Os <span class="hl">Numeros</span></h2>
-    <p class="t-body c-muted reveal d1 mb-3" style="max-width:520px;">O que a pesquisa ja provou antes de voce.</p>
+  <div class="wrap z">
+    <div class="orange-bar reveal"></div>
+    <h2 class="t-section on-dark mb-05 reveal d1">Os <span class="hl">Números</span></h2>
+    <p class="t-body mb-3 reveal d2" style="color:var(--muted);">O que a pesquisa já provou antes de você.</p>
 
-    <!-- Stats -->
-    <div class="grid-3 mb-3">
-      <div class="stat-card reveal d1">
-        <div class="stat-num">64%</div>
-        <div class="stat-label">das clientes desistem antes de receber resposta no DM</div>
+    <!-- Stat cards com estilo bento -->
+    <div class="g3 mb-3">
+      <div class="card-3d-dark reveal d1" style="padding:2rem 1.5rem;text-align:center;">
+        <div class="stat-val" style="font-size:clamp(2.2rem,6vw,3.2rem);margin-bottom:.5rem;">64%</div>
+        <div class="stat-lbl" style="font-size:.72rem;">das clientes desistem antes de receber resposta no DM</div>
       </div>
-      <div class="stat-card reveal d2">
-        <div class="stat-num" style="font-size:clamp(1.6rem,5vw,2.8rem);">9% vs 2,5%</div>
-        <div class="stat-label">conversao com LP propria contra so Instagram</div>
+      <div class="card-3d-dark reveal d2" style="padding:2rem 1.5rem;text-align:center;">
+        <div class="stat-val" style="font-size:clamp(1.4rem,4vw,2rem);margin-bottom:.5rem;">9% vs 2,5%</div>
+        <div class="stat-lbl" style="font-size:.72rem;">conversão com LP própria contra só Instagram</div>
       </div>
-      <div class="stat-card reveal d3">
-        <div class="stat-num" style="font-size:clamp(2rem,5vw,3rem);">Jun/Jul</div>
-        <div class="stat-label">pico de vendas de inverno, a janela mais importante do ano</div>
+      <div class="card-3d-dark reveal d3" style="padding:2rem 1.5rem;text-align:center;">
+        <div class="stat-val" style="font-size:clamp(1.6rem,4.5vw,2.2rem);margin-bottom:.5rem;">Jun/Jul</div>
+        <div class="stat-lbl" style="font-size:.72rem;">pico de vendas de inverno, a janela mais importante do ano</div>
       </div>
     </div>
 
-    <!-- Case Missy Baby -->
-    <div class="reveal d4" style="border:1px solid rgba(255,102,0,.25);border-radius:1rem;padding:2rem;background:rgba(255,102,0,.04);">
-      <div class="orange-bar mb-1"></div>
-      <p class="t-xs c-accent mb-1" style="text-transform:uppercase;letter-spacing:.12em;">Caso Real</p>
-      <h3 class="t-section on-dark mb-15" style="font-size:clamp(1.3rem,3vw,2rem);">O que acontece quando a loja sai do Instagram para um sistema proprio</h3>
-      <p class="t-body c-muted mb-2">
-        A <strong style="color:#fff;">Missy Baby</strong> comecou igual a sua loja, vendendo pelo Instagram, respondendo DM, sem catalogo. Depois que montou o sistema com catalogo online e botao de WhatsApp por produto, chegou a R$ 1 milhao por ano. Nao foi sorte. Foi estrutura.
-      </p>
-      <div style="display:flex;gap:1rem;flex-wrap:wrap;">
-        <div style="flex:1;min-width:160px;border:1px solid rgba(255,255,255,.08);border-radius:.5rem;padding:1rem;">
-          <div class="t-xs c-muted mb-05">PONTO DE PARTIDA</div>
-          <div style="font-weight:800;color:#fff;font-size:.95rem;">Instagram</div>
-        </div>
-        <div style="flex:1;min-width:160px;border:1px solid rgba(255,102,0,.3);border-radius:.5rem;padding:1rem;background:rgba(255,102,0,.06);">
-          <div class="t-xs c-muted mb-05">FATURAMENTO DEPOIS</div>
-          <div style="font-weight:900;color:var(--accent);font-size:.95rem;">R$ 1M/ano</div>
-        </div>
-        <div style="flex:1;min-width:160px;border:1px solid rgba(255,255,255,.08);border-radius:.5rem;padding:1rem;">
-          <div class="t-xs c-muted mb-05">O QUE MUDOU</div>
-          <div style="font-weight:800;color:#fff;font-size:.95rem;">Estrutura</div>
-        </div>
+    <!-- Casó Missy Baby: layout especial -->
+    <div class="case-card reveal d4">
+      <div class="case-side">
+        <div class="t-xs mb-05" style="color:rgba(255,255,255,.7);">Casó Real</div>
+        <div style="font-size:clamp(1.8rem,5vw,2.4rem);font-weight:900;color:#fff;line-height:1;text-align:center;">R$ 1M</div>
+        <div class="t-xs mt-05" style="color:rgba(255,255,255,.7);">/ano</div>
       </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============================================================
-     SOLUCAO — LIGHT
-     ============================================================ -->
-<section class="pos-rel bg-light s-py" style="overflow:hidden;">
-  <div class="grid-overlay-light"></div>
-  <div class="section-watermark" style="bottom:-1rem;left:-1rem;color:rgba(5,5,5,.03);">SOLUCAO</div>
-
-  <div class="container z1">
-    <div class="reveal mb-05">
-      <div class="orange-bar"></div>
-    </div>
-    <h2 class="t-section on-light reveal mb-1">A <span class="hl">Solucao</span></h2>
-    <p class="t-body c-muted-lgt reveal d1 mb-3" style="max-width:520px;">O que voce vai ter no ar em 14 dias.</p>
-
-    <div class="flex-col gap-1" style="max-width:800px;">
-      <!-- Item I -->
-      <div class="card-3d reveal d1" style="padding:1.75rem;">
-        <div style="display:flex;gap:1rem;align-items:flex-start;">
-          <div style="flex-shrink:0;width:40px;height:40px;background:var(--accent);border:2px solid var(--black);box-shadow:0 3px 0 var(--black);border-radius:.4rem;display:flex;align-items:center;justify-content:center;font-weight:900;color:#fff;font-size:.85rem;">I</div>
-          <div>
-            <h3 style="font-size:1rem;font-weight:900;color:#050505;margin-bottom:.6rem;text-transform:uppercase;letter-spacing:-.01em;">Catalogo online com botao de WhatsApp por produto</h3>
-            <p class="t-small c-muted-lgt">Cada peca do seu catalogo, legging, top, conjunto, com foto, cor, tamanho e preco. A cliente viu, gostou, clicou. O WhatsApp abre com a mensagem ja preenchida: "Quero este produto". Voce nao perde venda por demora. A venda chega ate voce pronta.</p>
+      <div class="case-main">
+        <h3 style="font-size:1.05rem;font-weight:800;text-transform:uppercase;margin-bottom:.7rem;color:#fff;">O que acontece quando a loja sai do Instagram para um sistema próprio</h3>
+        <p class="t-sm" style="color:rgba(224,220,210,.75);line-height:1.8;">A <strong style="color:#fff;">Missy Baby</strong> começou igual a sua loja, vendendo pelo Instagram, respondendo DM, sem catálogo. Depois que montou o sistema com catálogo online e botão de contato por produto, chegou a R$ 1 milhão por ano. Não foi sorte. Foi estrutura.</p>
+        <div class="flex gap-1 flex-wrap mt-15">
+          <div style="flex:1;min-width:120px;border:1px solid rgba(255,255,255,.08);border-radius:8px;padding:.65rem .85rem;">
+            <div class="t-xs mb-05" style="color:var(--muted);">Ponto de partida</div>
+            <div style="font-weight:800;font-size:.88rem;">Instagram</div>
           </div>
-        </div>
-      </div>
-
-      <!-- Item II -->
-      <div class="card-3d reveal d2" style="padding:1.75rem;">
-        <div style="display:flex;gap:1rem;align-items:flex-start;">
-          <div style="flex-shrink:0;width:40px;height:40px;background:var(--accent);border:2px solid var(--black);box-shadow:0 3px 0 var(--black);border-radius:.4rem;display:flex;align-items:center;justify-content:center;font-weight:900;color:#fff;font-size:.85rem;">II</div>
-          <div>
-            <h3 style="font-size:1rem;font-weight:900;color:#050505;margin-bottom:.6rem;text-transform:uppercase;letter-spacing:-.01em;">Painel administrativo de estoque</h3>
-            <p class="t-small c-muted-lgt">Voce acessa pelo celular ou pelo computador e ve o que tem, o que acabou e o que esta quase no limite. Atualiza em tempo real. Sem planilha. Sem caderno. Sem achismo.</p>
+          <div style="flex:1;min-width:120px;border:1px solid rgba(255,102,0,.25);border-radius:8px;padding:.65rem .85rem;background:var(--accent-soft);">
+            <div class="t-xs mb-05" style="color:var(--muted);">Resultado</div>
+            <div class="hl" style="font-weight:900;font-size:.88rem;">R$ 1M/ano</div>
           </div>
-        </div>
-      </div>
-
-      <!-- Item III -->
-      <div class="card-3d reveal d3" style="padding:1.75rem;">
-        <div style="display:flex;gap:1rem;align-items:flex-start;">
-          <div style="flex-shrink:0;width:40px;height:40px;background:var(--accent);border:2px solid var(--black);box-shadow:0 3px 0 var(--black);border-radius:.4rem;display:flex;align-items:center;justify-content:center;font-weight:900;color:#fff;font-size:.85rem;">III</div>
-          <div>
-            <h3 style="font-size:1rem;font-weight:900;color:#050505;margin-bottom:.6rem;text-transform:uppercase;letter-spacing:-.01em;">Dominio .com.br e treinamento de 1 hora</h3>
-            <p class="t-small c-muted-lgt">Seu endereco proprio na internet, nao um link generico. E uma hora de treinamento ao vivo para voce sair sabendo usar tudo sem depender de ninguem.</p>
+          <div style="flex:1;min-width:120px;border:1px solid rgba(255,255,255,.08);border-radius:8px;padding:.65rem .85rem;">
+            <div class="t-xs mb-05" style="color:var(--muted);">O que mudou</div>
+            <div style="font-weight:800;font-size:.88rem;">Estrutura</div>
           </div>
         </div>
       </div>
@@ -595,54 +659,76 @@ footer{
   </div>
 </section>
 
-<!-- ============================================================
-     COMPARACAO — DARK
-     ============================================================ -->
-<section class="pos-rel bg-dark s-py" style="overflow:hidden;">
-  <div class="grid-overlay"></div>
-  <div class="ao" style="width:400px;height:400px;background:rgba(255,102,0,.12);top:-100px;left:-80px;animation:ao-float-2 16s ease-in-out infinite;"></div>
+<!-- ============ SOLUÇÃO (light) ============ -->
+<section class="sec" style="background:var(--light);">
+  <div class="wrap z">
+    <div class="orange-bar reveal"></div>
+    <h2 class="t-section on-light mb-05 reveal d1">A <span class="hl">Solução</span></h2>
+    <p class="t-body mb-3 reveal d2" style="color:var(--muted-dark);max-width:480px;">O que você vai ter no ar em 14 dias.</p>
 
-  <div class="container z1">
-    <div class="reveal mb-05">
-      <div class="orange-bar"></div>
+    <div class="flex flex-col gap-15" style="max-width:740px;">
+      <div class="sol-card reveal d1">
+        <div class="sol-num">I</div>
+        <div class="sol-content">
+          <h3 style="font-size:.92rem;font-weight:800;color:var(--text-dark);text-transform:uppercase;margin-bottom:.4rem;">Catálogo online com botão de contato por produto</h3>
+          <p class="t-sm" style="color:var(--muted-dark);">Cada peça do seu catálogo, legging, top, conjunto, com foto, cor, tamanho e preço. A cliente viu, gostou, clicou. A mensagem chega já preenchida: "Quero este produto". Você não perde venda por demora. A venda chega até você pronta.</p>
+        </div>
+      </div>
+      <div class="sol-card reveal d2">
+        <div class="sol-num">II</div>
+        <div class="sol-content">
+          <h3 style="font-size:.92rem;font-weight:800;color:var(--text-dark);text-transform:uppercase;margin-bottom:.4rem;">Painel administrativo de estoque</h3>
+          <p class="t-sm" style="color:var(--muted-dark);">Você acessa pelo celular ou pelo computador e vê o que tem, o que acabou e o que está quase no limite. Atualiza em tempo real. Sem planilha. Sem caderno. Sem achismo.</p>
+        </div>
+      </div>
+      <div class="sol-card reveal d3">
+        <div class="sol-num">III</div>
+        <div class="sol-content">
+          <h3 style="font-size:.92rem;font-weight:800;color:var(--text-dark);text-transform:uppercase;margin-bottom:.4rem;">Domínio .com.br e treinamento de 1 hora</h3>
+          <p class="t-sm" style="color:var(--muted-dark);">Seu endereço próprio na internet, não um link genérico. E uma hora de treinamento ao vivo para você sair sabendo usar tudo sem depender de ninguém.</p>
+        </div>
+      </div>
     </div>
-    <h2 class="t-section on-dark reveal mb-1">Por que <span class="hl">essa solucao</span></h2>
-    <p class="t-body c-muted reveal d1 mb-3">Hoje vs. com o sistema.</p>
+  </div>
+</section>
 
-    <div class="table-wrap reveal d2">
-      <table class="compare-table">
-        <thead>
-          <tr>
-            <th style="width:30%;">Situacao</th>
-            <th style="width:35%;">Hoje</th>
-            <th style="width:35%;">Com o sistema</th>
-          </tr>
-        </thead>
+<!-- ============ COMPARACAO (dark) ============ -->
+<section class="sec grid-ov" style="background:var(--dark);">
+  <div class="ao" style="width:260px;height:260px;background:rgba(255,102,0,.06);top:-50px;left:-40px;animation:ao-2 18s ease-in-out infinite;"></div>
+
+  <div class="wrap z">
+    <div class="orange-bar reveal"></div>
+    <h2 class="t-section on-dark mb-05 reveal d1">Por que <span class="hl">essa solução</span></h2>
+    <p class="t-body mb-3 reveal d2" style="color:var(--muted);">Hoje vs. com o sistema.</p>
+
+    <div class="tbl-wrap reveal d3">
+      <table>
+        <thead><tr><th>Situação</th><th>Hoje</th><th>Com o sistema</th></tr></thead>
         <tbody>
           <tr>
             <td>Cliente quer ver produto</td>
-            <td><span class="tag-bad">Problema</span><br>Manda DM, espera foto, espera preco, espera tamanho</td>
-            <td><span class="tag-good">Resolvido</span><br>Acessa o catalogo, escolhe, clica no WhatsApp</td>
+            <td><span class="tag tag-red">Problema</span><br>Manda DM, espera foto, espera preço, espera tamanho</td>
+            <td><span class="tag tag-green">Resolvido</span><br>Acessa o catálogo, escolhe, clica no botão de contato</td>
           </tr>
           <tr>
-            <td>Responder duvida de cor e tamanho</td>
-            <td><span class="tag-bad">Problema</span><br>Voce digita manualmente, uma a uma</td>
-            <td><span class="tag-good">Resolvido</span><br>Tudo visivel no catalogo, pergunta nao chega</td>
+            <td>Responder dúvida de cor e tamanho</td>
+            <td><span class="tag tag-red">Problema</span><br>Você digita manualmente, uma a uma</td>
+            <td><span class="tag tag-green">Resolvido</span><br>Tudo visível no catálogo, pergunta não chega</td>
           </tr>
           <tr>
             <td>Controle de estoque</td>
-            <td><span class="tag-bad">Problema</span><br>Caderno, memoria ou planilha desatualizada</td>
-            <td><span class="tag-good">Resolvido</span><br>Painel em tempo real, acessivel do celular</td>
+            <td><span class="tag tag-red">Problema</span><br>Caderno, memória ou planilha desatualizada</td>
+            <td><span class="tag tag-green">Resolvido</span><br>Painel em tempo real, acessível do celular</td>
           </tr>
           <tr>
-            <td>Venda fora do horario</td>
-            <td><span class="tag-bad">Problema</span><br>Perdida, voce estava dormindo</td>
-            <td><span class="tag-good">Resolvido</span><br>Catalogo ativo 24h, cliente ja escolheu ao acordar</td>
+            <td>Venda fora do horário</td>
+            <td><span class="tag tag-red">Problema</span><br>Perdida, você estava dormindo</td>
+            <td><span class="tag tag-green">Resolvido</span><br>Catálogo ativo 24h, cliente já escolheu ao acordar</td>
           </tr>
           <tr>
-            <td>Presenca digital</td>
-            <td><span class="tag-bad">Problema</span><br>Perfil no Instagram</td>
-            <td><span class="tag-good">Resolvido</span><br>Site proprio com dominio .com.br</td>
+            <td>Presença digital</td>
+            <td><span class="tag tag-red">Problema</span><br>Perfil no Instagram</td>
+            <td><span class="tag tag-green">Resolvido</span><br>Site próprio com domínio .com.br</td>
           </tr>
         </tbody>
       </table>
@@ -650,351 +736,342 @@ footer{
   </div>
 </section>
 
-<!-- ============================================================
-     ENTREGAVEIS — LIGHT
-     ============================================================ -->
-<section class="pos-rel bg-light s-py" style="overflow:hidden;">
-  <div class="grid-overlay-light"></div>
-  <div class="section-watermark" style="top:-1rem;right:-1rem;color:rgba(5,5,5,.03);">ENTREGA</div>
+<!-- ============ ENTREGAVEIS (light) ============ -->
+<section class="sec" style="background:var(--light);">
+  <span class="wm wm-light" style="top:10%;left:-30px;">ENTREGA</span>
+  <div class="wrap z">
+    <div class="orange-bar reveal"></div>
+    <h2 class="t-section on-light mb-05 reveal d1">O que Você <span class="hl">Recebe</span></h2>
+    <p class="t-body mb-3 reveal d2" style="color:var(--muted-dark);">Sem letra miúda.</p>
 
-  <div class="container z1">
-    <div class="reveal mb-05">
-      <div class="orange-bar"></div>
-    </div>
-    <h2 class="t-section on-light reveal mb-1">O que Voce <span class="hl">Recebe</span></h2>
-    <p class="t-body c-muted-lgt reveal d1 mb-3">O que voce recebe, sem letra miuda.</p>
-
-    <div class="card-3d reveal d2" style="padding:0;">
-      <!-- 01 -->
-      <div class="deliv-item">
-        <div class="deliv-num">01</div>
+    <div class="card-3d reveal d3" style="max-width:720px;">
+      <div class="dlv">
+        <div class="dlv-badge">01</div>
         <div>
-          <h3 style="font-size:.95rem;font-weight:900;color:#050505;text-transform:uppercase;margin-bottom:.4rem;">Landing page com catalogo de produtos</h3>
-          <p class="t-small c-muted-lgt">Pagina completa com todas as suas pecas organizadas por categoria. Cada produto com foto, descricao, cor, tamanho disponivel e preco.</p>
+          <h3>Landing page com catálogo de produtos</h3>
+          <p>Página completa com todas as suas peças organizadas por categoria. Cada produto com foto, descrição, cor, tamanho disponível e preço.</p>
         </div>
       </div>
-      <!-- 02 -->
-      <div class="deliv-item">
-        <div class="deliv-num">02</div>
+      <div class="dlv">
+        <div class="dlv-badge">02</div>
         <div>
-          <h3 style="font-size:.95rem;font-weight:900;color:#050505;text-transform:uppercase;margin-bottom:.4rem;">Botao de WhatsApp individual por produto</h3>
-          <p class="t-small c-muted-lgt">Cada item do catalogo tem seu proprio botao. A mensagem ja chega pra voce com o nome do produto. Voce fecha a venda, nao fica coletando informacao.</p>
+          <h3>Botão de contato individual por produto</h3>
+          <p>Cada item do catálogo tem seu próprio botão. A mensagem já chega pra você com o nome do produto. Você fecha a venda, não fica coletando informação.</p>
         </div>
       </div>
-      <!-- 03 -->
-      <div class="deliv-item">
-        <div class="deliv-num">03</div>
+      <div class="dlv">
+        <div class="dlv-badge">03</div>
         <div>
-          <h3 style="font-size:.95rem;font-weight:900;color:#050505;text-transform:uppercase;margin-bottom:.4rem;">Painel administrativo de estoque</h3>
-          <p class="t-small c-muted-lgt">Interface para voce atualizar estoque, marcar peca como esgotada e acompanhar o que esta girando. Simples, feito pra quem nao tem tempo pra complicacao.</p>
+          <h3>Painel administrativo de estoque</h3>
+          <p>Interface para você atualizar estoque, marcar peça como esgotada e acompanhar o que está girando. Simples, feito pra quem não tem tempo pra complicação.</p>
         </div>
       </div>
-      <!-- 04 -->
-      <div class="deliv-item" style="flex-direction:column;gap:.75rem;">
-        <div style="display:flex;gap:1.25rem;align-items:flex-start;">
-          <div class="deliv-num">04</div>
+      <div class="dlv" style="flex-direction:column;">
+        <div class="flex gap-1 items-start">
+          <div class="dlv-badge">04</div>
           <div>
-            <h3 style="font-size:.95rem;font-weight:900;color:#050505;text-transform:uppercase;margin-bottom:.4rem;">Dominio .com.br registrado</h3>
-            <p class="t-small c-muted-lgt">Seu endereco proprio na internet, barbaragymwear.com.br ou o nome que voce escolher. Registro incluso no investimento.</p>
+            <h3>Domínio .com.br registrado</h3>
+            <p>Seu endere&ccedil;o pr&oacute;prio na internet, com o dom&iacute;nio que voc&ecirc; escolher. Registro incluso no investimento.</p>
           </div>
         </div>
-        <div class="disclaimer" style="margin-left:calc(42px + 1.25rem);">
-          <p class="t-xs c-accent mb-05" style="font-weight:800;text-transform:uppercase;letter-spacing:.08em;">Sobre o dominio .com.br</p>
-          <p class="t-small c-muted-lgt">O dominio precisa ser renovado todo ano. O custo varia entre R$ 20 e R$ 100 por ano, dependendo do dominio escolhido. Esse valor e pago diretamente por voce na plataforma de registro, fora do investimento do projeto. Nenhuma surpresa: voce tem controle total do dominio e paga so a renovacao anual, direto na fonte.</p>
+        <div class="disc-box" style="margin-left:calc(40px + 1.25rem);margin-top:.75rem;">
+          <div class="t-xs hl mb-05">Sobre o domínio .com.br</div>
+          <p class="t-sm" style="color:var(--muted-dark);">O domínio precisa ser renovado todo ano. O custo varia entre R$ 20 e R$ 100 por ano, dependendo do domínio escolhido. Esse valor e pago diretamente por você na plataforma de registro, fora do investimento do projeto. Nenhuma surpresa: você tem controle total do domínio e paga só a renovação anual, direto na fonte.</p>
         </div>
       </div>
-      <!-- 05 -->
-      <div class="deliv-item">
-        <div class="deliv-num">05</div>
+      <div class="dlv">
+        <div class="dlv-badge">05</div>
         <div>
-          <h3 style="font-size:.95rem;font-weight:900;color:#050505;text-transform:uppercase;margin-bottom:.4rem;">Treinamento de 1 hora ao vivo</h3>
-          <p class="t-small c-muted-lgt">Uma sessao com o Joaquim depois da entrega. Voce sai sabendo atualizar produto, mexer no estoque e usar o sistema sem precisar chamar ninguem.</p>
+          <h3>Treinamento de 1 hora ao vivo</h3>
+          <p>Uma sessão com o Joaquim depois da entrega. Você sai sabendo atualizar produto, mexer no estoque e usar o sistema sem precisar chamar ninguém.</p>
         </div>
       </div>
-      <!-- 06 -->
-      <div class="deliv-item">
-        <div class="deliv-num">06</div>
+      <div class="dlv">
+        <div class="dlv-badge">06</div>
         <div>
-          <h3 style="font-size:.95rem;font-weight:900;color:#050505;text-transform:uppercase;margin-bottom:.4rem;">Entrega em 14 dias corridos</h3>
-          <p class="t-small c-muted-lgt">Do briefing ao sistema no ar: 14 dias corridos. Os primeiros 4 sao de organizacao e setup de infraestrutura. Do dia 5 ao 14, e desenvolvimento, design, testes e entrega. Prazo real, sem enrolacao. Voce aprova cada etapa antes de finalizar.</p>
+          <h3>Entrega em 14 dias corridos</h3>
+          <p>Do briefing ao sistema no ar: 14 dias corridos. Os primeiros 4 são de organização e setup de infraestrutura. Do dia 5 ao 14, é desenvolvimento, design, testes e entrega. Prazo real, sem enrolação. Você aprova cada etapa antes de finalizar.</p>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ============================================================
-     TIMELINE — DARK
-     ============================================================ -->
-<section class="pos-rel bg-dark2 s-py" style="overflow:hidden;">
-  <div class="grid-overlay"></div>
-  <div class="ao" style="width:500px;height:500px;background:rgba(255,102,0,.10);bottom:-150px;right:-100px;animation:ao-float-1 20s ease-in-out infinite;"></div>
-  <div class="section-watermark" style="top:0;right:-2rem;">TIMELINE</div>
+<!-- ============ TIMELINE (dark2) ============ -->
+<section class="sec grid-ov" style="background:var(--dark2);">
+  <div class="ao" style="width:280px;height:280px;background:rgba(255,102,0,.05);bottom:-60px;right:-40px;animation:ao-1 20s ease-in-out infinite;"></div>
+  <span class="wm" style="bottom:5%;left:-20px;">TIMELINE</span>
 
-  <div class="container z1">
-    <div class="reveal mb-05">
-      <div class="orange-bar"></div>
-    </div>
-    <h2 class="t-section on-dark reveal mb-1">Como <span class="hl">Acontece</span></h2>
-    <p class="t-body c-muted reveal d1 mb-3">O que acontece do dia 1 ate o ar.</p>
+  <div class="wrap z">
+    <div class="orange-bar reveal"></div>
+    <h2 class="t-section on-dark mb-05 reveal d1">Como <span class="hl">Acontece</span></h2>
+    <p class="t-body mb-3 reveal d2" style="color:var(--muted);">O que acontece do dia 1 até o ar.</p>
 
-    <!-- PRE-PRODUCAO -->
-    <div class="reveal d2 mb-2" style="border-left:3px solid var(--accent);padding-left:1.5rem;margin-bottom:2rem;">
-      <p class="phase-tag">Pre-producao (Dias 1 a 4)</p>
-      <p class="t-small c-muted" style="margin-top:.25rem;">Antes de codar, a casa tem que estar em ordem.</p>
-    </div>
-
-    <div class="grid-3 mb-3">
-      <div class="phase-card reveal d2">
-        <div class="phase-tag">Dia 1</div>
-        <div class="phase-title">Briefing</div>
-        <p class="phase-body">Voce passa as fotos dos produtos, precos, tamanhos disponiveis e as informacoes do seu WhatsApp. Levamos ate 30 minutos.</p>
+    <div style="max-width:660px;">
+      <!-- PRE-PRODUÇÃO -->
+      <div class="reveal d1 mb-2">
+        <div class="pill mb-05" style="background:var(--accent);color:#fff;border-color:var(--black);">Pré-produção</div>
+        <p class="t-sm" style="color:var(--muted);">Dias 1 a 4. Antes de codar, a casa tem que estar em ordem.</p>
       </div>
-      <div class="phase-card reveal d3">
-        <div class="phase-tag">Dias 2 e 3</div>
-        <div class="phase-title">Setup de infraestrutura</div>
-        <p class="phase-body">Antes de escrever uma linha de codigo, Joaquim configura tres ambientes: <strong>Supabase</strong> para banco de dados, <strong>Git</strong> para controle de versao e <strong>Vercel</strong> para hospedagem. Projeto sem infraestrutura organizada acumula problema tecnico, fica dificil de corrigir e quebra em hora errada. Resolver isso nos dias 2 e 3 e o que garante que o sistema vai ao ar sem susto nos dias 12 a 14.</p>
-      </div>
-      <div class="phase-card reveal d4">
-        <div class="phase-tag">Dia 4</div>
-        <div class="phase-title">Estrutura e aprovacao</div>
-        <p class="phase-body">Com a infra pronta, Joao organiza a estrutura de conteudo e o rascunho visual do catalogo. Voce ve e aprova antes de seguir.</p>
-      </div>
-    </div>
 
-    <!-- PRODUCAO -->
-    <div class="reveal d2 mb-2" style="border-left:3px solid var(--accent);padding-left:1.5rem;margin-bottom:2rem;">
-      <p class="phase-tag">Producao (Dias 5 a 14)</p>
-      <p class="t-small c-muted" style="margin-top:.25rem;">Infraestrutura montada. Agora e mao na massa.</p>
-    </div>
-
-    <div class="grid-3">
-      <div class="phase-card reveal d2">
-        <div class="phase-tag">Dias 5 a 9</div>
-        <div class="phase-title">Desenvolvimento</div>
-        <p class="phase-body">Joaquim constroi o sistema: catalogo, botoes de WhatsApp por produto e painel de estoque integrados. Nada de gambiarra.</p>
-      </div>
-      <div class="phase-card reveal d3">
-        <div class="phase-tag">Dias 10 e 11</div>
-        <div class="phase-title">Design e refinamento</div>
-        <p class="phase-body">A pagina ganha a cara da sua marca. Cores, tipografia, fotos dos seus produtos. O sistema nao so funciona, ele representa voce.</p>
-      </div>
-      <div class="phase-card reveal d4">
-        <div class="phase-tag">Dias 12 a 14</div>
-        <div class="phase-title">Testes, dominio e entrega</div>
-        <p class="phase-body">Testamos tudo do zero, configuramos o dominio .com.br e colocamos no ar. Depois, agendamos o treinamento de 1 hora com voce.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============================================================
-     URGENCIA — LIGHT
-     ============================================================ -->
-<section class="pos-rel bg-light s-py" style="overflow:hidden;">
-  <div class="grid-overlay-light"></div>
-
-  <div class="container z1">
-    <div class="alert-box reveal" style="max-width:780px;margin:0 auto;">
-      <div style="display:flex;align-items:center;gap:.75rem;margin-bottom:1rem;">
-        <span class="badge" style="background:var(--accent);color:#fff;border-color:var(--accent);box-shadow:0 2px 0 var(--black);">ATENCAO</span>
-      </div>
-      <h2 class="t-section on-light reveal d1 mb-15">Junho e julho sao os meses de pico, e <span class="hl">estao chegando.</span></h2>
-      <p class="t-body c-muted-lgt reveal d2">
-        Inverno e quando as vendas de fitness feminino disparam. Legging, conjunto, top de frio, a procura sobe e a cliente que nao encontra rapido compra de quem esta pronto. Com <strong>14 dias de prazo</strong>, voce pode ter o sistema no ar antes do pico. Se deixar pra depois do pico, voce tera a estrutura e nao tera aproveitado a melhor janela do ano. Nao e alarmismo. E calendario.
-      </p>
-    </div>
-  </div>
-</section>
-
-<!-- ============================================================
-     INVESTIMENTO — DARK
-     ============================================================ -->
-<section class="pos-rel bg-dark s-py" style="overflow:hidden;">
-  <div class="grid-overlay"></div>
-  <div class="ao ao-1" style="opacity:.7;"></div>
-  <div class="section-watermark" style="bottom:-1rem;right:-2rem;">VALOR</div>
-
-  <div class="container z1">
-    <div class="reveal mb-05">
-      <div class="orange-bar"></div>
-    </div>
-    <h2 class="t-section on-dark reveal mb-1"><span class="hl">Investimento</span></h2>
-    <p class="t-body c-muted reveal d1 mb-3">R$ 1.397 no total.</p>
-
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;max-width:900px;">
-      <!-- Incluido -->
-      <div class="price-card reveal d2">
-        <div class="price-header">
-          <p class="t-xs" style="color:rgba(255,255,255,.5);font-weight:700;letter-spacing:.12em;text-transform:uppercase;margin-bottom:.5rem;">Incluso</p>
-          <div style="font-size:clamp(2.2rem,6vw,3.5rem);font-weight:900;color:var(--accent);line-height:1;">R$ 1.397</div>
-          <div style="font-size:.85rem;color:rgba(255,255,255,.6);font-weight:600;margin-top:.25rem;">pagamento em 2x</div>
+      <div class="timeline mb-4">
+        <div class="tl-item reveal d1">
+          <div class="tl-dot">1</div>
+          <div class="tl-phase-label">Dia 1</div>
+          <div class="tl-title">Briefing</div>
+          <div class="tl-desc">Você passa as fotos dos produtos, preços, tamanhos disponíveis e as informações de contato. Levamos até 30 minutos.</div>
         </div>
-        <div class="price-body">
-          <ul style="list-style:none;flex-direction:column;gap:.6rem;display:flex;">
-            <li class="t-small" style="color:#333;display:flex;gap:.6rem;align-items:flex-start;"><span style="color:var(--accent);font-weight:900;flex-shrink:0;">+</span> Landing page com catalogo de produtos</li>
-            <li class="t-small" style="color:#333;display:flex;gap:.6rem;align-items:flex-start;"><span style="color:var(--accent);font-weight:900;flex-shrink:0;">+</span> Botao de WhatsApp individual por produto</li>
-            <li class="t-small" style="color:#333;display:flex;gap:.6rem;align-items:flex-start;"><span style="color:var(--accent);font-weight:900;flex-shrink:0;">+</span> Painel administrativo de estoque</li>
-            <li class="t-small" style="color:#333;display:flex;gap:.6rem;align-items:flex-start;"><span style="color:var(--accent);font-weight:900;flex-shrink:0;">+</span> Dominio .com.br registrado</li>
-            <li class="t-small" style="color:#333;display:flex;gap:.6rem;align-items:flex-start;"><span style="color:var(--accent);font-weight:900;flex-shrink:0;">+</span> Treinamento de 1 hora ao vivo</li>
-            <li class="t-small" style="color:#333;display:flex;gap:.6rem;align-items:flex-start;"><span style="color:var(--accent);font-weight:900;flex-shrink:0;">+</span> Entrega em 14 dias corridos</li>
-          </ul>
-          <div style="margin-top:1.5rem;padding-top:1.5rem;border-top:2px solid var(--black);">
-            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.4rem;">
-              <span class="t-small" style="color:#555;font-weight:600;">Entrada</span>
-              <span style="font-weight:900;color:#050505;">R$ 699</span>
+        <div class="tl-item reveal d2">
+          <div class="tl-dot">2</div>
+          <div class="tl-phase-label">Dias 2-3</div>
+          <div class="tl-title">Setup de infraestrutura</div>
+          <div class="tl-desc">Antes de escrever uma linha de código, Joaquim configura três ambientes: <strong>Supabase</strong> para banco de dados, <strong>Git</strong> para controle de versão e <strong>Vercel</strong> para hospedagem. Isso não e overhead. E a fundação do sistema. Projeto sem infraestrutura organizada acumula problema técnico, fica dificil de corrigir e quebra em hora errada. Resolver isso nos dias 2 e 3 e o que garante que o sistema vai ao ar sem susto nos dias 12 a 14.</div>
+        </div>
+        <div class="tl-item reveal d3">
+          <div class="tl-dot">4</div>
+          <div class="tl-phase-label">Dia 4</div>
+          <div class="tl-title">Estrutura e aprovação</div>
+          <div class="tl-desc">Com a infra pronta, João organiza a estrutura de conteúdo e o rascunho visual do catálogo. Você vê e aprova antes de seguir.</div>
+        </div>
+      </div>
+
+      <!-- PRODUÇÃO -->
+      <div class="reveal mb-2">
+        <div class="pill mb-05" style="background:var(--accent);color:#fff;border-color:var(--black);">Produção</div>
+        <p class="t-sm" style="color:var(--muted);">Dias 5 a 14. Infraestrutura montada. Agora é mão na massa.</p>
+      </div>
+
+      <div class="timeline">
+        <div class="tl-item reveal d1">
+          <div class="tl-dot">5</div>
+          <div class="tl-phase-label">Dias 5-9</div>
+          <div class="tl-title">Desenvolvimento</div>
+          <div class="tl-desc">Joaquim constrói o sistema: catálogo, botões de contato por produto e painel de estoque integrados. Nada de gambiarra.</div>
+        </div>
+        <div class="tl-item reveal d2">
+          <div class="tl-dot">10</div>
+          <div class="tl-phase-label">Dias 10-11</div>
+          <div class="tl-title">Design e refinamento</div>
+          <div class="tl-desc">A página ganha a cara da sua marca. Cores, tipografia, fotos dos seus produtos. O sistema não só funciona, ele representa você.</div>
+        </div>
+        <div class="tl-item reveal d3">
+          <div class="tl-dot">14</div>
+          <div class="tl-phase-label">Dias 12-14</div>
+          <div class="tl-title">Testes, domínio e entrega</div>
+          <div class="tl-desc">Testamos tudo do zero, configuramos o domínio .com.br e colocamos no ar. Depois, agendamos o treinamento de 1 hora com você.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ URGENCIA (light) ============ -->
+<section class="sec" style="background:var(--light);">
+  <div class="wrap z">
+    <div class="reveal" style="max-width:680px;margin:0 auto;border:3px solid var(--accent);border-radius:.75rem;box-shadow:0 6px 0 var(--accent);overflow:hidden;animation:urgency-border 2.5s ease-in-out infinite;">
+      <div style="background:var(--accent);padding:.75rem 1.5rem;border-bottom:3px solid var(--black);display:flex;align-items:center;gap:.75rem;">
+        <span style="width:8px;height:8px;border-radius:50%;background:#fff;display:inline-block;animation:urgency-dot 1.4s ease-in-out infinite;"></span>
+        <span class="t-xs" style="color:#fff;letter-spacing:.15em;">ATENÇÃO</span>
+      </div>
+      <div style="padding:2rem;background:#fff;">
+        <h2 class="t-section on-light mb-15">Junho e julho são os meses de pico, e <span class="hl">estão chegando.</span></h2>
+        <p class="t-body" style="color:var(--muted-dark);">Inverno é quando as vendas de fitness feminino disparam. Legging, conjunto, top de frio, a procura sobe e a cliente que não encontra rápido compra de quem está pronto. Com <strong style="color:var(--text-dark);">14 dias de prazo</strong>, você pode ter o sistema no ar antes do pico. Se deixar pra depois do pico, você terá a estrutura e não terá aproveitado a melhor janela do ano. Não é alarmismo. É calendário.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ INVESTIMENTO (dark) ============ -->
+<section class="sec grid-ov" style="background:var(--dark);">
+  <div class="ao" style="width:320px;height:320px;background:rgba(255,102,0,.06);top:-70px;right:-70px;animation:ao-2 22s ease-in-out infinite;"></div>
+  <span class="wm" style="top:15%;left:-10px;">INVEST</span>
+
+  <div class="wrap z">
+    <div class="orange-bar reveal"></div>
+    <h2 class="t-section on-dark mb-05 reveal d1"><span class="hl">Investimento</span></h2>
+    <p class="t-body mb-3 reveal d2" style="color:var(--muted);">R$ 1.397 no total.</p>
+
+    <div class="invest-grid">
+      <!-- Card principal com borda animada -->
+      <div class="price-border reveal d2">
+        <div class="price-inner">
+          <div style="background:var(--black);padding:1.75rem 2rem;">
+            <div class="t-xs mb-05" style="color:rgba(255,255,255,.35);">Investimento total</div>
+            <div style="font-size:clamp(2rem,6vw,3rem);font-weight:900;color:var(--accent);line-height:1;">R$ 1.397</div>
+            <div class="t-sm mt-05" style="color:rgba(255,255,255,.4);">Pagamento em 2x</div>
+          </div>
+          <div style="padding:1.75rem 2rem;">
+            <div style="display:flex;flex-direction:column;gap:.5rem;margin-bottom:1.5rem;">
+              <div class="t-sm" style="color:rgba(255,255,255,.7);display:flex;gap:.6rem;align-items:center;"><span class="hl" style="font-weight:900;font-size:1.1rem;">+</span> Landing page com catálogo de produtos</div>
+              <div class="t-sm" style="color:rgba(255,255,255,.7);display:flex;gap:.6rem;align-items:center;"><span class="hl" style="font-weight:900;font-size:1.1rem;">+</span> Botão de contato individual por produto</div>
+              <div class="t-sm" style="color:rgba(255,255,255,.7);display:flex;gap:.6rem;align-items:center;"><span class="hl" style="font-weight:900;font-size:1.1rem;">+</span> Painel administrativo de estoque</div>
+              <div class="t-sm" style="color:rgba(255,255,255,.7);display:flex;gap:.6rem;align-items:center;"><span class="hl" style="font-weight:900;font-size:1.1rem;">+</span> Domínio .com.br registrado</div>
+              <div class="t-sm" style="color:rgba(255,255,255,.7);display:flex;gap:.6rem;align-items:center;"><span class="hl" style="font-weight:900;font-size:1.1rem;">+</span> Treinamento de 1 hora ao vivo</div>
+              <div class="t-sm" style="color:rgba(255,255,255,.7);display:flex;gap:.6rem;align-items:center;"><span class="hl" style="font-weight:900;font-size:1.1rem;">+</span> Entrega em 14 dias corridos</div>
             </div>
-            <div style="display:flex;justify-content:space-between;align-items:center;">
-              <span class="t-small" style="color:#555;font-weight:600;">Na entrega</span>
-              <span style="font-weight:900;color:#050505;">R$ 698</span>
+            <div style="border-top:1px solid rgba(255,255,255,.08);padding-top:1.25rem;">
+              <div style="display:flex;justify-content:space-between;padding:.35rem 0;"><span class="t-sm" style="color:var(--muted);">Entrada</span><span style="font-weight:900;font-size:1rem;color:#fff;">R$ 699</span></div>
+              <div style="display:flex;justify-content:space-between;padding:.35rem 0;"><span class="t-sm" style="color:var(--muted);">Na entrega</span><span style="font-weight:900;font-size:1rem;color:#fff;">R$ 698</span></div>
+              <p class="t-xs mt-1" style="color:var(--muted);">Você paga o restante só quando o sistema estiver no ar e aprovado por você.</p>
             </div>
-            <p class="t-xs c-muted-lgt mt-1">Voce paga o restante so quando o sistema estiver no ar e aprovado por voce.</p>
           </div>
         </div>
       </div>
 
-      <!-- Suporte opcional -->
-      <div class="card-3d-dark reveal d3" style="padding:0;">
-        <div style="padding:1.25rem 1.5rem;border-bottom:1px solid rgba(255,255,255,.06);">
-          <span class="pill" style="margin-bottom:.75rem;display:inline-flex;">Opcional</span>
-          <div style="font-size:clamp(1.5rem,4vw,2.2rem);font-weight:900;color:var(--accent);line-height:1;">R$ 149<span style="font-size:1rem;font-weight:600;color:rgba(255,255,255,.4)">/mes</span></div>
-          <div style="font-size:.8rem;color:rgba(255,255,255,.45);font-weight:600;margin-top:.25rem;text-transform:uppercase;letter-spacing:.08em;">Suporte mensal</div>
+      <!-- Card opcional -->
+      <div class="opt-card reveal d3">
+        <div style="padding:1.5rem;border-bottom:1px solid rgba(255,255,255,.06);">
+          <span class="pill mb-05">Opcional</span>
+          <div style="font-size:clamp(1.4rem,4vw,1.9rem);font-weight:900;color:var(--accent);line-height:1;margin-top:.6rem;">R$ 149<span style="font-size:.85rem;font-weight:600;color:var(--muted);">/mês</span></div>
+          <div class="t-xs mt-05" style="color:var(--muted);">Suporte mensal</div>
         </div>
         <div style="padding:1.5rem;">
-          <p class="t-small c-muted mb-15">Depois da entrega, se quiser manter suporte mensal, sao R$ 149 por mes. Inclui atualizacao de produtos no catalogo, ajustes no sistema e suporte direto com o Joaquim quando precisar.</p>
-          <div style="border:1px solid rgba(255,102,0,.3);border-radius:.5rem;padding:1rem;background:rgba(255,102,0,.06);">
-            <p class="t-xs c-accent mb-05" style="font-weight:800;text-transform:uppercase;letter-spacing:.08em;">Primeiro mes cortesia</p>
-            <p class="t-small c-muted">Voce nao paga nada. A partir do segundo mes, decide se quer continuar. Sem contrato de fidelidade. Cancela quando quiser, sem burocracia.</p>
+          <p class="t-sm mb-15" style="color:var(--muted);">Depois da entrega, se quiser manter suporte mensal, são R$ 149 por mês. Inclui atualização de produtos no catálogo, ajustes no sistema e suporte direto com o Joaquim quando precisar.</p>
+          <div style="border:1px solid rgba(255,102,0,.2);border-radius:8px;padding:.85rem 1rem;background:var(--accent-soft);">
+            <div class="t-xs hl mb-05">Primeiro mês cortesia</div>
+            <p class="t-sm" style="color:var(--muted);">Você não paga nada. A partir do segundo mês, decide se quer continuar. Sem contrato de fidelidade. Cancela quando quiser, sem burocracia.</p>
           </div>
         </div>
       </div>
     </div>
+  </div>
+</section>
 
-    <!-- CTA -->
-    <div class="text-center reveal d4 mt-2" style="margin-top:3rem;">
-      <a href="https://wa.me/5571996591404?text=Oi%20Joaquim%2C%20quero%20fechar%20a%20proposta!" class="btn-cartoon btn-xl" target="_blank" rel="noopener">
-        Fechar proposta via WhatsApp
-      </a>
-      <p class="t-xs c-muted mt-1">Resposta em ate 24h</p>
+<!-- ============ EQUIPE (light) ============ -->
+<section class="sec" style="background:var(--light);">
+  <div class="wrap z">
+    <div class="orange-bar reveal"></div>
+    <h2 class="t-section on-light mb-05 reveal d1">Quem Faz <span class="hl">Esse Projeto</span></h2>
+    <p class="t-body mb-3 reveal d2" style="color:var(--muted-dark);max-width:560px;">Esse projeto não é feito por uma agência com dezenas de funcionários onde ninguém sabe o seu nome. São duas pessoas, e você fala com as duas.</p>
+
+    <div class="reveal d2" style="display:flex;gap:2rem;flex-wrap:wrap;max-width:680px;margin-bottom:2rem;">
+      <div style="flex:1;min-width:260px;border-left:3px solid var(--accent);padding-left:1.25rem;">
+        <div style="font-size:1.1rem;font-weight:900;color:var(--text-dark);text-transform:uppercase;margin-bottom:.15rem;">Joaquim Salles</div>
+        <div class="t-xs hl mb-05">Desenvolvimento e estrutura técnica</div>
+        <p class="t-sm" style="color:var(--muted-dark);">Cuida de cada detalhe técnico: banco de dados, hospedagem, código, configuração. Quando o sistema funciona sem erro e abre rápido no celular da sua cliente, é trabalho dele.</p>
+      </div>
+      <div style="flex:1;min-width:260px;border-left:3px solid var(--accent);padding-left:1.25rem;">
+        <div style="font-size:1.1rem;font-weight:900;color:var(--text-dark);text-transform:uppercase;margin-bottom:.15rem;">João Fecchio</div>
+        <div class="t-xs hl mb-05">Copy e estrutura de conteúdo</div>
+        <p class="t-sm" style="color:var(--muted-dark);">Garante que cada palavra serve a um propósito. Cuida do que a página diz, como diz e em que ordem. Quando a cliente lê o catálogo e clica no botão sem precisar pensar, é trabalho dele.</p>
+      </div>
+    </div>
+
+    <p class="t-body reveal d3" style="color:var(--muted-dark);max-width:560px;">Os dois trabalham juntos desde o briefing até a entrega. Você não está contratando execução terceirizada. Está contratando as duas pessoas que vão, de fato, construir o seu sistema.</p>
+  </div>
+</section>
+
+<!-- ============ ENCERRAMENTO (dark) ============ -->
+<section class="sec grid-ov" style="background:var(--dark);padding-top:7rem;padding-bottom:7rem;">
+  <div class="ao" style="width:250px;height:250px;background:rgba(255,102,0,.05);bottom:-40px;left:-30px;animation:ao-1 18s ease-in-out infinite;"></div>
+
+  <div class="wrap z tc" style="max-width:640px;margin:0 auto;">
+    <div class="orange-bar mx-auto reveal"></div>
+    <h2 class="t-section on-dark mb-2 reveal d1">Obrigado, <span class="hl">Bárbara.</span></h2>
+
+    <p class="t-body mb-2 reveal d2" style="color:var(--muted);">Você leu essa proposta até o fim. Isso já diz que está levando a sério. A gente também leva. Essa proposta foi construída pensando especificamente na sua loja: nas suas dores com DM, no pico de inverno que está chegando e no que você pode ganhar tendo uma estrutura própria.</p>
+
+    <p class="t-body mb-2 reveal d3" style="color:var(--muted);">Quem está por trás disso são duas pessoas, não uma agência. João Fecchio cuidou da copy e da estrutura de conteúdo, o que você leu aqui. Joaquim Salles cuida do desenvolvimento e da entrega técnica, o que vai ao ar em 14 dias.</p>
+
+    <p class="t-body mb-3 reveal d4" style="color:var(--muted);">Se fizer sentido pra você, estamos no aguardo da sua resposta e disponíveis pra tirar qualquer dúvida, a qualquer hora.</p>
+
+    <div class="mt-2 reveal d5">
+      <p class="t-xs" style="color:var(--muted);">#TFA-0001</p>
+      <p class="t-xs" style="color:var(--muted);margin-top:.25rem;">Proposta confidencial. Elaborada exclusivamente para Bárbara Monize.</p>
     </div>
   </div>
 </section>
 
-<!-- ============================================================
-     EQUIPE — LIGHT
-     ============================================================ -->
-<section class="pos-rel bg-light s-py" style="overflow:hidden;">
-  <div class="grid-overlay-light"></div>
-  <div class="section-watermark" style="bottom:-1rem;left:-1rem;color:rgba(5,5,5,.03);">EQUIPE</div>
-
-  <div class="container z1">
-    <div class="reveal mb-05">
-      <div class="orange-bar"></div>
-    </div>
-    <h2 class="t-section on-light reveal mb-1">Quem Faz <span class="hl">Esse Projeto</span></h2>
-    <p class="t-body c-muted-lgt reveal d1 mb-1">Duas pessoas. Do inicio ao fim.</p>
-    <p class="t-body c-muted-lgt reveal d2 mb-3" style="max-width:640px;">Esse projeto nao e feito por uma agencia com dezenas de funcionarios onde ninguem sabe o seu nome. Sao duas pessoas, e voce fala com as duas.</p>
-
-    <div class="grid-2" style="max-width:800px;">
-      <!-- Joaquim -->
-      <div class="team-card reveal d2">
-        <div class="team-card-top">
-          <p class="t-xs" style="color:rgba(255,255,255,.7);font-weight:800;letter-spacing:.12em;text-transform:uppercase;margin-bottom:.4rem;">Desenvolvimento e estrutura tecnica</p>
-          <h3 style="font-size:1.4rem;font-weight:900;color:#fff;text-transform:uppercase;letter-spacing:-.02em;">Joaquim Salles</h3>
-        </div>
-        <div class="team-card-body">
-          <p class="t-small c-muted-lgt">Joaquim e quem coloca tudo no ar. Cuida de cada detalhe tecnico: banco de dados, hospedagem, codigo, configuracao. Quando o sistema funciona sem erro e abre rapido no celular da sua cliente, e trabalho dele.</p>
-        </div>
-      </div>
-      <!-- Joao Fecchio -->
-      <div class="team-card reveal d3">
-        <div class="team-card-top">
-          <p class="t-xs" style="color:rgba(255,255,255,.7);font-weight:800;letter-spacing:.12em;text-transform:uppercase;margin-bottom:.4rem;">Copy e estrutura de conteudo</p>
-          <h3 style="font-size:1.4rem;font-weight:900;color:#fff;text-transform:uppercase;letter-spacing:-.02em;">Joao Fecchio</h3>
-        </div>
-        <div class="team-card-body">
-          <p class="t-small c-muted-lgt">Joao e quem garante que cada palavra serve a um proposito. Cuida do que a pagina diz, como diz e em que ordem. Quando a cliente le o catalogo e clica no WhatsApp sem precisar pensar, e trabalho dele.</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="reveal d4 mt-2" style="max-width:640px;">
-      <p class="t-body c-muted-lgt">Os dois trabalham juntos desde o briefing ate a entrega. Voce nao esta contratando execucao terceirizada. Esta contratando as duas pessoas que vao, de fato, construir o seu sistema.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ============================================================
-     ENCERRAMENTO — DARK
-     ============================================================ -->
-<section class="pos-rel bg-dark s-py" style="overflow:hidden;">
-  <div class="grid-overlay"></div>
-  <div class="ao ao-2" style="opacity:.8;"></div>
-  <div class="section-watermark" style="bottom:-2rem;right:-1rem;">OBRIGADO</div>
-
-  <div class="container z1">
-    <div style="max-width:740px;margin:0 auto;text-align:center;">
-      <div class="orange-bar center reveal mb-2"></div>
-      <h2 class="t-section on-dark reveal mb-15">Obrigado, <span class="hl">Barbara.</span></h2>
-
-      <p class="t-body c-muted reveal d2 mb-3">
-        Voce leu essa proposta ate o fim. Isso ja diz que esta levando a serio. A gente tambem leva. Essa proposta foi construida pensando especificamente na sua loja: nas suas dores com DM, no pico de inverno que esta chegando e no que voce pode ganhar tendo uma estrutura propria.
-      </p>
-      <p class="t-body c-muted reveal d3 mb-3">
-        Quem esta por tras disso sao duas pessoas, nao uma agencia. Joao Fecchio cuidou da copy e da estrutura de conteudo, o que voce leu aqui. Joaquim Salles cuida do desenvolvimento e da entrega tecnica, o que vai ao ar em 14 dias.
-      </p>
-      <p class="t-body c-muted reveal d4 mb-3">
-        Se fizer sentido pra voce, o proximo passo e simples: fala com o Joaquim pelo WhatsApp. Ele tira qualquer duvida e, se voce quiser avancar, a gente comeca o briefing na hora. Sem pressao. Sem contrato armadilha. So o sistema no ar, do jeito certo.
-      </p>
-
-      <!-- Contact -->
-      <div class="contact-box reveal d5" style="max-width:480px;margin:0 auto 2rem;">
-        <div>
-          <p class="t-xs c-accent mb-05" style="font-weight:800;text-transform:uppercase;letter-spacing:.1em;">Contato direto</p>
-          <p style="font-size:1.1rem;font-weight:900;color:#fff;text-transform:uppercase;letter-spacing:-.01em;">Joaquim Salles</p>
-          <p class="t-small c-muted">Desenvolvimento e entrega tecnica</p>
-        </div>
-        <a href="https://wa.me/5571996591404?text=Oi%20Joaquim%2C%20quero%20fechar%20a%20proposta!" class="btn-cartoon btn-xl" target="_blank" rel="noopener" style="width:100%;justify-content:center;">
-          (71) 99659-1404 · WhatsApp
-        </a>
-        <p class="t-xs c-muted text-center">Qualquer duvida, estou disponivel no WhatsApp.</p>
-      </div>
-
-      <p class="t-xs c-muted reveal">#TFA-0001 &middot; Valida ate 30/04/2026</p>
-      <p class="t-xs c-muted reveal d1" style="margin-top:.25rem;">Proposta confidencial. Elaborada exclusivamente para Barbara Monize.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ============================================================
-     FOOTER
-     ============================================================ -->
+<!-- FOOTER -->
 <footer>
-  <div class="container">
-    <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;">
-      <div class="nav-brand"><span>Triforce</span> Auto</div>
-      <p class="t-xs" style="color:rgba(255,255,255,.25);">Proposta confidencial &middot; #TFA-0001 &middot; Barbara Monize</p>
-    </div>
+  <div class="wrap">
+    <div class="nav-brand"><span>Triforce</span> Auto</div>
+    <div class="t-xs" style="color:rgba(255,255,255,.15);">Proposta confidencial &middot; #TFA-0001</div>
   </div>
 </footer>
 
-<!-- ============================================================
-     SCRIPTS
-     ============================================================ -->
+<!-- === SCRIPTS === -->
 <script>
-// Scroll Reveal
-const observer = new IntersectionObserver((entries) => {
+// IntersectionObserver for reveal animations
+const io = new IntersectionObserver((entries) => {
   entries.forEach(e => {
     if (e.isIntersecting) {
       e.target.classList.add('visible');
-      observer.unobserve(e.target);
+      io.unobserve(e.target);
     }
   });
-}, { threshold: 0.08 });
+}, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
 
-document.querySelectorAll('.reveal, .reveal-l, .reveal-r').forEach(el => {
-  observer.observe(el);
+document.querySelectorAll('.reveal,.reveal-l,.reveal-r').forEach(el => io.observe(el));
+
+// Phase card mouse glow
+document.querySelectorAll('.phase-card').forEach(card => {
+  card.addEventListener('mousemove', e => {
+    const r = card.getBoundingClientRect();
+    card.style.setProperty('--mx', ((e.clientX - r.left) / r.width * 100) + '%');
+    card.style.setProperty('--my', ((e.clientY - r.top) / r.height * 100) + '%');
+  });
 });
+
+// Stat counter pop animation
+const statObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('counted');
+      statObs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.3 });
+document.querySelectorAll('.stat-val').forEach(el => statObs.observe(el));
+
+// Timeline dots activate on scroll
+const tlObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      const dot = e.target.querySelector('.tl-dot');
+      if (dot) dot.classList.add('active');
+      tlObs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.4 });
+document.querySelectorAll('.tl-item').forEach(el => tlObs.observe(el));
+
+// Table tags animate in on scroll
+const tagObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.querySelectorAll('.tag').forEach((t, i) => {
+        setTimeout(() => t.classList.add('animated'), i * 80);
+      });
+      tagObs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.2 });
+document.querySelectorAll('table tbody').forEach(el => tagObs.observe(el));
+
+// Parallax orbs on mouse move (desktop only)
+if (window.innerWidth > 768) {
+  document.addEventListener('mousemove', e => {
+    const mx = (e.clientX / window.innerWidth - 0.5) * 2;
+    const my = (e.clientY / window.innerHeight - 0.5) * 2;
+    document.querySelectorAll('.ao').forEach((orb, i) => {
+      const speed = (i % 2 === 0) ? 15 : -10;
+      orb.style.transform = `translate(${mx * speed}px, ${my * speed}px)`;
+    });
+  });
+}
+
+// Smooth nav background on scroll
+const nav = document.querySelector('nav');
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 80) {
+    nav.style.borderBottomColor = 'rgba(255,102,0,.2)';
+    nav.style.background = 'rgba(5,5,5,.98)';
+  } else {
+    nav.style.borderBottomColor = 'rgba(255,102,0,.1)';
+    nav.style.background = 'rgba(5,5,5,.95)';
+  }
+}, { passive: true });
 </script>
 </body>
-</html>
+</html><!-- cache-bust: 1777661575 -->
