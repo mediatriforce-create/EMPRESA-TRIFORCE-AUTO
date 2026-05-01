@@ -3,16 +3,6 @@ updated_at: 2026-04-30
 
 ativos:
 
-  - id: alert-002
-    severidade: baixo
-    dominio: vercel
-    titulo: "Projetos Vercel não visíveis via MCP"
-    descricao: "Erro ao listar projetos Vercel. Pode ser conta pessoal sem projetos ou problema de autenticação do MCP."
-    acao: "Verificar autenticação Vercel MCP na próxima sessão"
-    depende_de: dev-lider
-    criado_por: dev-lider
-    criado_em: 2026-04-30
-
   - id: alert-003
     severidade: baixo
     dominio: cloudflare

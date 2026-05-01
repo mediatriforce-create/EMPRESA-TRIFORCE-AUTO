@@ -40,8 +40,18 @@ accounts:
   - platform: Vercel
     function: deploy de front-end
     owner: dev-lider
-    status: nao_confirmado
-    notes: "Sem teams. Erro ao listar projetos via MCP — verificar auth."
+    status: ativo
+    team_name: "Triforce's projects"
+    team_id: team_tqHCGgJLyvjpDMsRbqRQRp0V
+    team_slug: triforces-projects-950f198c
+    projetos_relevantes:
+      - name: extrato
+        id: prj_FgfHL2tmONnT5CwAabZN2nP1rBTc
+      - name: lp
+        id: prj_CT4i7ApEzQ8kK8jHQxsnBCiA8i6C
+      - name: vav-sistema-d7sf
+        id: prj_WSUeiFoJyPtKDkRGHDbDJrtEa7ye
+    notes: "MCP autenticado via HTTP (plugin:vercel). 17 projetos no time."
 
   - platform: Cloudflare
     function: DNS, CDN, Workers
