@@ -68,8 +68,9 @@ accounts:
   - platform: GitHub
     function: versionamento de código
     owner: dev-lider
-    status: nao_confirmado
-    notes: "MCP não instalado — aguardando GITHUB_PERSONAL_ACCESS_TOKEN."
+    status: ativo
+    repo: mediatriforce-create/EMPRESA-TRIFORCE-AUTO
+    notes: "MCP configurado em .mcp.json (local, fora do git)."
 
   - platform: pagamentos
     function: cobrar clientes
