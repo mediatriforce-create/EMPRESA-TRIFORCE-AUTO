@@ -8,18 +8,26 @@ accounts:
     owner: dev-lider
     status: ativo
     org_name: mediatriforce-create's Org
+    org_id: nmmuykjbjresotfpezlv
     org_slug: mediatriforce-create
     plano: FREE
     projetos:
       - name: CRM - TRIFORCE AUTO
+        ref: sslnxkjfmnzlagqbwhir
         region: sa-east-1
-        tier: NANO
+        postgres: "17.6.1.111"
+        host: db.sslnxkjfmnzlagqbwhir.supabase.co
+        status: ACTIVE_HEALTHY
+        created_at: 2026-04-30
         function: CRM do sistema interno
       - name: pretacao-de-contas
+        ref: valqdugrzozubfzcfcay
         region: sa-east-1
-        tier: NANO
+        postgres: "17.6.1.111"
+        host: db.valqdugrzozubfzcfcay.supabase.co
+        status: ACTIVE_HEALTHY
+        created_at: 2026-04-27
         function: prestação de contas
-    notes: "MCP Supabase conectado na org errada (VIVA A VIDA) — reconectar à mediatriforce-create's Org."
 
   - platform: Airtable
     function: gestão pessoal do fundador (GTD)
