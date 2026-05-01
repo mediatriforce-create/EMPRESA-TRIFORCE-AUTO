@@ -17,9 +17,11 @@ accounts:
         region: sa-east-1
         postgres: "17.6.1.111"
         host: db.sslnxkjfmnzlagqbwhir.supabase.co
+        api_url: https://sslnxkjfmnzlagqbwhir.supabase.co
         status: ACTIVE_HEALTHY
         created_at: 2026-04-30
         function: CRM do sistema interno
+        note: "anon key e PostgreSQL DIRECT_URL em .env (não comitar)"
       - name: pretacao-de-contas
         ref: valqdugrzozubfzcfcay
         region: sa-east-1
@@ -44,14 +46,26 @@ accounts:
     team_name: "Triforce's projects"
     team_id: team_tqHCGgJLyvjpDMsRbqRQRp0V
     team_slug: triforces-projects-950f198c
+    total_projetos: 17
     projetos_relevantes:
       - name: extrato
         id: prj_FgfHL2tmONnT5CwAabZN2nP1rBTc
+        framework: nextjs
+        node: "24.x"
+        dominio: extrato-seven.vercel.app
+        status_deploy: READY
       - name: lp
         id: prj_CT4i7ApEzQ8kK8jHQxsnBCiA8i6C
+        framework: nextjs
+        node: "24.x"
+        status_deploy: READY
+        live: false
       - name: vav-sistema-d7sf
         id: prj_WSUeiFoJyPtKDkRGHDbDJrtEa7ye
-    notes: "MCP autenticado via HTTP (plugin:vercel). 17 projetos no time."
+        framework: nextjs
+        node: "24.x"
+        status_deploy: READY
+    notes: "MCP autenticado via HTTP (plugin:vercel). Todos os projetos em Node 24.x + Next.js."
 
   - platform: Cloudflare
     function: DNS, CDN, Workers
@@ -79,7 +93,14 @@ accounts:
     function: versionamento de código
     owner: dev-lider
     status: ativo
-    repo: mediatriforce-create/EMPRESA-TRIFORCE-AUTO
+    org: mediatriforce-create
+    repos_relevantes:
+      - EMPRESA-TRIFORCE-AUTO
+      - TRIFORCE-CENTRAL
+      - triforce-extrato
+      - VAV-SISTEMA
+      - TRIFORCE-AUTO-FECCHIO
+    total_repos: 18
     notes: "MCP configurado em .mcp.json (local, fora do git)."
 
   - platform: pagamentos
