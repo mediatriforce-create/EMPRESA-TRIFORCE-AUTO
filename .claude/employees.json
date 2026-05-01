@@ -10,10 +10,36 @@
       "reports_to": "fundador",
       "description": "Constrói landing pages e sistemas full stack. React/TS + Supabase + Vercel + Cloudflare.",
       "specialty": "landing-pages-sistemas",
-      "skills": ["dev-web", "nextjs-supabase-auth", "supabase-postgres-best-practices", "tailwind-css", "claude-design", "vercel-react-best-practices", "vercel-composition-patterns", "web-design-guidelines", "deploy-to-vercel", "vercel-react-view-transitions", "vercel-cli-with-tokens", "nextjs-react-typescript", "nextjs-typescript-supabase", "nextjs-shadcn", "nextjs-seo", "cloudflare-skill", "cloudflare-workers", "frontend-design", "webapp-testing", "web-artifacts-builder", "theme-factory", "brand-guidelines", "web-performance-optimization", "github-actions-docs"],
+      "skills": [
+        "dev-web",
+        "nextjs-supabase-auth",
+        "supabase-postgres-best-practices",
+        "tailwind-css",
+        "claude-design",
+        "vercel-react-best-practices",
+        "vercel-composition-patterns",
+        "web-design-guidelines",
+        "deploy-to-vercel",
+        "vercel-react-view-transitions",
+        "vercel-cli-with-tokens",
+        "nextjs-react-typescript",
+        "nextjs-typescript-supabase",
+        "nextjs-shadcn",
+        "nextjs-seo",
+        "cloudflare-skill",
+        "cloudflare-workers",
+        "frontend-design",
+        "webapp-testing",
+        "web-artifacts-builder",
+        "theme-factory",
+        "brand-guidelines",
+        "web-performance-optimization",
+        "github-actions-docs"
+      ],
       "status": "hired",
       "hired_at": "2026-04-13",
-      "hired_by": "Gabriela"
+      "hired_by": "Gabriela",
+      "onboarded_at": "2026-04-30"
     },
     {
       "id": "rh",
@@ -24,10 +50,13 @@
       "reports_to": null,
       "description": "Pesquisa e contrata especialistas alinhados com o contexto da Triforce Auto.",
       "specialty": "hiring-pipeline",
-      "skills": ["hr"],
+      "skills": [
+        "hr"
+      ],
       "status": "hired",
       "hired_at": "2026-04-13",
-      "hired_by": "fundador"
+      "hired_by": "fundador",
+      "onboarded_at": "2026-04-30"
     },
     {
       "id": "code-reviewer",
@@ -38,11 +67,25 @@
       "reports_to": "fundador",
       "description": "Revisa todo código do Felipe antes de ir para produção. Segurança, qualidade TypeScript, performance, acessibilidade e CI/CD. Não reescreve — questiona e exige melhor.",
       "specialty": "code-review-security-quality",
-      "teams": ["lp-produto"],
-      "skills": ["code-reviewer", "vercel-react-best-practices", "web-design-guidelines", "webapp-testing", "web-performance-optimization", "nextjs-react-typescript", "nextjs-typescript-supabase", "github-actions-docs", "cloudflare-workers", "schema-markup"],
+      "teams": [
+        "lp-produto"
+      ],
+      "skills": [
+        "code-reviewer",
+        "vercel-react-best-practices",
+        "web-design-guidelines",
+        "webapp-testing",
+        "web-performance-optimization",
+        "nextjs-react-typescript",
+        "nextjs-typescript-supabase",
+        "github-actions-docs",
+        "cloudflare-workers",
+        "schema-markup"
+      ],
       "status": "hired",
       "hired_at": "2026-04-13",
-      "hired_by": "Gabriela"
+      "hired_by": "Gabriela",
+      "onboarded_at": "2026-04-30"
     },
     {
       "id": "designer-instagram",
@@ -53,10 +96,20 @@
       "reports_to": "fundador",
       "description": "Produz toda a identidade visual do canal de curadoria de IA no Instagram. Cards, carrosséis e reels cover. Sistema modular, batch semanal, entrega pronta para publicar.",
       "specialty": "instagram-design-ai-content",
-      "skills": ["designer-instagram", "baoyu-image-cards", "baoyu-infographic", "baoyu-cover-image", "baoyu-article-illustrator", "baoyu-imagine", "canvas-design", "baoyu-slide-deck"],
+      "skills": [
+        "designer-instagram",
+        "baoyu-image-cards",
+        "baoyu-infographic",
+        "baoyu-cover-image",
+        "baoyu-article-illustrator",
+        "baoyu-imagine",
+        "canvas-design",
+        "baoyu-slide-deck"
+      ],
       "status": "hired",
       "hired_at": "2026-04-17",
-      "hired_by": "Gabriela"
+      "hired_by": "Gabriela",
+      "onboarded_at": "2026-04-30"
     },
     {
       "id": "social-media",
@@ -67,10 +120,17 @@
       "reports_to": "fundador",
       "description": "Gerencia o canal de curadoria de IA no Instagram. Planeja calendário editorial mensal, agenda via Later/Buffer, analisa métricas e integra IA para prever tendências e otimizar conteúdo.",
       "specialty": "instagram-strategy-ai-content",
-      "skills": ["social-media", "social-content", "ai-video-generation", "baoyu-slide-deck", "instagram-content-generation"],
+      "skills": [
+        "social-media",
+        "social-content",
+        "ai-video-generation",
+        "baoyu-slide-deck",
+        "instagram-content-generation"
+      ],
       "status": "hired",
       "hired_at": "2026-04-17",
-      "hired_by": "Gabriela"
+      "hired_by": "Gabriela",
+      "onboarded_at": "2026-04-30"
     },
     {
       "id": "curador-ia",
@@ -81,13 +141,24 @@
       "reports_to": "fundador",
       "description": "Monitora o ecossistema global de IA diariamente, filtra ruído e hype, e transforma notícias técnicas em conteúdo acessível para o canal de curadoria de IA da Triforce Auto no Instagram. Na equipe de LP, pesquisa mercado, público-alvo, concorrentes e ângulos de copy antes do Mateus escrever.",
       "specialty": "ai-research-content-curation",
-      "teams": ["marketing-instagram", "lp-produto"],
-      "skills": ["curador-ia", "pexels-automation", "googlephotos-automation", "ai-image-generation", "firecrawl-search", "all-images-ai-automation"],
+      "teams": [
+        "marketing-instagram",
+        "lp-produto"
+      ],
+      "skills": [
+        "curador-ia",
+        "pexels-automation",
+        "googlephotos-automation",
+        "ai-image-generation",
+        "firecrawl-search",
+        "all-images-ai-automation"
+      ],
       "status": "hired",
       "hired_at": "2026-04-17",
-      "hired_by": "Gabriela"
-    }
-    ,{
+      "hired_by": "Gabriela",
+      "onboarded_at": "2026-04-30"
+    },
+    {
       "id": "prospector",
       "name": "Caio",
       "role": "Prospector Senior",
@@ -96,13 +167,20 @@
       "reports_to": "fundador",
       "description": "Prospecta clientes para a Triforce Auto via Instagram DM e WhatsApp. Aborda pequenos negócios presenciais sem LP, qualifica leads e passa para o fundador fechar. Signal-based selling, sequência de 4 touches, framework PAIN-V.",
       "specialty": "outbound-prospecting-local-b2b",
-      "teams": ["vendas"],
-      "skills": ["prospector", "cold-email", "customer-research"],
+      "teams": [
+        "vendas"
+      ],
+      "skills": [
+        "prospector",
+        "cold-email",
+        "customer-research"
+      ],
       "status": "hired",
       "hired_at": "2026-04-20",
-      "hired_by": "Gabriela"
-    }
-    ,{
+      "hired_by": "Gabriela",
+      "onboarded_at": "2026-04-30"
+    },
+    {
       "id": "copywriter",
       "name": "Mateus",
       "role": "Copywriter Senior — Meta Ads & Direct Response",
@@ -111,13 +189,26 @@
       "reports_to": "fundador",
       "description": "Escreve copy de resposta direta para Meta Ads (Facebook/Instagram) e landing pages. Especialista em hooks que param o scroll nos primeiros 0.5s, domina os frameworks PAS, AIDA e Before-Bridge-After aplicados ao mercado brasileiro de pequenos negócios. Opera com loss aversion, scarcity e pattern interrupt como ferramentas nativas. Entrega 5-10 variações de hook por conceito para teste. Alinha o angulo do anuncio com o angulo da LP. REGRAS DE ESTILO INEGOCIAVEIS: (1) copy fluida, sem pontuacao excessiva, sem frases soltas empilhadas — texto tem que soar como conversa quando lido em voz alta; (2) headline NUNCA termina com ponto final — e frase curta, nao sentenca; (3) primary text em prosa continua, nao blocos separados por ponto.",
       "specialty": "direct-response-copy-meta-ads-hooks",
-      "teams": ["lp-produto", "marketing-instagram"],
-      "skills": ["mateus-mind", "marketing-psychology", "copywriting", "ad-creative", "paid-ads", "copy-editing", "copywriting-master", "ab-test-setup"],
+      "teams": [
+        "lp-produto",
+        "marketing-instagram"
+      ],
+      "skills": [
+        "mateus-mind",
+        "marketing-psychology",
+        "copywriting",
+        "ad-creative",
+        "paid-ads",
+        "copy-editing",
+        "copywriting-master",
+        "ab-test-setup"
+      ],
       "status": "hired",
       "hired_at": "2026-04-20",
-      "hired_by": "Gabriela"
-    }
-    ,{
+      "hired_by": "Gabriela",
+      "onboarded_at": "2026-04-30"
+    },
+    {
       "id": "orquestrador",
       "name": "Eduardo",
       "role": "Orquestrador de Equipe",
@@ -126,13 +217,18 @@
       "reports_to": "fundador",
       "description": "Recebe pedidos do fundador, roteia para o especialista certo com brief estruturado, acompanha handoffs entre equipes e entrega resultado consolidado. Nao executa — orquestra.",
       "specialty": "task-routing-delegation-orchestration",
-      "teams": ["gestao"],
-      "skills": ["orquestrador"],
+      "teams": [
+        "gestao"
+      ],
+      "skills": [
+        "orquestrador"
+      ],
       "status": "hired",
       "hired_at": "2026-04-20",
-      "hired_by": "Gabriela"
-    }
-    ,{
+      "hired_by": "Gabriela",
+      "onboarded_at": "2026-04-30"
+    },
+    {
       "id": "revisor-design",
       "name": "Bruno",
       "role": "Revisor de Design de Carrosséis Instagram",
@@ -141,13 +237,22 @@
       "reports_to": "fundador",
       "description": "Revisa os PNGs gerados pela Vitória antes de publicar. Detecta e reporta erros visuais com precisão — fotos repetidas, espaço em branco, foto sem sentido, contraste insuficiente, ritmo ruim. Não redesenha, não reescreve código. Só revisa e dá feedback acionável por slide.",
       "specialty": "editorial-design-review-social-media",
-      "teams": ["marketing-instagram"],
-      "skills": ["revisor-design", "image-analysis", "background-removal", "image-upscaling", "baoyu-compress-image"],
+      "teams": [
+        "marketing-instagram"
+      ],
+      "skills": [
+        "revisor-design",
+        "image-analysis",
+        "background-removal",
+        "image-upscaling",
+        "baoyu-compress-image"
+      ],
       "status": "hired",
       "hired_at": "2026-04-18",
-      "hired_by": "Gabriela"
-    }
-    ,{
+      "hired_by": "Gabriela",
+      "onboarded_at": "2026-04-30"
+    },
+    {
       "id": "estrategista-comercial",
       "name": "Clara",
       "role": "Estrategista Comercial Senior",
@@ -156,13 +261,20 @@
       "reports_to": "fundador",
       "description": "Define ICP por segmento, cria scripts de DM/WhatsApp por perfil de lead, analisa KPIs de prospecção do Caio e orienta ajustes semanais. Ênfase inviolável: fechar o primeiro cliente.",
       "specialty": "commercial-strategy-b2b-local-outbound",
-      "teams": ["vendas"],
-      "skills": ["estrategista-comercial", "customer-research", "cold-email"],
+      "teams": [
+        "vendas"
+      ],
+      "skills": [
+        "estrategista-comercial",
+        "customer-research",
+        "cold-email"
+      ],
       "status": "hired",
       "hired_at": "2026-04-22",
-      "hired_by": "Gabriela"
-    }
-    ,{
+      "hired_by": "Gabriela",
+      "onboarded_at": "2026-04-30"
+    },
+    {
       "id": "dev-lider",
       "name": "André",
       "role": "Full-stack Developer Sênior Líder Técnico",
@@ -171,14 +283,43 @@
       "reports_to": "fundador",
       "description": "Lidera a equipe-sistemas e desenvolve o sistema interno da Triforce Auto (CRM, Financeiro, Gestão de Time, Tarefas) integrado ao Airtable. Decide e documenta arquitetura via ADR. Faz code review de todo merge em main. Stack: Next.js 15, TypeScript, Supabase, Drizzle ORM, Vercel.",
       "specialty": "fullstack-tech-lead-internal-systems",
-      "teams": ["equipe-sistemas"],
-      "skills": ["dev-lider", "nextjs-supabase-auth", "supabase-postgres-best-practices", "nextjs-react-typescript", "nextjs-typescript-supabase", "nextjs-shadcn", "vercel-react-best-practices", "vercel-composition-patterns", "deploy-to-vercel", "vercel-cli-with-tokens", "webapp-testing", "web-performance-optimization", "github-actions-docs", "cloudflare-workers", "code-reviewer", "senior-fullstack", "next-best-practices", "next-cache-components", "vercel-deployment", "drizzle-orm", "supabase", "airtable-automation", "c4-architecture", "architect-review", "mcp-builder", "claude-api"],
+      "teams": [
+        "equipe-sistemas"
+      ],
+      "skills": [
+        "dev-lider",
+        "nextjs-supabase-auth",
+        "supabase-postgres-best-practices",
+        "nextjs-react-typescript",
+        "nextjs-typescript-supabase",
+        "nextjs-shadcn",
+        "vercel-react-best-practices",
+        "vercel-composition-patterns",
+        "deploy-to-vercel",
+        "vercel-cli-with-tokens",
+        "webapp-testing",
+        "web-performance-optimization",
+        "github-actions-docs",
+        "cloudflare-workers",
+        "code-reviewer",
+        "senior-fullstack",
+        "next-best-practices",
+        "next-cache-components",
+        "vercel-deployment",
+        "drizzle-orm",
+        "supabase",
+        "airtable-automation",
+        "c4-architecture",
+        "architect-review",
+        "mcp-builder",
+        "claude-api"
+      ],
       "status": "hired",
       "hired_at": "2026-04-30",
       "hired_by": "Gabriela",
       "onboarded_at": "2026-04-30"
-    }
-    ,{
+    },
+    {
       "id": "dev-backend",
       "name": "Gabriel",
       "role": "Backend Developer Sênior",
@@ -187,14 +328,33 @@
       "reports_to": "dev-lider",
       "description": "Implementa Server Actions, API routes, Supabase Edge Functions, Drizzle schemas, RLS policies, integração Airtable e webhooks do sistema interno. Todo input externo validado com Zod antes de tocar o banco.",
       "specialty": "backend-api-supabase-drizzle",
-      "teams": ["equipe-sistemas"],
-      "skills": ["dev-backend", "nextjs-supabase-auth", "supabase-postgres-best-practices", "nextjs-react-typescript", "nextjs-typescript-supabase", "next-best-practices", "drizzle-orm", "drizzle-migrations", "supabase", "supabase-backend-platform", "airtable-automation", "webapp-testing", "vitest", "zod", "playwright-e2e-testing", "github-actions-docs"],
+      "teams": [
+        "equipe-sistemas"
+      ],
+      "skills": [
+        "dev-backend",
+        "nextjs-supabase-auth",
+        "supabase-postgres-best-practices",
+        "nextjs-react-typescript",
+        "nextjs-typescript-supabase",
+        "next-best-practices",
+        "drizzle-orm",
+        "drizzle-migrations",
+        "supabase",
+        "supabase-backend-platform",
+        "airtable-automation",
+        "webapp-testing",
+        "vitest",
+        "zod",
+        "playwright-e2e-testing",
+        "github-actions-docs"
+      ],
       "status": "hired",
       "hired_at": "2026-04-30",
       "hired_by": "Gabriela",
       "onboarded_at": "2026-04-30"
-    }
-    ,{
+    },
+    {
       "id": "dev-frontend",
       "name": "Diego",
       "role": "Dev Frontend Sênior",
@@ -203,14 +363,42 @@
       "reports_to": "dev-lider",
       "description": "Constrói toda a interface do sistema interno (CRM, Financeiro, Time, Tarefas) sobre Next.js 15 App Router. Server Components por padrão, 'use client' apenas quando necessário. TanStack Query para server data, Zustand para UI state, React Hook Form + Zod para formulários.",
       "specialty": "frontend-ui-nextjs-app-router",
-      "teams": ["equipe-sistemas"],
-      "skills": ["dev-frontend", "nextjs-react-typescript", "nextjs-shadcn", "nextjs-typescript-supabase", "nextjs-supabase-auth", "vercel-react-best-practices", "vercel-composition-patterns", "vercel-react-view-transitions", "tailwind-css", "frontend-design", "web-design-guidelines", "next-best-practices", "next-cache-components", "web-performance-optimization", "webapp-testing", "github-actions-docs", "vercel-deployment", "tanstack-query", "tanstack-table", "zustand", "react-hook-form", "framer-motion", "playwright-e2e-testing", "vitest", "web-accessibility"],
+      "teams": [
+        "equipe-sistemas"
+      ],
+      "skills": [
+        "dev-frontend",
+        "nextjs-react-typescript",
+        "nextjs-shadcn",
+        "nextjs-typescript-supabase",
+        "nextjs-supabase-auth",
+        "vercel-react-best-practices",
+        "vercel-composition-patterns",
+        "vercel-react-view-transitions",
+        "tailwind-css",
+        "frontend-design",
+        "web-design-guidelines",
+        "next-best-practices",
+        "next-cache-components",
+        "web-performance-optimization",
+        "webapp-testing",
+        "github-actions-docs",
+        "vercel-deployment",
+        "tanstack-query",
+        "tanstack-table",
+        "zustand",
+        "react-hook-form",
+        "framer-motion",
+        "playwright-e2e-testing",
+        "vitest",
+        "web-accessibility"
+      ],
       "status": "hired",
       "hired_at": "2026-04-30",
       "hired_by": "Gabriela",
       "onboarded_at": "2026-04-30"
-    }
-    ,{
+    },
+    {
       "id": "revisor-sistemas",
       "name": "Rodrigo",
       "role": "Revisor de Código Sênior — equipe-sistemas",
@@ -219,8 +407,31 @@
       "reports_to": "dev-lider",
       "description": "Revisa todo código da equipe-sistemas (André, Gabriel, Diego) antes de ir para main. Especializado no stack do sistema interno: Server Actions, RLS Supabase, Drizzle ORM, Edge Functions Deno, TanStack Query, Zustand. Não reescreve — aponta o problema com fundamento técnico citado, dev corrige.",
       "specialty": "code-review-security-sistemas",
-      "teams": ["equipe-sistemas"],
-      "skills": ["revisor-sistemas", "code-reviewer", "nextjs-react-typescript", "nextjs-typescript-supabase", "nextjs-supabase-auth", "nextjs-shadcn", "supabase-postgres-best-practices", "drizzle-orm", "next-best-practices", "next-cache-components", "webapp-testing", "web-performance-optimization", "github-actions-docs", "vercel-react-best-practices", "cloudflare-workers", "airtable-automation", "drizzle-migrations", "zod", "vitest", "owasp-security-review"],
+      "teams": [
+        "equipe-sistemas"
+      ],
+      "skills": [
+        "revisor-sistemas",
+        "code-reviewer",
+        "nextjs-react-typescript",
+        "nextjs-typescript-supabase",
+        "nextjs-supabase-auth",
+        "nextjs-shadcn",
+        "supabase-postgres-best-practices",
+        "drizzle-orm",
+        "next-best-practices",
+        "next-cache-components",
+        "webapp-testing",
+        "web-performance-optimization",
+        "github-actions-docs",
+        "vercel-react-best-practices",
+        "cloudflare-workers",
+        "airtable-automation",
+        "drizzle-migrations",
+        "zod",
+        "vitest",
+        "owasp-security-review"
+      ],
       "status": "hired",
       "hired_at": "2026-04-30",
       "hired_by": "Gabriela",
