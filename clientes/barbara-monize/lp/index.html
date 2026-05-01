@@ -1,0 +1,1000 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Proposta Comercial · Barbara Monize · Triforce Auto</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   RESET
+   ============================================================ */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Montserrat',sans-serif;background:#0d0d0d;color:#fff;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+a{text-decoration:none;color:inherit;}
+img{max-width:100%;height:auto;display:block;}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important;}}
+
+/* ============================================================
+   TOKENS
+   ============================================================ */
+:root{
+  --accent:    #FF6600;
+  --accent-d:  #CC5200;
+  --accent-gl: rgba(255,102,0,.12);
+  --black:     #050505;
+  --dark:      #0d0d0d;
+  --dark2:     #141414;
+  --light:     #F5F0E8;
+  --light2:    #E0DDD4;
+  --white:     #fff;
+  --muted:     rgba(255,255,255,.55);
+  --muted-lgt: rgba(0,0,0,.6);
+  --border:    3px solid #050505;
+  --shadow:    0 4px 0 #050505;
+  --shadow-sm: 0 2px 0 #050505;
+  --shadow-lg: 0 6px 0 #050505;
+  --font:      'Montserrat',sans-serif;
+}
+
+/* ============================================================
+   LAYOUT
+   ============================================================ */
+.container{width:100%;max-width:1100px;margin:0 auto;padding:0 1.5rem;}
+@media(max-width:480px){.container{padding:0 1rem;}}
+.s-py{padding-top:6rem;padding-bottom:6rem;}
+@media(max-width:1023px){.s-py{padding-top:4rem;padding-bottom:4rem;}}
+@media(max-width:600px){.s-py{padding-top:3rem;padding-bottom:3rem;}}
+
+/* ============================================================
+   BACKGROUNDS
+   ============================================================ */
+.bg-dark {background:#0d0d0d;}
+.bg-dark2{background:#141414;}
+.bg-light{background:#F5F0E8;}
+.bg-light2{background:#E0DDD4;}
+
+/* Grid overlay */
+.grid-overlay{
+  position:absolute;inset:0;pointer-events:none;
+  background-image:linear-gradient(var(--accent) 1px,transparent 1px),linear-gradient(90deg,var(--accent) 1px,transparent 1px);
+  background-size:24px 24px;opacity:.05;z-index:0;
+}
+.grid-overlay-light{
+  position:absolute;inset:0;pointer-events:none;
+  background-image:linear-gradient(#000 1px,transparent 1px),linear-gradient(90deg,#000 1px,transparent 1px);
+  background-size:28px 28px;opacity:.04;z-index:0;
+}
+
+/* ============================================================
+   ANIMATED ORBS
+   ============================================================ */
+@keyframes ao-float-1{0%,100%{transform:translate(0,0) scale(1);}33%{transform:translate(50px,-35px) scale(1.12);}66%{transform:translate(-30px,45px) scale(.9);}}
+@keyframes ao-float-2{0%,100%{transform:translate(0,0) scale(1);}33%{transform:translate(-40px,30px) scale(1.15);}66%{transform:translate(55px,-40px) scale(.88);}}
+.ao{position:absolute;border-radius:50%;pointer-events:none;filter:blur(100px);z-index:0;will-change:transform;}
+.ao-1{width:520px;height:520px;background:rgba(255,102,0,.18);top:-120px;right:-100px;animation:ao-float-1 14s ease-in-out infinite;}
+.ao-2{width:400px;height:400px;background:rgba(255,102,0,.10);bottom:-80px;left:-80px;animation:ao-float-2 18s ease-in-out infinite;}
+.ao-3{width:300px;height:300px;background:rgba(255,102,0,.14);top:50%;left:50%;transform:translate(-50%,-50%);animation:ao-float-1 20s ease-in-out infinite reverse;}
+@media(max-width:767px){.ao{filter:blur(55px)!important;animation:none!important;}}
+
+/* ============================================================
+   SCROLL REVEAL
+   ============================================================ */
+.reveal{opacity:0;transform:translateY(28px) scale(.97);transition:opacity .65s cubic-bezier(.22,.61,.36,1),transform .65s cubic-bezier(.22,.61,.36,1);}
+.reveal.visible{opacity:1;transform:translateY(0) scale(1);}
+.reveal-l{opacity:0;transform:translateX(-32px);transition:opacity .65s cubic-bezier(.22,.61,.36,1),transform .65s cubic-bezier(.22,.61,.36,1);}
+.reveal-l.visible{opacity:1;transform:translateX(0);}
+.reveal-r{opacity:0;transform:translateX(32px);transition:opacity .65s cubic-bezier(.22,.61,.36,1),transform .65s cubic-bezier(.22,.61,.36,1);}
+.reveal-r.visible{opacity:1;transform:translateX(0);}
+.d1{transition-delay:.1s;}.d2{transition-delay:.2s;}.d3{transition-delay:.3s;}.d4{transition-delay:.4s;}.d5{transition-delay:.5s;}
+
+/* ============================================================
+   TYPOGRAPHY
+   ============================================================ */
+.t-hero{
+  font-size:clamp(2.6rem,8vw,6.5rem);font-weight:900;line-height:.94;
+  letter-spacing:-.04em;text-transform:uppercase;
+  text-shadow:0 3px 0 rgba(5,5,5,.4);text-wrap:balance;
+}
+.t-hero .hl{color:var(--accent);}
+.t-section{
+  font-size:clamp(1.6rem,4vw,2.8rem);font-weight:900;line-height:1.05;
+  letter-spacing:-.035em;text-transform:uppercase;
+}
+.t-section.on-dark{color:#fff;text-shadow:0 3px 0 rgba(255,102,0,.2);}
+.t-section.on-light{color:#050505;text-shadow:0 3px 0 rgba(5,5,5,.12);}
+.t-section .hl{color:var(--accent);}
+.t-body{font-size:clamp(.9rem,1.8vw,1.05rem);line-height:1.75;}
+.t-small{font-size:.875rem;line-height:1.65;}
+.t-xs{font-size:.75rem;letter-spacing:.04em;}
+.c-accent{color:var(--accent);}
+.c-muted{color:var(--muted);}
+.c-muted-lgt{color:var(--muted-lgt);}
+.orange-bar{width:56px;height:4px;background:linear-gradient(90deg,var(--accent),transparent);border-radius:2px;margin-bottom:1rem;}
+
+/* ============================================================
+   SECTION WATERMARK
+   ============================================================ */
+.section-watermark{
+  position:absolute;pointer-events:none;user-select:none;z-index:0;
+  font-size:clamp(5rem,18vw,14rem);font-weight:900;text-transform:uppercase;
+  letter-spacing:-.05em;white-space:nowrap;
+  color:rgba(255,102,0,.04);line-height:1;
+}
+
+/* ============================================================
+   NAV
+   ============================================================ */
+nav{
+  position:sticky;top:0;z-index:100;
+  background:rgba(5,5,5,.95);backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(255,102,0,.15);
+}
+.nav-inner{
+  max-width:1100px;margin:0 auto;padding:0 1.5rem;
+  display:flex;align-items:center;justify-content:space-between;height:52px;
+}
+.nav-brand{font-size:11px;font-weight:900;letter-spacing:2.5px;text-transform:uppercase;}
+.nav-brand span{color:var(--accent);}
+.nav-meta{font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.35);}
+@media(max-width:600px){.nav-meta{display:none;}}
+
+/* ============================================================
+   BTN CARTOON
+   ============================================================ */
+@keyframes cta-pulse{0%,100%{opacity:1;}50%{opacity:.88;}}
+.btn-cartoon{
+  position:relative;display:inline-flex;align-items:center;justify-content:center;gap:.75rem;
+  padding:1rem 2rem;background:var(--accent);color:#fff;
+  font-weight:700;font-family:var(--font);font-size:1rem;
+  border-radius:9999px;border:2px solid var(--black);
+  box-shadow:0 4px 0 var(--black);
+  transition:transform .15s ease,box-shadow .15s ease;cursor:pointer;
+  text-transform:uppercase;letter-spacing:.02em;overflow:hidden;text-decoration:none;
+}
+.btn-cartoon::after{
+  content:'';position:absolute;top:0;left:-100%;width:60%;height:100%;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.4),transparent);
+  transform:skewX(-20deg);transition:left .55s ease;pointer-events:none;
+}
+.btn-cartoon:hover{transform:translateY(-2px);box-shadow:0 6px 0 var(--black);}
+.btn-cartoon:hover::after{left:140%;}
+.btn-cartoon:active{transform:translateY(0);box-shadow:0 2px 0 var(--black);}
+.btn-cartoon.btn-xl{padding:1.25rem 2.75rem;font-size:1.125rem;animation:cta-pulse 2.5s ease-in-out infinite;}
+.btn-cartoon.btn-dark{background:var(--black);color:#fff;}
+.btn-cartoon.btn-white{background:#fff;color:var(--black);}
+
+/* ============================================================
+   PILL / BADGE
+   ============================================================ */
+.pill{
+  display:inline-flex;align-items:center;gap:.5rem;
+  background:rgba(255,102,0,.1);border:1px solid rgba(255,102,0,.3);
+  border-radius:.3rem;padding:.35rem 1rem;
+  font-size:.72rem;font-weight:700;color:var(--accent);
+  text-transform:uppercase;letter-spacing:.08em;
+}
+.pill.on-light{background:rgba(255,102,0,.08);border-color:rgba(255,102,0,.25);}
+.badge{
+  display:inline-flex;align-items:center;gap:.4rem;
+  padding:.35rem .85rem;font-size:.7rem;font-weight:800;
+  border-radius:.3rem;text-transform:uppercase;letter-spacing:.1em;
+  background:#fff;color:var(--black);border:2px solid var(--black);box-shadow:0 2px 0 var(--black);
+}
+
+/* ============================================================
+   CARDS
+   ============================================================ */
+.card-3d{
+  background:#fff;border-radius:.75rem;border:3px solid var(--black);
+  box-shadow:0 6px 0 var(--black),0 10px 20px rgba(0,0,0,.15);
+  transition:all .2s ease;overflow:hidden;
+}
+.card-3d:hover{transform:translateY(3px);box-shadow:0 3px 0 var(--black);}
+.card-3d-dark{
+  background:#111113;border-radius:.75rem;border:3px solid var(--black);
+  box-shadow:0 6px 0 var(--black);
+  transition:all .2s ease;overflow:hidden;
+}
+.card-3d-dark:hover{transform:translateY(3px);box-shadow:0 3px 0 var(--black);}
+
+/* Phase card */
+.phase-card{
+  background:linear-gradient(145deg,#1A1004,#120B02);
+  border:1px solid rgba(255,102,0,.2);border-top:2px solid rgba(255,102,0,.4);
+  border-radius:1.25rem;position:relative;overflow:hidden;padding:1.75rem 1.5rem;
+  transition:all .25s ease;
+}
+.phase-card:hover{
+  border-color:rgba(255,102,0,.45);transform:translateY(-3px);
+  box-shadow:0 8px 28px rgba(255,102,0,.12);
+}
+.phase-tag{
+  display:inline-block;font-size:.65rem;font-weight:800;
+  text-transform:uppercase;letter-spacing:.18em;color:var(--accent);
+  margin-bottom:.6rem;padding-left:.9rem;position:relative;
+}
+.phase-tag::before{
+  content:'';position:absolute;left:0;top:50%;transform:translateY(-50%);
+  width:4px;height:100%;background:var(--accent);border-radius:2px;
+}
+.phase-title{font-size:1rem;font-weight:900;color:var(--accent);margin-bottom:.75rem;text-transform:uppercase;letter-spacing:.04em;}
+.phase-body{font-size:.88rem;color:rgba(224,220,210,.85);line-height:1.75;}
+.phase-body strong{color:#fff;font-weight:700;}
+
+/* ============================================================
+   STAT CARDS
+   ============================================================ */
+.stat-card{
+  border:1px solid rgba(255,102,0,.2);border-radius:1rem;
+  padding:1.5rem 1.25rem;background:rgba(255,102,0,.04);
+  text-align:center;
+}
+.stat-num{font-size:clamp(2rem,6vw,3.5rem);font-weight:900;color:var(--accent);line-height:1;}
+.stat-label{font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.55);margin-top:.5rem;}
+
+/* ============================================================
+   DELIVERABLE ITEM
+   ============================================================ */
+.deliv-item{
+  display:flex;gap:1.25rem;align-items:flex-start;
+  padding:1.5rem;border-bottom:1px solid rgba(5,5,5,.1);
+}
+.deliv-item:last-child{border-bottom:none;}
+.deliv-num{
+  flex-shrink:0;width:42px;height:42px;background:var(--accent);
+  border:2px solid var(--black);box-shadow:0 3px 0 var(--black);
+  border-radius:.5rem;display:flex;align-items:center;justify-content:center;
+  font-size:.8rem;font-weight:900;color:#fff;letter-spacing:.04em;
+}
+
+/* ============================================================
+   COMPARISON TABLE
+   ============================================================ */
+.compare-table{width:100%;border-collapse:collapse;}
+.compare-table th{
+  background:var(--black);color:#fff;
+  font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:.1em;
+  padding:.85rem 1rem;text-align:left;border-right:1px solid rgba(255,255,255,.08);
+}
+.compare-table th:last-child{border-right:none;color:var(--accent);}
+.compare-table td{
+  padding:.9rem 1rem;font-size:.85rem;line-height:1.55;
+  border-bottom:1px solid rgba(5,5,5,.08);border-right:1px solid rgba(5,5,5,.06);
+  vertical-align:top;color:#333;
+}
+.compare-table td:first-child{font-weight:700;color:#050505;background:rgba(255,102,0,.03);}
+.compare-table td:last-child{border-right:none;color:#050505;background:rgba(255,102,0,.06);}
+.compare-table tr:last-child td{border-bottom:none;}
+.compare-table td .tag-bad{
+  display:inline-block;font-size:.65rem;font-weight:800;text-transform:uppercase;
+  letter-spacing:.06em;color:#c0392b;background:rgba(192,57,43,.08);
+  border:1px solid rgba(192,57,43,.2);border-radius:.25rem;padding:.2rem .5rem;margin-bottom:.25rem;
+}
+.compare-table td .tag-good{
+  display:inline-block;font-size:.65rem;font-weight:800;text-transform:uppercase;
+  letter-spacing:.06em;color:var(--accent);background:rgba(255,102,0,.08);
+  border:1px solid rgba(255,102,0,.25);border-radius:.25rem;padding:.2rem .5rem;margin-bottom:.25rem;
+}
+.table-wrap{overflow-x:auto;border:3px solid var(--black);border-radius:.75rem;box-shadow:0 6px 0 var(--black);}
+
+/* ============================================================
+   TEAM CARD
+   ============================================================ */
+.team-card{
+  background:#fff;border:3px solid var(--black);border-radius:.75rem;
+  box-shadow:0 6px 0 var(--black);overflow:hidden;
+  transition:transform .2s ease,box-shadow .2s ease;
+}
+.team-card:hover{transform:translateY(3px);box-shadow:0 3px 0 var(--black);}
+.team-card-top{background:var(--accent);padding:1.5rem;border-bottom:3px solid var(--black);}
+.team-card-body{padding:1.5rem;}
+
+/* ============================================================
+   URGENCY / ALERT BOX
+   ============================================================ */
+.alert-box{
+  border:3px solid var(--accent);border-radius:.75rem;
+  box-shadow:0 6px 0 var(--accent);background:rgba(255,102,0,.06);
+  padding:2rem;position:relative;overflow:hidden;
+}
+.alert-box::before{
+  content:'';position:absolute;top:0;left:0;width:100%;height:4px;
+  background:linear-gradient(90deg,var(--accent),transparent);
+}
+
+/* ============================================================
+   INVESTMENT / PRICING
+   ============================================================ */
+.price-card{
+  border:3px solid var(--black);border-radius:.75rem;
+  box-shadow:0 8px 0 var(--black);background:#fff;overflow:hidden;
+}
+.price-header{background:var(--black);padding:1.5rem 2rem;border-bottom:3px solid var(--black);}
+.price-body{padding:2rem;}
+
+/* ============================================================
+   DISCLAIMER BOX
+   ============================================================ */
+.disclaimer{
+  background:rgba(255,102,0,.06);border:1px solid rgba(255,102,0,.2);
+  border-radius:.6rem;padding:1rem 1.25rem;margin-top:1rem;
+}
+
+/* ============================================================
+   CONTACT
+   ============================================================ */
+.contact-box{
+  background:var(--black);border:3px solid var(--accent);
+  border-radius:.75rem;box-shadow:0 6px 0 var(--accent);
+  padding:2rem;display:flex;flex-direction:column;gap:1rem;
+}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+footer{
+  background:var(--black);border-top:1px solid rgba(255,102,0,.1);
+  padding:2rem 1.5rem;text-align:center;
+}
+
+/* ============================================================
+   UTILS
+   ============================================================ */
+.pos-rel{position:relative;}
+.z1{position:relative;z-index:1;}
+.flex-center{display:flex;align-items:center;justify-content:center;}
+.flex-col{display:flex;flex-direction:column;}
+.gap-1{gap:1rem;}.gap-2{gap:2rem;}.gap-3{gap:3rem;}
+.text-center{text-align:center;}
+.mb-05{margin-bottom:.5rem;}
+.mb-1{margin-bottom:1rem;}
+.mb-15{margin-bottom:1.5rem;}
+.mb-2{margin-bottom:2rem;}
+.mb-3{margin-bottom:3rem;}
+.mt-1{margin-top:1rem;}
+.mt-2{margin-top:2rem;}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;}
+@media(max-width:900px){.grid-3{grid-template-columns:1fr;}.grid-2{grid-template-columns:1fr;}}
+@media(max-width:600px){.grid-2{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     NAV
+     ============================================================ -->
+<nav>
+  <div class="nav-inner">
+    <div class="nav-brand"><span>Triforce</span> Auto</div>
+    <div class="nav-meta">Proposta Comercial &middot; Barbara Monize &middot; #TFA-0001</div>
+  </div>
+</nav>
+
+<!-- ============================================================
+     HERO — DARK
+     ============================================================ -->
+<section class="pos-rel bg-dark s-py" style="overflow:hidden;">
+  <div class="grid-overlay"></div>
+  <div class="ao ao-1"></div>
+  <div class="ao ao-2"></div>
+  <div class="section-watermark" style="bottom:-2rem;right:-2rem;">PROPOSTA</div>
+
+  <div class="container z1">
+    <div class="reveal mb-15">
+      <span class="pill">Proposta Comercial &middot; #TFA-0001</span>
+    </div>
+
+    <h1 class="t-hero reveal d1 mb-2">
+      Sua loja no Instagram perde venda toda hora que<br>
+      <span class="hl">voce demora pra responder.</span>
+    </h1>
+
+    <p class="t-body c-muted reveal d2 mb-3" style="max-width:620px;">
+      A gente resolve isso em 14 dias: catalogo online, botao de WhatsApp por produto e controle de estoque. Tudo num sistema so, por R$ 1.397.
+    </p>
+
+    <!-- Metrics -->
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;max-width:600px;" class="reveal d3 mb-3">
+      <div class="stat-card">
+        <div class="stat-num">14</div>
+        <div class="stat-label">dias do briefing ao ar</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num" style="font-size:clamp(1.4rem,4vw,2.2rem);">R$&nbsp;1.397</div>
+        <div class="stat-label">investimento total</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">3em1</div>
+        <div class="stat-label">catalogo + WhatsApp + estoque</div>
+      </div>
+    </div>
+
+    <!-- Meta info -->
+    <div class="reveal d4" style="display:flex;gap:2rem;flex-wrap:wrap;">
+      <div>
+        <div class="t-xs c-muted" style="margin-bottom:.2rem;">DATA</div>
+        <div class="t-small" style="font-weight:700;">Abril 2026</div>
+      </div>
+      <div>
+        <div class="t-xs c-muted" style="margin-bottom:.2rem;">PARA</div>
+        <div class="t-small" style="font-weight:700;">Barbara Monize</div>
+      </div>
+      <div>
+        <div class="t-xs c-muted" style="margin-bottom:.2rem;">VALIDADE</div>
+        <div class="t-small" style="font-weight:700;">Ate 30/04/2026</div>
+      </div>
+      <div>
+        <div class="t-xs c-muted" style="margin-bottom:.2rem;">REFERENCIA</div>
+        <div class="t-small" style="font-weight:700;color:var(--accent);">#TFA-0001</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     PROBLEMA — LIGHT
+     ============================================================ -->
+<section class="pos-rel bg-light s-py" style="overflow:hidden;">
+  <div class="grid-overlay-light"></div>
+  <div class="section-watermark" style="bottom:-1rem;right:-1rem;color:rgba(5,5,5,.03);">PROBLEMA</div>
+
+  <div class="container z1">
+    <div class="reveal mb-05">
+      <div class="orange-bar"></div>
+    </div>
+    <h2 class="t-section on-light reveal mb-1">O Cenario <span class="hl">Atual</span></h2>
+    <p class="t-body c-muted-lgt reveal d1 mb-3" style="max-width:520px;">O que esta custando caro agora, mesmo sem voce ver.</p>
+
+    <div class="grid-3">
+      <!-- Card 1 -->
+      <div class="card-3d reveal d1" style="padding:0;">
+        <div style="padding:.75rem 1rem;background:var(--accent);border-bottom:3px solid var(--black);">
+          <span style="font-size:.7rem;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:#fff;">01</span>
+        </div>
+        <div style="padding:1.5rem;">
+          <h3 style="font-size:1.1rem;font-weight:900;color:#050505;margin-bottom:.75rem;text-transform:uppercase;letter-spacing:-.02em;">Venda fantasma</h3>
+          <p class="t-small c-muted-lgt">A cliente manda DM, voce demora pra responder, ela compra em outro lugar. Sem catalogo online, cada demora e uma venda que sai pelo ralo.</p>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="card-3d reveal d2" style="padding:0;">
+        <div style="padding:.75rem 1rem;background:var(--accent);border-bottom:3px solid var(--black);">
+          <span style="font-size:.7rem;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:#fff;">02</span>
+        </div>
+        <div style="padding:1.5rem;">
+          <h3 style="font-size:1.1rem;font-weight:900;color:#050505;margin-bottom:.75rem;text-transform:uppercase;letter-spacing:-.02em;">Atendimento que nao escala</h3>
+          <p class="t-small c-muted-lgt">Responder pergunta de tamanho, cor e preco no DM dezenas de vezes por dia toma tempo que podia estar indo pra produto, pra estoque, pra voce. Isso nao e atendimento, e desgaste.</p>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="card-3d reveal d3" style="padding:0;">
+        <div style="padding:.75rem 1rem;background:var(--accent);border-bottom:3px solid var(--black);">
+          <span style="font-size:.7rem;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:#fff;">03</span>
+        </div>
+        <div style="padding:1.5rem;">
+          <h3 style="font-size:1.1rem;font-weight:900;color:#050505;margin-bottom:.75rem;text-transform:uppercase;letter-spacing:-.02em;">Estoque no escuro</h3>
+          <p class="t-small c-muted-lgt">Sem controle centralizado, voce vende peca que nao tem, deixa de vender peca que esta parada e nao enxerga o que esta girando. E cegueira financeira com vendas abertas.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     DADOS DE MERCADO — DARK
+     ============================================================ -->
+<section class="pos-rel bg-dark2 s-py" style="overflow:hidden;">
+  <div class="grid-overlay"></div>
+  <div class="ao ao-3"></div>
+  <div class="section-watermark" style="top:0;left:-2rem;">MERCADO</div>
+
+  <div class="container z1">
+    <div class="reveal mb-05">
+      <div class="orange-bar"></div>
+    </div>
+    <h2 class="t-section on-dark reveal mb-1">Os <span class="hl">Numeros</span></h2>
+    <p class="t-body c-muted reveal d1 mb-3" style="max-width:520px;">O que a pesquisa ja provou antes de voce.</p>
+
+    <!-- Stats -->
+    <div class="grid-3 mb-3">
+      <div class="stat-card reveal d1">
+        <div class="stat-num">64%</div>
+        <div class="stat-label">das clientes desistem antes de receber resposta no DM</div>
+      </div>
+      <div class="stat-card reveal d2">
+        <div class="stat-num" style="font-size:clamp(1.6rem,5vw,2.8rem);">9% vs 2,5%</div>
+        <div class="stat-label">conversao com LP propria contra so Instagram</div>
+      </div>
+      <div class="stat-card reveal d3">
+        <div class="stat-num" style="font-size:clamp(2rem,5vw,3rem);">Jun/Jul</div>
+        <div class="stat-label">pico de vendas de inverno, a janela mais importante do ano</div>
+      </div>
+    </div>
+
+    <!-- Case Missy Baby -->
+    <div class="reveal d4" style="border:1px solid rgba(255,102,0,.25);border-radius:1rem;padding:2rem;background:rgba(255,102,0,.04);">
+      <div class="orange-bar mb-1"></div>
+      <p class="t-xs c-accent mb-1" style="text-transform:uppercase;letter-spacing:.12em;">Caso Real</p>
+      <h3 class="t-section on-dark mb-15" style="font-size:clamp(1.3rem,3vw,2rem);">O que acontece quando a loja sai do Instagram para um sistema proprio</h3>
+      <p class="t-body c-muted mb-2">
+        A <strong style="color:#fff;">Missy Baby</strong> comecou igual a sua loja, vendendo pelo Instagram, respondendo DM, sem catalogo. Depois que montou o sistema com catalogo online e botao de WhatsApp por produto, chegou a R$ 1 milhao por ano. Nao foi sorte. Foi estrutura.
+      </p>
+      <div style="display:flex;gap:1rem;flex-wrap:wrap;">
+        <div style="flex:1;min-width:160px;border:1px solid rgba(255,255,255,.08);border-radius:.5rem;padding:1rem;">
+          <div class="t-xs c-muted mb-05">PONTO DE PARTIDA</div>
+          <div style="font-weight:800;color:#fff;font-size:.95rem;">Instagram</div>
+        </div>
+        <div style="flex:1;min-width:160px;border:1px solid rgba(255,102,0,.3);border-radius:.5rem;padding:1rem;background:rgba(255,102,0,.06);">
+          <div class="t-xs c-muted mb-05">FATURAMENTO DEPOIS</div>
+          <div style="font-weight:900;color:var(--accent);font-size:.95rem;">R$ 1M/ano</div>
+        </div>
+        <div style="flex:1;min-width:160px;border:1px solid rgba(255,255,255,.08);border-radius:.5rem;padding:1rem;">
+          <div class="t-xs c-muted mb-05">O QUE MUDOU</div>
+          <div style="font-weight:800;color:#fff;font-size:.95rem;">Estrutura</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SOLUCAO — LIGHT
+     ============================================================ -->
+<section class="pos-rel bg-light s-py" style="overflow:hidden;">
+  <div class="grid-overlay-light"></div>
+  <div class="section-watermark" style="bottom:-1rem;left:-1rem;color:rgba(5,5,5,.03);">SOLUCAO</div>
+
+  <div class="container z1">
+    <div class="reveal mb-05">
+      <div class="orange-bar"></div>
+    </div>
+    <h2 class="t-section on-light reveal mb-1">A <span class="hl">Solucao</span></h2>
+    <p class="t-body c-muted-lgt reveal d1 mb-3" style="max-width:520px;">O que voce vai ter no ar em 14 dias.</p>
+
+    <div class="flex-col gap-1" style="max-width:800px;">
+      <!-- Item I -->
+      <div class="card-3d reveal d1" style="padding:1.75rem;">
+        <div style="display:flex;gap:1rem;align-items:flex-start;">
+          <div style="flex-shrink:0;width:40px;height:40px;background:var(--accent);border:2px solid var(--black);box-shadow:0 3px 0 var(--black);border-radius:.4rem;display:flex;align-items:center;justify-content:center;font-weight:900;color:#fff;font-size:.85rem;">I</div>
+          <div>
+            <h3 style="font-size:1rem;font-weight:900;color:#050505;margin-bottom:.6rem;text-transform:uppercase;letter-spacing:-.01em;">Catalogo online com botao de WhatsApp por produto</h3>
+            <p class="t-small c-muted-lgt">Cada peca do seu catalogo, legging, top, conjunto, com foto, cor, tamanho e preco. A cliente viu, gostou, clicou. O WhatsApp abre com a mensagem ja preenchida: "Quero este produto". Voce nao perde venda por demora. A venda chega ate voce pronta.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Item II -->
+      <div class="card-3d reveal d2" style="padding:1.75rem;">
+        <div style="display:flex;gap:1rem;align-items:flex-start;">
+          <div style="flex-shrink:0;width:40px;height:40px;background:var(--accent);border:2px solid var(--black);box-shadow:0 3px 0 var(--black);border-radius:.4rem;display:flex;align-items:center;justify-content:center;font-weight:900;color:#fff;font-size:.85rem;">II</div>
+          <div>
+            <h3 style="font-size:1rem;font-weight:900;color:#050505;margin-bottom:.6rem;text-transform:uppercase;letter-spacing:-.01em;">Painel administrativo de estoque</h3>
+            <p class="t-small c-muted-lgt">Voce acessa pelo celular ou pelo computador e ve o que tem, o que acabou e o que esta quase no limite. Atualiza em tempo real. Sem planilha. Sem caderno. Sem achismo.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Item III -->
+      <div class="card-3d reveal d3" style="padding:1.75rem;">
+        <div style="display:flex;gap:1rem;align-items:flex-start;">
+          <div style="flex-shrink:0;width:40px;height:40px;background:var(--accent);border:2px solid var(--black);box-shadow:0 3px 0 var(--black);border-radius:.4rem;display:flex;align-items:center;justify-content:center;font-weight:900;color:#fff;font-size:.85rem;">III</div>
+          <div>
+            <h3 style="font-size:1rem;font-weight:900;color:#050505;margin-bottom:.6rem;text-transform:uppercase;letter-spacing:-.01em;">Dominio .com.br e treinamento de 1 hora</h3>
+            <p class="t-small c-muted-lgt">Seu endereco proprio na internet, nao um link generico. E uma hora de treinamento ao vivo para voce sair sabendo usar tudo sem depender de ninguem.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     COMPARACAO — DARK
+     ============================================================ -->
+<section class="pos-rel bg-dark s-py" style="overflow:hidden;">
+  <div class="grid-overlay"></div>
+  <div class="ao" style="width:400px;height:400px;background:rgba(255,102,0,.12);top:-100px;left:-80px;animation:ao-float-2 16s ease-in-out infinite;"></div>
+
+  <div class="container z1">
+    <div class="reveal mb-05">
+      <div class="orange-bar"></div>
+    </div>
+    <h2 class="t-section on-dark reveal mb-1">Por que <span class="hl">essa solucao</span></h2>
+    <p class="t-body c-muted reveal d1 mb-3">Hoje vs. com o sistema.</p>
+
+    <div class="table-wrap reveal d2">
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th style="width:30%;">Situacao</th>
+            <th style="width:35%;">Hoje</th>
+            <th style="width:35%;">Com o sistema</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Cliente quer ver produto</td>
+            <td><span class="tag-bad">Problema</span><br>Manda DM, espera foto, espera preco, espera tamanho</td>
+            <td><span class="tag-good">Resolvido</span><br>Acessa o catalogo, escolhe, clica no WhatsApp</td>
+          </tr>
+          <tr>
+            <td>Responder duvida de cor e tamanho</td>
+            <td><span class="tag-bad">Problema</span><br>Voce digita manualmente, uma a uma</td>
+            <td><span class="tag-good">Resolvido</span><br>Tudo visivel no catalogo, pergunta nao chega</td>
+          </tr>
+          <tr>
+            <td>Controle de estoque</td>
+            <td><span class="tag-bad">Problema</span><br>Caderno, memoria ou planilha desatualizada</td>
+            <td><span class="tag-good">Resolvido</span><br>Painel em tempo real, acessivel do celular</td>
+          </tr>
+          <tr>
+            <td>Venda fora do horario</td>
+            <td><span class="tag-bad">Problema</span><br>Perdida, voce estava dormindo</td>
+            <td><span class="tag-good">Resolvido</span><br>Catalogo ativo 24h, cliente ja escolheu ao acordar</td>
+          </tr>
+          <tr>
+            <td>Presenca digital</td>
+            <td><span class="tag-bad">Problema</span><br>Perfil no Instagram</td>
+            <td><span class="tag-good">Resolvido</span><br>Site proprio com dominio .com.br</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     ENTREGAVEIS — LIGHT
+     ============================================================ -->
+<section class="pos-rel bg-light s-py" style="overflow:hidden;">
+  <div class="grid-overlay-light"></div>
+  <div class="section-watermark" style="top:-1rem;right:-1rem;color:rgba(5,5,5,.03);">ENTREGA</div>
+
+  <div class="container z1">
+    <div class="reveal mb-05">
+      <div class="orange-bar"></div>
+    </div>
+    <h2 class="t-section on-light reveal mb-1">O que Voce <span class="hl">Recebe</span></h2>
+    <p class="t-body c-muted-lgt reveal d1 mb-3">O que voce recebe, sem letra miuda.</p>
+
+    <div class="card-3d reveal d2" style="padding:0;">
+      <!-- 01 -->
+      <div class="deliv-item">
+        <div class="deliv-num">01</div>
+        <div>
+          <h3 style="font-size:.95rem;font-weight:900;color:#050505;text-transform:uppercase;margin-bottom:.4rem;">Landing page com catalogo de produtos</h3>
+          <p class="t-small c-muted-lgt">Pagina completa com todas as suas pecas organizadas por categoria. Cada produto com foto, descricao, cor, tamanho disponivel e preco.</p>
+        </div>
+      </div>
+      <!-- 02 -->
+      <div class="deliv-item">
+        <div class="deliv-num">02</div>
+        <div>
+          <h3 style="font-size:.95rem;font-weight:900;color:#050505;text-transform:uppercase;margin-bottom:.4rem;">Botao de WhatsApp individual por produto</h3>
+          <p class="t-small c-muted-lgt">Cada item do catalogo tem seu proprio botao. A mensagem ja chega pra voce com o nome do produto. Voce fecha a venda, nao fica coletando informacao.</p>
+        </div>
+      </div>
+      <!-- 03 -->
+      <div class="deliv-item">
+        <div class="deliv-num">03</div>
+        <div>
+          <h3 style="font-size:.95rem;font-weight:900;color:#050505;text-transform:uppercase;margin-bottom:.4rem;">Painel administrativo de estoque</h3>
+          <p class="t-small c-muted-lgt">Interface para voce atualizar estoque, marcar peca como esgotada e acompanhar o que esta girando. Simples, feito pra quem nao tem tempo pra complicacao.</p>
+        </div>
+      </div>
+      <!-- 04 -->
+      <div class="deliv-item" style="flex-direction:column;gap:.75rem;">
+        <div style="display:flex;gap:1.25rem;align-items:flex-start;">
+          <div class="deliv-num">04</div>
+          <div>
+            <h3 style="font-size:.95rem;font-weight:900;color:#050505;text-transform:uppercase;margin-bottom:.4rem;">Dominio .com.br registrado</h3>
+            <p class="t-small c-muted-lgt">Seu endereco proprio na internet, barbaragymwear.com.br ou o nome que voce escolher. Registro incluso no investimento.</p>
+          </div>
+        </div>
+        <div class="disclaimer" style="margin-left:calc(42px + 1.25rem);">
+          <p class="t-xs c-accent mb-05" style="font-weight:800;text-transform:uppercase;letter-spacing:.08em;">Sobre o dominio .com.br</p>
+          <p class="t-small c-muted-lgt">O dominio precisa ser renovado todo ano. O custo varia entre R$ 20 e R$ 100 por ano, dependendo do dominio escolhido. Esse valor e pago diretamente por voce na plataforma de registro, fora do investimento do projeto. Nenhuma surpresa: voce tem controle total do dominio e paga so a renovacao anual, direto na fonte.</p>
+        </div>
+      </div>
+      <!-- 05 -->
+      <div class="deliv-item">
+        <div class="deliv-num">05</div>
+        <div>
+          <h3 style="font-size:.95rem;font-weight:900;color:#050505;text-transform:uppercase;margin-bottom:.4rem;">Treinamento de 1 hora ao vivo</h3>
+          <p class="t-small c-muted-lgt">Uma sessao com o Joaquim depois da entrega. Voce sai sabendo atualizar produto, mexer no estoque e usar o sistema sem precisar chamar ninguem.</p>
+        </div>
+      </div>
+      <!-- 06 -->
+      <div class="deliv-item">
+        <div class="deliv-num">06</div>
+        <div>
+          <h3 style="font-size:.95rem;font-weight:900;color:#050505;text-transform:uppercase;margin-bottom:.4rem;">Entrega em 14 dias corridos</h3>
+          <p class="t-small c-muted-lgt">Do briefing ao sistema no ar: 14 dias corridos. Os primeiros 4 sao de organizacao e setup de infraestrutura. Do dia 5 ao 14, e desenvolvimento, design, testes e entrega. Prazo real, sem enrolacao. Voce aprova cada etapa antes de finalizar.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     TIMELINE — DARK
+     ============================================================ -->
+<section class="pos-rel bg-dark2 s-py" style="overflow:hidden;">
+  <div class="grid-overlay"></div>
+  <div class="ao" style="width:500px;height:500px;background:rgba(255,102,0,.10);bottom:-150px;right:-100px;animation:ao-float-1 20s ease-in-out infinite;"></div>
+  <div class="section-watermark" style="top:0;right:-2rem;">TIMELINE</div>
+
+  <div class="container z1">
+    <div class="reveal mb-05">
+      <div class="orange-bar"></div>
+    </div>
+    <h2 class="t-section on-dark reveal mb-1">Como <span class="hl">Acontece</span></h2>
+    <p class="t-body c-muted reveal d1 mb-3">O que acontece do dia 1 ate o ar.</p>
+
+    <!-- PRE-PRODUCAO -->
+    <div class="reveal d2 mb-2" style="border-left:3px solid var(--accent);padding-left:1.5rem;margin-bottom:2rem;">
+      <p class="phase-tag">Pre-producao (Dias 1 a 4)</p>
+      <p class="t-small c-muted" style="margin-top:.25rem;">Antes de codar, a casa tem que estar em ordem.</p>
+    </div>
+
+    <div class="grid-3 mb-3">
+      <div class="phase-card reveal d2">
+        <div class="phase-tag">Dia 1</div>
+        <div class="phase-title">Briefing</div>
+        <p class="phase-body">Voce passa as fotos dos produtos, precos, tamanhos disponiveis e as informacoes do seu WhatsApp. Levamos ate 30 minutos.</p>
+      </div>
+      <div class="phase-card reveal d3">
+        <div class="phase-tag">Dias 2 e 3</div>
+        <div class="phase-title">Setup de infraestrutura</div>
+        <p class="phase-body">Antes de escrever uma linha de codigo, Joaquim configura tres ambientes: <strong>Supabase</strong> para banco de dados, <strong>Git</strong> para controle de versao e <strong>Vercel</strong> para hospedagem. Projeto sem infraestrutura organizada acumula problema tecnico, fica dificil de corrigir e quebra em hora errada. Resolver isso nos dias 2 e 3 e o que garante que o sistema vai ao ar sem susto nos dias 12 a 14.</p>
+      </div>
+      <div class="phase-card reveal d4">
+        <div class="phase-tag">Dia 4</div>
+        <div class="phase-title">Estrutura e aprovacao</div>
+        <p class="phase-body">Com a infra pronta, Joao organiza a estrutura de conteudo e o rascunho visual do catalogo. Voce ve e aprova antes de seguir.</p>
+      </div>
+    </div>
+
+    <!-- PRODUCAO -->
+    <div class="reveal d2 mb-2" style="border-left:3px solid var(--accent);padding-left:1.5rem;margin-bottom:2rem;">
+      <p class="phase-tag">Producao (Dias 5 a 14)</p>
+      <p class="t-small c-muted" style="margin-top:.25rem;">Infraestrutura montada. Agora e mao na massa.</p>
+    </div>
+
+    <div class="grid-3">
+      <div class="phase-card reveal d2">
+        <div class="phase-tag">Dias 5 a 9</div>
+        <div class="phase-title">Desenvolvimento</div>
+        <p class="phase-body">Joaquim constroi o sistema: catalogo, botoes de WhatsApp por produto e painel de estoque integrados. Nada de gambiarra.</p>
+      </div>
+      <div class="phase-card reveal d3">
+        <div class="phase-tag">Dias 10 e 11</div>
+        <div class="phase-title">Design e refinamento</div>
+        <p class="phase-body">A pagina ganha a cara da sua marca. Cores, tipografia, fotos dos seus produtos. O sistema nao so funciona, ele representa voce.</p>
+      </div>
+      <div class="phase-card reveal d4">
+        <div class="phase-tag">Dias 12 a 14</div>
+        <div class="phase-title">Testes, dominio e entrega</div>
+        <p class="phase-body">Testamos tudo do zero, configuramos o dominio .com.br e colocamos no ar. Depois, agendamos o treinamento de 1 hora com voce.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     URGENCIA — LIGHT
+     ============================================================ -->
+<section class="pos-rel bg-light s-py" style="overflow:hidden;">
+  <div class="grid-overlay-light"></div>
+
+  <div class="container z1">
+    <div class="alert-box reveal" style="max-width:780px;margin:0 auto;">
+      <div style="display:flex;align-items:center;gap:.75rem;margin-bottom:1rem;">
+        <span class="badge" style="background:var(--accent);color:#fff;border-color:var(--accent);box-shadow:0 2px 0 var(--black);">ATENCAO</span>
+      </div>
+      <h2 class="t-section on-light reveal d1 mb-15">Junho e julho sao os meses de pico, e <span class="hl">estao chegando.</span></h2>
+      <p class="t-body c-muted-lgt reveal d2">
+        Inverno e quando as vendas de fitness feminino disparam. Legging, conjunto, top de frio, a procura sobe e a cliente que nao encontra rapido compra de quem esta pronto. Com <strong>14 dias de prazo</strong>, voce pode ter o sistema no ar antes do pico. Se deixar pra depois do pico, voce tera a estrutura e nao tera aproveitado a melhor janela do ano. Nao e alarmismo. E calendario.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     INVESTIMENTO — DARK
+     ============================================================ -->
+<section class="pos-rel bg-dark s-py" style="overflow:hidden;">
+  <div class="grid-overlay"></div>
+  <div class="ao ao-1" style="opacity:.7;"></div>
+  <div class="section-watermark" style="bottom:-1rem;right:-2rem;">VALOR</div>
+
+  <div class="container z1">
+    <div class="reveal mb-05">
+      <div class="orange-bar"></div>
+    </div>
+    <h2 class="t-section on-dark reveal mb-1"><span class="hl">Investimento</span></h2>
+    <p class="t-body c-muted reveal d1 mb-3">R$ 1.397 no total.</p>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;max-width:900px;">
+      <!-- Incluido -->
+      <div class="price-card reveal d2">
+        <div class="price-header">
+          <p class="t-xs" style="color:rgba(255,255,255,.5);font-weight:700;letter-spacing:.12em;text-transform:uppercase;margin-bottom:.5rem;">Incluso</p>
+          <div style="font-size:clamp(2.2rem,6vw,3.5rem);font-weight:900;color:var(--accent);line-height:1;">R$ 1.397</div>
+          <div style="font-size:.85rem;color:rgba(255,255,255,.6);font-weight:600;margin-top:.25rem;">pagamento em 2x</div>
+        </div>
+        <div class="price-body">
+          <ul style="list-style:none;flex-direction:column;gap:.6rem;display:flex;">
+            <li class="t-small" style="color:#333;display:flex;gap:.6rem;align-items:flex-start;"><span style="color:var(--accent);font-weight:900;flex-shrink:0;">+</span> Landing page com catalogo de produtos</li>
+            <li class="t-small" style="color:#333;display:flex;gap:.6rem;align-items:flex-start;"><span style="color:var(--accent);font-weight:900;flex-shrink:0;">+</span> Botao de WhatsApp individual por produto</li>
+            <li class="t-small" style="color:#333;display:flex;gap:.6rem;align-items:flex-start;"><span style="color:var(--accent);font-weight:900;flex-shrink:0;">+</span> Painel administrativo de estoque</li>
+            <li class="t-small" style="color:#333;display:flex;gap:.6rem;align-items:flex-start;"><span style="color:var(--accent);font-weight:900;flex-shrink:0;">+</span> Dominio .com.br registrado</li>
+            <li class="t-small" style="color:#333;display:flex;gap:.6rem;align-items:flex-start;"><span style="color:var(--accent);font-weight:900;flex-shrink:0;">+</span> Treinamento de 1 hora ao vivo</li>
+            <li class="t-small" style="color:#333;display:flex;gap:.6rem;align-items:flex-start;"><span style="color:var(--accent);font-weight:900;flex-shrink:0;">+</span> Entrega em 14 dias corridos</li>
+          </ul>
+          <div style="margin-top:1.5rem;padding-top:1.5rem;border-top:2px solid var(--black);">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.4rem;">
+              <span class="t-small" style="color:#555;font-weight:600;">Entrada</span>
+              <span style="font-weight:900;color:#050505;">R$ 699</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;">
+              <span class="t-small" style="color:#555;font-weight:600;">Na entrega</span>
+              <span style="font-weight:900;color:#050505;">R$ 698</span>
+            </div>
+            <p class="t-xs c-muted-lgt mt-1">Voce paga o restante so quando o sistema estiver no ar e aprovado por voce.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Suporte opcional -->
+      <div class="card-3d-dark reveal d3" style="padding:0;">
+        <div style="padding:1.25rem 1.5rem;border-bottom:1px solid rgba(255,255,255,.06);">
+          <span class="pill" style="margin-bottom:.75rem;display:inline-flex;">Opcional</span>
+          <div style="font-size:clamp(1.5rem,4vw,2.2rem);font-weight:900;color:var(--accent);line-height:1;">R$ 149<span style="font-size:1rem;font-weight:600;color:rgba(255,255,255,.4)">/mes</span></div>
+          <div style="font-size:.8rem;color:rgba(255,255,255,.45);font-weight:600;margin-top:.25rem;text-transform:uppercase;letter-spacing:.08em;">Suporte mensal</div>
+        </div>
+        <div style="padding:1.5rem;">
+          <p class="t-small c-muted mb-15">Depois da entrega, se quiser manter suporte mensal, sao R$ 149 por mes. Inclui atualizacao de produtos no catalogo, ajustes no sistema e suporte direto com o Joaquim quando precisar.</p>
+          <div style="border:1px solid rgba(255,102,0,.3);border-radius:.5rem;padding:1rem;background:rgba(255,102,0,.06);">
+            <p class="t-xs c-accent mb-05" style="font-weight:800;text-transform:uppercase;letter-spacing:.08em;">Primeiro mes cortesia</p>
+            <p class="t-small c-muted">Voce nao paga nada. A partir do segundo mes, decide se quer continuar. Sem contrato de fidelidade. Cancela quando quiser, sem burocracia.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="text-center reveal d4 mt-2" style="margin-top:3rem;">
+      <a href="https://wa.me/5571996591404?text=Oi%20Joaquim%2C%20quero%20fechar%20a%20proposta!" class="btn-cartoon btn-xl" target="_blank" rel="noopener">
+        Fechar proposta via WhatsApp
+      </a>
+      <p class="t-xs c-muted mt-1">Resposta em ate 24h</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     EQUIPE — LIGHT
+     ============================================================ -->
+<section class="pos-rel bg-light s-py" style="overflow:hidden;">
+  <div class="grid-overlay-light"></div>
+  <div class="section-watermark" style="bottom:-1rem;left:-1rem;color:rgba(5,5,5,.03);">EQUIPE</div>
+
+  <div class="container z1">
+    <div class="reveal mb-05">
+      <div class="orange-bar"></div>
+    </div>
+    <h2 class="t-section on-light reveal mb-1">Quem Faz <span class="hl">Esse Projeto</span></h2>
+    <p class="t-body c-muted-lgt reveal d1 mb-1">Duas pessoas. Do inicio ao fim.</p>
+    <p class="t-body c-muted-lgt reveal d2 mb-3" style="max-width:640px;">Esse projeto nao e feito por uma agencia com dezenas de funcionarios onde ninguem sabe o seu nome. Sao duas pessoas, e voce fala com as duas.</p>
+
+    <div class="grid-2" style="max-width:800px;">
+      <!-- Joaquim -->
+      <div class="team-card reveal d2">
+        <div class="team-card-top">
+          <p class="t-xs" style="color:rgba(255,255,255,.7);font-weight:800;letter-spacing:.12em;text-transform:uppercase;margin-bottom:.4rem;">Desenvolvimento e estrutura tecnica</p>
+          <h3 style="font-size:1.4rem;font-weight:900;color:#fff;text-transform:uppercase;letter-spacing:-.02em;">Joaquim Salles</h3>
+        </div>
+        <div class="team-card-body">
+          <p class="t-small c-muted-lgt">Joaquim e quem coloca tudo no ar. Cuida de cada detalhe tecnico: banco de dados, hospedagem, codigo, configuracao. Quando o sistema funciona sem erro e abre rapido no celular da sua cliente, e trabalho dele.</p>
+        </div>
+      </div>
+      <!-- Joao Fecchio -->
+      <div class="team-card reveal d3">
+        <div class="team-card-top">
+          <p class="t-xs" style="color:rgba(255,255,255,.7);font-weight:800;letter-spacing:.12em;text-transform:uppercase;margin-bottom:.4rem;">Copy e estrutura de conteudo</p>
+          <h3 style="font-size:1.4rem;font-weight:900;color:#fff;text-transform:uppercase;letter-spacing:-.02em;">Joao Fecchio</h3>
+        </div>
+        <div class="team-card-body">
+          <p class="t-small c-muted-lgt">Joao e quem garante que cada palavra serve a um proposito. Cuida do que a pagina diz, como diz e em que ordem. Quando a cliente le o catalogo e clica no WhatsApp sem precisar pensar, e trabalho dele.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="reveal d4 mt-2" style="max-width:640px;">
+      <p class="t-body c-muted-lgt">Os dois trabalham juntos desde o briefing ate a entrega. Voce nao esta contratando execucao terceirizada. Esta contratando as duas pessoas que vao, de fato, construir o seu sistema.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     ENCERRAMENTO — DARK
+     ============================================================ -->
+<section class="pos-rel bg-dark s-py" style="overflow:hidden;">
+  <div class="grid-overlay"></div>
+  <div class="ao ao-2" style="opacity:.8;"></div>
+  <div class="section-watermark" style="bottom:-2rem;right:-1rem;">OBRIGADO</div>
+
+  <div class="container z1">
+    <div style="max-width:740px;margin:0 auto;text-align:center;">
+      <div class="orange-bar center reveal mb-2"></div>
+      <h2 class="t-section on-dark reveal mb-15">Obrigado, <span class="hl">Barbara.</span></h2>
+
+      <p class="t-body c-muted reveal d2 mb-3">
+        Voce leu essa proposta ate o fim. Isso ja diz que esta levando a serio. A gente tambem leva. Essa proposta foi construida pensando especificamente na sua loja: nas suas dores com DM, no pico de inverno que esta chegando e no que voce pode ganhar tendo uma estrutura propria.
+      </p>
+      <p class="t-body c-muted reveal d3 mb-3">
+        Quem esta por tras disso sao duas pessoas, nao uma agencia. Joao Fecchio cuidou da copy e da estrutura de conteudo, o que voce leu aqui. Joaquim Salles cuida do desenvolvimento e da entrega tecnica, o que vai ao ar em 14 dias.
+      </p>
+      <p class="t-body c-muted reveal d4 mb-3">
+        Se fizer sentido pra voce, o proximo passo e simples: fala com o Joaquim pelo WhatsApp. Ele tira qualquer duvida e, se voce quiser avancar, a gente comeca o briefing na hora. Sem pressao. Sem contrato armadilha. So o sistema no ar, do jeito certo.
+      </p>
+
+      <!-- Contact -->
+      <div class="contact-box reveal d5" style="max-width:480px;margin:0 auto 2rem;">
+        <div>
+          <p class="t-xs c-accent mb-05" style="font-weight:800;text-transform:uppercase;letter-spacing:.1em;">Contato direto</p>
+          <p style="font-size:1.1rem;font-weight:900;color:#fff;text-transform:uppercase;letter-spacing:-.01em;">Joaquim Salles</p>
+          <p class="t-small c-muted">Desenvolvimento e entrega tecnica</p>
+        </div>
+        <a href="https://wa.me/5571996591404?text=Oi%20Joaquim%2C%20quero%20fechar%20a%20proposta!" class="btn-cartoon btn-xl" target="_blank" rel="noopener" style="width:100%;justify-content:center;">
+          (71) 99659-1404 · WhatsApp
+        </a>
+        <p class="t-xs c-muted text-center">Qualquer duvida, estou disponivel no WhatsApp.</p>
+      </div>
+
+      <p class="t-xs c-muted reveal">#TFA-0001 &middot; Valida ate 30/04/2026</p>
+      <p class="t-xs c-muted reveal d1" style="margin-top:.25rem;">Proposta confidencial. Elaborada exclusivamente para Barbara Monize.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     FOOTER
+     ============================================================ -->
+<footer>
+  <div class="container">
+    <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;">
+      <div class="nav-brand"><span>Triforce</span> Auto</div>
+      <p class="t-xs" style="color:rgba(255,255,255,.25);">Proposta confidencial &middot; #TFA-0001 &middot; Barbara Monize</p>
+    </div>
+  </div>
+</footer>
+
+<!-- ============================================================
+     SCRIPTS
+     ============================================================ -->
+<script>
+// Scroll Reveal
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      observer.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.08 });
+
+document.querySelectorAll('.reveal, .reveal-l, .reveal-r').forEach(el => {
+  observer.observe(el);
+});
+</script>
+</body>
+</html>
