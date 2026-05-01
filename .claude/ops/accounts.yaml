@@ -21,6 +21,7 @@ accounts:
         status: ACTIVE_HEALTHY
         created_at: 2026-04-30
         function: CRM do sistema interno
+        mcp: "postgres-crm (Session Pooler, aws-0-sa-east-1, porta 5432) — André + Gabriel com acesso direto via MCP"
         note: "anon key e PostgreSQL DIRECT_URL em .env (não comitar)"
       - name: pretacao-de-contas
         ref: valqdugrzozubfzcfcay
