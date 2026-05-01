@@ -3,11 +3,11 @@ updated_at: 2026-04-30
 
 ativos:
   - id: alert-001
-    severidade: medio
+    severidade: alto
     dominio: supabase
-    titulo: "Projeto CENTRAL VAV está INACTIVE"
-    descricao: "Projeto Supabase pausado por inatividade no free tier. Cold start de 5-10s na reativação. Decidir: reativar este projeto ou criar um novo para o sistema interno."
-    acao: "Fundador decide: reativar CENTRAL VAV ou criar projeto novo"
+    titulo: "MCP Supabase conectado na org errada"
+    descricao: "MCP retorna org VIVA A VIDA, mas a org real da Triforce é mediatriforce-create's Org com projetos CRM - TRIFORCE AUTO e pretacao-de-contas."
+    acao: "Reconectar MCP Supabase à org mediatriforce-create"
     depende_de: fundador
     criado_por: dev-lider
     criado_em: 2026-04-30

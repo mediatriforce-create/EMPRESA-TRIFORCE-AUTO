@@ -6,15 +6,20 @@ accounts:
   - platform: Supabase
     function: banco de dados, auth
     owner: dev-lider
-    status: inativo
-    org_name: VIVA A VIDA
-    org_id: tiqwbqgdfqzgesauvokg
-    project_name: CENTRAL VAV
-    project_ref: xxwzrqaiujydyppkulue
-    region: sa-east-1
-    postgres_version: "17.6.1"
-    host: db.xxwzrqaiujydyppkulue.supabase.co
-    notes: "Projeto pausado por inatividade (free tier). Reativar ou criar novo para sistema interno."
+    status: ativo
+    org_name: mediatriforce-create's Org
+    org_slug: mediatriforce-create
+    plano: FREE
+    projetos:
+      - name: CRM - TRIFORCE AUTO
+        region: sa-east-1
+        tier: NANO
+        function: CRM do sistema interno
+      - name: pretacao-de-contas
+        region: sa-east-1
+        tier: NANO
+        function: prestação de contas
+    notes: "MCP Supabase conectado na org errada (VIVA A VIDA) — reconectar à mediatriforce-create's Org."
 
   - platform: Airtable
     function: gestão pessoal do fundador (GTD)
