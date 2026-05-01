@@ -11,6 +11,7 @@ Thumbs.db
 .env
 .env.local
 .env*.local
+.mcp.json
 tools/instagram_cookies.json
 
 # Plugins (repos externos)
