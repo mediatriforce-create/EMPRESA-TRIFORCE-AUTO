@@ -177,5 +177,20 @@
       "hired_at": "2026-04-30",
       "hired_by": "Gabriela"
     }
+    ,{
+      "id": "dev-backend",
+      "name": "Gabriel",
+      "role": "Backend Developer Sênior",
+      "seniority": "senior",
+      "tier": "standard",
+      "reports_to": "dev-lider",
+      "description": "Implementa Server Actions, API routes, Supabase Edge Functions, Drizzle schemas, RLS policies, integração Airtable e webhooks do sistema interno. Todo input externo validado com Zod antes de tocar o banco.",
+      "specialty": "backend-api-supabase-drizzle",
+      "teams": ["equipe-sistemas"],
+      "skills": ["dev-backend", "nextjs-supabase-auth", "supabase-postgres-best-practices", "nextjs-react-typescript", "nextjs-typescript-supabase", "next-best-practices", "drizzle-orm", "drizzle-migrations", "supabase", "supabase-backend-platform", "airtable-automation", "webapp-testing", "vitest", "zod", "playwright-e2e-testing", "github-actions-docs"],
+      "status": "hired",
+      "hired_at": "2026-04-30",
+      "hired_by": "Gabriela"
+    }
   ]
 }
