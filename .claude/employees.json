@@ -399,6 +399,35 @@
       "onboarded_at": "2026-04-30"
     },
     {
+      "id": "luna-qa",
+      "name": "Luna",
+      "role": "QA/Test Engineer Senior",
+      "seniority": "senior",
+      "tier": "standard",
+      "reports_to": "dev-lider",
+      "description": "Configura e mantém a suite de testes do sistema interno (Vitest + Playwright + pgTAP). Implementa CI bloqueante no GitHub Actions. Garante cobertura nos fluxos críticos. Tem poder de bloqueio total em PRs sem testes passando.",
+      "specialty": "qa-testing-ci-nextjs-supabase",
+      "teams": [
+        "equipe-sistemas"
+      ],
+      "skills": [
+        "luna-qa",
+        "webapp-testing",
+        "vitest",
+        "playwright-e2e-testing",
+        "github-actions-docs",
+        "nextjs-react-typescript",
+        "nextjs-typescript-supabase",
+        "supabase-postgres-best-practices",
+        "drizzle-orm",
+        "zod"
+      ],
+      "status": "hired",
+      "hired_at": "2026-05-02",
+      "hired_by": "Gabriela",
+      "onboarded_at": "2026-05-02"
+    },
+    {
       "id": "revisor-sistemas",
       "name": "Rodrigo",
       "role": "Revisor de Código Sênior — equipe-sistemas",
