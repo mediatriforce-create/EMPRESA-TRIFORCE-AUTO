@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fontes — Joaquim Salles</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Anton&family=Space+Grotesk:wght@700&family=Barlow+Condensed:wght@700;900&family=Outfit:wght@800;900&family=Cabinet+Grotesk:wght@800;900&family=Plus+Jakarta+Sans:wght@400;800&family=Clash+Display:wght@700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#0C0906;color:#EDE5D5;font-family:'Plus Jakarta Sans',sans-serif;padding:40px 32px}
+h1{font-family:'Plus Jakarta Sans',sans-serif;font-size:12px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.25);margin-bottom:6px}
+.sub{font-size:12px;color:rgba(255,255,255,.18);margin-bottom:48px}
+
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+@media(max-width:700px){.grid{grid-template-columns:1fr}}
+
+.card{background:#141008;border:1px solid rgba(196,83,42,.1);border-radius:14px;overflow:hidden;cursor:pointer;transition:border-color .2s,transform .15s}
+.card:hover{border-color:rgba(196,83,42,.5);transform:translateY(-3px)}
+
+.prev{padding:32px 28px 24px;border-bottom:1px solid rgba(196,83,42,.08)}
+.name-big{line-height:.88;letter-spacing:-.02em;color:#EDE5D5;font-size:clamp(3rem,6vw,5rem)}
+.name-big .acc{color:#C4532A}
+.role{font-family:'Plus Jakarta Sans',sans-serif;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:rgba(196,83,42,.6);margin-top:12px}
+
+.info{padding:16px 28px 20px}
+.fname{font-size:13px;font-weight:600;color:#EDE5D5;margin-bottom:3px}
+.fdesc{font-size:11px;color:rgba(237,229,213,.35);line-height:1.5}
+
+/* ── FONT CLASSES ── */
+.f-bebas .name-big{font-family:'Bebas Neue',sans-serif;letter-spacing:.02em}
+.f-anton  .name-big{font-family:'Anton',sans-serif;letter-spacing:.01em}
+.f-space  .name-big{font-family:'Space Grotesk',sans-serif;font-weight:700;letter-spacing:-.03em}
+.f-barlow .name-big{font-family:'Barlow Condensed',sans-serif;font-weight:900;letter-spacing:.01em}
+.f-outfit .name-big{font-family:'Outfit',sans-serif;font-weight:900;letter-spacing:-.03em}
+.f-jakarta .name-big{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;letter-spacing:-.04em}
+</style>
+</head>
+<body>
+
+<h1>Fontes — Joaquim Salles</h1>
+<p class="sub">Sem Syne. Qual parece você?</p>
+
+<div class="grid">
+
+  <div class="card f-bebas">
+    <div class="prev">
+      <div class="name-big">JOAQUIM<br><span class="acc">SALLES</span></div>
+      <div class="role">System Architect</div>
+    </div>
+    <div class="info">
+      <div class="fname">A — Bebas Neue</div>
+      <div class="fdesc">Display compacto, letras altas. Energia de pôster, ousado, urbano.</div>
+    </div>
+  </div>
+
+  <div class="card f-barlow">
+    <div class="prev">
+      <div class="name-big">JOAQUIM<br><span class="acc">SALLES</span></div>
+      <div class="role">System Architect</div>
+    </div>
+    <div class="info">
+      <div class="fname">B — Barlow Condensed</div>
+      <div class="fdesc">Condensado pesado, atlético. Força + movimento, parece esportivo e técnico.</div>
+    </div>
+  </div>
+
+  <div class="card f-outfit">
+    <div class="prev">
+      <div class="name-big">JOAQUIM<br><span class="acc">SALLES</span></div>
+      <div class="role">System Architect</div>
+    </div>
+    <div class="info">
+      <div class="fname">C — Outfit</div>
+      <div class="fdesc">Moderno, arredondado, jovem. Parece produto de tech premium, não corporativo.</div>
+    </div>
+  </div>
+
+  <div class="card f-space">
+    <div class="prev">
+      <div class="name-big">JOAQUIM<br><span class="acc">SALLES</span></div>
+      <div class="role">System Architect</div>
+    </div>
+    <div class="info">
+      <div class="fname">D — Space Grotesk</div>
+      <div class="fdesc">Geométrico com personalidade, lembra Figma e Notion. Criativo + técnico.</div>
+    </div>
+  </div>
+
+  <div class="card f-anton">
+    <div class="prev">
+      <div class="name-big">JOAQUIM<br><span class="acc">SALLES</span></div>
+      <div class="role">System Architect</div>
+    </div>
+    <div class="info">
+      <div class="fname">E — Anton</div>
+      <div class="fdesc">Impacto máximo, quase agressivo. Nome que ocupa a tela toda, impossível ignorar.</div>
+    </div>
+  </div>
+
+  <div class="card f-jakarta">
+    <div class="prev">
+      <div class="name-big">JOAQUIM<br><span class="acc">SALLES</span></div>
+      <div class="role">System Architect</div>
+    </div>
+    <div class="info">
+      <div class="fname">F — Plus Jakarta Sans</div>
+      <div class="fdesc">Mesma fonte do corpo de texto, mas em 800. Coeso, limpo, sem drama.</div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

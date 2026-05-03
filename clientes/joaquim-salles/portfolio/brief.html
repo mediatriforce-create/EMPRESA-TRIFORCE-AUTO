@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brief Visual — Joaquim Salles</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Anton&family=Space+Grotesk:wght@400;700&family=Barlow+Condensed:wght@700;900&family=Outfit:wght@400;700;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;scroll-behavior:smooth}
+html,body{width:100%;overflow-x:hidden}
+body{background:#0C0906;color:#EDE5D5;font-family:'Plus Jakarta Sans',sans-serif;-webkit-font-smoothing:antialiased}
+
+:root{
+  --terra:#C4532A;--teal:#2C6060;--amber:#C4921A;
+  --cream:#EDE5D5;--dark:#0C0906;--surface:#141008;
+}
+
+/* ── HEADER ── */
+.top{padding:40px 48px 0;max-width:900px;margin:0 auto}
+.top-label{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:rgba(237,229,213,.25);margin-bottom:8px}
+.top-title{font-family:'Plus Jakarta Sans',sans-serif;font-size:clamp(2rem,4vw,3.5rem);font-weight:800;letter-spacing:-.03em;line-height:1;color:var(--cream);margin-bottom:12px}
+.top-sub{font-size:14px;color:rgba(237,229,213,.4);line-height:1.6;max-width:52ch;margin-bottom:40px}
+
+/* ── PROGRESS ── */
+.prog-wrap{max-width:900px;margin:0 auto;padding:0 48px;margin-bottom:48px}
+.prog-bar{height:2px;background:rgba(237,229,213,.08);border-radius:999px;overflow:hidden}
+.prog-fill{height:100%;background:var(--terra);border-radius:999px;transition:width .4s cubic-bezier(0,0,.2,1);width:0%}
+.prog-txt{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:rgba(237,229,213,.25);margin-top:8px}
+
+/* ── SECTION ── */
+.section{max-width:900px;margin:0 auto;padding:0 48px 64px;display:none}
+.section.active{display:block}
+.s-num{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--terra);margin-bottom:10px}
+.s-q{font-family:'Plus Jakarta Sans',sans-serif;font-size:clamp(1.25rem,2.5vw,1.75rem);font-weight:700;letter-spacing:-.02em;line-height:1.2;color:var(--cream);margin-bottom:8px}
+.s-hint{font-size:12px;color:rgba(237,229,213,.35);margin-bottom:28px;line-height:1.5}
+
+/* ── OPTIONS GRID ── */
+.opts{display:grid;gap:12px}
+.opts.cols2{grid-template-columns:repeat(2,1fr)}
+.opts.cols3{grid-template-columns:repeat(3,1fr)}
+@media(max-width:600px){.opts.cols2,.opts.cols3{grid-template-columns:1fr}}
+
+.opt{
+  border:1px solid rgba(237,229,213,.08);border-radius:12px;
+  padding:20px;cursor:pointer;
+  transition:border-color .2s,background .2s,transform .15s;
+  position:relative;overflow:hidden;
+}
+.opt:hover{border-color:rgba(196,83,42,.4);background:rgba(196,83,42,.05);transform:translateY(-2px)}
+.opt.sel{border-color:var(--terra);background:rgba(196,83,42,.1)}
+.opt.sel::after{content:'✓';position:absolute;top:12px;right:14px;font-size:12px;font-weight:700;color:var(--terra)}
+
+.opt-label{font-size:13px;font-weight:700;color:var(--cream);margin-bottom:4px}
+.opt-desc{font-size:11px;color:rgba(237,229,213,.4);line-height:1.5}
+
+/* multi select tag */
+.opt[data-multi]{border-style:dashed}
+.multi-hint{font-size:10px;color:rgba(237,229,213,.25);letter-spacing:.08em;text-transform:uppercase;margin-bottom:16px}
+
+/* ── VISUAL PREVIEWS ── */
+.prev-name{height:80px;border-radius:8px;padding:14px 18px;display:flex;flex-direction:column;justify-content:flex-end;margin-bottom:12px;position:relative;overflow:hidden}
+.pn-big{font-weight:800;font-size:clamp(1.5rem,3vw,2.2rem);letter-spacing:-.03em;line-height:.9}
+
+/* Paletas */
+.p-dark-terra .prev-name{background:#0E0B07}
+.p-dark-terra .prev-name::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 70% at 70% 20%,rgba(196,83,42,.3),transparent 60%)}
+.p-dark-terra .pn-big .l1{color:#EDE5D5}.p-dark-terra .pn-big .l2{color:#C4532A}
+
+.p-wine .prev-name{background:#0A0608}
+.p-wine .prev-name::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 70% at 65% 20%,rgba(92,31,46,.5),transparent 60%),radial-gradient(ellipse 50% 40% at 20% 80%,rgba(196,146,26,.15),transparent 55%)}
+.p-wine .pn-big .l1{color:#EDE5D5}.p-wine .pn-big .l2{color:#C4921A}
+
+.p-teal .prev-name{background:#060D0D}
+.p-teal .prev-name::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 70% at 60% 20%,rgba(44,96,96,.45),transparent 60%)}
+.p-teal .pn-big .l1{color:#E0EEF0}.p-teal .pn-big .l2{color:#2C6060}
+
+.p-cream .prev-name{background:#F0E8DC}
+.p-cream .pn-big .l1{color:#1A1208}.p-cream .pn-big .l2{color:#C4532A}
+
+/* Fontes */
+.f-bebas .pn-big{font-family:'Bebas Neue',sans-serif;font-size:2.5rem;letter-spacing:.02em}
+.f-barlow .pn-big{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:2.2rem}
+.f-outfit .pn-big{font-family:'Outfit',sans-serif;font-weight:900;letter-spacing:-.03em}
+.f-space .pn-big{font-family:'Space Grotesk',sans-serif;font-weight:700;letter-spacing:-.025em}
+.f-jakarta .pn-big{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;letter-spacing:-.04em}
+.f-anton .pn-big{font-family:'Anton',sans-serif;font-size:2.4rem;letter-spacing:.01em}
+
+.swatches{display:flex;gap:6px;margin-top:8px;flex-wrap:wrap}
+.sw{width:22px;height:22px;border-radius:50%}
+
+/* ── SLIDER ── */
+.slider-wrap{margin:12px 0 24px}
+.slider{width:100%;-webkit-appearance:none;appearance:none;height:3px;border-radius:2px;background:rgba(237,229,213,.12);outline:none}
+.slider::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;border-radius:50%;background:var(--terra);cursor:pointer;border:2px solid var(--dark);box-shadow:0 0 0 3px rgba(196,83,42,.3)}
+.slider-labels{display:flex;justify-content:space-between;font-size:10px;color:rgba(237,229,213,.3);letter-spacing:.06em;margin-top:8px;text-transform:uppercase}
+.slider-val{font-family:'Plus Jakarta Sans',sans-serif;font-size:13px;font-weight:700;color:var(--terra);margin-top:10px;min-height:20px}
+
+/* ── TEXT INPUT ── */
+.txt-input{
+  width:100%;background:rgba(237,229,213,.04);
+  border:1px solid rgba(237,229,213,.1);border-radius:10px;
+  padding:14px 18px;font-family:'Plus Jakarta Sans',sans-serif;
+  font-size:14px;color:var(--cream);outline:none;resize:vertical;min-height:80px;
+  transition:border-color .2s;
+}
+.txt-input:focus{border-color:rgba(196,83,42,.5)}
+.txt-input::placeholder{color:rgba(237,229,213,.2)}
+
+/* ── NAV BUTTONS ── */
+.nav{display:flex;justify-content:space-between;align-items:center;max-width:900px;margin:0 auto;padding:0 48px 64px}
+.btn{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:12px 28px;border-radius:999px;
+  font-family:'Plus Jakarta Sans',sans-serif;font-size:13px;font-weight:600;letter-spacing:.02em;
+  cursor:pointer;border:none;transition:transform .15s,background .15s,opacity .2s;
+}
+.btn:hover{transform:translateY(-2px)}
+.btn:active{transform:translateY(0)}
+.btn-next{background:var(--terra);color:#fff}
+.btn-back{background:rgba(237,229,213,.08);color:rgba(237,229,213,.6);border:1px solid rgba(237,229,213,.1)}
+.btn-back:hover{background:rgba(237,229,213,.12);color:var(--cream)}
+.btn[disabled]{opacity:.3;pointer-events:none}
+
+/* ── RESULT ── */
+#result-section{display:none;max-width:900px;margin:0 auto;padding:0 48px 80px}
+.result-box{
+  background:#141008;border:1px solid rgba(196,83,42,.2);
+  border-radius:16px;padding:32px;
+  font-family:'Plus Jakarta Sans',sans-serif;font-size:13px;
+  color:rgba(237,229,213,.75);line-height:1.8;
+  white-space:pre-wrap;word-break:break-word;
+  margin-bottom:20px;
+}
+.result-title{font-family:'Plus Jakarta Sans',sans-serif;font-size:clamp(1.5rem,3vw,2.5rem);font-weight:800;letter-spacing:-.025em;color:var(--cream);margin-bottom:8px}
+.result-sub{font-size:13px;color:rgba(237,229,213,.35);margin-bottom:32px}
+.btn-copy{background:var(--terra);color:#fff}
+.copy-ok{display:none;font-size:12px;color:rgba(237,229,213,.4);margin-top:8px;letter-spacing:.05em;text-transform:uppercase}
+
+@media(max-width:640px){
+  .top,.section,.nav,#result-section,.prog-wrap{padding-left:24px;padding-right:24px}
+}
+</style>
+</head>
+<body>
+
+<div class="top">
+  <div class="top-label">Design Brief · Portfólio Joaquim Salles</div>
+  <h1 class="top-title">Vamos definir tudo.</h1>
+  <p class="top-sub">8 perguntas visuais. No final você copia o resultado e manda pro chat. Leva menos de 3 minutos.</p>
+</div>
+
+<div class="prog-wrap">
+  <div class="prog-bar"><div class="prog-fill" id="prog-fill"></div></div>
+  <div class="prog-txt" id="prog-txt">Pergunta 1 de 8</div>
+</div>
+
+<!-- ══ Q1: PALETA ══════════════════════════════════════════════════ -->
+<div class="section active" id="s1">
+  <div class="s-num">01 / 08</div>
+  <div class="s-q">Qual paleta de cores combina com você?</div>
+  <div class="s-hint">Todas derivadas da análise da Dany Couto (True Autumn). Escolhe uma.</div>
+  <div class="opts cols2" data-q="paleta">
+
+    <div class="opt p-dark-terra" data-val="A — Terracota Escaldante (preto quente + laranja terracota)">
+      <div class="prev-name">
+        <div class="pn-big"><span class="l1">JOAQUIM</span><br><span class="l2">SALLES</span></div>
+      </div>
+      <div class="swatches">
+        <div class="sw" style="background:#0E0B07"></div>
+        <div class="sw" style="background:#C4532A"></div>
+        <div class="sw" style="background:#EDE5D5"></div>
+        <div class="sw" style="background:#5C1F2E"></div>
+        <div class="sw" style="background:#C4921A"></div>
+      </div>
+      <div class="opt-label" style="margin-top:12px">A — Terracota Escaldante</div>
+      <div class="opt-desc">Preto quente + laranja terracota. Presença forte, quente, ousado.</div>
+    </div>
+
+    <div class="opt p-wine" data-val="B — Vinho + Âmbar (vinho escuro + dourado âmbar)">
+      <div class="prev-name">
+        <div class="pn-big"><span class="l1">JOAQUIM</span><br><span class="l2">SALLES</span></div>
+      </div>
+      <div class="swatches">
+        <div class="sw" style="background:#0A0608"></div>
+        <div class="sw" style="background:#5C1F2E"></div>
+        <div class="sw" style="background:#C4921A"></div>
+        <div class="sw" style="background:#EDE5D5"></div>
+        <div class="sw" style="background:#B86420"></div>
+      </div>
+      <div class="opt-label" style="margin-top:12px">B — Vinho + Âmbar</div>
+      <div class="opt-desc">Vinho escuro + dourado âmbar. Dramático, sofisticado, com energia.</div>
+    </div>
+
+    <div class="opt p-teal" data-val="C — Petróleo + Ferrugem (verde petróleo escuro + cobre ferrugem)">
+      <div class="prev-name">
+        <div class="pn-big"><span class="l1">JOAQUIM</span><br><span class="l2">SALLES</span></div>
+      </div>
+      <div class="swatches">
+        <div class="sw" style="background:#060D0D"></div>
+        <div class="sw" style="background:#2C6060"></div>
+        <div class="sw" style="background:#B86420"></div>
+        <div class="sw" style="background:#E0EEF0"></div>
+        <div class="sw" style="background:#C4921A"></div>
+      </div>
+      <div class="opt-label" style="margin-top:12px">C — Petróleo + Ferrugem</div>
+      <div class="opt-desc">Verde petróleo + ferrugem cobre. Contraste frio/quente, técnico e ousado.</div>
+    </div>
+
+    <div class="opt p-cream" data-val="D — Creme Invertido (fundo areia claro + terracota)">
+      <div class="prev-name">
+        <div class="pn-big"><span class="l1">JOAQUIM</span><br><span class="l2">SALLES</span></div>
+      </div>
+      <div class="swatches">
+        <div class="sw" style="background:#F0E8DC"></div>
+        <div class="sw" style="background:#C4532A"></div>
+        <div class="sw" style="background:#1A1208"></div>
+        <div class="sw" style="background:#2C6060"></div>
+        <div class="sw" style="background:#C4921A"></div>
+      </div>
+      <div class="opt-label" style="margin-top:12px">D — Creme Invertido</div>
+      <div class="opt-desc">Fundo areia + terracota. Ousado porque ninguém faz portfólio de dev em claro.</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ══ Q2: FONTE ═══════════════════════════════════════════════════ -->
+<div class="section" id="s2">
+  <div class="s-num">02 / 08</div>
+  <div class="s-q">Qual fonte representa você no hero?</div>
+  <div class="s-hint">Isso é o que aparece gigante na tela quando alguém abre o site.</div>
+  <div class="opts cols2" data-q="fonte">
+
+    <div class="opt f-bebas p-dark-terra" data-val="Bebas Neue (display compacto, pôster, urbano)">
+      <div class="prev-name"><div class="pn-big"><span class="l1">JOAQUIM</span><br><span class="l2">SALLES</span></div></div>
+      <div class="opt-label" style="margin-top:12px">Bebas Neue</div>
+      <div class="opt-desc">Display compacto. Energia de pôster. Ousado, urbano, impacto máximo.</div>
+    </div>
+
+    <div class="opt f-barlow p-dark-terra" data-val="Barlow Condensed (atlético, condensado pesado, força)">
+      <div class="prev-name"><div class="pn-big"><span class="l1">JOAQUIM</span><br><span class="l2">SALLES</span></div></div>
+      <div class="opt-label" style="margin-top:12px">Barlow Condensed</div>
+      <div class="opt-desc">Condensado pesado. Atlético, técnico e com força.</div>
+    </div>
+
+    <div class="opt f-outfit p-dark-terra" data-val="Outfit (moderno arredondado, jovem, produto tech premium)">
+      <div class="prev-name"><div class="pn-big"><span class="l1">JOAQUIM</span><br><span class="l2">SALLES</span></div></div>
+      <div class="opt-label" style="margin-top:12px">Outfit</div>
+      <div class="opt-desc">Moderno, arredondado, jovem. Parece produto de tech premium.</div>
+    </div>
+
+    <div class="opt f-space p-dark-terra" data-val="Space Grotesk (geométrico com personalidade, criativo técnico)">
+      <div class="prev-name"><div class="pn-big"><span class="l1">JOAQUIM</span><br><span class="l2">SALLES</span></div></div>
+      <div class="opt-label" style="margin-top:12px">Space Grotesk</div>
+      <div class="opt-desc">Geométrico com personalidade. Lembra Figma e Notion. Criativo + técnico.</div>
+    </div>
+
+    <div class="opt f-anton p-dark-terra" data-val="Anton (impacto máximo, quase agressivo, impossível ignorar)">
+      <div class="prev-name"><div class="pn-big"><span class="l1">JOAQUIM</span><br><span class="l2">SALLES</span></div></div>
+      <div class="opt-label" style="margin-top:12px">Anton</div>
+      <div class="opt-desc">Impacto máximo. Quase agressivo. Nome que ocupa a tela toda.</div>
+    </div>
+
+    <div class="opt f-jakarta p-dark-terra" data-val="Plus Jakarta Sans (coeso, limpo, sem drama, elegante)">
+      <div class="prev-name"><div class="pn-big"><span class="l1">JOAQUIM</span><br><span class="l2">SALLES</span></div></div>
+      <div class="opt-label" style="margin-top:12px">Plus Jakarta Sans</div>
+      <div class="opt-desc">Mesma fonte do texto, mas em 800. Coeso, limpo, elegante.</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ══ Q3: NÍVEL DE ANIMAÇÃO ═══════════════════════════════════════ -->
+<div class="section" id="s3">
+  <div class="s-num">03 / 08</div>
+  <div class="s-q">Quanto de animação e interatividade você quer?</div>
+  <div class="s-hint">Arrasta o slider. Isso define o quanto a página "vive".</div>
+
+  <div class="slider-wrap">
+    <input type="range" min="1" max="5" value="3" class="slider" id="anim-slider">
+    <div class="slider-labels">
+      <span>Sutil</span><span>Equilibrado</span><span>Máximo</span>
+    </div>
+    <div class="slider-val" id="anim-val">Equilibrado — animações no scroll, cursor, parallax</div>
+  </div>
+
+  <div class="opts" data-q="animacao" style="display:none">
+    <div class="opt sel" data-val="Equilibrado (cursor customizado, parallax, reveals no scroll, cipher text)"></div>
+  </div>
+</div>
+
+<!-- ══ Q4: LAYOUT DO HERO ══════════════════════════════════════════ -->
+<div class="section" id="s4">
+  <div class="s-num">04 / 08</div>
+  <div class="s-q">Como você quer aparecer no hero?</div>
+  <div class="s-hint">O hero é a primeira coisa que o visitante vê. Define tudo.</div>
+  <div class="opts cols2" data-q="hero">
+
+    <div class="opt" data-val="Nome gigante embaixo (nome ocupa 80% da tela, flush na parte de baixo)">
+      <div style="height:70px;background:#1A1208;border-radius:8px;display:flex;align-items:flex-end;padding:10px 14px;margin-bottom:12px;position:relative;overflow:hidden">
+        <div style="font-family:'Bebas Neue',sans-serif;font-size:28px;color:#EDE5D5;line-height:1">JOAQUIM SALLES</div>
+        <div style="position:absolute;top:8px;left:14px;font-size:8px;letter-spacing:.15em;text-transform:uppercase;color:rgba(196,83,42,.6)">vibecoder</div>
+      </div>
+      <div class="opt-label">Nome gigante embaixo</div>
+      <div class="opt-desc">Flush no rodapé. Tipografia como elemento visual principal. Impacto imediato.</div>
+    </div>
+
+    <div class="opt" data-val="Centralizado com subtítulo (nome + role rotativo + copy no centro da tela)">
+      <div style="height:70px;background:#1A1208;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;margin-bottom:12px">
+        <div style="font-family:'Bebas Neue',sans-serif;font-size:22px;color:#EDE5D5;line-height:1">JOAQUIM SALLES</div>
+        <div style="font-size:8px;letter-spacing:.18em;text-transform:uppercase;color:rgba(196,83,42,.6)">System Architect</div>
+      </div>
+      <div class="opt-label">Centralizado com subtítulo</div>
+      <div class="opt-desc">Nome + role rotativo no centro. Clássico de portfólio, mas funciona com boa tipografia.</div>
+    </div>
+
+    <div class="opt" data-val="Split screen (nome na esquerda, copy/imagem na direita, assimétrico)">
+      <div style="height:70px;background:#1A1208;border-radius:8px;display:grid;grid-template-columns:1.2fr 1fr;margin-bottom:12px;overflow:hidden">
+        <div style="display:flex;align-items:center;padding:10px 14px;border-right:1px solid rgba(237,229,213,.05)">
+          <div style="font-family:'Bebas Neue',sans-serif;font-size:22px;color:#EDE5D5;line-height:.9">JOAQUIM<br><span style="color:#C4532A">SALLES</span></div>
+        </div>
+        <div style="display:flex;flex-direction:column;justify-content:center;padding:10px 14px;gap:4px">
+          <div style="height:4px;background:rgba(196,83,42,.3);border-radius:2px;width:60%"></div>
+          <div style="height:4px;background:rgba(237,229,213,.1);border-radius:2px;width:85%"></div>
+          <div style="height:4px;background:rgba(237,229,213,.1);border-radius:2px;width:70%"></div>
+        </div>
+      </div>
+      <div class="opt-label">Split screen assimétrico</div>
+      <div class="opt-desc">Nome na esquerda, texto/info na direita. Editorial, diferente da maioria.</div>
+    </div>
+
+    <div class="opt" data-val="Full-screen dramático (nome ocupa 100% da tela, letras cortam as bordas)">
+      <div style="height:70px;background:#1A1208;border-radius:8px;display:flex;align-items:center;justify-content:center;overflow:hidden;margin-bottom:12px">
+        <div style="font-family:'Bebas Neue',sans-serif;font-size:48px;color:#EDE5D5;letter-spacing:-.02em;white-space:nowrap;opacity:.9">JOAQUIM</div>
+      </div>
+      <div class="opt-label">Full-screen dramático</div>
+      <div class="opt-desc">O nome extrapola as margens. Letras cortam a tela. Máximo impacto visual.</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ══ Q5: PROJETOS ════════════════════════════════════════════════ -->
+<div class="section" id="s5">
+  <div class="s-num">05 / 08</div>
+  <div class="s-q">Como mostrar os projetos?</div>
+  <div class="s-hint">Você tem 3 projetos: VAV Central, CGR1-Planner e Time Track.</div>
+  <div class="opts cols2" data-q="projetos">
+
+    <div class="opt" data-val="Scroll horizontal (cards lado a lado, arrasta para ver, moderno)">
+      <div style="height:65px;background:#1A1208;border-radius:8px;display:flex;gap:6px;padding:10px;overflow:hidden;margin-bottom:12px">
+        <div style="flex:0 0 80px;background:#252010;border-radius:6px;border:1px solid rgba(196,83,42,.2);padding:8px">
+          <div style="font-size:7px;color:var(--terra);text-transform:uppercase;letter-spacing:.1em;margin-bottom:3px">01</div>
+          <div style="font-size:9px;font-weight:700;color:#EDE5D5">VAV Central</div>
+        </div>
+        <div style="flex:0 0 80px;background:#252010;border-radius:6px;border:1px solid rgba(237,229,213,.06);padding:8px;opacity:.6">
+          <div style="font-size:7px;color:rgba(196,83,42,.5);text-transform:uppercase;letter-spacing:.1em;margin-bottom:3px">02</div>
+          <div style="font-size:9px;font-weight:700;color:#EDE5D5">CGR1</div>
+        </div>
+        <div style="flex:0 0 80px;background:#252010;border-radius:6px;border:1px solid rgba(237,229,213,.06);padding:8px;opacity:.3">
+          <div style="font-size:7px;color:rgba(196,83,42,.3);text-transform:uppercase;letter-spacing:.1em;margin-bottom:3px">03</div>
+          <div style="font-size:9px;font-weight:700;color:#EDE5D5">Time Track</div>
+        </div>
+      </div>
+      <div class="opt-label">Scroll horizontal</div>
+      <div class="opt-desc">Cards lado a lado. Arrastar para ver mais. Sensação de produto, app-like.</div>
+    </div>
+
+    <div class="opt" data-val="Lista numerada vertical (nome grande, número como elemento visual, sem cards)">
+      <div style="height:65px;background:#1A1208;border-radius:8px;padding:10px 14px;margin-bottom:12px">
+        <div style="display:flex;align-items:baseline;gap:10px;border-bottom:1px solid rgba(237,229,213,.07);padding-bottom:6px;margin-bottom:6px">
+          <span style="font-size:14px;font-weight:800;color:rgba(196,83,42,.4);font-family:'Bebas Neue'">01</span>
+          <span style="font-size:11px;font-weight:700;color:#EDE5D5">VAV Central</span>
+          <span style="margin-left:auto;font-size:8px;color:rgba(196,83,42,.6);text-transform:uppercase">+120h/mês</span>
+        </div>
+        <div style="display:flex;align-items:baseline;gap:10px">
+          <span style="font-size:14px;font-weight:800;color:rgba(196,83,42,.2);font-family:'Bebas Neue'">02</span>
+          <span style="font-size:11px;font-weight:700;color:rgba(237,229,213,.4)">CGR1-Planner</span>
+        </div>
+      </div>
+      <div class="opt-label">Lista numerada vertical</div>
+      <div class="opt-desc">Sem cards. Número gigante como elemento visual. Elegante, editorial, diferente.</div>
+    </div>
+
+    <div class="opt" data-val="Full-screen cada projeto (cada projeto vira uma seção inteira, imersivo)">
+      <div style="height:65px;background:linear-gradient(135deg,#1A1208,#252010);border-radius:8px;display:flex;flex-direction:column;justify-content:center;padding:14px;border:1px solid rgba(196,83,42,.15);margin-bottom:12px">
+        <div style="font-size:8px;color:rgba(196,83,42,.6);letter-spacing:.15em;text-transform:uppercase;margin-bottom:4px">01 · Sistema Núcleo</div>
+        <div style="font-size:14px;font-weight:800;color:#EDE5D5">VAV Central</div>
+      </div>
+      <div class="opt-label">Full-screen por projeto</div>
+      <div class="opt-desc">Cada projeto é uma seção imersiva com fundo próprio. Impactante mas mais pesado.</div>
+    </div>
+
+    <div class="opt" data-val="Grid bento (células de tamanhos diferentes, projeto destaque maior)">
+      <div style="height:65px;background:#1A1208;border-radius:8px;display:grid;grid-template-columns:1.5fr 1fr;gap:5px;padding:8px;margin-bottom:12px">
+        <div style="background:#252010;border-radius:5px;border:1px solid rgba(196,83,42,.2);display:flex;align-items:flex-end;padding:7px">
+          <span style="font-size:8px;font-weight:700;color:#EDE5D5">VAV Central</span>
+        </div>
+        <div style="display:grid;grid-template-rows:1fr 1fr;gap:5px">
+          <div style="background:#252010;border-radius:5px;border:1px solid rgba(237,229,213,.06);display:flex;align-items:center;padding:5px">
+            <span style="font-size:7px;font-weight:700;color:rgba(237,229,213,.5)">CGR1</span>
+          </div>
+          <div style="background:#252010;border-radius:5px;border:1px solid rgba(237,229,213,.06);display:flex;align-items:center;padding:5px">
+            <span style="font-size:7px;font-weight:700;color:rgba(237,229,213,.5)">Time Track</span>
+          </div>
+        </div>
+      </div>
+      <div class="opt-label">Grid bento</div>
+      <div class="opt-desc">Célula maior para o projeto principal. Orgânico, dinâmico, moderno.</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ══ Q6: TOM DO COPY ════════════════════════════════════════════ -->
+<div class="section" id="s6">
+  <div class="s-num">06 / 08</div>
+  <div class="s-q">Como você fala com quem visita o portfólio?</div>
+  <div class="s-hint">Isso define o tom dos textos: headline, bio, descrições de projeto.</div>
+  <div class="opts" data-q="tom">
+
+    <div class="opt" data-val="Direto e confiante ('Construo sistemas que resolvem problemas reais.')">
+      <div class="opt-label">Direto e confiante</div>
+      <div class="opt-desc">Frases curtas. Sem rodeios. "Construo sistemas que resolvem problemas reais." Você sabe o que faz e diz sem drama.</div>
+    </div>
+
+    <div class="opt" data-val="Ousado e provocador ('Você ainda perde tempo gerenciando o que uma máquina faria melhor.')">
+      <div class="opt-label">Ousado e provocador</div>
+      <div class="opt-desc">Interpela o visitante. "Você ainda perde tempo gerenciando o que uma máquina faria melhor." Gera tensão, faz pensar.</div>
+    </div>
+
+    <div class="opt" data-val="Pessoal e humano ('16 anos. Comecei codificando pra mim. Agora faço isso pra você.')">
+      <div class="opt-label">Pessoal e humano</div>
+      <div class="opt-desc">Mostra quem você é. "16 anos. Comecei codificando pra mim. Agora faço isso pra você." Aproxima o visitante.</div>
+    </div>
+
+    <div class="opt" data-val="Técnico e preciso (descreve o que faz com nomenclatura técnica, stack, resultados mensuráveis)">
+      <div class="opt-label">Técnico e preciso</div>
+      <div class="opt-desc">Nomeia stacks, descreve arquitetura, mostra métricas. Fala com quem sabe avaliar tecnicamente.</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ══ Q7: O QUE NUNCA ════════════════════════════════════════════ -->
+<div class="section" id="s7">
+  <div class="s-num">07 / 08</div>
+  <div class="s-q">O que você NUNCA quer ver no seu portfólio?</div>
+  <div class="s-hint">Pode marcar vários.</div>
+  <div class="multi-hint">Seleção múltipla</div>
+  <div class="opts" data-q="nunca" data-multi>
+
+    <div class="opt" data-val="Cards quadradinhos genéricos com borda e sombra hover">
+      <div class="opt-label">Cards quadradinhos genéricos</div>
+      <div class="opt-desc">Aquele grid de 3 colunas com borda, ícone e hover padrão. Todo mundo faz.</div>
+    </div>
+
+    <div class="opt" data-val="Foto minha em destaque na página">
+      <div class="opt-label">Minha foto em destaque</div>
+      <div class="opt-desc">Não quer aparecer com foto no portfólio. Deixa o trabalho falar.</div>
+    </div>
+
+    <div class="opt" data-val="Linguagem corporativa (soluções, ecossistema, alavancar, potencializar)">
+      <div class="opt-label">Linguagem corporativa</div>
+      <div class="opt-desc">"Soluções inovadoras", "ecossistema digital", "alavancar resultados".</div>
+    </div>
+
+    <div class="opt" data-val="Hero centralizado genérico (logo + título + subtítulo + botão no centro)">
+      <div class="opt-label">Hero centralizado genérico</div>
+      <div class="opt-desc">O layout de portfólio mais comum: tudo centralizado, muito previsível.</div>
+    </div>
+
+    <div class="opt" data-val="Scroll muito longo / muita informação numa página">
+      <div class="opt-label">Scroll infinito / muita informação</div>
+      <div class="opt-desc">Prefere algo conciso, cada coisa no seu lugar. Menos é mais.</div>
+    </div>
+
+    <div class="opt" data-val="Efeitos exagerados que pesam o site (3D, partículas pesadas, shaders)">
+      <div class="opt-label">Efeitos que pesam o site</div>
+      <div class="opt-desc">3D pesado, mil partículas, shaders. Bonito na teoria, lento na prática.</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ══ Q8: REFERÊNCIAS ════════════════════════════════════════════ -->
+<div class="section" id="s8">
+  <div class="s-num">08 / 08</div>
+  <div class="s-q">Algum site ou portfólio que você acha incrível?</div>
+  <div class="s-hint">Pode ser qualquer coisa — portfólio de dev, site de marca, app. Só escreve o nome ou URL. Se não lembrar de nenhum, escreve o que te inspirou nesse projeto (um filme, jogo, artista...).</div>
+  <textarea class="txt-input" id="refs-input" placeholder="Ex: linear.app, bruno-simon.com, um jogo que joguei, etc." rows="4"></textarea>
+
+  <div style="margin-top:24px">
+    <div class="s-q" style="font-size:1rem;margin-bottom:8px">Mais alguma coisa que queira que eu saiba?</div>
+    <div class="s-hint" style="margin-bottom:12px">Qualquer detalhe que não cabia nas perguntas acima.</div>
+    <textarea class="txt-input" id="extra-input" placeholder="Ex: quero que apareça o link do meu GitHub, precisa rodar bem no celular, etc." rows="3"></textarea>
+  </div>
+</div>
+
+<!-- ══ RESULT ══════════════════════════════════════════════════════ -->
+<div id="result-section">
+  <div class="result-title">Pronto. Copia e manda no chat.</div>
+  <div class="result-sub">Esse é o brief completo gerado pelas suas respostas.</div>
+  <div class="result-box" id="result-box"></div>
+  <button class="btn btn-copy" onclick="copyResult()">Copiar tudo</button>
+  <div class="copy-ok" id="copy-ok">Copiado!</div>
+</div>
+
+<!-- ══ NAV ═════════════════════════════════════════════════════════ -->
+<div class="nav" id="nav-wrap">
+  <button class="btn btn-back" id="btn-back" onclick="go(-1)" disabled>← Voltar</button>
+  <button class="btn btn-next" id="btn-next" onclick="go(1)">Próxima →</button>
+</div>
+
+<script>
+const TOTAL = 8;
+let cur = 1;
+const answers = {};
+
+const ANIM_LABELS = {
+  1: 'Mínimo — só transições suaves, sem distrações',
+  2: 'Leve — reveals no scroll, fade ins',
+  3: 'Equilibrado — cursor customizado, parallax, reveals, cipher text',
+  4: 'Intenso — parallax agressivo, magnetic buttons, scroll-driven',
+  5: 'Máximo — tudo animado, efeitos de texto, distorção, scroll interativo'
+};
+
+// Slider
+const slider = document.getElementById('anim-slider');
+const animVal = document.getElementById('anim-val');
+slider?.addEventListener('input', () => {
+  const v = parseInt(slider.value);
+  animVal.textContent = ANIM_LABELS[v];
+  answers['animacao'] = ANIM_LABELS[v];
+  // sync hidden opt
+  document.querySelector('[data-q="animacao"] .opt').dataset.val = ANIM_LABELS[v];
+});
+answers['animacao'] = ANIM_LABELS[3]; // default
+
+// Single select
+document.querySelectorAll('.opts:not([data-multi]) .opt').forEach(opt => {
+  if(!opt.closest('[data-q="animacao"]')) {
+    opt.addEventListener('click', () => {
+      const q = opt.closest('.opts').dataset.q;
+      opt.closest('.opts').querySelectorAll('.opt').forEach(o => o.classList.remove('sel'));
+      opt.classList.add('sel');
+      answers[q] = opt.dataset.val;
+      updateNext();
+    });
+  }
+});
+
+// Multi select
+document.querySelectorAll('[data-multi] .opt').forEach(opt => {
+  opt.addEventListener('click', () => {
+    opt.classList.toggle('sel');
+    const q = opt.closest('.opts').dataset.q;
+    const sel = [...opt.closest('.opts').querySelectorAll('.opt.sel')].map(o=>o.dataset.val);
+    answers[q] = sel.length ? sel.join(' | ') : 'Nenhuma restrição específica';
+    updateNext();
+  });
+});
+
+function updateNext() {
+  const sec = document.getElementById('s'+cur);
+  const opts = sec?.querySelector('.opts:not([data-q="animacao"])');
+  const hasAnswer = !opts || opts.querySelector('.opt.sel') || answers[opts?.dataset.q];
+  document.getElementById('btn-next').disabled = !hasAnswer && cur < TOTAL;
+}
+
+function go(dir) {
+  // save text fields on Q8
+  if(cur === 8) {
+    answers['referencias'] = document.getElementById('refs-input').value.trim() || 'Nenhuma referência específica';
+    answers['extra'] = document.getElementById('extra-input').value.trim() || 'Nenhuma observação adicional';
+  }
+
+  if(dir === 1 && cur === TOTAL) {
+    showResult(); return;
+  }
+
+  document.getElementById('s'+cur)?.classList.remove('active');
+  cur += dir;
+  cur = Math.max(1, Math.min(TOTAL, cur));
+  document.getElementById('s'+cur)?.classList.add('active');
+
+  document.getElementById('btn-back').disabled = cur === 1;
+  document.getElementById('btn-next').textContent = cur === TOTAL ? 'Gerar Brief →' : 'Próxima →';
+
+  const fill = ((cur-1) / TOTAL * 100);
+  document.getElementById('prog-fill').style.width = fill + '%';
+  document.getElementById('prog-txt').textContent = `Pergunta ${cur} de ${TOTAL}`;
+
+  window.scrollTo({top:0, behavior:'smooth'});
+  updateNext();
+}
+
+function showResult() {
+  document.getElementById('s8')?.classList.remove('active');
+  document.getElementById('nav-wrap').style.display = 'none';
+  document.getElementById('prog-fill').style.width = '100%';
+  document.getElementById('prog-txt').textContent = 'Concluído';
+
+  const r = `BRIEF VISUAL — PORTFÓLIO JOAQUIM SALLES
+Gerado em: ${new Date().toLocaleDateString('pt-BR')}
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+SENTIMENTO DESEJADO
+Criativo e ousado + Energético e jovem
+
+PALETA DE CORES
+${answers['paleta'] || 'Não respondido'}
+
+TIPOGRAFIA (headline)
+${answers['fonte'] || 'Não respondido'}
+
+NÍVEL DE ANIMAÇÃO
+${answers['animacao'] || 'Não respondido'}
+
+LAYOUT DO HERO
+${answers['hero'] || 'Não respondido'}
+
+APRESENTAÇÃO DOS PROJETOS
+${answers['projetos'] || 'Não respondido'}
+
+TOM DE VOZ / COPY
+${answers['tom'] || 'Não respondido'}
+
+O QUE NUNCA COLOCAR
+${answers['nunca'] || 'Sem restrições específicas'}
+
+REFERÊNCIAS / INSPIRAÇÕES
+${answers['referencias'] || 'Nenhuma referência específica'}
+
+OBSERVAÇÕES ADICIONAIS
+${answers['extra'] || 'Nenhuma'}
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+PROJETOS CONFIRMADOS
+1. VAV Central — ONG Viva a Vida (+120h/mês recuperadas) · Next.js, Supabase, Tailwind
+2. CGR1-Planner — Organizador com gamificação (4x mais rápido) · Next.js, Supabase, Google API
+3. Time Track — Sistema de ponto e demandas (3 equipes ativas) · React, Firebase, Node.js
+
+IDENTIDADE
+Nome: Joaquim Salles · 16 anos · São Paulo
+Título: Vibecoder / System Architect
+CTA: Instagram + WhatsApp`;
+
+  document.getElementById('result-box').textContent = r;
+  document.getElementById('result-section').style.display = 'block';
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+function copyResult() {
+  navigator.clipboard.writeText(document.getElementById('result-box').textContent).then(() => {
+    const ok = document.getElementById('copy-ok');
+    ok.style.display = 'block';
+    setTimeout(() => ok.style.display = 'none', 2000);
+  });
+}
+
+// init
+updateNext();
+document.getElementById('prog-fill').style.width = '0%';
+</script>
+</body>
+</html>

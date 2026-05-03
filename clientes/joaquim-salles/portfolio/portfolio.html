@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Joaquim Salles — Vibecoder</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg:        #050E0C;
+  --bg2:       #0A1916;
+  --petrol:    #1D5C54;
+  --petrol-l:  #2B7E74;
+  --rust:      #C4532A;
+  --rust-l:    #D4683E;
+  --text:      #DDD8CC;
+  --muted:     #67635D;
+  --border:    rgba(29, 92, 84, 0.25);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  overflow-x: hidden;
+}
+
+/* ─── CURSOR ─────────────────────────────────────────────── */
+.cursor-dot {
+  width: 7px; height: 7px;
+  background: var(--rust);
+  border-radius: 50%;
+  position: fixed; top: 0; left: 0;
+  pointer-events: none; z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: width .15s, height .15s, opacity .15s;
+}
+.cursor-ring {
+  width: 34px; height: 34px;
+  border: 1px solid rgba(196,83,42,.4);
+  border-radius: 50%;
+  position: fixed; top: 0; left: 0;
+  pointer-events: none; z-index: 9998;
+  transform: translate(-50%, -50%);
+  transition: width .2s, height .2s, border-color .2s;
+}
+.cursor-expand .cursor-dot  { width: 40px; height: 40px; background: rgba(196,83,42,.12); }
+.cursor-expand .cursor-ring { width: 40px; height: 40px; border-color: transparent; }
+
+/* ─── NOISE ──────────────────────────────────────────────── */
+body::before {
+  content: '';
+  position: fixed; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+  opacity: .028;
+  pointer-events: none; z-index: 9000;
+}
+
+/* ─── NAV ────────────────────────────────────────────────── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0;
+  padding: 28px 52px;
+  display: flex; justify-content: space-between; align-items: center;
+  z-index: 500;
+  background: linear-gradient(to bottom, rgba(5,14,12,.9) 0%, transparent 100%);
+}
+.nav-id {
+  font-size: 10px; letter-spacing: .22em; text-transform: uppercase;
+  color: var(--muted); font-weight: 500;
+}
+.nav-links { display: flex; gap: 36px; }
+.nav-links a {
+  font-size: 10px; letter-spacing: .18em; text-transform: uppercase;
+  color: var(--muted); text-decoration: none; font-weight: 500;
+  transition: color .25s;
+  cursor: none;
+}
+.nav-links a:hover { color: var(--text); }
+
+/* ─── HERO ───────────────────────────────────────────────── */
+#hero {
+  height: 100vh; min-height: 640px;
+  display: flex; flex-direction: column;
+  justify-content: center; align-items: center;
+  text-align: center;
+  position: relative; overflow: hidden;
+  padding: 0 48px;
+}
+
+/* Background grid lines */
+#hero::after {
+  content: '';
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(29,92,84,.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(29,92,84,.07) 1px, transparent 1px);
+  background-size: 80px 80px;
+  mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 20%, transparent 100%);
+  pointer-events: none;
+}
+
+.hero-label {
+  font-size: 10px; letter-spacing: .3em; text-transform: uppercase;
+  color: var(--rust); font-weight: 600; margin-bottom: 36px;
+  opacity: 0;
+  animation: riseUp .7s ease .3s forwards;
+}
+
+/* Name block — editorial, two-line */
+.hero-name {
+  margin-bottom: 36px;
+  line-height: .88;
+  letter-spacing: -.035em;
+}
+.hero-name .n1 {
+  display: block;
+  font-size: clamp(80px, 15vw, 190px);
+  font-weight: 800; color: var(--text);
+  opacity: 0; animation: riseUp .7s ease .5s forwards;
+  position: relative; z-index: 1;
+}
+.hero-name .n2 {
+  display: block;
+  font-size: clamp(80px, 15vw, 190px);
+  font-weight: 800;
+  color: transparent;
+  -webkit-text-stroke: 1.5px var(--petrol-l);
+  opacity: 0; animation: riseUp .7s ease .7s forwards;
+}
+
+/* Role strip */
+.hero-role-strip {
+  display: flex; align-items: center; gap: 14px;
+  justify-content: center;
+  height: 28px; overflow: hidden;
+  margin-bottom: 44px;
+  opacity: 0; animation: riseUp .7s ease .9s forwards;
+}
+.role-pip {
+  width: 5px; height: 5px;
+  background: var(--rust); border-radius: 50%;
+  flex-shrink: 0;
+  animation: blink 2s ease-in-out infinite;
+}
+.hero-role-text {
+  font-size: 12px; letter-spacing: .2em; text-transform: uppercase;
+  color: var(--petrol-l); font-weight: 600;
+  transition: opacity .25s, transform .25s;
+}
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:.35} }
+
+/* Copy */
+.hero-copy {
+  font-size: clamp(16px, 2vw, 20px);
+  font-weight: 300; line-height: 1.55;
+  color: var(--muted); max-width: 560px;
+  opacity: 0; animation: riseUp .7s ease 1.1s forwards;
+}
+.hero-copy strong { color: var(--text); font-weight: 400; }
+
+/* Scroll indicator */
+.hero-scroll {
+  position: absolute; bottom: 36px;
+  display: flex; flex-direction: column; align-items: center; gap: 10px;
+  font-size: 9px; letter-spacing: .3em; text-transform: uppercase;
+  color: var(--muted);
+  opacity: 0; animation: riseUp .7s ease 1.5s forwards;
+}
+.scroll-bar {
+  width: 1px; height: 44px; background: var(--petrol);
+  transform-origin: top;
+  animation: scrollDrop 2.4s ease-in-out infinite;
+}
+@keyframes scrollDrop {
+  0%   { transform: scaleY(0); transform-origin: top;    opacity:1; }
+  45%  { transform: scaleY(1); transform-origin: top;    opacity:1; }
+  46%  { transform: scaleY(1); transform-origin: bottom; opacity:1; }
+  90%  { transform: scaleY(0); transform-origin: bottom; opacity:0; }
+  100% { transform: scaleY(0); transform-origin: top;    opacity:0; }
+}
+
+/* ─── MANIFESTO ──────────────────────────────────────────── */
+#manifesto {
+  min-height: 100vh;
+  display: flex; align-items: center; justify-content: center;
+  padding: 100px 48px;
+  border-top: 1px solid var(--border);
+}
+.mf-inner { max-width: 860px; text-align: center; }
+
+.mf-label {
+  font-size: 10px; letter-spacing: .35em; text-transform: uppercase;
+  color: var(--rust); font-weight: 600; margin-bottom: 52px;
+  opacity: 0; transform: translateY(16px);
+  transition: opacity .7s, transform .7s;
+}
+#manifesto.in .mf-label { opacity: 1; transform: translateY(0); }
+
+.mf-quote {
+  font-size: clamp(26px, 4.5vw, 52px);
+  font-weight: 200; line-height: 1.25;
+  letter-spacing: -.02em; color: var(--text);
+}
+.mf-word {
+  display: inline-block;
+  opacity: 0; transform: translateY(24px);
+  transition: opacity .55s, transform .55s;
+}
+.mf-accent { color: var(--rust); font-weight: 700; }
+
+/* ─── PROJECTS ───────────────────────────────────────────── */
+.proj {
+  min-height: 100vh;
+  display: flex; align-items: center;
+  padding: 100px 52px;
+  border-top: 1px solid var(--border);
+  position: relative; overflow: hidden;
+}
+.proj:nth-child(even) { background: var(--bg2); }
+
+/* Ghost number */
+.proj-ghost {
+  position: absolute; right: -20px; bottom: -20px;
+  font-size: clamp(160px, 28vw, 300px);
+  font-weight: 800; line-height: 1;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(29,92,84,.15);
+  letter-spacing: -.05em;
+  pointer-events: none; user-select: none;
+  transform: translateX(50px) translateY(10px);
+  transition: transform 1.4s cubic-bezier(.16,1,.3,1);
+}
+.proj.in .proj-ghost { transform: translateX(0) translateY(0); }
+
+/* Left accent line */
+.proj::before {
+  content: '';
+  position: absolute; left: 0; top: 20%; bottom: 20%;
+  width: 2px; background: var(--rust);
+  transform: scaleY(0); transform-origin: bottom;
+  transition: transform .8s cubic-bezier(.16,1,.3,1);
+}
+.proj.in::before { transform: scaleY(1); }
+
+/* Content */
+.proj-content {
+  max-width: 660px;
+  opacity: 0; transform: translateY(36px);
+  transition: opacity .8s .1s, transform .8s .1s;
+}
+.proj.in .proj-content { opacity: 1; transform: translateY(0); }
+
+.proj-tag {
+  font-size: 10px; letter-spacing: .35em; text-transform: uppercase;
+  color: var(--rust); font-weight: 600; margin-bottom: 20px;
+  display: flex; align-items: center; gap: 14px;
+}
+.proj-tag::after {
+  content: ''; width: 40px; height: 1px; background: currentColor;
+}
+
+.proj-title {
+  font-size: clamp(48px, 9vw, 108px);
+  font-weight: 800; line-height: .88; letter-spacing: -.035em;
+  color: var(--text); margin-bottom: 28px;
+}
+
+.proj-client {
+  font-size: 13px; letter-spacing: .04em;
+  color: var(--muted); font-weight: 400; margin-bottom: 36px;
+}
+
+.proj-metric {
+  font-size: clamp(52px, 9vw, 88px);
+  font-weight: 800; color: var(--rust);
+  line-height: 1; letter-spacing: -.025em;
+  margin-bottom: 6px;
+}
+.proj-metric-sub {
+  font-size: 13px; color: var(--muted); font-weight: 400; margin-bottom: 32px;
+}
+
+.proj-desc {
+  font-size: 15px; line-height: 1.75;
+  color: var(--muted); font-weight: 300;
+  max-width: 500px; margin-bottom: 36px;
+}
+
+.proj-stack { display: flex; flex-wrap: wrap; gap: 8px; }
+.stack-tag {
+  font-size: 10px; letter-spacing: .12em; text-transform: uppercase;
+  color: var(--petrol-l); font-weight: 500;
+  border: 1px solid rgba(43,126,116,.3);
+  padding: 5px 14px;
+}
+
+/* ─── ABOUT ──────────────────────────────────────────────── */
+#about {
+  min-height: 100vh;
+  display: flex; align-items: center;
+  padding: 100px 52px;
+  border-top: 1px solid var(--border);
+}
+.about-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 80px; max-width: 1100px; margin: 0 auto; width: 100%;
+  align-items: center;
+}
+.ab-label {
+  font-size: 10px; letter-spacing: .35em; text-transform: uppercase;
+  color: var(--rust); font-weight: 600; margin-bottom: 28px;
+  opacity: 0; transform: translateY(16px);
+  transition: opacity .7s, transform .7s;
+}
+.ab-title {
+  font-size: clamp(34px, 4.5vw, 52px);
+  font-weight: 700; line-height: 1.1; letter-spacing: -.025em;
+  color: var(--text); margin-bottom: 28px;
+  opacity: 0; transform: translateY(16px);
+  transition: opacity .7s .1s, transform .7s .1s;
+}
+.ab-text {
+  font-size: 16px; line-height: 1.75;
+  color: var(--muted); font-weight: 300;
+  opacity: 0; transform: translateY(16px);
+  transition: opacity .7s .2s, transform .7s .2s;
+}
+.ab-text strong { color: var(--text); font-weight: 500; }
+#about.in .ab-label,
+#about.in .ab-title,
+#about.in .ab-text { opacity: 1; transform: translateY(0); }
+
+.role-list { display: flex; flex-direction: column; gap: 18px; }
+.role-row {
+  display: flex; align-items: center; gap: 18px;
+  font-size: 12px; letter-spacing: .15em; text-transform: uppercase;
+  color: var(--muted); font-weight: 500;
+  opacity: 0; transform: translateX(28px);
+  transition: opacity .55s, transform .55s;
+}
+.role-row::before {
+  content: ''; width: 28px; height: 1px; background: var(--rust); flex-shrink: 0;
+}
+.role-row:nth-child(1) { transition-delay: .1s; }
+.role-row:nth-child(2) { transition-delay: .2s; }
+.role-row:nth-child(3) { transition-delay: .3s; }
+.role-row:nth-child(4) { transition-delay: .4s; }
+#about.in .role-row { opacity: 1; transform: translateX(0); }
+
+/* ─── CTA ────────────────────────────────────────────────── */
+#cta {
+  min-height: 65vh;
+  display: flex; align-items: center; justify-content: center;
+  text-align: center;
+  padding: 100px 48px;
+  border-top: 1px solid var(--border);
+}
+.cta-inner { max-width: 660px; }
+.cta-label {
+  font-size: 10px; letter-spacing: .35em; text-transform: uppercase;
+  color: var(--rust); font-weight: 600; margin-bottom: 36px;
+}
+.cta-title {
+  font-size: clamp(32px, 5vw, 60px);
+  font-weight: 700; line-height: 1.1; letter-spacing: -.025em;
+  color: var(--text); margin-bottom: 48px;
+}
+.cta-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+.btn {
+  font-family: inherit;
+  font-size: 11px; letter-spacing: .18em; text-transform: uppercase; font-weight: 600;
+  padding: 15px 40px; text-decoration: none;
+  transition: all .25s; cursor: none; display: inline-block;
+}
+.btn-fill   { background: var(--rust); color: #fff; }
+.btn-fill:hover { background: var(--rust-l); }
+.btn-stroke { border: 1px solid var(--petrol); color: var(--text); background: transparent; }
+.btn-stroke:hover { background: var(--petrol); border-color: var(--petrol); }
+
+/* ─── FOOTER ─────────────────────────────────────────────── */
+footer {
+  padding: 28px 52px;
+  display: flex; justify-content: space-between; align-items: center;
+  border-top: 1px solid var(--border);
+}
+.ft-name { font-size: 10px; letter-spacing: .2em; text-transform: uppercase; color: var(--muted); }
+.ft-year { font-size: 10px; color: var(--muted); }
+
+/* ─── GLOBAL ANIMATION ───────────────────────────────────── */
+@keyframes riseUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ─── GLITCH EFFECT ──────────────────────────────────────── */
+.glitch-wrap { position: relative; display: inline-block; }
+.glitch-wrap::before,
+.glitch-wrap::after {
+  content: attr(data-text);
+  position: absolute; left: 0; top: 0;
+  color: var(--text); font-size: inherit; font-weight: inherit;
+  letter-spacing: inherit; line-height: inherit;
+  pointer-events: none; opacity: 0;
+}
+.glitch-wrap::before {
+  color: var(--rust-l);
+  text-shadow: -2px 0 var(--petrol);
+  clip-path: polygon(0 20%, 100% 20%, 100% 35%, 0 35%);
+}
+.glitch-wrap::after {
+  color: var(--petrol-l);
+  text-shadow: 2px 0 var(--rust);
+  clip-path: polygon(0 60%, 100% 60%, 100% 75%, 0 75%);
+}
+
+.glitching::before { opacity: 1; animation: glitchA .15s steps(2) forwards; }
+.glitching::after  { opacity: 1; animation: glitchB .15s steps(2) forwards; }
+
+@keyframes glitchA {
+  0%  { transform: translateX(-3px) skewX(-1deg); }
+  50% { transform: translateX(3px)  skewX(1deg);  }
+  100%{ transform: translateX(0);                  }
+}
+@keyframes glitchB {
+  0%  { transform: translateX(3px)  skewX(1deg);  }
+  50% { transform: translateX(-3px) skewX(-1deg); }
+  100%{ transform: translateX(0);                  }
+}
+
+/* ─── RESPONSIVE ─────────────────────────────────────────── */
+@media (max-width: 768px) {
+  nav { padding: 20px 24px; }
+  .nav-links { gap: 20px; }
+  #hero, .proj, #about, #manifesto, #cta { padding-left: 24px; padding-right: 24px; }
+  .about-grid { grid-template-columns: 1fr; gap: 48px; }
+  footer { padding: 24px; }
+}
+</style>
+</head>
+<body>
+
+<!-- Cursor -->
+<div class="cursor-dot"  id="cDot"></div>
+<div class="cursor-ring" id="cRing"></div>
+
+<!-- Nav -->
+<nav>
+  <span class="nav-id">JS · Vibecoder · 2026</span>
+  <div class="nav-links">
+    <a href="#projetos">Projetos</a>
+    <a href="#about">Sobre</a>
+    <a href="#cta">Contato</a>
+  </div>
+</nav>
+
+<!-- ══ HERO ══════════════════════════════════════════════════ -->
+<section id="hero">
+  <p class="hero-label">São Paulo &nbsp;·&nbsp; 16 anos &nbsp;·&nbsp; Vibecoder</p>
+
+  <h1 class="hero-name">
+    <span class="n1 glitch-wrap" id="hN1" data-text="JOAQUIM">JOAQUIM</span>
+    <span class="n2 glitch-wrap" id="hN2" data-text="SALLES">SALLES</span>
+  </h1>
+
+  <div class="hero-role-strip">
+    <span class="role-pip"></span>
+    <span class="hero-role-text" id="roleEl">Vibecoder</span>
+  </div>
+
+  <p class="hero-copy">
+    Você ainda perde tempo gerenciando <strong>o que uma máquina faria melhor.</strong>
+  </p>
+
+  <div class="hero-scroll">
+    <div class="scroll-bar"></div>
+    <span>scroll</span>
+  </div>
+</section>
+
+<!-- ══ MANIFESTO ═════════════════════════════════════════════ -->
+<section id="manifesto">
+  <div class="mf-inner">
+    <p class="mf-label">Manifesto</p>
+    <p class="mf-quote" id="mfQuote">
+      Todo processo que ainda depende de você é tempo que ainda não te pertence.
+    </p>
+  </div>
+</section>
+
+<!-- ══ PROJECT 1 ══════════════════════════════════════════════ -->
+<section class="proj" id="projetos">
+  <div class="proj-content">
+    <div class="proj-tag">Projeto 01</div>
+    <h2 class="proj-title">VAV<br>Central</h2>
+    <p class="proj-client">ONG Viva a Vida — Sistema de Gestão</p>
+    <div class="proj-metric" data-val="120" data-sfx="h/mês" data-pfx="+">0h/mês</div>
+    <p class="proj-metric-sub">recuperadas em tarefas manuais</p>
+    <p class="proj-desc">Sistema completo que automatizou a operação inteira de uma ONG. Cadastros, relatórios, controle de voluntários. O que levava dias passou a levar segundos.</p>
+    <div class="proj-stack">
+      <span class="stack-tag">Next.js</span>
+      <span class="stack-tag">Supabase</span>
+      <span class="stack-tag">Tailwind</span>
+    </div>
+  </div>
+  <div class="proj-ghost">01</div>
+</section>
+
+<!-- ══ PROJECT 2 ══════════════════════════════════════════════ -->
+<section class="proj">
+  <div class="proj-content">
+    <div class="proj-tag">Projeto 02</div>
+    <h2 class="proj-title">CGR1<br>Planner</h2>
+    <p class="proj-client">Organizador com gamificação</p>
+    <div class="proj-metric" data-val="4" data-sfx="x mais rápido" data-pfx="">0x</div>
+    <p class="proj-metric-sub">nas decisões de priorização</p>
+    <p class="proj-desc">Planner com mecânicas de jogo que transforma gestão de tarefas em algo que você não consegue parar de usar. Menos paralisia, mais decisão.</p>
+    <div class="proj-stack">
+      <span class="stack-tag">Next.js</span>
+      <span class="stack-tag">Supabase</span>
+      <span class="stack-tag">Google API</span>
+    </div>
+  </div>
+  <div class="proj-ghost">02</div>
+</section>
+
+<!-- ══ PROJECT 3 ══════════════════════════════════════════════ -->
+<section class="proj">
+  <div class="proj-content">
+    <div class="proj-tag">Projeto 03</div>
+    <h2 class="proj-title">Time<br>Track</h2>
+    <p class="proj-client">Sistema de ponto e demandas</p>
+    <div class="proj-metric" data-val="3" data-sfx=" equipes" data-pfx="">0</div>
+    <p class="proj-metric-sub">rodando em produção hoje</p>
+    <p class="proj-desc">Controle de ponto e gestão de demandas para múltiplas equipes simultâneas. Simples de usar, impossível de ignorar.</p>
+    <div class="proj-stack">
+      <span class="stack-tag">React</span>
+      <span class="stack-tag">Firebase</span>
+      <span class="stack-tag">Node.js</span>
+    </div>
+  </div>
+  <div class="proj-ghost">03</div>
+</section>
+
+<!-- ══ ABOUT ══════════════════════════════════════════════════ -->
+<section id="about">
+  <div class="about-grid">
+    <div>
+      <p class="ab-label">Sobre</p>
+      <h2 class="ab-title">16 anos.<br>Sistemas reais.<br>Resultados reais.</h2>
+      <p class="ab-text">
+        Não espero ter 30 anos pra construir coisa séria. <strong>Já construo.</strong><br><br>
+        Sou Joaquim Salles, de São Paulo. Escrevo código que resolve problemas que as pessoas acham que precisam de consultor. <strong>Não precisam.</strong><br><br>
+        Chamo de vibecoding porque combino AI, lógica e intuição pra chegar mais rápido onde importa.
+      </p>
+    </div>
+    <div class="role-list">
+      <div class="role-row">Vibecoder</div>
+      <div class="role-row">System Architect</div>
+      <div class="role-row">AI Developer</div>
+      <div class="role-row">Full-Stack Builder</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CTA ════════════════════════════════════════════════════ -->
+<section id="cta">
+  <div class="cta-inner">
+    <p class="cta-label">Contato</p>
+    <h2 class="cta-title">Tem um processo<br>que ainda te prende?</h2>
+    <div class="cta-btns">
+      <a href="https://instagram.com/" class="btn btn-fill"   target="_blank">Instagram</a>
+      <a href="https://wa.me/55"       class="btn btn-stroke" target="_blank">WhatsApp</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span class="ft-name">Joaquim Salles</span>
+  <span class="ft-year">©2026 · Vibecoder</span>
+</footer>
+
+<script>
+// ── CURSOR ────────────────────────────────────────────────────
+const dot  = document.getElementById('cDot');
+const ring = document.getElementById('cRing');
+let mx = 0, my = 0, rx = 0, ry = 0;
+
+document.addEventListener('mousemove', e => {
+  mx = e.clientX; my = e.clientY;
+  dot.style.left = mx + 'px'; dot.style.top = my + 'px';
+});
+
+;(function tickRing() {
+  rx += (mx - rx) * .1;
+  ry += (my - ry) * .1;
+  ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
+  requestAnimationFrame(tickRing);
+})();
+
+// Expand on interactive elements
+document.querySelectorAll('a, button').forEach(el => {
+  el.addEventListener('mouseenter', () => document.body.classList.add('cursor-expand'));
+  el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-expand'));
+});
+
+// ── CIPHER TEXT ───────────────────────────────────────────────
+const ABC = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789#@$%&';
+
+function cipher(el, text, delayMs) {
+  const arr = text.toUpperCase().split('');
+  let i = 0;
+  setTimeout(() => {
+    const tid = setInterval(() => {
+      el.childNodes[0] && (el.childNodes[0].nodeValue = arr.map((c, idx) => {
+        if (c === ' ') return ' ';
+        return idx < i ? c : ABC[Math.floor(Math.random() * ABC.length)];
+      }).join(''));
+      if ((i += .35) > arr.length + 1) {
+        el.childNodes[0] && (el.childNodes[0].nodeValue = text.toUpperCase());
+        clearInterval(tid);
+        // Trigger glitch burst after reveal
+        setTimeout(() => glitch(el), 200);
+      }
+    }, 38);
+  }, delayMs);
+}
+
+// ── GLITCH BURST ──────────────────────────────────────────────
+function glitch(el) {
+  el.classList.add('glitching');
+  setTimeout(() => el.classList.remove('glitching'), 180);
+}
+
+// Occasional random glitch on hero name
+function scheduleGlitch() {
+  const targets = [document.getElementById('hN1'), document.getElementById('hN2')];
+  const t = targets[Math.floor(Math.random() * targets.length)];
+  glitch(t);
+  setTimeout(scheduleGlitch, 3000 + Math.random() * 5000);
+}
+
+window.addEventListener('load', () => {
+  cipher(document.getElementById('hN1'), 'JOAQUIM', 400);
+  cipher(document.getElementById('hN2'), 'SALLES',  750);
+  setTimeout(scheduleGlitch, 4000);
+});
+
+// ── ROLE ROTATOR ──────────────────────────────────────────────
+const roles = ['Vibecoder', 'System Architect', 'AI Developer', 'Automation Engineer', 'Full-Stack Builder'];
+let rIdx = 0;
+const rEl = document.getElementById('roleEl');
+const rStrip = rEl.parentElement;
+
+setInterval(() => {
+  rStrip.style.opacity = '0';
+  rStrip.style.transform = 'translateY(-8px)';
+  setTimeout(() => {
+    rIdx = (rIdx + 1) % roles.length;
+    rEl.textContent = roles[rIdx];
+    rStrip.style.transition = 'none';
+    rStrip.style.transform = 'translateY(8px)';
+    rStrip.offsetHeight; // reflow
+    rStrip.style.transition = 'opacity .3s, transform .3s';
+    rStrip.style.opacity = '1';
+    rStrip.style.transform = 'translateY(0)';
+  }, 280);
+}, 2600);
+
+// ── MANIFESTO WORD BUILD ──────────────────────────────────────
+(function buildManifesto() {
+  const el = document.getElementById('mfQuote');
+  const txt = el.textContent.trim();
+  const BOLD_WORDS = new Set(['depende', 'tempo', 'pertence']);
+  el.innerHTML = txt.split(' ').map((w, i) => {
+    const bare = w.toLowerCase().replace(/[.,!?]/g, '');
+    const cls  = BOLD_WORDS.has(bare) ? 'mf-word mf-accent' : 'mf-word';
+    return `<span class="${cls}" style="transition-delay:${i * .048}s">${w} </span>`;
+  }).join('');
+})();
+
+// ── INTERSECTION OBSERVER ─────────────────────────────────────
+const io = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (!entry.isIntersecting) return;
+    const el = entry.target;
+    el.classList.add('in');
+
+    // Project count-up
+    const metric = el.querySelector('.proj-metric');
+    if (metric && !metric.dataset.done) {
+      metric.dataset.done = '1';
+      countUp(metric, +metric.dataset.val, metric.dataset.pfx, metric.dataset.sfx);
+    }
+
+    // Manifesto words
+    if (el.id === 'manifesto') {
+      el.querySelectorAll('.mf-word').forEach(w => {
+        w.style.opacity = '1';
+        w.style.transform = 'translateY(0)';
+      });
+    }
+  });
+}, { threshold: .22 });
+
+document.querySelectorAll('.proj, #about, #manifesto').forEach(s => io.observe(s));
+
+// ── COUNT UP ──────────────────────────────────────────────────
+function countUp(el, target, prefix, suffix) {
+  const dur = 1400, fps = 60;
+  const steps = dur / (1000 / fps);
+  const step  = target / steps;
+  let cur = 0;
+  const t = setInterval(() => {
+    cur = Math.min(cur + step, target);
+    el.textContent = prefix + Math.floor(cur) + suffix;
+    if (cur >= target) clearInterval(t);
+  }, 1000 / fps);
+}
+</script>
+</body>
+</html>
