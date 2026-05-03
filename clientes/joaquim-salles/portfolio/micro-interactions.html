@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Micro-interactions — Portfolio Design System</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  /* ── RESET & BASE ── */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg:           #050D0B;
+    --petrol:       #1D5C54;
+    --petrol-light: #2B7E74;
+    --rust:         #C4532A;
+    --text:         #DDD8CC;
+    --text-dim:     rgba(221,216,204,0.5);
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    min-height: 100vh;
+    padding: 60px 40px;
+    cursor: auto;
+  }
+
+  h1 { font-size: 11px; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; color: var(--petrol-light); margin-bottom: 72px; }
+  h2 { font-size: 10px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--rust); margin-bottom: 24px; opacity: .7; }
+
+  .section {
+    margin-bottom: 80px;
+    position: relative;
+  }
+
+  .demo-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-top: 16px;
+  }
+
+  /* ──────────────────────────────────────────
+     1. ANIMATED CURSOR — TEXT MODE
+  ────────────────────────────────────────── */
+
+  /* Custom cursor element injected by JS */
+  #custom-cursor {
+    position: fixed;
+    top: 0; left: 0;
+    width: 2px;
+    height: 22px;
+    background: var(--petrol-light);
+    border-radius: 1px;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: opacity .15s, background .15s, box-shadow .15s, width .15s, height .15s, border-radius .15s;
+    opacity: 0;
+  }
+
+  #custom-cursor.visible { opacity: 1; }
+
+  #custom-cursor.text-mode {
+    width: 2px;
+    height: 22px;
+    border-radius: 1px;
+    background: var(--petrol-light);
+    box-shadow: 0 0 6px var(--petrol-light), 0 0 14px var(--petrol-light);
+    animation: cursor-blink 1s step-start infinite;
+  }
+
+  @keyframes cursor-blink {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0; }
+  }
+
+  /* hide native cursor globally (JS toggles per-element) */
+  .text-hover-target { cursor: none; }
+
+  .cursor-demo-text {
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 1.7;
+    max-width: 540px;
+    color: var(--text);
+    padding: 24px;
+    border: 1px solid rgba(29,92,84,.3);
+    border-radius: 4px;
+  }
+
+  /* ──────────────────────────────────────────
+     2. MAGNETIC FIELD LINES
+  ────────────────────────────────────────── */
+
+  .field-lines-wrap {
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+    height: 220px;
+    border-radius: 4px;
+    overflow: hidden;
+    background: rgba(29,92,84,.04);
+    border: 1px solid rgba(29,92,84,.2);
+  }
+
+  #field-canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  /* ──────────────────────────────────────────
+     3. LOADING SKELETON
+  ────────────────────────────────────────── */
+
+  .skeleton-wrap {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    max-width: 700px;
+  }
+
+  .skeleton-card {
+    background: rgba(29,92,84,.08);
+    border: 1px solid rgba(29,92,84,.15);
+    border-radius: 6px;
+    overflow: hidden;
+    padding: 0;
+  }
+
+  .skeleton-img {
+    width: 100%;
+    height: 130px;
+    background: rgba(29,92,84,.12);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .skeleton-body { padding: 16px; }
+
+  .skeleton-line {
+    height: 10px;
+    border-radius: 4px;
+    background: rgba(29,92,84,.12);
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 10px;
+  }
+  .skeleton-line:last-child { margin-bottom: 0; width: 60%; }
+
+  /* shimmer pseudo-element */
+  .skeleton-img::after,
+  .skeleton-line::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(43,126,116,.25) 40%,
+      rgba(43,126,116,.45) 50%,
+      rgba(43,126,116,.25) 60%,
+      transparent 100%
+    );
+    transform: translateX(-100%);
+    animation: shimmer 1.8s ease-in-out infinite;
+  }
+
+  .skeleton-line:nth-child(2)::after { animation-delay: .15s; }
+  .skeleton-line:nth-child(3)::after { animation-delay: .3s; }
+
+  @keyframes shimmer {
+    0%   { transform: translateX(-100%); }
+    100% { transform: translateX(200%); }
+  }
+
+  /* ──────────────────────────────────────────
+     4. INFINITE ZOOM LOOP
+  ────────────────────────────────────────── */
+
+  .zoom-wrap {
+    width: 320px;
+    height: 220px;
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+    border: 1px solid rgba(29,92,84,.2);
+  }
+
+  .zoom-inner {
+    position: absolute;
+    inset: -15%;
+    width: 130%;
+    height: 130%;
+    background:
+      radial-gradient(ellipse at 30% 40%, rgba(29,92,84,.35) 0%, transparent 60%),
+      radial-gradient(ellipse at 70% 60%, rgba(196,83,42,.18) 0%, transparent 55%),
+      linear-gradient(135deg, rgba(29,92,84,.08) 0%, transparent 50%, rgba(196,83,42,.06) 100%);
+    animation: infinite-zoom 8s ease-in-out infinite;
+    transform-origin: center center;
+  }
+
+  /* subtle grid overlay */
+  .zoom-inner::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(43,126,116,.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(43,126,116,.06) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+
+  @keyframes infinite-zoom {
+    0%   { transform: scale(1); }
+    50%  { transform: scale(1.3); }
+    100% { transform: scale(1); }
+  }
+
+  /* ──────────────────────────────────────────
+     5. TEXT GLITCH SCRAMBLE — CONTINUOUS
+  ────────────────────────────────────────── */
+
+  .glitch-text {
+    font-size: 32px;
+    font-weight: 800;
+    letter-spacing: -.01em;
+    color: var(--text);
+    font-variant-numeric: tabular-nums;
+    font-family: 'Plus Jakarta Sans', monospace;
+    line-height: 1;
+  }
+
+  .glitch-char {
+    display: inline-block;
+    transition: color .04s;
+  }
+
+  .glitch-char.active {
+    color: var(--petrol-light);
+    text-shadow: 0 0 8px var(--petrol-light);
+  }
+
+  /* ──────────────────────────────────────────
+     6. VHS SCANLINE EFFECT
+  ────────────────────────────────────────── */
+
+  .vhs-section {
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+    height: 160px;
+    background: rgba(29,92,84,.07);
+    border: 1px solid rgba(29,92,84,.25);
+    border-radius: 4px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .vhs-content {
+    font-size: 28px;
+    font-weight: 800;
+    letter-spacing: .06em;
+    color: var(--text);
+    text-transform: uppercase;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* static scanlines — fine horizontal lines */
+  .vhs-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0,0,0,.18) 2px,
+      rgba(0,0,0,.18) 4px
+    );
+    pointer-events: none;
+    z-index: 2;
+  }
+
+  /* moving bright scanline band */
+  .vhs-section::after {
+    content: '';
+    position: absolute;
+    left: 0; right: 0;
+    height: 40px;
+    background: linear-gradient(
+      180deg,
+      transparent 0%,
+      rgba(43,126,116,.09) 30%,
+      rgba(43,126,116,.18) 50%,
+      rgba(43,126,116,.09) 70%,
+      transparent 100%
+    );
+    animation: vhs-scan 3s linear infinite;
+    top: -40px;
+    z-index: 3;
+    pointer-events: none;
+  }
+
+  @keyframes vhs-scan {
+    0%   { top: -40px; }
+    100% { top: 100%; }
+  }
+
+  /* RGB-shift on text */
+  .vhs-content {
+    animation: vhs-rgb 8s linear infinite;
+  }
+
+  @keyframes vhs-rgb {
+    0%,90%,100% { text-shadow: none; color: var(--text); }
+    93% {
+      text-shadow:
+        -2px 0 rgba(196,83,42,.7),
+         2px 0 rgba(43,126,116,.7);
+      color: var(--text);
+    }
+    96% {
+      text-shadow:
+        2px 0 rgba(196,83,42,.7),
+        -2px 0 rgba(43,126,116,.7);
+    }
+  }
+
+  /* ──────────────────────────────────────────
+     7. NEON GLOW PULSE
+  ────────────────────────────────────────── */
+
+  .metrics-row {
+    display: flex;
+    gap: 40px;
+    flex-wrap: wrap;
+  }
+
+  .metric {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .metric-number {
+    font-size: 52px;
+    font-weight: 800;
+    color: var(--rust);
+    line-height: 1;
+    animation: neon-pulse 2.4s ease-in-out infinite;
+  }
+
+  .metric-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+  }
+
+  @keyframes neon-pulse {
+    0%, 100% {
+      text-shadow:
+        0 0 4px rgba(196,83,42,.4),
+        0 0 12px rgba(196,83,42,.2);
+    }
+    50% {
+      text-shadow:
+        0 0 6px  rgba(196,83,42,.9),
+        0 0 18px rgba(196,83,42,.6),
+        0 0 40px rgba(196,83,42,.35),
+        0 0 80px rgba(196,83,42,.15);
+    }
+  }
+
+  .metric:nth-child(2) .metric-number { animation-delay: .6s; }
+  .metric:nth-child(3) .metric-number { animation-delay: 1.2s; }
+
+  /* ──────────────────────────────────────────
+     8. ELASTIC UNDERLINE
+  ────────────────────────────────────────── */
+
+  .nav-demo {
+    display: flex;
+    gap: 36px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .elastic-link {
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    color: var(--text);
+    text-decoration: none;
+    position: relative;
+    padding-bottom: 4px;
+    cursor: pointer;
+  }
+
+  /* baseline underline (invisible by default) */
+  .elastic-link::before,
+  .elastic-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 2px;
+    border-radius: 2px;
+    transform-origin: left center;
+  }
+
+  /* background track */
+  .elastic-link::before {
+    width: 100%;
+    background: rgba(43,126,116,.2);
+    transform: scaleX(0);
+    transition: transform .35s cubic-bezier(.23,1,.32,1);
+  }
+
+  /* elastic fill */
+  .elastic-link::after {
+    width: 100%;
+    background: var(--petrol-light);
+    transform: scaleX(0);
+    transition: transform .45s cubic-bezier(.34,1.56,.64,1);
+    box-shadow: 0 0 8px rgba(43,126,116,.6);
+  }
+
+  .elastic-link:hover::before {
+    transform: scaleX(1);
+    transition: transform .1s linear;
+  }
+
+  .elastic-link:hover::after {
+    transform: scaleX(1);
+    transition: transform .45s cubic-bezier(.34,1.56,.64,1) .05s;
+  }
+
+  /* leave animation — snap back with bounce */
+  .elastic-link.leaving::before {
+    transform: scaleX(0);
+    transform-origin: right center;
+    transition: transform .2s cubic-bezier(.23,1,.32,1);
+  }
+
+  .elastic-link.leaving::after {
+    transform: scaleX(0);
+    transform-origin: right center;
+    transition: transform .5s cubic-bezier(.34,1.56,.64,1) .02s;
+  }
+
+  /* inline link variant */
+  .inline-link {
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--petrol-light);
+    text-decoration: none;
+    position: relative;
+    cursor: pointer;
+    padding-bottom: 2px;
+  }
+
+  .inline-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1.5px;
+    background: var(--rust);
+    border-radius: 1px;
+    transform: scaleX(.3) scaleY(1);
+    transform-origin: left center;
+    transition: transform .4s cubic-bezier(.34,1.56,.64,1);
+    box-shadow: 0 0 6px rgba(196,83,42,.5);
+  }
+
+  .inline-link:hover::after {
+    transform: scaleX(1) scaleY(1);
+  }
+
+  /* ──────────────────────────────────────────
+     LAYOUT
+  ────────────────────────────────────────── */
+
+  .grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: start;
+  }
+
+  @media (max-width: 768px) {
+    .grid-2 { grid-template-columns: 1fr; }
+    .skeleton-wrap { grid-template-columns: 1fr; }
+  }
+
+  hr.divider {
+    border: none;
+    border-top: 1px solid rgba(29,92,84,.18);
+    margin: 72px 0;
+  }
+</style>
+</head>
+<body>
+
+<!-- Custom cursor DOM element -->
+<div id="custom-cursor"></div>
+
+<h1>Micro-interactions &amp; Special Effects — Portfolio Design System</h1>
+
+<!-- ── 1. ANIMATED CURSOR ── -->
+<div class="section" id="s1">
+  <h2>01 — Animated Cursor: Text Mode</h2>
+  <p class="cursor-demo-text text-hover-target">
+    Hover over this paragraph to see the custom I-beam cursor replace the native
+    browser cursor. The cursor glows with petrol-light and blinks at 1Hz — it feels
+    native but elevated. Move the cursor outside this block to return to default.
+  </p>
+  <p class="demo-label">Hover the text block above</p>
+</div>
+
+<hr class="divider">
+
+<!-- ── 2. MAGNETIC FIELD LINES ── -->
+<div class="section" id="s2">
+  <h2>02 — Magnetic Field Lines</h2>
+  <div class="field-lines-wrap">
+    <canvas id="field-canvas"></canvas>
+  </div>
+  <p class="demo-label">Decorative — runs automatically</p>
+</div>
+
+<hr class="divider">
+
+<!-- ── 3. LOADING SKELETON ── -->
+<div class="section" id="s3">
+  <h2>03 — Loading Skeleton</h2>
+  <div class="skeleton-wrap">
+    <div class="skeleton-card">
+      <div class="skeleton-img"></div>
+      <div class="skeleton-body">
+        <div class="skeleton-line" style="width:85%"></div>
+        <div class="skeleton-line" style="width:70%"></div>
+        <div class="skeleton-line"></div>
+      </div>
+    </div>
+    <div class="skeleton-card">
+      <div class="skeleton-img"></div>
+      <div class="skeleton-body">
+        <div class="skeleton-line" style="width:90%"></div>
+        <div class="skeleton-line" style="width:65%"></div>
+        <div class="skeleton-line"></div>
+      </div>
+    </div>
+    <div class="skeleton-card">
+      <div class="skeleton-img"></div>
+      <div class="skeleton-body">
+        <div class="skeleton-line" style="width:75%"></div>
+        <div class="skeleton-line" style="width:80%"></div>
+        <div class="skeleton-line"></div>
+      </div>
+    </div>
+  </div>
+  <p class="demo-label">Project card loading state</p>
+</div>
+
+<hr class="divider">
+
+<!-- ── 4. INFINITE ZOOM LOOP ── -->
+<div class="section" id="s4">
+  <h2>04 — Infinite Zoom Loop</h2>
+  <div class="zoom-wrap">
+    <div class="zoom-inner"></div>
+  </div>
+  <p class="demo-label">Background element — 8s cycle, CSS only</p>
+</div>
+
+<hr class="divider">
+
+<!-- ── 5. TEXT GLITCH SCRAMBLE ── -->
+<div class="section" id="s5">
+  <h2>05 — Text Glitch Scramble — Continuous</h2>
+  <div class="glitch-text" id="glitch-el" data-text="JOAQUIM SALLES">JOAQUIM SALLES</div>
+  <br>
+  <div class="glitch-text" id="glitch-el-2" data-text="CREATIVE DEVELOPER">CREATIVE DEVELOPER</div>
+  <p class="demo-label">Runs automatically — 2-3 chars glitch every 80ms</p>
+</div>
+
+<hr class="divider">
+
+<!-- ── 6. VHS SCANLINE ── -->
+<div class="section" id="s6">
+  <h2>06 — VHS Scanline Effect</h2>
+  <div class="vhs-section">
+    <div class="vhs-content">Selected Work</div>
+  </div>
+  <p class="demo-label">CSS-only — static fine lines + moving band + RGB shift</p>
+</div>
+
+<hr class="divider">
+
+<!-- ── 7. NEON GLOW PULSE ── -->
+<div class="section" id="s7">
+  <h2>07 — Neon Glow Pulse</h2>
+  <div class="metrics-row">
+    <div class="metric">
+      <span class="metric-number">47</span>
+      <span class="metric-label">Projects</span>
+    </div>
+    <div class="metric">
+      <span class="metric-number">98%</span>
+      <span class="metric-label">Satisfaction</span>
+    </div>
+    <div class="metric">
+      <span class="metric-number">12+</span>
+      <span class="metric-label">Years</span>
+    </div>
+  </div>
+  <p class="demo-label">Staggered 2.4s pulse — CSS only</p>
+</div>
+
+<hr class="divider">
+
+<!-- ── 8. ELASTIC UNDERLINE ── -->
+<div class="section" id="s8">
+  <h2>08 — Elastic Underline</h2>
+  <nav class="nav-demo">
+    <a class="elastic-link" href="#">Work</a>
+    <a class="elastic-link" href="#">About</a>
+    <a class="elastic-link" href="#">Services</a>
+    <a class="elastic-link" href="#">Contact</a>
+  </nav>
+  <br><br>
+  <p style="font-size:17px; line-height:1.7; max-width:500px; color:var(--text)">
+    This is body copy with an
+    <a class="inline-link" href="#">inline link</a>
+    that uses the elastic underline, and another
+    <a class="inline-link" href="#">linked term</a>
+    showing the rust-colored variant.
+  </p>
+  <p class="demo-label">Hover nav items and inline links</p>
+</div>
+
+
+<!-- ═══════════════════════════════════════════
+     JAVASCRIPT
+════════════════════════════════════════════ -->
+<script>
+// ──────────────────────────────────────────
+// 1. ANIMATED CURSOR — TEXT MODE
+// ──────────────────────────────────────────
+(function () {
+  const cursor = document.getElementById('custom-cursor');
+  let mouseX = 0, mouseY = 0;
+  let rafId = null;
+
+  document.addEventListener('mousemove', (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+    cursor.style.left = mouseX + 'px';
+    cursor.style.top  = mouseY + 'px';
+  });
+
+  // Show cursor when over text targets
+  const textTargets = document.querySelectorAll('.text-hover-target');
+  textTargets.forEach(el => {
+    el.addEventListener('mouseenter', () => {
+      cursor.classList.add('visible', 'text-mode');
+    });
+    el.addEventListener('mouseleave', () => {
+      cursor.classList.remove('visible', 'text-mode');
+    });
+  });
+})();
+
+
+// ──────────────────────────────────────────
+// 2. MAGNETIC FIELD LINES — Canvas
+// ──────────────────────────────────────────
+(function () {
+  const canvas = document.getElementById('field-canvas');
+  const wrap   = canvas.parentElement;
+  const ctx    = canvas.getContext('2d');
+
+  function resize() {
+    canvas.width  = wrap.clientWidth;
+    canvas.height = wrap.clientHeight;
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  // Colour tokens
+  const petrol  = { r: 43,  g: 126, b: 116 };
+  const rust    = { r: 196, g: 83,  b: 42  };
+
+  // Pole positions (relative 0-1)
+  const poles = [
+    { rx: 0.22, ry: 0.5, charge:  1, col: petrol },
+    { rx: 0.78, ry: 0.5, charge: -1, col: rust   },
+  ];
+
+  // Field line configs
+  const NUM_LINES = 18;
+  const STEPS     = 180;
+  const DT        = 6;
+
+  let t = 0;
+
+  function fieldAt(px, py, w, h) {
+    let fx = 0, fy = 0;
+    poles.forEach(p => {
+      const dx = px - p.rx * w;
+      const dy = py - p.ry * h;
+      const r2 = dx * dx + dy * dy;
+      const r  = Math.sqrt(r2) || 1;
+      const k  = p.charge * 3000 / (r2 + 200);
+      fx += k * dx / r;
+      fy += k * dy / r;
+    });
+    return { fx, fy };
+  }
+
+  function lerpColor(a, b, t) {
+    return {
+      r: a.r + (b.r - a.r) * t,
+      g: a.g + (b.g - a.g) * t,
+      b: a.b + (b.b - a.b) * t,
+    };
+  }
+
+  function draw() {
+    const w = canvas.width;
+    const h = canvas.height;
+    ctx.clearRect(0, 0, w, h);
+
+    t += 0.008;
+
+    poles.forEach((p, pi) => {
+      // Draw pole circle
+      const px = p.rx * w;
+      const py = p.ry * h;
+      const pulse = 1 + 0.15 * Math.sin(t * 2 + pi * Math.PI);
+      const grd = ctx.createRadialGradient(px, py, 0, px, py, 18 * pulse);
+      const c = p.col;
+      grd.addColorStop(0,   `rgba(${c.r},${c.g},${c.b},0.9)`);
+      grd.addColorStop(0.5, `rgba(${c.r},${c.g},${c.b},0.4)`);
+      grd.addColorStop(1,   `rgba(${c.r},${c.g},${c.b},0)`);
+      ctx.beginPath();
+      ctx.arc(px, py, 18 * pulse, 0, Math.PI * 2);
+      ctx.fillStyle = grd;
+      ctx.fill();
+
+      // Hard core
+      ctx.beginPath();
+      ctx.arc(px, py, 5, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(${c.r},${c.g},${c.b},1)`;
+      ctx.fill();
+    });
+
+    // Draw field lines from positive pole
+    const posP = poles[0];
+    for (let i = 0; i < NUM_LINES; i++) {
+      const angle = (i / NUM_LINES) * Math.PI * 2 + t * 0.06;
+      const startR = 10;
+      let px = posP.rx * w + Math.cos(angle) * startR;
+      let py = posP.ry * h + Math.sin(angle) * startR;
+
+      ctx.beginPath();
+      ctx.moveTo(px, py);
+
+      const points = [{ x: px, y: py }];
+      for (let s = 0; s < STEPS; s++) {
+        const { fx, fy } = fieldAt(px, py, w, h);
+        const mag = Math.sqrt(fx * fx + fy * fy) || 1;
+        px += (fx / mag) * DT;
+        py += (fy / mag) * DT;
+        points.push({ x: px, y: py });
+        if (px < -20 || px > w + 20 || py < -20 || py > h + 20) break;
+        // Stop near negative pole
+        const negP = poles[1];
+        const dx = px - negP.rx * w;
+        const dy = py - negP.ry * h;
+        if (Math.sqrt(dx * dx + dy * dy) < 12) break;
+      }
+
+      // Draw with gradient stroke
+      for (let s = 1; s < points.length; s++) {
+        const frac = s / points.length;
+        const waveFrac = (frac + t * .3) % 1;
+        const alpha = 0.1 + 0.55 * Math.pow(Math.sin(waveFrac * Math.PI), 1.5);
+        const col = lerpColor(petrol, rust, frac);
+        ctx.beginPath();
+        ctx.moveTo(points[s - 1].x, points[s - 1].y);
+        ctx.lineTo(points[s].x, points[s].y);
+        ctx.strokeStyle = `rgba(${Math.round(col.r)},${Math.round(col.g)},${Math.round(col.b)},${alpha.toFixed(3)})`;
+        ctx.lineWidth = 1.2;
+        ctx.stroke();
+      }
+    }
+
+    requestAnimationFrame(draw);
+  }
+
+  draw();
+})();
+
+
+// ──────────────────────────────────────────
+// 5. TEXT GLITCH SCRAMBLE — CONTINUOUS
+// ──────────────────────────────────────────
+(function () {
+  const GLITCH_CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*<>/\\|';
+  const GLITCH_COUNT = 3;   // chars to glitch at once
+  const INTERVAL_MS  = 80;  // ms between updates
+  const RESTORE_MS   = 160; // ms a char stays glitched before restoring
+
+  function initGlitch(el) {
+    const original = el.getAttribute('data-text') || el.textContent;
+    el.setAttribute('data-text', original);
+    el.innerHTML = '';
+
+    // Build spans
+    const spans = [];
+    for (let i = 0; i < original.length; i++) {
+      const span = document.createElement('span');
+      span.className = 'glitch-char';
+      span.textContent = original[i];
+      el.appendChild(span);
+      spans.push({ span, orig: original[i], restoreAt: 0 });
+    }
+
+    const nonSpace = spans.filter(s => s.orig !== ' ');
+
+    setInterval(() => {
+      const now = Date.now();
+
+      // Restore chars that have been glitched long enough
+      spans.forEach(s => {
+        if (s.restoreAt && now > s.restoreAt) {
+          s.span.textContent = s.orig;
+          s.span.classList.remove('active');
+          s.restoreAt = 0;
+        }
+      });
+
+      // Pick new chars to glitch
+      const available = nonSpace.filter(s => s.restoreAt === 0);
+      if (available.length < GLITCH_COUNT) return;
+
+      for (let k = 0; k < GLITCH_COUNT; k++) {
+        const idx = Math.floor(Math.random() * available.length);
+        const entry = available.splice(idx, 1)[0];
+        entry.span.textContent = GLITCH_CHARS[Math.floor(Math.random() * GLITCH_CHARS.length)];
+        entry.span.classList.add('active');
+        entry.restoreAt = now + RESTORE_MS;
+      }
+    }, INTERVAL_MS);
+  }
+
+  initGlitch(document.getElementById('glitch-el'));
+  initGlitch(document.getElementById('glitch-el-2'));
+})();
+
+
+// ──────────────────────────────────────────
+// 8. ELASTIC UNDERLINE — leave bounce via JS
+// ──────────────────────────────────────────
+(function () {
+  document.querySelectorAll('.elastic-link').forEach(link => {
+    link.addEventListener('mouseleave', () => {
+      link.classList.add('leaving');
+      setTimeout(() => link.classList.remove('leaving'), 520);
+    });
+  });
+})();
+</script>
+</body>
+</html>

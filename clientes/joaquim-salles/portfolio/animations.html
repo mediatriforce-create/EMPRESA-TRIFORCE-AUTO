@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio Design System — Animations</title>
+
+  <!-- ═══════════════════════════════════════════════════════
+       DESIGN TOKENS
+  ═══════════════════════════════════════════════════════ -->
+  <style>
+    :root {
+      --bg:         #050D0B;
+      --petrol-1:   #1D5C54;
+      --petrol-2:   #2B7E74;
+      --petrol-3:   #3DA898;
+      --rust:       #C4532A;
+      --text:       #DDD8CC;
+      --text-dim:   #8A8578;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Courier New', monospace;
+      min-height: 100vh;
+      overflow-x: hidden;
+      user-select: none;
+    }
+
+    /* ── layout ── */
+    .page {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 3rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 6rem;
+    }
+
+    .section-label {
+      font-size: 0.65rem;
+      letter-spacing: .25em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      margin-bottom: 1rem;
+    }
+
+    h2 {
+      font-size: 1rem;
+      font-weight: 400;
+      color: var(--petrol-3);
+      margin-bottom: 1.5rem;
+      letter-spacing: .05em;
+    }
+
+    canvas { display: block; }
+  </style>
+</head>
+<body>
+
+<!-- ════════════════════════════════════════════════════════════
+     1. MATRIX RAIN — full-width canvas, petroleum palette
+════════════════════════════════════════════════════════════ -->
+<style>
+  #matrix-wrap {
+    position: relative;
+    width: 100%;
+    height: 340px;
+    overflow: hidden;
+    border: 1px solid rgba(29,92,84,.25);
+  }
+  #matrixCanvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+</style>
+
+<!-- ════════════════════════════════════════════════════════════
+     2. PARTICLE BURST — invisible overlay, listens for clicks
+════════════════════════════════════════════════════════════ -->
+<style>
+  #particleCanvas {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9999;
+  }
+</style>
+<canvas id="particleCanvas"></canvas>
+
+<!-- ════════════════════════════════════════════════════════════
+     3. FLOATING SHAPES — fixed background layer
+════════════════════════════════════════════════════════════ -->
+<style>
+  #shapesCanvas {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+  }
+</style>
+<canvas id="shapesCanvas"></canvas>
+
+<!-- ════════════════════════════════════════════════════════════
+     PAGE CONTENT
+════════════════════════════════════════════════════════════ -->
+<div class="page" style="position:relative;z-index:1;">
+
+  <!-- Section 1: Matrix Rain -->
+  <section>
+    <p class="section-label">01 / Matrix Rain</p>
+    <h2>Petroleum falling characters</h2>
+    <div id="matrix-wrap">
+      <canvas id="matrixCanvas"></canvas>
+    </div>
+  </section>
+
+  <!-- Section 2: Click anywhere notice -->
+  <section>
+    <p class="section-label">02 / Particle Burst on Click</p>
+    <h2>Click anywhere on the page — particles burst outward</h2>
+    <div style="
+      display:flex;align-items:center;justify-content:center;
+      height:160px;border:1px solid rgba(196,83,42,.25);
+      border-radius:4px;cursor:crosshair;
+      color:var(--text-dim);font-size:.8rem;letter-spacing:.1em;
+    ">CLICK HERE — OR ANYWHERE</div>
+  </section>
+
+  <!-- Section 3: Floating Shapes notice -->
+  <section>
+    <p class="section-label">03 / Floating Geometric Shapes</p>
+    <h2>Wireframe shapes drift in the background — barely visible</h2>
+    <div style="
+      height:100px;border:1px dashed rgba(29,92,84,.2);
+      display:flex;align-items:center;justify-content:center;
+      color:var(--text-dim);font-size:.75rem;letter-spacing:.1em;
+    ">SEE BACKGROUND LAYER (FIXED)</div>
+  </section>
+
+  <!-- Section 4: Chromatic Aberration -->
+  <section>
+    <p class="section-label">04 / Chromatic Aberration on Hover</p>
+    <h2>Hover the text below</h2>
+
+    <style>
+      .chroma-text {
+        font-size: clamp(1.8rem, 5vw, 3.5rem);
+        font-weight: 700;
+        letter-spacing: .05em;
+        color: var(--text);
+        display: inline-block;
+        transition: none;
+        cursor: default;
+        position: relative;
+      }
+
+      /* ── chromatic split via multi-layer text-shadow ── */
+      .chroma-text::before,
+      .chroma-text::after {
+        content: attr(data-text);
+        position: absolute;
+        inset: 0;
+        opacity: 0;
+        transition: opacity .15s ease;
+        pointer-events: none;
+      }
+
+      /* red channel — offset left */
+      .chroma-text::before {
+        color: #ff3333;
+        mix-blend-mode: screen;
+        clip-path: inset(0 0 0 0);
+        left: -3px;
+        top: 1px;
+      }
+
+      /* cyan channel — offset right */
+      .chroma-text::after {
+        color: #33ffff;
+        mix-blend-mode: screen;
+        left: 3px;
+        top: -1px;
+      }
+
+      .chroma-text:hover::before,
+      .chroma-text:hover::after {
+        opacity: .65;
+      }
+
+      /* extra: desaturate + blur the base on hover for stronger split feel */
+      .chroma-text:hover {
+        filter:
+          drop-shadow(-3px  1px 0 rgba(255,51,51,.55))
+          drop-shadow( 3px -1px 0 rgba(51,255,255,.55));
+        animation: chroma-shake .25s ease;
+      }
+
+      @keyframes chroma-shake {
+        0%   { letter-spacing: .05em; }
+        30%  { letter-spacing: .07em; }
+        60%  { letter-spacing: .04em; }
+        100% { letter-spacing: .05em; }
+      }
+
+      /* also works on any element with .chroma class */
+      .chroma {
+        transition: filter .1s ease;
+      }
+      .chroma:hover {
+        filter:
+          drop-shadow(-2px  0px 0 rgba(255,51,51,.6))
+          drop-shadow( 2px  0px 0 rgba(51,255,255,.6));
+      }
+    </style>
+
+    <div style="display:flex;flex-wrap:wrap;gap:3rem;align-items:flex-end;">
+      <span class="chroma-text" data-text="JOAQUIM SALLES">JOAQUIM SALLES</span>
+      <span class="chroma-text" data-text="DEVELOPER" style="font-size:clamp(1.2rem,3vw,2rem);color:var(--petrol-3);">DEVELOPER</span>
+      <img
+        src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Ccircle cx='30' cy='30' r='25' fill='none' stroke='%231D5C54' stroke-width='3'/%3E%3Cpath d='M15 30 L45 30 M30 15 L30 45' stroke='%23C4532A' stroke-width='2'/%3E%3C/svg%3E"
+        alt="icon"
+        class="chroma"
+        style="width:60px;height:60px;"
+      />
+    </div>
+  </section>
+
+  <!-- Section 5: 3D Card Flip -->
+  <section>
+    <p class="section-label">05 / 3D Card Flip</p>
+    <h2>Click or hover the cards</h2>
+
+    <style>
+      .cards-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1.5rem;
+      }
+
+      /* scene */
+      .flip-scene {
+        width: 260px;
+        height: 160px;
+        perspective: 900px;
+        cursor: pointer;
+      }
+
+      /* inner rotating element */
+      .flip-inner {
+        width: 100%;
+        height: 100%;
+        position: relative;
+        transform-style: preserve-3d;
+        transition: transform .55s cubic-bezier(.4,0,.2,1);
+      }
+
+      .flip-scene:hover .flip-inner,
+      .flip-scene.flipped .flip-inner {
+        transform: rotateY(180deg);
+      }
+
+      /* shared face */
+      .flip-face {
+        position: absolute;
+        inset: 0;
+        backface-visibility: hidden;
+        -webkit-backface-visibility: hidden;
+        border-radius: 6px;
+        padding: 1.4rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+
+      /* front */
+      .flip-front {
+        background: linear-gradient(135deg, #0E1F1C 0%, #122B27 100%);
+        border: 1px solid var(--petrol-1);
+      }
+      .flip-front .card-num {
+        font-size: .6rem;
+        color: var(--petrol-3);
+        letter-spacing: .2em;
+        text-transform: uppercase;
+      }
+      .flip-front .card-title {
+        font-size: 1.05rem;
+        color: var(--text);
+        letter-spacing: .04em;
+      }
+      .flip-front .card-hint {
+        font-size: .58rem;
+        color: var(--text-dim);
+        letter-spacing: .12em;
+        text-transform: uppercase;
+      }
+
+      /* back */
+      .flip-back {
+        background: linear-gradient(135deg, #1A0D07 0%, #261109 100%);
+        border: 1px solid var(--rust);
+        transform: rotateY(180deg);
+      }
+      .flip-back .metrics {
+        display: flex;
+        gap: 1rem;
+      }
+      .flip-back .metric {
+        display: flex;
+        flex-direction: column;
+        gap: .2rem;
+      }
+      .flip-back .metric-val {
+        font-size: 1.1rem;
+        color: var(--rust);
+        letter-spacing: .02em;
+      }
+      .flip-back .metric-label {
+        font-size: .55rem;
+        color: var(--text-dim);
+        text-transform: uppercase;
+        letter-spacing: .15em;
+      }
+      .flip-back .stack {
+        display: flex;
+        flex-wrap: wrap;
+        gap: .35rem;
+      }
+      .flip-back .tag {
+        font-size: .55rem;
+        letter-spacing: .1em;
+        text-transform: uppercase;
+        border: 1px solid rgba(196,83,42,.4);
+        color: var(--rust);
+        padding: .2rem .5rem;
+        border-radius: 2px;
+      }
+    </style>
+
+    <div class="cards-row">
+      <!-- Card 1 -->
+      <div class="flip-scene" onclick="this.classList.toggle('flipped')">
+        <div class="flip-inner">
+          <div class="flip-face flip-front">
+            <span class="card-num">01</span>
+            <span class="card-title">EUpresa Dashboard</span>
+            <span class="card-hint">hover / click to reveal ↗</span>
+          </div>
+          <div class="flip-face flip-back">
+            <div class="metrics">
+              <div class="metric">
+                <span class="metric-val">4.2k</span>
+                <span class="metric-label">Users</span>
+              </div>
+              <div class="metric">
+                <span class="metric-val">98%</span>
+                <span class="metric-label">Uptime</span>
+              </div>
+              <div class="metric">
+                <span class="metric-val">12ms</span>
+                <span class="metric-label">P99</span>
+              </div>
+            </div>
+            <div class="stack">
+              <span class="tag">Next.js</span>
+              <span class="tag">Supabase</span>
+              <span class="tag">Airtable</span>
+              <span class="tag">TS</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="flip-scene" onclick="this.classList.toggle('flipped')">
+        <div class="flip-inner">
+          <div class="flip-face flip-front">
+            <span class="card-num">02</span>
+            <span class="card-title">Triforce Automation</span>
+            <span class="card-hint">hover / click to reveal ↗</span>
+          </div>
+          <div class="flip-face flip-back">
+            <div class="metrics">
+              <div class="metric">
+                <span class="metric-val">200+</span>
+                <span class="metric-label">Posts</span>
+              </div>
+              <div class="metric">
+                <span class="metric-val">3×</span>
+                <span class="metric-label">Speed</span>
+              </div>
+            </div>
+            <div class="stack">
+              <span class="tag">Claude API</span>
+              <span class="tag">Canva MCP</span>
+              <span class="tag">Python</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="flip-scene" onclick="this.classList.toggle('flipped')">
+        <div class="flip-inner">
+          <div class="flip-face flip-front">
+            <span class="card-num">03</span>
+            <span class="card-title">Portfolio System</span>
+            <span class="card-hint">hover / click to reveal ↗</span>
+          </div>
+          <div class="flip-face flip-back">
+            <div class="metrics">
+              <div class="metric">
+                <span class="metric-val">100</span>
+                <span class="metric-label">Perf</span>
+              </div>
+              <div class="metric">
+                <span class="metric-val">0 dep</span>
+                <span class="metric-label">Libs</span>
+              </div>
+            </div>
+            <div class="stack">
+              <span class="tag">Vanilla JS</span>
+              <span class="tag">Canvas</span>
+              <span class="tag">CSS</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 6: Elastic Spring -->
+  <section>
+    <p class="section-label">06 / Elastic Spring on Click</p>
+    <h2>Click the buttons — elastic bounce back</h2>
+
+    <style>
+      @keyframes spring-pop {
+        0%   { transform: scale(1); }
+        20%  { transform: scale(.92); }
+        50%  { transform: scale(1.08); }
+        75%  { transform: scale(.98); }
+        90%  { transform: scale(1.02); }
+        100% { transform: scale(1); }
+      }
+
+      .spring {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transform-origin: center;
+        will-change: transform;
+      }
+
+      .spring.popping {
+        animation: spring-pop .45s cubic-bezier(.36,.07,.19,.97) forwards;
+      }
+
+      /* visual styles */
+      .btn-primary {
+        padding: .75rem 2rem;
+        background: var(--petrol-1);
+        border: none;
+        color: var(--text);
+        font-family: inherit;
+        font-size: .85rem;
+        letter-spacing: .12em;
+        text-transform: uppercase;
+        border-radius: 3px;
+      }
+
+      .btn-secondary {
+        padding: .75rem 2rem;
+        background: transparent;
+        border: 1px solid var(--rust);
+        color: var(--rust);
+        font-family: inherit;
+        font-size: .85rem;
+        letter-spacing: .12em;
+        text-transform: uppercase;
+        border-radius: 3px;
+      }
+
+      .btn-icon {
+        width: 52px;
+        height: 52px;
+        background: #0E1A17;
+        border: 1px solid var(--petrol-2);
+        color: var(--petrol-3);
+        font-size: 1.2rem;
+        border-radius: 50%;
+      }
+
+      .spring-demo-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        align-items: center;
+      }
+    </style>
+
+    <div class="spring-demo-row">
+      <button class="spring btn-primary">Contact me</button>
+      <button class="spring btn-secondary">View work</button>
+      <button class="spring btn-icon">↗</button>
+      <button class="spring btn-icon" style="border-color:var(--rust);color:var(--rust);">✦</button>
+    </div>
+  </section>
+
+</div><!-- /page -->
+
+
+<!-- ════════════════════════════════════════════════════════════
+     JAVASCRIPT — all 3 canvas animations + spring
+════════════════════════════════════════════════════════════ -->
+<script>
+/* ──────────────────────────────────────────────────────────
+   UTILITY
+────────────────────────────────────────────────────────── */
+function rand(min, max) { return Math.random() * (max - min) + min; }
+function randInt(min, max) { return Math.floor(rand(min, max + 1)); }
+function pick(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
+
+
+/* ══════════════════════════════════════════════════════════
+   1. MATRIX RAIN
+══════════════════════════════════════════════════════════ */
+(function initMatrix() {
+  const canvas = document.getElementById('matrixCanvas');
+  const wrap   = document.getElementById('matrix-wrap');
+  const ctx    = canvas.getContext('2d');
+
+  const COLORS = ['#1D5C54', '#2B7E74', '#3DA898'];
+  const CHAR_SET =
+    'アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン' +
+    'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%&';
+
+  const FONT_SIZE = 14;
+  let cols, drops, speeds, brightCols, W, H;
+
+  function resize() {
+    W = wrap.clientWidth;
+    H = wrap.clientHeight;
+    canvas.width  = W;
+    canvas.height = H;
+    cols = Math.floor(W / FONT_SIZE);
+
+    drops     = Array.from({ length: cols }, () => randInt(-40, 0));
+    speeds    = Array.from({ length: cols }, () => rand(.4, 1.6));
+    brightCols = new Set(
+      Array.from({ length: Math.floor(cols * .15) }, () => randInt(0, cols - 1))
+    );
+  }
+
+  function draw() {
+    /* fade trail */
+    ctx.fillStyle = 'rgba(5,13,11,0.055)';
+    ctx.fillRect(0, 0, W, H);
+
+    ctx.font = `${FONT_SIZE}px "Courier New", monospace`;
+
+    for (let i = 0; i < cols; i++) {
+      const char  = pick(CHAR_SET);
+      const x     = i * FONT_SIZE;
+      const y     = drops[i] * FONT_SIZE;
+
+      if (brightCols.has(i)) {
+        /* bright head */
+        ctx.fillStyle = '#B8EFE8';
+        ctx.fillText(char, x, y);
+        /* second glyph slightly dimmer */
+        ctx.fillStyle = COLORS[2];
+        ctx.fillText(pick(CHAR_SET), x, y - FONT_SIZE);
+      } else {
+        ctx.fillStyle = pick(COLORS);
+        ctx.fillText(char, x, y);
+      }
+
+      drops[i] += speeds[i];
+      if (drops[i] * FONT_SIZE > H && Math.random() > .975) {
+        drops[i] = randInt(-20, 0);
+      }
+    }
+  }
+
+  resize();
+  window.addEventListener('resize', resize);
+  setInterval(draw, 40); /* ~25 fps */
+})();
+
+
+/* ══════════════════════════════════════════════════════════
+   2. PARTICLE BURST ON CLICK
+══════════════════════════════════════════════════════════ */
+(function initParticles() {
+  const canvas = document.getElementById('particleCanvas');
+  const ctx    = canvas.getContext('2d');
+
+  function resize() {
+    canvas.width  = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  const RUST_COLORS  = ['#C4532A', '#E0733E', '#9E3E1A', '#D46030'];
+  const PETROL_COLORS = ['#1D5C54', '#2B7E74', '#3DA898', '#0E3530'];
+
+  const particles = [];
+
+  class Particle {
+    constructor(x, y) {
+      const angle = rand(0, Math.PI * 2);
+      const speed = rand(2.5, 9);
+      this.x  = x;
+      this.y  = y;
+      this.vx = Math.cos(angle) * speed;
+      this.vy = Math.sin(angle) * speed;
+      this.gravity = rand(.12, .28);
+      this.size  = rand(2, 7);
+      this.alpha = 1;
+      this.decay = rand(.013, .03);
+      this.color = Math.random() > .5 ? pick(RUST_COLORS) : pick(PETROL_COLORS);
+      /* shape: 0=circle, 1=square, 2=triangle */
+      this.shape = randInt(0, 2);
+      /* slight rotation */
+      this.angle  = rand(0, Math.PI * 2);
+      this.spin   = rand(-.12, .12);
+    }
+
+    update() {
+      this.x    += this.vx;
+      this.y    += this.vy;
+      this.vy   += this.gravity;
+      this.vx   *= .985;
+      this.alpha -= this.decay;
+      this.angle += this.spin;
+    }
+
+    draw(ctx) {
+      ctx.save();
+      ctx.globalAlpha = Math.max(0, this.alpha);
+      ctx.fillStyle   = this.color;
+      ctx.strokeStyle = this.color;
+      ctx.translate(this.x, this.y);
+      ctx.rotate(this.angle);
+
+      if (this.shape === 0) {
+        ctx.beginPath();
+        ctx.arc(0, 0, this.size, 0, Math.PI * 2);
+        ctx.fill();
+      } else if (this.shape === 1) {
+        ctx.fillRect(-this.size / 2, -this.size / 2, this.size, this.size);
+      } else {
+        const s = this.size;
+        ctx.beginPath();
+        ctx.moveTo(0, -s);
+        ctx.lineTo(s * .866, s * .5);
+        ctx.lineTo(-s * .866, s * .5);
+        ctx.closePath();
+        ctx.fill();
+      }
+      ctx.restore();
+    }
+
+    get dead() { return this.alpha <= 0; }
+  }
+
+  document.addEventListener('click', e => {
+    const count = randInt(20, 30);
+    for (let i = 0; i < count; i++) {
+      particles.push(new Particle(e.clientX, e.clientY));
+    }
+  });
+
+  function loop() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    for (let i = particles.length - 1; i >= 0; i--) {
+      const p = particles[i];
+      p.update();
+      p.draw(ctx);
+      if (p.dead) particles.splice(i, 1);
+    }
+    requestAnimationFrame(loop);
+  }
+  loop();
+})();
+
+
+/* ══════════════════════════════════════════════════════════
+   3. FLOATING GEOMETRIC SHAPES
+══════════════════════════════════════════════════════════ */
+(function initShapes() {
+  const canvas = document.getElementById('shapesCanvas');
+  const ctx    = canvas.getContext('2d');
+
+  function resize() {
+    canvas.width  = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  const STROKE = ['rgba(29,92,84,', 'rgba(43,126,116,', 'rgba(61,168,152,'];
+
+  class Shape {
+    constructor() { this.reset(true); }
+
+    reset(init) {
+      this.x     = rand(0, window.innerWidth);
+      this.y     = init ? rand(0, window.innerHeight) : rand(-200, window.innerHeight + 200);
+      this.vx    = rand(-.15, .15);
+      this.vy    = rand(-.08, .08);
+      this.size  = rand(30, 120);
+      this.angle = rand(0, Math.PI * 2);
+      this.spin  = rand(-.003, .003);
+      this.alpha = rand(.04, .12);
+      this.type  = pick(['triangle', 'hexagon', 'line', 'hexagon', 'triangle']);
+      this.color = pick(STROKE);
+      this.lineW = rand(.5, 1.5);
+    }
+
+    update() {
+      this.x     += this.vx;
+      this.y     += this.vy;
+      this.angle += this.spin;
+
+      const W = window.innerWidth, H = window.innerHeight;
+      if (this.x < -200 || this.x > W + 200 ||
+          this.y < -200 || this.y > H + 200) {
+        this.reset(false);
+      }
+    }
+
+    draw(ctx) {
+      ctx.save();
+      ctx.globalAlpha = this.alpha;
+      ctx.strokeStyle = this.color + '1)';
+      ctx.lineWidth   = this.lineW;
+      ctx.translate(this.x, this.y);
+      ctx.rotate(this.angle);
+
+      if (this.type === 'triangle') {
+        const s = this.size;
+        ctx.beginPath();
+        ctx.moveTo(0, -s);
+        ctx.lineTo(s * .866, s * .5);
+        ctx.lineTo(-s * .866, s * .5);
+        ctx.closePath();
+        ctx.stroke();
+
+      } else if (this.type === 'hexagon') {
+        const s = this.size * .6;
+        ctx.beginPath();
+        for (let i = 0; i < 6; i++) {
+          const a = (Math.PI / 3) * i;
+          i === 0
+            ? ctx.moveTo(Math.cos(a) * s, Math.sin(a) * s)
+            : ctx.lineTo(Math.cos(a) * s, Math.sin(a) * s);
+        }
+        ctx.closePath();
+        ctx.stroke();
+
+      } else { /* line */
+        const half = this.size * .8;
+        ctx.beginPath();
+        ctx.moveTo(-half, 0);
+        ctx.lineTo( half, 0);
+        ctx.stroke();
+      }
+
+      ctx.restore();
+    }
+  }
+
+  const shapes = Array.from({ length: 22 }, () => new Shape());
+
+  function loop() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    shapes.forEach(s => { s.update(); s.draw(ctx); });
+    requestAnimationFrame(loop);
+  }
+  loop();
+})();
+
+
+/* ══════════════════════════════════════════════════════════
+   6. ELASTIC SPRING — via JS classList
+══════════════════════════════════════════════════════════ */
+(function initSpring() {
+  /* attach to every .spring element */
+  document.querySelectorAll('.spring').forEach(el => {
+    el.addEventListener('click', function() {
+      this.classList.remove('popping');          /* reset if already running */
+      void this.offsetWidth;                     /* force reflow */
+      this.classList.add('popping');
+      this.addEventListener('animationend', () => {
+        this.classList.remove('popping');
+      }, { once: true });
+    });
+  });
+})();
+</script>
+
+</body>
+</html>
