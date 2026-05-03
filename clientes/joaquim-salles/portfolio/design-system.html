@@ -709,6 +709,44 @@ body::after {
 .mesh-sub { font-size:10px; letter-spacing:.25em; text-transform:uppercase; color:rgba(221,216,204,.35); margin-top:10px; }
 
 /* ════════════════════════════════════════════════════════════
+   DRAG TRACK (section 15)
+════════════════════════════════════════════════════════════ */
+.drag-track-wrap { position:relative; padding:0 0 8px; overflow:hidden; }
+.drag-track {
+  display:flex; gap:20px; padding:12px 56px 20px;
+  overflow:hidden; cursor:grab; user-select:none;
+  -webkit-overflow-scrolling:touch;
+}
+.drag-track.is-dragging { cursor:grabbing; }
+.dtc {
+  flex:0 0 clamp(300px,38vw,420px); min-height:320px;
+  border-radius:18px; background:var(--bg2); border:1px solid var(--bdr);
+  position:relative; overflow:hidden;
+  transition:border-color .3s, box-shadow .3s, transform .4s cubic-bezier(.34,1.56,.64,1);
+  will-change:transform;
+  --dtc-accent: var(--p);
+}
+.dtc:hover {
+  border-color:rgba(29,92,84,.5); transform:translateY(-4px);
+  box-shadow:0 20px 60px rgba(0,0,0,.4), 0 0 30px rgba(29,92,84,.1);
+}
+.dtc-ghost { border-style:dashed; display:flex; align-items:center; justify-content:center; }
+.dtc-glow { position:absolute; inset:0; pointer-events:none; }
+.dtc-num {
+  position:absolute; top:14px; right:18px;
+  font-size:72px; font-weight:800; line-height:1;
+  color:rgba(29,92,84,.08); letter-spacing:-.04em; pointer-events:none;
+}
+.dtc-body { position:relative; z-index:1; padding:28px 24px 24px; height:100%; display:flex; flex-direction:column; }
+.dtc-tag { font-size:9px; letter-spacing:.2em; text-transform:uppercase; color:var(--pxl); border:1px solid rgba(29,92,84,.25); padding:3px 10px; border-radius:100px; display:inline-block; margin-bottom:16px; width:fit-content; }
+.dtc-title { font-size:clamp(24px,3vw,32px); font-weight:800; letter-spacing:-.025em; margin-bottom:12px; }
+.dtc-desc { font-size:13px; color:var(--txt2); font-weight:300; line-height:1.65; flex:1; }
+.dtc-footer { display:flex; gap:6px; flex-wrap:wrap; margin:16px 0 0; }
+.dtc-metric { margin-top:auto; padding-top:16px; border-top:1px solid var(--bdr); display:flex; align-items:baseline; gap:8px; }
+.dtc-m-n { font-size:36px; font-weight:800; letter-spacing:-.03em; color:var(--pxl); text-shadow:0 0 20px rgba(29,92,84,.4); }
+.dtc-m-l { font-size:11px; color:var(--muted); letter-spacing:.06em; }
+
+/* ════════════════════════════════════════════════════════════
    13 · VORTEX BURACO NEGRO
 ════════════════════════════════════════════════════════════ */
 .vortex-stage {
@@ -1332,66 +1370,111 @@ body::after {
 
 </div><!-- /wrap -->
 
-<!-- ══ 13 · VORTEX BURACO NEGRO ═══════════════════════════════ -->
+<!-- ══ 13 · VORTEX ════════════════════════════════════════════ -->
 <div class="wrap">
-<section class="sec in">
+<section class="sec">
   <p class="sec-lbl" id="s13">13 · Vórtex / Buraco Negro</p>
-  <h2 class="sec-title rev-left">250 partículas em colapso gravitacional</h2>
-  <p class="sec-desc rev-left d1">Cursor repele. Petróleo longe, ferrugem na borda do evento. Partículas absorvidas voltam das bordas.</p>
-  <div class="rev-up d2">
-    <div class="vortex-stage" id="vortexStage">
-      <canvas id="vortexCanvas"></canvas>
-      <div class="vortex-core"></div>
-      <div class="vortex-ring" style="width:80px;height:80px;opacity:.4"></div>
-      <div class="vortex-ring" style="width:160px;height:160px;opacity:.2;animation-duration:14s"></div>
-      <div class="vortex-ring" style="width:260px;height:260px;opacity:.1;animation-duration:22s;animation-direction:reverse"></div>
-    </div>
-    <p style="text-align:center;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-top:8px">MOVA O CURSOR — PARTÍCULAS FOGEM DO BURACO NEGRO</p>
+  <h2 class="sec-title">250 partículas em colapso gravitacional</h2>
+  <p class="sec-desc">Cursor repele — petróleo longe, ferrugem na borda do evento.</p>
+  <div class="vortex-stage" id="vortexStage">
+    <canvas id="vortexCanvas"></canvas>
+    <div class="vortex-core"></div>
+    <div class="vortex-ring" style="width:80px;height:80px;opacity:.4"></div>
+    <div class="vortex-ring" style="width:160px;height:160px;opacity:.2;animation-duration:14s"></div>
+    <div class="vortex-ring" style="width:280px;height:280px;opacity:.1;animation-duration:22s;animation-direction:reverse"></div>
   </div>
+  <p style="text-align:center;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-top:10px">MOVA O CURSOR SOBRE O CANVAS</p>
 </section>
 
-<!-- ══ 14 · CORTINA CINEMATIC ══════════════════════════════════ -->
-<section class="sec in">
+<!-- ══ 14 · CORTINA ══════════════════════════════════════════ -->
+<section class="sec">
   <p class="sec-lbl" id="s14">14 · Cortina Cinematic</p>
-  <h2 class="sec-title rev-left">3 painéis varrendo a tela — transição de página</h2>
-  <p class="sec-desc rev-left d1">Exatamente como o portfólio vai transitar entre seções. Clique para disparar.</p>
-  <div class="rev-up d2">
-    <div class="cine-wrap" id="cineWrap">
-      <div class="cine-bg">
-        <div class="cine-title gw" data-t="PRÓXIMO" id="cineTxt">CLIQUE</div>
-        <div class="cine-sub">Cortina Cinematic · 3 painéis</div>
-      </div>
-      <div class="cine-panel cp1"></div>
-      <div class="cine-panel cp2"></div>
-      <div class="cine-panel cp3"></div>
+  <h2 class="sec-title">3 painéis varrendo a tela</h2>
+  <p class="sec-desc">Exatamente como o portfólio vai transitar entre projetos.</p>
+  <div class="cine-wrap" id="cineWrap">
+    <div class="cine-bg">
+      <div class="cine-title gw" data-t="CLIQUE" id="cineTxt">CLIQUE</div>
+      <div class="cine-sub">Cortina Cinematic · 3 painéis · clique para disparar</div>
     </div>
-    <button class="rpbtn" style="margin-top:12px" onclick="runCurtain()">DISPARAR CORTINA</button>
+    <div class="cine-panel cp1"></div>
+    <div class="cine-panel cp2"></div>
+    <div class="cine-panel cp3"></div>
+  </div>
+  <div style="display:flex;gap:12px;margin-top:14px;flex-wrap:wrap">
+    <button class="rpbtn" onclick="runCurtain()">▶ DISPARAR</button>
+    <button class="rpbtn" onclick="runCurtainColor('var(--p)')">PETRÓLEO</button>
+    <button class="rpbtn" onclick="runCurtainColor('var(--r)')">FERRUGEM</button>
+    <button class="rpbtn" onclick="runCurtainColor('var(--bg3)')">DARK</button>
   </div>
 </section>
 
-<!-- ══ 15 · FLY-IN DOS LADOS ══════════════════════════════════ -->
-<section class="sec in">
-  <p class="sec-lbl" id="s15">15 · Fly-In dos Lados</p>
-  <h2 class="sec-title rev-left">8 direções — CSS puro, zero JavaScript</h2>
-  <p class="sec-desc rev-left d1">Cada card usa <code style="color:var(--pxl);font-size:12px">animation-timeline: view()</code> — dispara quando entra no viewport. Role para ver.</p>
-  <div class="fly-demo-grid">
-    <div class="fdc fli fl-l"><div class="fdc-t">← Esquerda</div><div class="fdc-v">translateX(-200px)</div></div>
-    <div class="fdc fli fl-r"><div class="fdc-t">→ Direita</div><div class="fdc-v">translateX(+200px)</div></div>
-    <div class="fdc fli fl-u"><div class="fdc-t">↑ Cima</div><div class="fdc-v">translateY(-80px)</div></div>
-    <div class="fdc fli fl-d"><div class="fdc-t">↓ Baixo</div><div class="fdc-v">translateY(+80px)</div></div>
-    <div class="fdc fli fl-sc"><div class="fdc-t">⊙ Scale</div><div class="fdc-v">scale(0.2 → 1)</div></div>
-    <div class="fdc fli fl-rt"><div class="fdc-t">↻ Rotate</div><div class="fdc-v">rotate(-20deg)</div></div>
-    <div class="fdc fli fl-sk"><div class="fdc-t">⊘ Skew</div><div class="fdc-v">skewX(-25deg)</div></div>
-    <div class="fdc fli fl-bl"><div class="fdc-t">◎ Blur</div><div class="fdc-v">blur(20px) + scale</div></div>
-  </div>
+<!-- ══ 15 · DRAG TRACK ════════════════════════════════════════ -->
+<section class="sec">
+  <p class="sec-lbl" id="s15">15 · Drag to Explore</p>
+  <h2 class="sec-title">Arraste os projetos</h2>
+  <p class="sec-desc">Drag horizontal com momentum e snap. Cada card com hover 3D tilt.</p>
 </section>
+</div><!-- /wrap -->
 
-<!-- ══ 16 · STAGGER DIAGONAL ══════════════════════════════════ -->
-<section class="sec in">
-  <p class="sec-lbl" id="s16">16 · Stagger Diagonal</p>
-  <h2 class="sec-title rev-left">Cascata em diagonal — scroll activa</h2>
-  <p class="sec-desc rev-left d1">Cada item entra com delay escalonado em diagonal. Role até aqui e veja a onda.</p>
-  <div class="stag-grid" id="stagGrid">
+<div class="drag-track-wrap">
+  <div class="drag-track" id="dragTrack">
+    <div class="dtc" data-num="01">
+      <div class="dtc-glow" style="background:radial-gradient(circle at 40% 30%,rgba(29,92,84,.35),transparent 65%)"></div>
+      <div class="dtc-num">01</div>
+      <div class="dtc-body">
+        <div class="dtc-tag">ONG · Gestão</div>
+        <div class="dtc-title">VAV Central</div>
+        <div class="dtc-desc">Sistema completo de gestão que automatizou a operação inteira da ONG.</div>
+        <div class="dtc-footer">
+          <span class="htc-tag">Next.js</span><span class="htc-tag">Supabase</span><span class="htc-tag">Google API</span>
+        </div>
+        <div class="dtc-metric"><span class="dtc-m-n">+120h</span><span class="dtc-m-l">recuperadas/mês</span></div>
+      </div>
+    </div>
+    <div class="dtc" data-num="02" style="--dtc-accent:var(--r)">
+      <div class="dtc-glow" style="background:radial-gradient(circle at 60% 30%,rgba(196,83,42,.3),transparent 65%)"></div>
+      <div class="dtc-num">02</div>
+      <div class="dtc-body">
+        <div class="dtc-tag" style="color:var(--r);border-color:rgba(196,83,42,.3)">Produtividade · IA</div>
+        <div class="dtc-title">CGR1 Planner</div>
+        <div class="dtc-desc">Planejador inteligente com calendário IA e automação de tarefas recorrentes.</div>
+        <div class="dtc-footer">
+          <span class="htc-tag">React</span><span class="htc-tag">Firebase</span><span class="htc-tag">AI</span>
+        </div>
+        <div class="dtc-metric"><span class="dtc-m-n" style="color:var(--r)">4×</span><span class="dtc-m-l">mais rápido</span></div>
+      </div>
+    </div>
+    <div class="dtc" data-num="03">
+      <div class="dtc-glow" style="background:radial-gradient(circle at 50% 40%,rgba(61,168,152,.25),transparent 65%)"></div>
+      <div class="dtc-num">03</div>
+      <div class="dtc-body">
+        <div class="dtc-tag" style="color:var(--pxl);border-color:rgba(61,168,152,.3)">Automação · Tempo</div>
+        <div class="dtc-title">Time Track</div>
+        <div class="dtc-desc">Controle de horas com relatórios automáticos e alertas inteligentes de desvio.</div>
+        <div class="dtc-footer">
+          <span class="htc-tag">Node.js</span><span class="htc-tag">Tailwind</span><span class="htc-tag">Charts</span>
+        </div>
+        <div class="dtc-metric"><span class="dtc-m-n" style="color:var(--pxl)">3</span><span class="dtc-m-l">equipes ativas</span></div>
+      </div>
+    </div>
+    <div class="dtc dtc-ghost" data-num="→">
+      <div style="text-align:center;padding:20px">
+        <div style="font-size:48px;color:rgba(29,92,84,.2);margin-bottom:16px;font-weight:800">+</div>
+        <div style="font-size:12px;color:var(--muted);letter-spacing:.1em;line-height:1.6">Próximo projeto<br>em desenvolvimento</div>
+      </div>
+    </div>
+  </div>
+  <p class="htrack-hint">← arraste com momentum →</p>
+</div>
+
+<div class="wrap">
+
+<!-- ══ 16 · STAGGER WAVE ════════════════════════════════════ -->
+<section class="sec">
+  <p class="sec-lbl" id="s16">16 · Stagger Wave</p>
+  <h2 class="sec-title">Cascata em onda diagonal</h2>
+  <p class="sec-desc">Role para ver cada item aparecer em sequência diagonal. Clique para reanimar.</p>
+  <div class="stag-grid" id="stagGrid" style="cursor:pointer" onclick="replayStagger()" title="Clique para reanimar">
     <div class="stg-item"><div class="stg-lbl">Projeto</div><div class="stg-val">VAV Central</div><div class="stg-dot"></div></div>
     <div class="stg-item"><div class="stg-lbl">Tecnologia</div><div class="stg-val">Next.js</div><div class="stg-dot" style="background:var(--pxl)"></div></div>
     <div class="stg-item"><div class="stg-lbl">Impacto</div><div class="stg-val">+120h/mês</div><div class="stg-dot"></div></div>
@@ -1401,13 +1484,14 @@ body::after {
     <div class="stg-item"><div class="stg-lbl">Founder</div><div class="stg-val">Joaquim Salles</div><div class="stg-dot"></div></div>
     <div class="stg-item"><div class="stg-lbl">Cidade</div><div class="stg-val">São Paulo</div><div class="stg-dot" style="background:var(--pxl)"></div></div>
   </div>
+  <p style="font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-top:10px">CLIQUE NA GRADE PARA REANIMAR</p>
 </section>
 
-<!-- ══ 17 · PIN + SCALE REVEAL ════════════════════════════════ -->
-<section class="sec in">
+<!-- ══ 17 · PIN + SCALE ══════════════════════════════════════ -->
+<section class="sec">
   <p class="sec-lbl" id="s17">17 · Pin + Scale Reveal</p>
-  <h2 class="sec-title rev-left">Scroll avança — palavra emerge</h2>
-  <p class="sec-desc rev-left d1">A seção fica fixada. Enquanto você rola, a palavra escala de 15% até 100%. Efeito cinematográfico.</p>
+  <h2 class="sec-title">Role e a palavra emerge</h2>
+  <p class="sec-desc">Seção fixada enquanto você rola. Escala de 10% → 100%. Petróleo vira ferrugem.</p>
 </section>
 </div><!-- /wrap -->
 
@@ -1998,32 +2082,114 @@ window.addEventListener('load', () => {
 })();
 
 // ═══════════════════════════════════════════════════════════════
-//  09 · HORIZONTAL DRAG TRACK
+//  15 · DRAG TRACK — momentum physics
 // ═══════════════════════════════════════════════════════════════
 (function() {
-  const track = document.getElementById('htrack');
+  const track = document.getElementById('dragTrack');
   if (!track) return;
-  let isDown=false, startX=0, scrollLeft=0;
+
+  // 3D tilt on cards
+  track.querySelectorAll('.dtc:not(.dtc-ghost)').forEach(card => {
+    card.addEventListener('mousemove', e => {
+      if (track.classList.contains('is-dragging')) return;
+      const r = card.getBoundingClientRect();
+      const x = (e.clientX - r.left) / r.width - 0.5;
+      const y = (e.clientY - r.top)  / r.height - 0.5;
+      card.style.transform = `translateY(-4px) perspective(800px) rotateX(${-y*10}deg) rotateY(${x*12}deg)`;
+    });
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = '';
+    });
+  });
+
+  // Drag with momentum
+  let isDown = false;
+  let startX = 0;
+  let scrollX = 0;
+  let velX = 0;
+  let lastX = 0;
+  let lastT = 0;
+  let rafId = null;
+
+  // We'll manually translate the track instead of using scrollLeft
+  let currentX = 0;
+  let targetX  = 0;
+  const DRAG_SPEED = 1.2;
+
+  function getMaxX() {
+    // Total width of children - visible width + padding
+    let total = 0;
+    track.querySelectorAll('.dtc').forEach(c => { total += c.offsetWidth + 20; });
+    return Math.max(0, total - track.offsetWidth + 56);
+  }
+
+  function clamp(v, mn, mx) { return Math.max(mn, Math.min(mx, v)); }
+
+  function applyX(x) {
+    currentX = x;
+    track.querySelectorAll('.dtc').forEach((c, i) => {
+      c.style.transform = c.classList.contains('dtc-ghost') ? `translateX(${-x}px)` : c.style.transform.replace(/translateX\([^)]+\)/,'') || '';
+    });
+    // Actually just move the whole track wrapper content
+    track.style.transform = `translateX(${-currentX}px)`;
+  }
+
+  function momentum() {
+    if (Math.abs(velX) < 0.5) { velX = 0; return; }
+    targetX = clamp(currentX + velX, 0, getMaxX());
+    velX *= 0.92;
+    currentX += (targetX - currentX) * 0.15;
+    track.style.transform = `translateX(${-currentX}px)`;
+    rafId = requestAnimationFrame(momentum);
+  }
+
   track.addEventListener('mousedown', e => {
+    cancelAnimationFrame(rafId);
     isDown = true;
-    startX = e.pageX - track.offsetLeft;
-    scrollLeft = track.scrollLeft;
-    track.style.cursor = 'grabbing';
-  });
-  document.addEventListener('mouseup', () => { isDown=false; track.style.cursor='grab'; });
-  track.addEventListener('mousemove', e => {
-    if (!isDown) return;
+    startX = e.clientX;
+    scrollX = currentX;
+    lastX = e.clientX;
+    lastT = Date.now();
+    velX = 0;
+    track.classList.add('is-dragging');
     e.preventDefault();
-    const x = e.pageX - track.offsetLeft;
-    track.scrollLeft = scrollLeft - (x - startX) * 1.4;
   });
-  // Touch support
-  let tx=0;
-  track.addEventListener('touchstart', e => { tx = e.touches[0].pageX; scrollLeft = track.scrollLeft; });
+
+  document.addEventListener('mousemove', e => {
+    if (!isDown) return;
+    const dx = e.clientX - startX;
+    const newX = clamp(scrollX - dx * DRAG_SPEED, 0, getMaxX());
+    currentX = newX;
+    track.style.transform = `translateX(${-currentX}px)`;
+
+    const now = Date.now();
+    const dt = now - lastT || 1;
+    velX = (lastX - e.clientX) / dt * 16;
+    lastX = e.clientX;
+    lastT = now;
+  });
+
+  document.addEventListener('mouseup', () => {
+    if (!isDown) return;
+    isDown = false;
+    track.classList.remove('is-dragging');
+    momentum();
+  });
+
+  // Touch
+  let tx0 = 0, tx_scroll = 0;
+  track.addEventListener('touchstart', e => {
+    cancelAnimationFrame(rafId);
+    tx0 = e.touches[0].clientX;
+    tx_scroll = currentX;
+    velX = 0;
+  }, {passive:true});
   track.addEventListener('touchmove', e => {
-    const diff = tx - e.touches[0].pageX;
-    track.scrollLeft = scrollLeft + diff;
-  });
+    const dx = tx0 - e.touches[0].clientX;
+    currentX = clamp(tx_scroll + dx, 0, getMaxX());
+    track.style.transform = `translateX(${-currentX}px)`;
+  }, {passive:true});
+  track.addEventListener('touchend', () => { momentum(); });
 })();
 
 // ═══════════════════════════════════════════════════════════════
@@ -2284,14 +2450,23 @@ window.addEventListener('load', () => {
 // ═══════════════════════════════════════════════════════════════
 //  14 · CORTINA CINEMATIC
 // ═══════════════════════════════════════════════════════════════
-function runCurtain() {
+function runCurtain(color) {
   const wrap = document.getElementById('cineWrap');
   const txt  = document.getElementById('cineTxt');
   if (!wrap || wrap._running) return;
   wrap._running = true;
 
-  const TITLES = ['VAV CENTRAL','CGR1 PLANNER','TIME TRACK','JOAQUIM'];
+  const TITLES = ['VAV CENTRAL','CGR1 PLANNER','TIME TRACK','JOAQUIM','BUILDER'];
   wrap._idx = ((wrap._idx || 0) + 1) % TITLES.length;
+
+  // Apply color to panels if given
+  if (color) {
+    wrap.querySelectorAll('.cine-panel').forEach((p, i) => {
+      const shades = [0.6, 1, 0.8];
+      p.style.background = color;
+      p.style.opacity = shades[i];
+    });
+  }
 
   wrap.classList.remove('sweep-out');
   void wrap.offsetWidth;
@@ -2302,31 +2477,55 @@ function runCurtain() {
     wrap.classList.remove('sweep-in');
     void wrap.offsetWidth;
     wrap.classList.add('sweep-out');
-    setTimeout(() => { wrap.classList.remove('sweep-out'); wrap._running = false; }, 600);
-  }, 500);
+    setTimeout(() => {
+      wrap.classList.remove('sweep-out');
+      wrap._running = false;
+      // Reset panel styles
+      wrap.querySelectorAll('.cine-panel').forEach(p => { p.style.background=''; p.style.opacity=''; });
+    }, 600);
+  }, 520);
+}
+function runCurtainColor(c) { runCurtain(c); }
+
+function replayStagger() {
+  const grid = document.getElementById('stagGrid');
+  if (!grid) return;
+  const items = grid.querySelectorAll('.stg-item');
+  items.forEach(i => i.classList.remove('in'));
+  void grid.offsetWidth;
+  items.forEach((item, i) => {
+    const col = i % 4, row = Math.floor(i / 4);
+    setTimeout(() => item.classList.add('in'), (col + row) * 80);
+  });
 }
 
 // ═══════════════════════════════════════════════════════════════
-//  16 · STAGGER DIAGONAL
+//  16 · STAGGER DIAGONAL — auto + replay
 // ═══════════════════════════════════════════════════════════════
 (function() {
   const grid = document.getElementById('stagGrid');
   if (!grid) return;
-  const items = grid.querySelectorAll('.stg-item');
+
+  function runStagger() {
+    const items = grid.querySelectorAll('.stg-item');
+    items.forEach((item, i) => {
+      const col = i % 4, row = Math.floor(i / 4);
+      setTimeout(() => item.classList.add('in'), (col + row) * 90);
+    });
+  }
 
   const io = new IntersectionObserver(entries => {
     entries.forEach(e => {
       if (!e.isIntersecting) return;
-      items.forEach((item, i) => {
-        // Diagonal stagger: col + row
-        const col = i % 4, row = Math.floor(i / 4);
-        const delay = (col + row) * 80;
-        setTimeout(() => item.classList.add('in'), delay);
-      });
+      runStagger();
       io.unobserve(e.target);
     });
-  }, {threshold: 0.15});
+  }, {threshold: 0.1});
   io.observe(grid);
+
+  // Also check if already visible on load
+  const r = grid.getBoundingClientRect();
+  if (r.top < window.innerHeight) runStagger();
 })();
 
 // ═══════════════════════════════════════════════════════════════
