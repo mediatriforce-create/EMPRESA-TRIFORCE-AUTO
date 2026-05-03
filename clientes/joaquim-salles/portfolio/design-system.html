@@ -635,9 +635,106 @@ body::after {
   transition:border-color .2s, color .2s;
 }
 .rpbtn:hover { border-color:var(--pl); color:var(--txt); }
+
+/* ════════════════════════════════════════════════════════════
+   07 · MAGNETIC FIELD
+════════════════════════════════════════════════════════════ */
+.mag-field {
+  display:grid; grid-template-columns:repeat(24,1fr); gap:10px;
+  padding:36px; background:var(--bg2); border-radius:14px;
+  border:1px solid var(--bdr); position:relative; overflow:hidden; user-select:none;
+}
+.mag-field::before {
+  content:''; position:absolute; inset:0; pointer-events:none;
+  background:radial-gradient(circle at var(--mx,50%) var(--my,50%), rgba(196,83,42,.07) 0%, transparent 55%);
+}
+.md { width:5px; height:5px; border-radius:50%; background:rgba(43,126,116,.45); will-change:transform; transition:background .4s; }
+
+/* ════════════════════════════════════════════════════════════
+   08 · BLOB MORPH
+════════════════════════════════════════════════════════════ */
+.blob-stage { display:flex; align-items:center; justify-content:center; gap:40px; padding:32px; flex-wrap:wrap; }
+.blob-wrap { display:flex; flex-direction:column; align-items:center; gap:14px; }
+.blob-wrap svg { filter:drop-shadow(0 0 28px rgba(29,92,84,.55)); }
+.blob-wrap .blob-lbl { font-size:10px; letter-spacing:.22em; text-transform:uppercase; color:var(--txt2); }
+
+/* ════════════════════════════════════════════════════════════
+   09 · HORIZONTAL DRAG TRACK
+════════════════════════════════════════════════════════════ */
+.htrack {
+  display:flex; gap:20px; padding:16px 32px 24px;
+  overflow-x:auto; scroll-snap-type:x mandatory;
+  scrollbar-width:none; cursor:grab; -webkit-overflow-scrolling:touch;
+}
+.htrack:active { cursor:grabbing; }
+.htrack::-webkit-scrollbar { display:none; }
+.htc {
+  flex:0 0 clamp(260px,38vw,380px); height:280px; border-radius:16px;
+  background:var(--bg2); border:1px solid var(--bdr); position:relative;
+  overflow:hidden; scroll-snap-align:start; transition:border-color .3s,box-shadow .3s;
+}
+.htc:hover { border-color:rgba(29,92,84,.5); box-shadow:0 0 40px rgba(29,92,84,.12); }
+.htc-bg { position:absolute; inset:0; background:radial-gradient(circle at 70% 30%,rgba(29,92,84,.12),transparent 60%); }
+.htc-n { position:absolute; top:16px; left:20px; font-size:68px; font-weight:800; color:rgba(29,92,84,.1); line-height:1; pointer-events:none; }
+.htc-t { position:absolute; bottom:64px; left:20px; right:20px; font-size:clamp(20px,2.8vw,28px); font-weight:700; letter-spacing:-.025em; }
+.htc-st { position:absolute; bottom:44px; left:20px; font-size:11px; color:var(--r); letter-spacing:.12em; text-transform:uppercase; }
+.htc-tags { position:absolute; bottom:16px; left:20px; display:flex; gap:6px; flex-wrap:wrap; }
+.htc-tag { font-size:9px; padding:3px 8px; border-radius:100px; background:rgba(29,92,84,.18); border:1px solid rgba(29,92,84,.3); color:var(--pxl); letter-spacing:.06em; }
+.htrack-hint { text-align:center; font-size:10px; letter-spacing:.18em; text-transform:uppercase; color:var(--muted); margin-top:8px; }
+
+/* ════════════════════════════════════════════════════════════
+   10 · TEXT SHATTER
+════════════════════════════════════════════════════════════ */
+.shatter-stage { display:flex; align-items:center; justify-content:center; min-height:160px; position:relative; overflow:visible; cursor:crosshair; }
+.shatter-word { font-size:clamp(52px,9vw,96px); font-weight:800; letter-spacing:-.04em; display:flex; user-select:none; }
+.sc { display:inline-block; will-change:transform,opacity; }
+.shatter-hint { text-align:center; font-size:10px; letter-spacing:.2em; text-transform:uppercase; color:var(--muted); margin-top:4px; }
+
+/* ════════════════════════════════════════════════════════════
+   11 · VELOCITY WARP
+════════════════════════════════════════════════════════════ */
+.vel-wrap { overflow:hidden; border-radius:14px; background:var(--bg2); border:1px solid var(--bdr); padding:32px; display:flex; flex-direction:column; gap:16px; }
+.vel-row { display:flex; gap:12px; align-items:center; will-change:transform; }
+.vel-item { white-space:nowrap; font-size:clamp(18px,2.5vw,26px); font-weight:700; letter-spacing:-.02em; color:var(--txt2); will-change:transform; transition:color .3s; }
+.vel-item.active { color:var(--r); text-shadow:0 0 20px rgba(196,83,42,.4); }
+.vel-sep { color:var(--p); font-size:14px; }
+
+/* ════════════════════════════════════════════════════════════
+   12 · NOISE MESH CANVAS
+════════════════════════════════════════════════════════════ */
+.mesh-stage { position:relative; height:280px; border-radius:16px; overflow:hidden; border:1px solid var(--bdr); }
+#meshcanvas { width:100%; height:100%; display:block; }
+.mesh-overlay { position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; pointer-events:none; }
+.mesh-title { font-size:clamp(32px,5vw,56px); font-weight:800; letter-spacing:-.03em; color:rgba(221,216,204,.85); mix-blend-mode:screen; text-shadow:0 0 60px rgba(29,92,84,.8); }
+.mesh-sub { font-size:10px; letter-spacing:.25em; text-transform:uppercase; color:rgba(221,216,204,.35); margin-top:10px; }
+
+/* ════════════════════════════════════════════════════════════
+   NAV DOTS
+════════════════════════════════════════════════════════════ */
+.nav-idx { position:fixed; top:50%; right:20px; transform:translateY(-50%); z-index:9997; display:flex; flex-direction:column; gap:8px; }
+.nv { width:6px; height:6px; border-radius:50%; background:rgba(43,126,116,.3); border:1px solid rgba(43,126,116,.4); transition:all .3s; cursor:pointer; }
+.nv.active { background:var(--r); border-color:var(--r); height:18px; border-radius:3px; box-shadow:0 0 8px rgba(196,83,42,.5); }
+
 </style>
 </head>
 <body>
+
+<!-- nav dots -->
+<nav class="nav-idx" id="navIdx">
+  <div class="nv active" data-s="hero" title="Hero"></div>
+  <div class="nv" data-s="s01" title="Paleta"></div>
+  <div class="nv" data-s="s02" title="Tipografia"></div>
+  <div class="nv" data-s="s03" title="Botões"></div>
+  <div class="nv" data-s="s04" title="Componentes"></div>
+  <div class="nv" data-s="s05" title="Transições"></div>
+  <div class="nv" data-s="s06" title="Motion"></div>
+  <div class="nv" data-s="s07" title="Magnético"></div>
+  <div class="nv" data-s="s08" title="Blob"></div>
+  <div class="nv" data-s="s09" title="H-Track"></div>
+  <div class="nv" data-s="s10" title="Shatter"></div>
+  <div class="nv" data-s="s11" title="Velocity"></div>
+  <div class="nv" data-s="s12" title="Mesh"></div>
+</nav>
 
 <!-- particle canvas -->
 <canvas id="pcanvas"></canvas>
@@ -675,7 +772,7 @@ body::after {
 
 <!-- ══ 01 · PALETA ═══════════════════════════════════════════ -->
 <section class="sec" data-reveal>
-  <p class="sec-lbl">01 · Paleta de Cores</p>
+  <p class="sec-lbl" id="s01">01 · Paleta de Cores</p>
   <h2 class="sec-title rev-left">Petróleo + Ferrugem</h2>
   <p class="sec-desc rev-left d1">Base quase preta com tint petróleo. Dois acentos que brilham — estrutura teal, destaque cobre.</p>
 
@@ -735,7 +832,7 @@ body::after {
 
 <!-- ══ 02 · TIPOGRAFIA ════════════════════════════════════════ -->
 <section class="sec" data-reveal>
-  <p class="sec-lbl">02 · Tipografia</p>
+  <p class="sec-lbl" id="s02">02 · Tipografia</p>
   <h2 class="sec-title rev-left">Plus Jakarta Sans</h2>
   <p class="sec-desc rev-left d1">Uma fonte. Sete pesos. Do display explosivo ao body suave.</p>
   <div class="type-stack rev-up d2">
@@ -752,7 +849,7 @@ body::after {
 
 <!-- ══ 03 · BOTÕES ════════════════════════════════════════════ -->
 <section class="sec" data-reveal>
-  <p class="sec-lbl">03 · Botões</p>
+  <p class="sec-lbl" id="s03">03 · Botões</p>
   <h2 class="sec-title rev-left">8 estilos — todos com hover</h2>
   <p class="sec-desc rev-left d1">Cada botão tem uma personalidade. Passa o mouse.</p>
   <div class="btn-grid rev-up d2">
@@ -804,7 +901,7 @@ body::after {
 
 <!-- ══ 04 · COMPONENTES ═══════════════════════════════════════ -->
 <section class="sec" data-reveal>
-  <p class="sec-lbl">04 · Componentes</p>
+  <p class="sec-lbl" id="s04">04 · Componentes</p>
   <h2 class="sec-title rev-left">3D tilt em todos · hover</h2>
   <div class="comp-grid rev-up d1">
     <div class="tc"><div class="ti">
@@ -852,7 +949,7 @@ body::after {
 
 <!-- ══ 05 · TRANSITIONS & REVEALS ════════════════════════════ -->
 <section class="sec" data-reveal>
-  <p class="sec-lbl">05 · Transições & Reveals</p>
+  <p class="sec-lbl" id="s05">05 · Transições & Reveals</p>
   <h2 class="sec-title rev-left">Como os elementos entram em cena</h2>
   <p class="sec-desc rev-left d1">Cada seção do portfólio terá um estilo de entrada diferente.</p>
   <div class="trans-grid rev-up d2">
@@ -907,7 +1004,7 @@ body::after {
 
 <!-- ══ 06 · MOTION LIBRARY ════════════════════════════════════ -->
 <section class="sec" data-reveal>
-  <p class="sec-lbl">06 · Motion Library</p>
+  <p class="sec-lbl" id="s06">06 · Motion Library</p>
   <h2 class="sec-title rev-left">Tudo rodando ao vivo</h2>
   <div class="trans-grid rev-up d1">
     <div class="trans-card">
@@ -978,6 +1075,159 @@ body::after {
   <div class="pv-role"><span class="pip"></span><span class="pv-rt" id="pvr">Vibecoder</span></div>
   <p class="pv-copy">Você ainda perde tempo gerenciando <em>o que uma máquina faria melhor.</em></p>
 </section>
+
+<!-- ══ 07 · CAMPO MAGNÉTICO ════════════════════════════════════ -->
+<div class="wrap">
+<section class="sec" data-reveal>
+  <p class="sec-lbl" id="s07">07 · Campo Magnético</p>
+  <h2 class="sec-title rev-left">296 pontos que fogem do cursor</h2>
+  <p class="sec-desc rev-left d1">Cada ponto sente a proximidade. Spring physics. Ferrugem quando o cursor toca.</p>
+  <div class="rev-up d2">
+    <div class="mag-field" id="magfield"></div>
+  </div>
+</section>
+
+<!-- ══ 08 · BLOB MORPH ═══════════════════════════════════════ -->
+<section class="sec" data-reveal>
+  <p class="sec-lbl" id="s08">08 · Blob Morph</p>
+  <h2 class="sec-title rev-left">Formas vivas — petróleo e ferrugem</h2>
+  <p class="sec-desc rev-left d1">SVG path interpolando entre formas orgânicas em loop infinito.</p>
+  <div class="rev-up d2">
+    <div class="blob-stage">
+      <div class="blob-wrap">
+        <svg id="blob1" viewBox="0 0 200 200" width="200" height="200">
+          <path id="bpath1" fill="#1D5C54"/>
+        </svg>
+        <span class="blob-lbl">Petróleo</span>
+      </div>
+      <div class="blob-wrap">
+        <svg id="blob2" viewBox="0 0 200 200" width="200" height="200" style="filter:drop-shadow(0 0 28px rgba(196,83,42,.55))">
+          <path id="bpath2" fill="#C4532A"/>
+        </svg>
+        <span class="blob-lbl">Ferrugem</span>
+      </div>
+      <div class="blob-wrap">
+        <svg id="blob3" viewBox="0 0 200 200" width="200" height="200" style="filter:drop-shadow(0 0 28px rgba(61,168,152,.4))">
+          <defs>
+            <linearGradient id="bgrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#1D5C54"/>
+              <stop offset="100%" stop-color="#C4532A"/>
+            </linearGradient>
+          </defs>
+          <path id="bpath3" fill="url(#bgrad)"/>
+        </svg>
+        <span class="blob-lbl">Gradiente</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ 09 · HORIZONTAL DRAG TRACK ════════════════════════════ -->
+<section class="sec" data-reveal>
+  <p class="sec-lbl" id="s09">09 · Horizontal Track</p>
+  <h2 class="sec-title rev-left">Drag para navegar os projetos</h2>
+  <p class="sec-desc rev-left d1">Arraste ou use as setas. Cada card é um projeto real.</p>
+</section>
+</div><!-- /wrap -->
+
+<div class="htrack rev-up d2" id="htrack" style="position:relative;z-index:2">
+  <div class="htc">
+    <div class="htc-bg"></div>
+    <div class="htc-n">01</div>
+    <div class="htc-t">VAV Central</div>
+    <div class="htc-st">ONG · Gestão Operacional</div>
+    <div class="htc-tags">
+      <span class="htc-tag">Next.js</span><span class="htc-tag">Supabase</span><span class="htc-tag">Google API</span>
+    </div>
+  </div>
+  <div class="htc" style="border-color:rgba(196,83,42,.18)">
+    <div style="position:absolute;inset:0;background:radial-gradient(circle at 70% 30%,rgba(196,83,42,.1),transparent 60%)"></div>
+    <div class="htc-n" style="color:rgba(196,83,42,.1)">02</div>
+    <div class="htc-t">CGR1 Planner</div>
+    <div class="htc-st" style="color:var(--pxl)">Produtividade · Calendário IA</div>
+    <div class="htc-tags">
+      <span class="htc-tag">React</span><span class="htc-tag">Firebase</span><span class="htc-tag">AI</span>
+    </div>
+  </div>
+  <div class="htc">
+    <div class="htc-bg"></div>
+    <div class="htc-n">03</div>
+    <div class="htc-t">Time Track</div>
+    <div class="htc-st">Automação · Gestão de Tempo</div>
+    <div class="htc-tags">
+      <span class="htc-tag">Node.js</span><span class="htc-tag">Tailwind</span>
+    </div>
+  </div>
+  <div class="htc" style="border-color:rgba(61,168,152,.15); border-style:dashed; display:flex; align-items:center; justify-content:center;">
+    <div style="text-align:center">
+      <div style="font-size:32px;color:rgba(29,92,84,.3);margin-bottom:12px">+</div>
+      <div style="font-size:12px;color:var(--muted);letter-spacing:.1em">Em construção</div>
+    </div>
+  </div>
+</div>
+<p class="htrack-hint" style="position:relative;z-index:2;margin-bottom:32px">← arraste →</p>
+
+<div class="wrap">
+
+<!-- ══ 10 · TEXT SHATTER ═══════════════════════════════════ -->
+<section class="sec" data-reveal>
+  <p class="sec-lbl" id="s10">10 · Text Shatter</p>
+  <h2 class="sec-title rev-left">Clica para destruir</h2>
+  <p class="sec-desc rev-left d1">As letras explodem e se reconstroem. Click = chaos.</p>
+  <div class="rev-up d2">
+    <div class="shatter-stage" id="shatterStage">
+      <div class="shatter-word" id="shatterWord"></div>
+    </div>
+    <p class="shatter-hint">CLIQUE NO TEXTO</p>
+  </div>
+</section>
+
+<!-- ══ 11 · VELOCITY WARP ═════════════════════════════════ -->
+<section class="sec" data-reveal>
+  <p class="sec-lbl" id="s11">11 · Velocity Warp</p>
+  <h2 class="sec-title rev-left">Scroll rápido = distorção</h2>
+  <p class="sec-desc rev-left d1">Quanto mais rápido você rola, mais o texto entorta. Física de inércia real.</p>
+  <div class="rev-up d2">
+    <div class="vel-wrap">
+      <div class="vel-row" id="vrow1">
+        <span class="vel-item">Vibecoder</span><span class="vel-sep">·</span>
+        <span class="vel-item active">System Architect</span><span class="vel-sep">·</span>
+        <span class="vel-item">AI Developer</span><span class="vel-sep">·</span>
+        <span class="vel-item">Full-Stack Builder</span>
+      </div>
+      <div class="vel-row" id="vrow2">
+        <span class="vel-item">VAV Central</span><span class="vel-sep">—</span>
+        <span class="vel-item">CGR1 Planner</span><span class="vel-sep">—</span>
+        <span class="vel-item active">Time Track</span><span class="vel-sep">—</span>
+        <span class="vel-item">São Paulo 2026</span>
+      </div>
+      <div class="vel-row" id="vrow3">
+        <span class="vel-item">+120h recuperadas</span><span class="vel-sep">·</span>
+        <span class="vel-item active">4× mais rápido</span><span class="vel-sep">·</span>
+        <span class="vel-item">3 equipes</span><span class="vel-sep">·</span>
+        <span class="vel-item">16 anos</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ 12 · NOISE MESH ════════════════════════════════════ -->
+<section class="sec" data-reveal>
+  <p class="sec-lbl" id="s12">12 · Noise Gradient Mesh</p>
+  <h2 class="sec-title rev-left">Fundo vivo — orbs de gradiente animados</h2>
+  <p class="sec-desc rev-left d1">Canvas com 6 orbs flutuando em noise perlin suave. Cada seção do portfólio usa isso como base.</p>
+  <div class="rev-up d2">
+    <div class="mesh-stage">
+      <canvas id="meshcanvas"></canvas>
+      <div class="mesh-overlay">
+        <div class="mesh-title">JOAQUIM</div>
+        <div class="mesh-sub">Noise Gradient Mesh · Petróleo + Ferrugem</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</div><!-- /wrap -->
 
 <!-- ══ SUMMARY ════════════════════════════════════════════════ -->
 <div class="wrap">
@@ -1382,6 +1632,332 @@ window.addEventListener('load', () => {
   cipher(document.getElementById('hn1'),'DESIGN',500);
   cipher(document.getElementById('hn2'),'SYSTEM',900);
 });
+
+// ═══════════════════════════════════════════════════════════════
+//  07 · MAGNETIC FIELD
+// ═══════════════════════════════════════════════════════════════
+(function() {
+  const field = document.getElementById('magfield');
+  if (!field) return;
+  const N = 296;
+  const dots = [];
+  for (let i = 0; i < N; i++) {
+    const d = document.createElement('div');
+    d.className = 'md';
+    field.appendChild(d);
+    dots.push({ el:d, ox:0, oy:0, cx:0, cy:0, vx:0, vy:0 });
+  }
+
+  // Store original positions after layout
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      const fr = field.getBoundingClientRect();
+      dots.forEach(d => {
+        const r = d.el.getBoundingClientRect();
+        d.ox = r.left + r.width/2 - fr.left;
+        d.oy = r.top  + r.height/2 - fr.top;
+        d.cx = d.ox; d.cy = d.oy;
+      });
+    });
+  });
+
+  let mx = -9999, my = -9999;
+  field.addEventListener('mousemove', e => {
+    const r = field.getBoundingClientRect();
+    mx = e.clientX - r.left;
+    my = e.clientY - r.top;
+    const px = (mx / r.width * 100).toFixed(1) + '%';
+    const py = (my / r.height * 100).toFixed(1) + '%';
+    field.style.setProperty('--mx', px);
+    field.style.setProperty('--my', py);
+  });
+  field.addEventListener('mouseleave', () => { mx = -9999; my = -9999; });
+
+  const REPEL = 90, FORCE = 2.2, STIFF = 0.08, DAMP = 0.72;
+  function animMag() {
+    dots.forEach(d => {
+      const dx = d.cx - mx, dy = d.cy - my;
+      const dist = Math.sqrt(dx*dx + dy*dy);
+      let tx = d.ox, ty = d.oy;
+      if (dist < REPEL) {
+        const str = (1 - dist/REPEL) * FORCE * 28;
+        tx = d.ox + (dx/dist) * str;
+        ty = d.oy + (dy/dist) * str;
+        d.el.style.background = `rgba(196,83,42,${0.3 + (1-dist/REPEL)*0.7})`;
+      } else {
+        d.el.style.background = 'rgba(43,126,116,.45)';
+      }
+      const fx = (tx - d.cx) * STIFF;
+      const fy = (ty - d.cy) * STIFF;
+      d.vx = d.vx * DAMP + fx;
+      d.vy = d.vy * DAMP + fy;
+      d.cx += d.vx; d.cy += d.vy;
+      const ox = d.cx - d.ox, oy = d.cy - d.oy;
+      d.el.style.transform = `translate(${ox.toFixed(2)}px,${oy.toFixed(2)}px)`;
+    });
+    requestAnimationFrame(animMag);
+  }
+  animMag();
+})();
+
+// ═══════════════════════════════════════════════════════════════
+//  08 · BLOB MORPH
+// ═══════════════════════════════════════════════════════════════
+(function() {
+  const SHAPES = [
+    [100,40, 160,30, 180,80, 175,140, 140,175, 80,178, 30,155, 20,90, 45,35],
+    [100,25, 175,55, 185,110, 160,165, 100,185, 45,168, 15,110, 25,55],
+    [100,35, 145,20, 180,65, 178,120, 155,168, 100,180, 48,165, 22,118, 20,65],
+    [100,30, 165,40, 185,95, 170,155, 115,182, 60,172, 18,120, 25,60],
+  ];
+
+  function catmull(pts) {
+    // Build smooth closed path from control points
+    const n = pts.length / 2;
+    const xs = [], ys = [];
+    for (let i=0;i<n;i++) { xs.push(pts[i*2]); ys.push(pts[i*2+1]); }
+    let d = `M${xs[0]},${ys[0]} `;
+    for (let i=0;i<n;i++) {
+      const p0 = (i-1+n)%n, p1=i, p2=(i+1)%n, p3=(i+2)%n;
+      const cp1x = xs[p1]+(xs[p2]-xs[p0])/6;
+      const cp1y = ys[p1]+(ys[p2]-ys[p0])/6;
+      const cp2x = xs[p2]-(xs[p3]-xs[p1])/6;
+      const cp2y = ys[p2]-(ys[p3]-ys[p1])/6;
+      d += `C${cp1x},${cp1y} ${cp2x},${cp2y} ${xs[p2]},${ys[p2]} `;
+    }
+    return d + 'Z';
+  }
+
+  function lerpPts(a, b, t) {
+    // interpolate between two point arrays (same length required — pad shorter)
+    const na = a.length, nb = b.length;
+    const max = Math.max(na, nb);
+    const out = [];
+    for (let i=0; i<max; i++) {
+      const ai = a[Math.min(i, na-1)], bi = b[Math.min(i, nb-1)];
+      out.push(ai + (bi-ai)*t);
+    }
+    return out;
+  }
+
+  function animBlob(pathEl, si, speed) {
+    let t=0, from=SHAPES[si % SHAPES.length], to=SHAPES[(si+1) % SHAPES.length];
+    let cur = si;
+    function tick() {
+      t += speed;
+      if (t >= 1) {
+        t = 0;
+        cur = (cur+1) % SHAPES.length;
+        from = SHAPES[cur];
+        to = SHAPES[(cur+1) % SHAPES.length];
+      }
+      const eased = t < 0.5 ? 2*t*t : -1+(4-2*t)*t;
+      const pts = lerpPts(from, to, eased);
+      pathEl.setAttribute('d', catmull(pts));
+      requestAnimationFrame(tick);
+    }
+    tick();
+  }
+
+  const bp1 = document.getElementById('bpath1');
+  const bp2 = document.getElementById('bpath2');
+  const bp3 = document.getElementById('bpath3');
+  if (bp1) animBlob(bp1, 0, 0.006);
+  if (bp2) animBlob(bp2, 1, 0.008);
+  if (bp3) animBlob(bp3, 2, 0.007);
+})();
+
+// ═══════════════════════════════════════════════════════════════
+//  NAV DOTS — scroll spy
+// ═══════════════════════════════════════════════════════════════
+(function() {
+  const nvs = document.querySelectorAll('.nv');
+  const IDS = ['hero','s01','s02','s03','s04','s05','s06','s07','s08','s09','s10','s11','s12'];
+
+  nvs.forEach((nv, i) => {
+    nv.addEventListener('click', () => {
+      const el = document.getElementById(IDS[i]);
+      if (el) el.scrollIntoView({behavior:'smooth', block:'center'});
+    });
+  });
+
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      const id = e.target.id;
+      const idx = IDS.indexOf(id);
+      if (idx < 0) return;
+      nvs.forEach((n,i) => n.classList.toggle('active', i===idx));
+    });
+  }, {threshold:0.5});
+
+  IDS.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) io.observe(el);
+  });
+})();
+
+// ═══════════════════════════════════════════════════════════════
+//  09 · HORIZONTAL DRAG TRACK
+// ═══════════════════════════════════════════════════════════════
+(function() {
+  const track = document.getElementById('htrack');
+  if (!track) return;
+  let isDown=false, startX=0, scrollLeft=0;
+  track.addEventListener('mousedown', e => {
+    isDown = true;
+    startX = e.pageX - track.offsetLeft;
+    scrollLeft = track.scrollLeft;
+    track.style.cursor = 'grabbing';
+  });
+  document.addEventListener('mouseup', () => { isDown=false; track.style.cursor='grab'; });
+  track.addEventListener('mousemove', e => {
+    if (!isDown) return;
+    e.preventDefault();
+    const x = e.pageX - track.offsetLeft;
+    track.scrollLeft = scrollLeft - (x - startX) * 1.4;
+  });
+  // Touch support
+  let tx=0;
+  track.addEventListener('touchstart', e => { tx = e.touches[0].pageX; scrollLeft = track.scrollLeft; });
+  track.addEventListener('touchmove', e => {
+    const diff = tx - e.touches[0].pageX;
+    track.scrollLeft = scrollLeft + diff;
+  });
+})();
+
+// ═══════════════════════════════════════════════════════════════
+//  10 · TEXT SHATTER
+// ═══════════════════════════════════════════════════════════════
+(function() {
+  const stage = document.getElementById('shatterStage');
+  const word = document.getElementById('shatterWord');
+  if (!stage || !word) return;
+  const TEXT = 'SALLES';
+  let shattered = false;
+  // Build chars
+  TEXT.split('').forEach(ch => {
+    const s = document.createElement('span');
+    s.className = 'sc';
+    s.textContent = ch;
+    s.style.color = 'var(--txt)';
+    word.appendChild(s);
+  });
+  const chars = Array.from(word.querySelectorAll('.sc'));
+
+  function shatter() {
+    if (shattered) return;
+    shattered = true;
+    chars.forEach((c, i) => {
+      const angle = (Math.random()-0.5)*720;
+      const tx = (Math.random()-0.5)*600;
+      const ty = (Math.random()-0.5)*400 - 100;
+      const sc = Math.random()*0.4 + 0.1;
+      c.style.transition = `transform ${0.4+i*0.04}s cubic-bezier(.55,0,.1,1), opacity ${0.35+i*0.03}s ease`;
+      c.style.transform = `translate(${tx}px,${ty}px) rotate(${angle}deg) scale(${sc})`;
+      c.style.opacity = '0';
+      c.style.color = Math.random() > 0.5 ? 'var(--r)' : 'var(--pxl)';
+    });
+    setTimeout(reconstruct, 900);
+  }
+
+  function reconstruct() {
+    chars.forEach((c, i) => {
+      c.style.transition = `transform ${0.6+i*0.06}s cubic-bezier(.34,1.56,.64,1) ${i*0.05}s, opacity ${0.4+i*0.04}s ease ${i*0.05}s`;
+      c.style.transform = 'translate(0,0) rotate(0deg) scale(1)';
+      c.style.opacity = '1';
+      c.style.color = 'var(--txt)';
+    });
+    setTimeout(() => { shattered = false; }, 800 + chars.length*60);
+  }
+
+  stage.addEventListener('click', shatter);
+  // Auto-trigger after delay
+  setTimeout(shatter, 2500);
+})();
+
+// ═══════════════════════════════════════════════════════════════
+//  11 · VELOCITY WARP
+// ═══════════════════════════════════════════════════════════════
+(function() {
+  let lastY=0, vel=0, smoothVel=0;
+  const rows = [
+    document.getElementById('vrow1'),
+    document.getElementById('vrow2'),
+    document.getElementById('vrow3')
+  ].filter(Boolean);
+
+  window.addEventListener('scroll', () => {
+    const y = window.scrollY;
+    vel = y - lastY;
+    lastY = y;
+  }, {passive:true});
+
+  function velLoop() {
+    smoothVel += (vel - smoothVel) * 0.12;
+    vel *= 0.85;
+    const skew = Math.max(-18, Math.min(18, smoothVel * -0.6));
+    const scaleX = 1 + Math.abs(smoothVel) * 0.004;
+    rows.forEach((row, i) => {
+      const dir = i % 2 === 0 ? 1 : -1;
+      row.style.transform = `skewX(${skew*dir}deg) scaleX(${scaleX})`;
+    });
+    requestAnimationFrame(velLoop);
+  }
+  velLoop();
+})();
+
+// ═══════════════════════════════════════════════════════════════
+//  12 · NOISE GRADIENT MESH
+// ═══════════════════════════════════════════════════════════════
+(function() {
+  const canvas = document.getElementById('meshcanvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  let cw, ch;
+
+  function resize() {
+    cw = canvas.width = canvas.offsetWidth;
+    ch = canvas.height = canvas.offsetHeight;
+  }
+  resize();
+  new ResizeObserver(resize).observe(canvas);
+
+  // 6 gradient orbs
+  const ORBS = [
+    { x:.2, y:.3, r:.55, col:[29,92,84],   spd:[.0007,  .0005],  ph:[0,    0.4] },
+    { x:.8, y:.7, r:.45, col:[196,83,42],  spd:[-.0009, .0006],  ph:[1.2,  2.1] },
+    { x:.5, y:.1, r:.40, col:[43,126,116], spd:[.0006, -.0008],  ph:[2.4,  0.8] },
+    { x:.1, y:.8, r:.35, col:[196,83,42],  spd:[.0005,  .0007],  ph:[0.7,  3.1] },
+    { x:.9, y:.3, r:.30, col:[29,92,84],   spd:[-.0006, -.0005], ph:[1.8,  1.3] },
+    { x:.5, y:.6, r:.60, col:[15,36,32],   spd:[.0004,  .0003],  ph:[3.0,  2.8] },
+  ];
+  let t = 0;
+
+  function drawMesh() {
+    t++;
+    ctx.clearRect(0,0,cw,ch);
+    // bg
+    ctx.fillStyle = '#050D0B';
+    ctx.fillRect(0,0,cw,ch);
+
+    ORBS.forEach(o => {
+      const x = (o.x + Math.sin(t*o.spd[0] + o.ph[0]) * 0.35) * cw;
+      const y = (o.y + Math.cos(t*o.spd[1] + o.ph[1]) * 0.3) * ch;
+      const r = o.r * Math.max(cw,ch);
+      const g = ctx.createRadialGradient(x,y,0, x,y,r);
+      const [R,G,B] = o.col;
+      g.addColorStop(0, `rgba(${R},${G},${B},0.22)`);
+      g.addColorStop(1, `rgba(${R},${G},${B},0)`);
+      ctx.beginPath();
+      ctx.arc(x,y,r,0,Math.PI*2);
+      ctx.fillStyle = g;
+      ctx.fill();
+    });
+    requestAnimationFrame(drawMesh);
+  }
+  drawMesh();
+})();
 </script>
 </body>
 </html>
