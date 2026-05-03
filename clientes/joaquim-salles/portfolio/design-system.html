@@ -1334,7 +1334,7 @@ body::after {
 
 <!-- ══ 13 · VORTEX BURACO NEGRO ═══════════════════════════════ -->
 <div class="wrap">
-<section class="sec" data-reveal>
+<section class="sec in">
   <p class="sec-lbl" id="s13">13 · Vórtex / Buraco Negro</p>
   <h2 class="sec-title rev-left">250 partículas em colapso gravitacional</h2>
   <p class="sec-desc rev-left d1">Cursor repele. Petróleo longe, ferrugem na borda do evento. Partículas absorvidas voltam das bordas.</p>
@@ -1351,7 +1351,7 @@ body::after {
 </section>
 
 <!-- ══ 14 · CORTINA CINEMATIC ══════════════════════════════════ -->
-<section class="sec" data-reveal>
+<section class="sec in">
   <p class="sec-lbl" id="s14">14 · Cortina Cinematic</p>
   <h2 class="sec-title rev-left">3 painéis varrendo a tela — transição de página</h2>
   <p class="sec-desc rev-left d1">Exatamente como o portfólio vai transitar entre seções. Clique para disparar.</p>
@@ -1370,7 +1370,7 @@ body::after {
 </section>
 
 <!-- ══ 15 · FLY-IN DOS LADOS ══════════════════════════════════ -->
-<section class="sec" data-reveal>
+<section class="sec in">
   <p class="sec-lbl" id="s15">15 · Fly-In dos Lados</p>
   <h2 class="sec-title rev-left">8 direções — CSS puro, zero JavaScript</h2>
   <p class="sec-desc rev-left d1">Cada card usa <code style="color:var(--pxl);font-size:12px">animation-timeline: view()</code> — dispara quando entra no viewport. Role para ver.</p>
@@ -1387,7 +1387,7 @@ body::after {
 </section>
 
 <!-- ══ 16 · STAGGER DIAGONAL ══════════════════════════════════ -->
-<section class="sec" data-reveal>
+<section class="sec in">
   <p class="sec-lbl" id="s16">16 · Stagger Diagonal</p>
   <h2 class="sec-title rev-left">Cascata em diagonal — scroll activa</h2>
   <p class="sec-desc rev-left d1">Cada item entra com delay escalonado em diagonal. Role até aqui e veja a onda.</p>
@@ -1404,7 +1404,7 @@ body::after {
 </section>
 
 <!-- ══ 17 · PIN + SCALE REVEAL ════════════════════════════════ -->
-<section class="sec" data-reveal>
+<section class="sec in">
   <p class="sec-lbl" id="s17">17 · Pin + Scale Reveal</p>
   <h2 class="sec-title rev-left">Scroll avança — palavra emerge</h2>
   <p class="sec-desc rev-left d1">A seção fica fixada. Enquanto você rola, a palavra escala de 15% até 100%. Efeito cinematográfico.</p>
@@ -1417,8 +1417,6 @@ body::after {
     <p class="pin-hint-txt">↓ role para revelar</p>
   </div>
 </div>
-
-<div class="wrap">
 
 <!-- ══ SUMMARY ════════════════════════════════════════════════ -->
 <div class="wrap">
@@ -1803,9 +1801,20 @@ const IO = new IntersectionObserver(entries => {
       if(id==='met1') { startCount(el,120,'+','h'); document.getElementById('pb1').style.width='100%'; }
     }
   });
-}, {threshold:.18});
+}, {threshold:0.02, rootMargin:'0px 0px -40px 0px'});
 
 document.querySelectorAll('[data-reveal],#hn1,#hn2,#pvn1,#pvn2,#cph1,#cnt1,#met1').forEach(el=>{if(el)IO.observe(el);});
+
+// Força reveal para elementos já visíveis no load
+window.addEventListener('load', () => {
+  document.querySelectorAll('[data-reveal]').forEach(el => {
+    const r = el.getBoundingClientRect();
+    if (r.top < window.innerHeight && r.bottom > 0) {
+      el.classList.add('in');
+      DONE.add(el);
+    }
+  });
+});
 
 // ═══════════════════════════════════════════════════════════════
 //  RANDOM GLITCH SCHEDULER
