@@ -222,7 +222,8 @@ body::after {
 .d5 { transition-delay:.25s!important } .d6 { transition-delay:.3s!important }
 .d7 { transition-delay:.35s!important } .d8 { transition-delay:.4s!important }
 
-.in .rev-left, .in .rev-right, .in .rev-up { opacity:1; transform:none; }
+.in .rev-left, .in .rev-right, .in .rev-up,
+.rev-left.in, .rev-right.in, .rev-up.in { opacity:1; transform:none; }
 .in .rev-curtain { clip-path:polygon(0 0, 100% 0, 100% 100%, 0 100%); }
 
 .sec-title {
@@ -1977,7 +1978,7 @@ body::after {
 </section>
 </div><!-- /wrap -->
 
-<div class="htrack rev-up d2" id="htrack" style="position:relative;z-index:2">
+<div class="htrack rev-up d2" id="htrack" data-reveal style="position:relative;z-index:2">
   <div class="htc">
     <div class="htc-bg"></div>
     <div class="htc-n">01</div>
