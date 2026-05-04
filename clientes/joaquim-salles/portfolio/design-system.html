@@ -1558,6 +1558,105 @@ body::after {
 .section-title-chip{display:inline-flex;align-items:center;gap:.5rem;background:rgba(29,92,84,.18);border:1px solid rgba(61,168,152,.2);border-radius:100px;padding:.35rem 1rem;font-size:.65rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--pxl);margin-bottom:2rem}
 .section-title-chip span.chip-num{color:var(--muted)}
 
+/* ════════════════════════════════════════════════════════════
+   MOBILE — RESPONSIVIDADE GLOBAL (≤ 640px)
+════════════════════════════════════════════════════════════ */
+@media (max-width: 640px) {
+
+  /* ── Layout base ── */
+  .wrap     { padding: 0 20px; }
+  #hero     { padding: 0 20px; }
+  .sec      { padding: 56px 0 0; }
+  .sec-lbl  { margin-bottom: 28px; }
+  .sec-desc { margin-bottom: 28px; }
+
+  /* ── Atmosphere orbs — reduzir para não causar overflow horizontal ── */
+  .o1 { width: 260px; height: 260px; top: -100px; left: -80px; }
+  .o2 { width: 200px; height: 200px; right: -60px; }
+  .o3 { width: 160px; height: 160px; }
+
+  /* ── Hero ── */
+  .h-title { font-size: clamp(44px, 12vw, 80px); margin-bottom: 20px; }
+  .h-sub   { max-width: 100%; font-size: 15px; }
+
+  /* ── Typography tokens ── */
+  .td, .tdo { font-size: clamp(32px, 10vw, 56px); }
+  .th1      { font-size: clamp(28px, 8vw, 48px); }
+  .th2      { font-size: clamp(22px, 6vw, 36px); }
+  .met-n    { font-size: 48px; }
+
+  /* ── Ghost numbers — limitar para não vazar ── */
+  .ghost-num { font-size: clamp(72px, 28vw, 120px); right: -2px; }
+  .ghost-blk { padding: 20px; overflow: hidden; }
+
+  /* ── Cards e boxes com padding excessivo ── */
+  .pal-atm { padding: 20px; height: 200px; }
+  .tc-card { padding: 20px; }
+
+  /* ── Horizontal drag track (seção 15) ── */
+  .drag-track { padding: 12px 20px 20px; gap: 14px; }
+  .dtc        { flex: 0 0 min(290px, 82vw); }
+
+  /* ── HTrack (seção 09) ── */
+  .htrack { padding: 12px 20px 20px; gap: 14px; }
+  .htc    { flex: 0 0 min(270px, 80vw); height: 230px; }
+
+  /* ── Mobile sections scaffold (18-22) ── */
+  .mobile-sec { padding: 56px 20px 48px; }
+
+  /* ── Bottom sheet — usar largura total no mobile ── */
+  .bs-panel { left: 0; right: 0; border-radius: 20px 20px 0 0; }
+
+  /* ── Long press grid — 2 colunas no mobile ── */
+  .lp-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+
+  /* ── Pin + Scale (seção 17) ── */
+  .pin-word { font-size: clamp(36px, 13vw, 80px); }
+
+  /* ── Scroll sections (23-27) ── */
+  #sec24 { padding: 5rem 20px; }
+  #sec25 { height: 150vh; }
+  #sec26 { padding: 4rem 0; }
+  #sec27 { padding: 4rem 20px 6rem; }
+  .counter-grid { gap: 2rem 2rem; }
+  .color-shift-sticky  { padding: 20px; }
+  .color-shift-headline { font-size: clamp(1.8rem, 7vw, 3rem); }
+  .color-shift-desc { max-width: 100%; font-size: .9rem; }
+
+  /* ── UI sections (28-32) ── */
+  .ui-section__sub { max-width: 100%; }
+  .cin-overlay { padding: .75rem; }
+  .skel-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); }
+  .toast-container { right: .75rem; bottom: .75rem; }
+  .toast-item { width: min(280px, calc(100vw - 1.5rem)); }
+  .toast-controls { gap: .5rem; flex-wrap: wrap; }
+  .toast-btn { font-size: .75rem; padding: .5rem .9rem; }
+
+  /* ── Typo sections (33-37) ── */
+  .typo-section { padding: 4rem 20px; }
+  .split3d-stage { gap: .25rem; }
+  .split3d-letter { width: clamp(44px, 9vw, 72px); height: clamp(58px, 12vw, 96px); }
+  .scramble-grid { grid-template-columns: repeat(2, 1fr); }
+
+  /* ── Nav dots ── */
+  .nav-idx { right: 6px; }
+  .nv { width: 6px; height: 6px; }
+
+  /* ── Marquee ── */
+  .mi { font-size: 9px; padding: 0 14px; }
+}
+
+/* ── Extra small (≤ 390px) ── */
+@media (max-width: 390px) {
+  .wrap  { padding: 0 16px; }
+  #hero  { padding: 0 16px; }
+  .h-title { font-size: clamp(38px, 11vw, 60px); }
+  .dtc { flex: 0 0 min(260px, 88vw); }
+  .htc { flex: 0 0 min(250px, 86vw); }
+  .lp-grid { gap: 8px; }
+  .mobile-sec { padding: 48px 16px 40px; }
+}
+
 </style>
 </head>
 <body>
