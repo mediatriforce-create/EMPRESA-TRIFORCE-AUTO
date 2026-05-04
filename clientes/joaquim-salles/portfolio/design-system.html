@@ -1638,6 +1638,35 @@ body::after {
   .split3d-letter { width: clamp(44px, 9vw, 72px); height: clamp(58px, 12vw, 96px); }
   .scramble-grid { grid-template-columns: repeat(2, 1fr); }
 
+  /* ── Grids de demo (principal causador dos cortes) ── */
+  .btn-grid    { grid-template-columns: repeat(2, 1fr); }
+  .trans-grid  { grid-template-columns: repeat(2, 1fr); }
+  .tex-grid    { grid-template-columns: repeat(2, 1fr); }
+  .chips       { grid-template-columns: repeat(2, 1fr); }
+  .combo-row   { grid-template-columns: 1fr; }
+  .sum-g       { grid-template-columns: 1fr; gap: 24px; }
+  .comp-grid   { grid-template-columns: 1fr; }
+  .fly-demo-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .stag-grid   { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+
+  /* ── Padding de demo cards: dar espaço ao conteúdo ── */
+  .bdc       { padding: 16px 14px; }
+  .trans-card { padding: 20px 14px; }
+  .fdc       { padding: 14px 12px; }
+  .stg-item  { padding: 14px; }
+  .chip      { padding: 16px; }
+  .combo-card { padding: 20px 16px; }
+  .ti        { padding: 20px 16px; }
+
+  /* ── Typography demo grid ── */
+  .tc-grid { grid-template-columns: 1fr !important; }
+
+  /* ── Magnetic field: colapsar para 8 colunas ── */
+  .mag-field { grid-template-columns: repeat(8, 1fr); gap: 6px; padding: 20px; }
+
+  /* ── Summary layout ── */
+  .sum-title { font-size: clamp(20px, 5vw, 28px); }
+
   /* ── Nav dots ── */
   .nav-idx { right: 6px; }
   .nv { width: 6px; height: 6px; }
