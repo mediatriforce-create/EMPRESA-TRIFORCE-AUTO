@@ -7,6 +7,10 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+<script>
+// Prevent flash of wrong theme
+(function(){var t=localStorage.getItem('ds-theme');if(t)document.documentElement.setAttribute('data-theme',t);})();
+</script>
 
 <!-- SVG FILTERS (noise distortion, glow) -->
 <svg style="display:none" xmlns="http://www.w3.org/2000/svg">
@@ -50,11 +54,68 @@
   --bdr:    rgba(29,92,84,.22);
 }
 
+/* ── LIGHT MODE TOKENS ── */
+[data-theme="light"] {
+  --bg:     #F5F0E8;
+  --bg2:    #EDE8DF;
+  --bg3:    #E0D9CE;
+  --p:      #1D5C54;
+  --pl:     #1A7A6E;
+  --pxl:    #158E80;
+  --r:      #B84520;
+  --rl:     #A03A18;
+  --rxl:    #C75530;
+  --txt:    #1A1A18;
+  --txt2:   #4A4740;
+  --muted:  #8A8580;
+  --bdr:    rgba(29,92,84,.12);
+}
+
+/* ── Light mode adaptations ── */
+[data-theme="light"] body::after { opacity:.012; }
+[data-theme="light"] .orb { opacity:.4; }
+[data-theme="light"] #pcanvas { opacity:.3; }
+[data-theme="light"] #spb { box-shadow:none; }
+[data-theme="light"] .chip { border:1px solid var(--bdr); }
+[data-theme="light"] .combo-card { box-shadow:0 1px 3px rgba(0,0,0,.06); }
+[data-theme="light"] .tc-card { box-shadow:0 1px 3px rgba(0,0,0,.06); }
+[data-theme="light"] .tr:hover { background:var(--bg3); }
+[data-theme="light"] #cd { background:var(--p); box-shadow:0 0 10px rgba(29,92,84,.6), 0 0 20px rgba(29,92,84,.2); }
+[data-theme="light"] #cr { border-color:rgba(29,92,84,.4); }
+[data-theme="light"] body.cx #cr { border-color:var(--p); box-shadow:0 0 20px rgba(29,92,84,.15); }
+[data-theme="light"] .trail { background:var(--p); }
+[data-theme="light"] .scanline { background:linear-gradient(90deg, transparent 0%, rgba(29,92,84,.12) 50%, transparent 100%); }
+[data-theme="light"] .ghost-num { opacity:.04; }
+[data-theme="light"] .pal-atm { background:radial-gradient(ellipse 55% 80% at 15% 50%, rgba(29,92,84,.15) 0%, transparent 65%),radial-gradient(ellipse 48% 68% at 82% 38%, rgba(184,69,32,.12) 0%, transparent 60%),var(--bg2); }
+[data-theme="light"] .mobile-sec { background:var(--bg2); }
+[data-theme="light"] .bs-panel { background:var(--bg2); }
+[data-theme="light"] .pin-sticky { background:var(--bg); }
+
+/* ── THEME TOGGLE BUTTON ── */
+.theme-toggle {
+  position:fixed; top:20px; right:20px; z-index:9997;
+  width:40px; height:40px; border-radius:50%;
+  background:var(--bg2); border:1px solid var(--bdr);
+  display:flex; align-items:center; justify-content:center;
+  cursor:pointer; transition:background .3s, border-color .3s, transform .2s;
+}
+.theme-toggle:hover { transform:scale(1.1); background:var(--bg3); }
+.theme-toggle svg { width:18px; height:18px; fill:none; stroke:var(--txt); stroke-width:2; stroke-linecap:round; stroke-linejoin:round; transition:stroke .3s; }
+.theme-toggle .icon-sun { display:none; }
+.theme-toggle .icon-moon { display:block; }
+[data-theme="light"] .theme-toggle .icon-sun { display:block; }
+[data-theme="light"] .theme-toggle .icon-moon { display:none; }
+@media (hover: none), (pointer: coarse) {
+  .theme-toggle { cursor:auto; }
+}
+
 *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
-html { background:var(--bg); overflow-x:hidden; }
+html { background:var(--bg); overflow-x:hidden; transition:background .4s; }
 body {
   font-family:'Plus Jakarta Sans', system-ui, sans-serif;
-  color:var(--txt); background:var(--bg); overflow-x:hidden; cursor:none;
+  color:var(--txt); background:var(--bg); cursor:none;
+  position:relative; overflow:visible;
+  transition:background .4s, color .4s;
 }
 a { color:inherit; text-decoration:none; cursor:none; }
 
@@ -269,7 +330,7 @@ body::after {
 .chip.gp { box-shadow:0 4px 30px rgba(29,92,84,.45); }
 .chip.gr { box-shadow:0 4px 30px rgba(196,83,42,.45); }
 .cn { font-size:10px; font-weight:600; letter-spacing:.05em; }
-.ch { font-size:9px; opacity:.65; font-variant-numeric:tabular-nums; margin-top:2px; }
+.chx { font-size:9px; opacity:.65; font-variant-numeric:tabular-nums; margin-top:2px; }
 
 /* combo demos */
 .combo-row { display:grid; grid-template-columns:repeat(3,1fr); gap:2px; }
@@ -293,7 +354,7 @@ body::after {
   display:grid; grid-template-columns:130px 1fr; gap:32px; align-items:center;
   position:relative; overflow:hidden; transition:background .2s;
 }
-.tr:hover { background:#0D1E1A; }
+.tr:hover { background:var(--bg3); }
 .tr::before {
   content:''; position:absolute; left:0; top:20%; bottom:20%; width:2px; background:var(--r);
   transform:scaleY(0); transform-origin:bottom; transition:transform .4s cubic-bezier(.16,1,.3,1);
@@ -330,7 +391,7 @@ body::after {
   position:relative; overflow:hidden;
   transition:background .2s;
 }
-.bdc:hover { background:#0D1E1A; }
+.bdc:hover { background:var(--bg3); }
 .bdl { font-size:9px; letter-spacing:.22em; text-transform:uppercase; color:var(--muted); font-weight:500; }
 .bdd { font-size:11px; color:var(--muted); font-weight:300; line-height:1.6; }
 
@@ -367,7 +428,7 @@ body::after {
 
 /* 5. ROTATING BORDER */
 .b-rot { --ang:0deg; padding:14px 36px; color:var(--txt); background:var(--bg2); position:relative; z-index:0; overflow:visible; }
-.b-rot::before { content:''; position:absolute; inset:-2px; z-index:-1; background:conic-gradient(from var(--ang), var(--p), var(--r), var(--pxl), #050D0B, var(--p)); animation:none; }
+.b-rot::before { content:''; position:absolute; inset:-2px; z-index:-1; background:conic-gradient(from var(--ang), var(--p), var(--r), var(--pxl), var(--bg), var(--p)); animation:none; }
 .b-rot:hover::before { animation:rotbdr 2.2s linear infinite; }
 @keyframes rotbdr { to { --ang:360deg; } }
 
@@ -413,6 +474,112 @@ body::after {
 .b-blob:hover { background:var(--p); }
 .b-blob:hover::before { top:-50%; border-radius:30%; }
 .b-blob span { position:relative; z-index:1; }
+
+/* 9. OUTLINE RUST */
+.b-out-r {
+  padding:14px 36px; color:var(--r); background:transparent;
+  border:1px solid var(--r); transition:background .3s, color .3s;
+}
+.b-out-r:hover { background:var(--r); color:#fff; }
+
+/* 10. OUTLINE PETROL */
+.b-out-p {
+  padding:14px 36px; color:var(--pl); background:transparent;
+  border:1px solid var(--pl); transition:background .3s, color .3s;
+}
+.b-out-p:hover { background:var(--p); color:#fff; }
+
+/* 11. GHOST */
+.b-ghost {
+  padding:14px 36px; color:var(--txt); background:transparent;
+  border:none; position:relative;
+}
+.b-ghost::after {
+  content:''; position:absolute; bottom:8px; left:36px; right:36px; height:1px;
+  background:var(--r); transform:scaleX(0); transform-origin:right;
+  transition:transform .4s cubic-bezier(.16,1,.3,1);
+}
+.b-ghost:hover::after { transform:scaleX(1); transform-origin:left; }
+
+/* 12. PILL */
+.b-pill {
+  padding:12px 32px; color:var(--txt); background:var(--p);
+  border:none; border-radius:999px; transition:background .3s, box-shadow .3s;
+}
+.b-pill:hover { background:var(--pl); box-shadow:0 0 20px rgba(29,92,84,.3); }
+
+/* 13. ICON BUTTON */
+.b-icon {
+  width:48px; height:48px; display:inline-flex; align-items:center; justify-content:center;
+  background:var(--bg2); border:1px solid var(--bdr); color:var(--txt);
+  transition:background .2s, border-color .2s;
+}
+.b-icon:hover { background:var(--bg3); border-color:var(--pl); }
+.b-icon svg { width:18px; height:18px; fill:none; stroke:currentColor; stroke-width:2; stroke-linecap:round; }
+
+/* SIZE VARIANTS */
+.btn-sm { font-size:9px; padding:10px 24px !important; letter-spacing:.15em; }
+.btn-lg { font-size:13px; padding:18px 48px !important; letter-spacing:.2em; }
+
+/* ── CARD VARIANTS ── */
+.card-glass {
+  background:rgba(29,92,84,.08); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px);
+  border:1px solid rgba(29,92,84,.15); padding:28px; transition:background .3s;
+}
+.card-glass:hover { background:rgba(29,92,84,.14); }
+[data-theme="light"] .card-glass { background:rgba(29,92,84,.06); border-color:rgba(29,92,84,.1); }
+
+.card-bordered {
+  background:transparent; border:1px solid var(--bdr); padding:28px;
+  transition:border-color .3s;
+}
+.card-bordered:hover { border-color:var(--pl); }
+
+.card-gradient {
+  background:linear-gradient(135deg, var(--bg2) 0%, rgba(29,92,84,.08) 100%);
+  padding:28px; border:1px solid var(--bdr); transition:transform .3s;
+}
+.card-gradient:hover { transform:translateY(-4px); }
+
+.card-elevated {
+  background:var(--bg2); padding:28px;
+  box-shadow:0 2px 8px rgba(0,0,0,.2), 0 8px 24px rgba(0,0,0,.15);
+  transition:transform .3s, box-shadow .3s;
+}
+.card-elevated:hover { transform:translateY(-6px); box-shadow:0 4px 16px rgba(0,0,0,.25), 0 12px 32px rgba(0,0,0,.2); }
+[data-theme="light"] .card-elevated { box-shadow:0 2px 8px rgba(0,0,0,.06), 0 8px 24px rgba(0,0,0,.08); }
+[data-theme="light"] .card-elevated:hover { box-shadow:0 4px 16px rgba(0,0,0,.08), 0 12px 32px rgba(0,0,0,.12); }
+
+/* ── TAG / BADGE VARIANTS ── */
+.tag-base {
+  display:inline-flex; align-items:center; gap:6px;
+  font-size:10px; letter-spacing:.1em; text-transform:uppercase;
+  font-weight:600; padding:6px 14px; border-radius:2px;
+}
+.tag-success { background:rgba(34,197,94,.12); color:#22c55e; }
+.tag-warning { background:rgba(234,179,8,.12); color:#eab308; }
+.tag-danger  { background:rgba(239,68,68,.12); color:#ef4444; }
+.tag-info    { background:rgba(59,130,246,.12); color:#3b82f6; }
+.tag-petrol  { background:rgba(29,92,84,.12); color:var(--pxl); }
+.tag-rust    { background:rgba(196,83,42,.12); color:var(--rl); }
+.tag-outline { background:transparent; border:1px solid currentColor; }
+.tag-dot::before { content:''; width:6px; height:6px; border-radius:50%; background:currentColor; }
+
+/* ── INPUT VARIANTS ── */
+.input-demo {
+  font-family:inherit; font-size:13px; padding:12px 16px; width:100%;
+  background:var(--bg2); border:1px solid var(--bdr); color:var(--txt);
+  outline:none; transition:border-color .3s, box-shadow .3s;
+}
+.input-demo:focus { border-color:var(--pl); box-shadow:0 0 0 3px rgba(29,92,84,.15); }
+.input-demo.input-error { border-color:var(--r); box-shadow:0 0 0 3px rgba(196,83,42,.12); }
+.input-demo:disabled { opacity:.5; cursor:not-allowed; }
+.input-wrap { position:relative; }
+.input-wrap .input-icon {
+  position:absolute; top:50%; left:14px; transform:translateY(-50%);
+  width:16px; height:16px; fill:none; stroke:var(--muted); stroke-width:2; stroke-linecap:round;
+}
+.input-wrap .input-demo { padding-left:40px; }
 
 /* ════════════════════════════════════════════════════════════
    COMPONENTS — 3D TILT + DISTORT HOVER
@@ -752,7 +919,7 @@ body::after {
 ════════════════════════════════════════════════════════════ */
 .vortex-stage {
   position:relative; border-radius:16px; overflow:hidden;
-  height:380px; border:1px solid var(--bdr); background:#010C0A;
+  height:380px; border:1px solid var(--bdr); background:var(--bg);
   cursor:crosshair;
 }
 #vortexCanvas { width:100%; height:100%; display:block; }
@@ -835,8 +1002,8 @@ body::after {
 /* ════════════════════════════════════════════════════════════
    17 · PIN + SCALE REVEAL
 ════════════════════════════════════════════════════════════ */
-.pin-outer { height:300vh; border-radius:16px; border:1px solid var(--bdr); position:relative; }
-.pin-sticky { position:sticky; top:0; height:100vh; max-height:100%; display:flex; align-items:center; justify-content:center; background:var(--bg); overflow:hidden; }
+.pin-outer { height:300vh; position:relative; }
+.pin-sticky { position:fixed; top:0; left:0; right:0; height:100vh; display:flex; align-items:center; justify-content:center; background:var(--bg); overflow:hidden; pointer-events:none; opacity:0; z-index:5; }
 .pin-sticky::before { content:''; position:absolute; inset:0; background:radial-gradient(circle at 50% 50%, rgba(29,92,84,.1), transparent 60%); }
 .pin-word {
   position:relative; z-index:2;
@@ -1312,15 +1479,15 @@ body::after {
 .scroll-section { position:relative; width:100%; overflow:hidden; font-family:'Plus Jakarta Sans',sans-serif; }
 #sec23 { height:100vh; min-height:600px; background:var(--bg); display:flex; align-items:center; justify-content:center; }
 .parallax-container { position:relative; width:100%; height:100%; overflow:hidden; }
-.parallax-layer-1 { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; will-change:transform; z-index:3; pointer-events:none; }
+.parallax-layer-1 { position:absolute; inset:-20% 0; display:flex; align-items:center; justify-content:center; will-change:transform; z-index:3; pointer-events:none; }
 .parallax-layer-1 .big-text { font-size:clamp(3.5rem,10vw,8rem); font-weight:800; line-height:.95; letter-spacing:-.03em; color:var(--txt); text-align:center; text-transform:uppercase; }
 .parallax-layer-1 .big-text span { display:block; background:linear-gradient(135deg,var(--pxl) 0%,var(--pl) 50%,var(--txt) 100%); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
-.parallax-layer-2 { position:absolute; inset:0; will-change:transform; z-index:2; pointer-events:none; }
+.parallax-layer-2 { position:absolute; inset:-30% 0; will-change:transform; z-index:2; pointer-events:none; }
 .orb { position:absolute; border-radius:50%; filter:blur(60px); opacity:.18; }
 .orb-1 { width:400px; height:400px; background:radial-gradient(circle,var(--pxl),transparent 70%); top:5%; left:-8%; }
 .orb-2 { width:300px; height:300px; background:radial-gradient(circle,var(--r),transparent 70%); top:60%; right:-5%; }
 .orb-3 { width:250px; height:250px; background:radial-gradient(circle,var(--pl),transparent 70%); top:40%; left:40%; }
-.parallax-layer-3 { position:absolute; inset:0; will-change:transform; z-index:1; pointer-events:none; }
+.parallax-layer-3 { position:absolute; inset:-50% 0; will-change:transform; z-index:1; pointer-events:none; }
 .particle { position:absolute; border-radius:50%; background:var(--pxl); opacity:0; animation:particleFade 4s ease-in-out infinite; }
 @keyframes particleFade { 0%,100%{opacity:0;transform:scale(.5)} 50%{opacity:.6;transform:scale(1)} }
 .parallax-depth-label { position:absolute; bottom:2rem; left:50%; transform:translateX(-50%); font-size:.7rem; letter-spacing:.25em; text-transform:uppercase; color:var(--muted); z-index:10; display:flex; align-items:center; gap:.5rem; }
@@ -1503,6 +1670,183 @@ body::after {
 /* ============================================================
    TYPOGRAPHY ANIMATIONS — Sections 33-37
    ============================================================ */
+
+/* ════════════════════════════════════════════════════════════
+   RULE CARDS — DO / DON'T
+════════════════════════════════════════════════════════════ */
+.rules-toggle {
+  font-family:inherit; font-size:10px; letter-spacing:.15em; text-transform:uppercase;
+  font-weight:600; color:var(--muted); background:var(--bg2); border:1px solid var(--bdr);
+  padding:10px 20px; cursor:pointer; transition:color .2s, border-color .2s;
+  margin-top:32px; display:inline-flex; align-items:center; gap:8px;
+}
+.rules-toggle:hover { color:var(--pxl); border-color:var(--pl); }
+.rules-toggle svg { width:14px; height:14px; fill:none; stroke:currentColor; stroke-width:2; stroke-linecap:round; transition:transform .3s; }
+.rules-wrap { display:none; }
+.rules-wrap.open { display:block; }
+.rules-wrap.open + .rules-toggle svg,
+.rules-toggle.active svg { transform:rotate(180deg); }
+
+.rule-card {
+  background:var(--bg2); padding:24px; margin-top:16px;
+  border-left:3px solid var(--muted);
+}
+.rule-card h4 {
+  font-size:11px; letter-spacing:.15em; text-transform:uppercase;
+  color:var(--txt); font-weight:700; margin-bottom:16px;
+}
+.rule-row {
+  display:grid; grid-template-columns:1fr 1fr; gap:16px;
+}
+.rule-do, .rule-dont {
+  padding:16px; font-size:12px; line-height:1.6;
+}
+.rule-do {
+  border:1px solid rgba(34,197,94,.3); background:rgba(34,197,94,.04);
+  color:var(--txt2);
+}
+.rule-do::before {
+  content:'DO'; display:block; font-size:9px; letter-spacing:.2em;
+  font-weight:700; color:#22c55e; margin-bottom:8px;
+}
+.rule-dont {
+  border:1px solid rgba(239,68,68,.3); background:rgba(239,68,68,.04);
+  color:var(--txt2);
+}
+.rule-dont::before {
+  content:"DON'T"; display:block; font-size:9px; letter-spacing:.2em;
+  font-weight:700; color:#ef4444; margin-bottom:8px;
+}
+@media (max-width: 640px) {
+  .rule-row { grid-template-columns: 1fr; }
+}
+
+/* ════════════════════════════════════════════════════════════
+   COPY-TO-CLIPBOARD FEEDBACK
+════════════════════════════════════════════════════════════ */
+.chip[data-copy] { cursor:pointer; }
+.chip[data-copy]:active { transform:scale(.95); }
+.copy-toast {
+  position:fixed; bottom:24px; left:50%; transform:translateX(-50%) translateY(20px);
+  background:var(--p); color:#fff; font-size:11px; font-weight:600;
+  letter-spacing:.1em; padding:10px 24px; z-index:9999;
+  opacity:0; transition:opacity .3s, transform .3s; pointer-events:none;
+}
+.copy-toast.show { opacity:1; transform:translateX(-50%) translateY(0); }
+
+/* ════════════════════════════════════════════════════════════
+   CODE SNIPPET EXPANDABLE
+════════════════════════════════════════════════════════════ */
+.code-toggle {
+  font-family:inherit; font-size:9px; letter-spacing:.15em; text-transform:uppercase;
+  font-weight:600; color:var(--muted); background:none; border:1px solid var(--bdr);
+  padding:6px 14px; cursor:pointer; transition:color .2s, border-color .2s;
+  margin-top:12px;
+}
+.code-toggle:hover { color:var(--pxl); border-color:var(--pl); }
+.code-block {
+  display:none; margin-top:8px; padding:16px; background:var(--bg);
+  border:1px solid var(--bdr); font-family:'Courier New', monospace;
+  font-size:11px; line-height:1.7; color:var(--txt2); overflow-x:auto;
+  white-space:pre-wrap; word-break:break-all;
+}
+.code-block.open { display:block; }
+.code-block .ct { color:var(--pl); }  /* tags */
+.code-block .ca { color:var(--r); }   /* attributes */
+.code-block .cv { color:var(--txt2); } /* values */
+
+/* ════════════════════════════════════════════════════════════
+   SECTION FILTER BAR
+════════════════════════════════════════════════════════════ */
+.filter-bar {
+  position:fixed; top:2px; left:0; right:0; z-index:9995;
+  display:flex; justify-content:center; gap:4px; padding:6px 16px;
+  background:rgba(5,13,11,.85); backdrop-filter:blur(8px);
+  -webkit-backdrop-filter:blur(8px);
+  border-bottom:1px solid var(--bdr);
+  opacity:0; transform:translateY(-100%);
+  transition:opacity .3s, transform .3s;
+  pointer-events:none;
+  -webkit-overflow-scrolling:touch;
+}
+.filter-bar.visible { opacity:1; transform:translateY(0); pointer-events:auto; }
+[data-theme="light"] .filter-bar { background:rgba(245,240,232,.9); }
+.filter-chip {
+  font-family:inherit; font-size:9px; letter-spacing:.1em; text-transform:uppercase;
+  font-weight:600; color:var(--muted); background:none; border:1px solid transparent;
+  padding:4px 12px; cursor:pointer; transition:color .2s, border-color .2s;
+  white-space:nowrap;
+}
+.filter-chip:hover, .filter-chip.active { color:var(--pxl); border-color:var(--pl); }
+@media (max-width: 640px) {
+  .filter-bar { gap:2px; padding:4px 8px; overflow-x:auto; justify-content:flex-start; padding-right:52px; }
+  .filter-chip { font-size:8px; padding:4px 8px; cursor:auto; }
+}
+
+/* ════════════════════════════════════════════════════════════
+   ACCESSIBILITY
+════════════════════════════════════════════════════════════ */
+
+/* Skip to content */
+.skip-link {
+  position:fixed; top:-100px; left:16px; z-index:99999;
+  background:var(--r); color:#fff; padding:10px 20px;
+  font-size:12px; font-weight:600; text-decoration:none;
+  transition:top .2s;
+}
+.skip-link:focus { top:8px; }
+
+/* Focus visible */
+:focus-visible {
+  outline:2px solid var(--pl);
+  outline-offset:2px;
+}
+button:focus-visible, .btn:focus-visible, .chip:focus-visible {
+  outline:2px solid var(--pl);
+  outline-offset:2px;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration:0.01ms !important;
+    animation-iteration-count:1 !important;
+    transition-duration:0.01ms !important;
+  }
+  #pcanvas, .orb, .trail, .scanline { display:none !important; }
+  .pin-sticky { position:relative !important; opacity:1 !important; }
+}
+
+/* High contrast */
+@media (prefers-contrast: more) {
+  :root {
+    --bdr: rgba(29,92,84,.45);
+  }
+  .chip, .bdc, .combo-card, .tr { border:1px solid var(--bdr); }
+  .sec-lbl::after { background:var(--pl); }
+}
+
+/* ════════════════════════════════════════════════════════════
+   PRINT
+════════════════════════════════════════════════════════════ */
+@media print {
+  body { background:white !important; color:black !important; }
+  .orb, #pcanvas, #cd, #cr, .trail, .nav-idx, #spb,
+  .scanline, body::after, .theme-toggle, .filter-bar,
+  .ripple { display:none !important; }
+  .sec { page-break-inside:avoid; padding:20px 0; }
+  .chip { border:1px solid #ccc; }
+  .wrap { max-width:100%; }
+}
+
+/* ════════════════════════════════════════════════════════════
+   PERFORMANCE — CONTENT VISIBILITY
+════════════════════════════════════════════════════════════ */
+.sec:nth-child(n+5) {
+  content-visibility:auto;
+  contain-intrinsic-size:auto 800px;
+}
+
 .typo-section { background:var(--bg); color:var(--txt); font-family:'Plus Jakarta Sans',sans-serif; padding:6rem 2rem; min-height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:3rem; position:relative; overflow:hidden; }
 .typo-section::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse 60% 40% at 20% 50%,rgba(29,92,84,.12) 0%,transparent 70%),radial-gradient(ellipse 40% 60% at 80% 30%,rgba(196,83,42,.06) 0%,transparent 70%); pointer-events:none; }
 #section-33{background:var(--bg)}#section-34{background:var(--bg2)}#section-35{background:var(--bg)}#section-36{background:var(--bg2)}#section-37{background:var(--bg)}
@@ -1664,6 +2008,9 @@ body::after {
   /* ── Magnetic field: colapsar para 8 colunas ── */
   .mag-field { grid-template-columns: repeat(8, 1fr); gap: 6px; padding: 20px; }
 
+  /* ── Typography rows ── */
+  .tr { grid-template-columns: 90px 1fr; gap: 16px; padding: 18px 16px; }
+
   /* ── Summary layout ── */
   .sum-title { font-size: clamp(20px, 5vw, 28px); }
 
@@ -1673,6 +2020,138 @@ body::after {
 
   /* ── Marquee ── */
   .mi { font-size: 9px; padding: 0 14px; }
+
+  /* ── Prevenir texto cortado em tudo ── */
+  * { overflow-wrap: break-word; word-break: break-word; }
+
+  /* ── HERO — encaixar no mobile ── */
+  #hero {
+    padding: 0 20px;
+    min-height: 100svh;
+    overflow: visible;
+  }
+  .h-eye {
+    font-size: 8px;
+    letter-spacing: .2em;
+    margin-bottom: 16px;
+  }
+  .h-title {
+    font-size: clamp(38px, 12vw, 72px);
+    margin-bottom: 20px;
+    line-height: .92;
+  }
+  .hl2 { -webkit-text-stroke-width: 1px; }
+  .h-sub {
+    font-size: 14px;
+    max-width: 100%;
+    line-height: 1.5;
+  }
+
+  /* ── HERO PREVIEW (Joaquim Salles ao vivo) ── */
+  #prev {
+    padding: 0 20px;
+    min-height: 100svh;
+    overflow: visible;
+  }
+  .pv-eye {
+    font-size: 8px;
+    letter-spacing: .2em;
+    margin-bottom: 20px;
+  }
+  .pv-nm {
+    font-size: clamp(36px, 11vw, 72px);
+    margin-bottom: 20px;
+    line-height: .92;
+  }
+  .pvn2 { -webkit-text-stroke-width: 1px; }
+  .pv-copy {
+    font-size: 14px;
+    max-width: 100%;
+    line-height: 1.5;
+  }
+  .pv-g1 { width: 300px; height: 150px; }
+  .pv-g2 { width: 200px; height: 100px; }
+
+  /* ── PIN + SCALE (BUILDER) ── */
+  .pin-outer { height: 250vh; }
+  .pin-word { font-size: clamp(32px, 13vw, 72px) !important; }
+  .pin-hint-txt { font-size: 8px; bottom: 14px; }
+
+  /* ── Secao titles ── */
+  .sec-title { font-size: clamp(20px, 5vw, 32px); }
+  .sec-desc  { font-size: 13px; max-width: 100%; }
+
+  /* ── Ghost block ── */
+  .ghost-blk { height: auto; min-height: 100px; padding: 20px; }
+  .ghost-num { font-size: clamp(60px, 22vw, 100px); }
+
+  /* ── Transition boxes ── */
+  .wipe-box, .curtain-box, .scale-box { height: auto; min-height: 50px; padding: 14px 16px; font-size: 15px; }
+  .swp { height: auto; min-height: 50px; padding: 12px 16px; font-size: 15px; }
+
+  /* ── Cipher / char stagger / count ── */
+  .cph   { font-size: clamp(28px, 9vw, 44px); }
+  .chrv  { font-size: clamp(24px, 8vw, 36px); }
+  .count-d { font-size: clamp(40px, 12vw, 60px); }
+  .wrp   { font-size: 15px; }
+
+  /* ── Shatter ── */
+  .shatter-word { font-size: clamp(36px, 11vw, 64px); }
+
+  /* ── Velocity warp ── */
+  .vel-item { font-size: clamp(14px, 3vw, 20px); }
+
+  /* ── Cortina cinematic ── */
+  .cine-title { font-size: clamp(22px, 6vw, 40px); }
+  .cine-wrap  { height: 200px; }
+
+  /* ── Summary ── */
+  .sum-in { padding: 28px 20px; }
+
+  /* ── Kinetic phrase ── */
+  .kinetic-word { font-size: clamp(16px, 4vw, 28px) !important; }
+  .kw-giant { font-size: clamp(28px, 8vw, 48px) !important; }
+
+  /* ── Typewriter ── */
+  .tw-line { font-size: clamp(16px, 4vw, 24px); }
+
+  /* ── Vortex ── */
+  .vortex-stage { height: 240px; }
+
+  /* ── Mesh ── */
+  .mesh-stage { height: 200px; }
+  .mesh-title { font-size: clamp(22px, 6vw, 36px); }
+
+  /* ── Blob ── */
+  .blob-stage { gap: 20px; padding: 16px; }
+  .blob-wrap svg { width: 120px; height: 120px; }
+
+  /* ── Novas secoes (38-41) ── */
+  .elev-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 10px !important; }
+  .icon-grid { grid-template-columns: repeat(2, 1fr) !important; }
+
+  /* ── Grid system (secao 39) — colapsar colunas no mobile ── */
+  #section-39 [style*="grid-template-columns:repeat(12"] { grid-template-columns: repeat(6, 1fr) !important; }
+  #section-39 [style*="grid-template-columns:repeat(6"] { grid-template-columns: repeat(3, 1fr) !important; }
+
+  /* ── Theme toggle ── */
+  .theme-toggle { top: 12px; right: 12px; width: 36px; height: 36px; }
+  .theme-toggle svg { width: 16px; height: 16px; }
+
+  /* ── Copy toast ── */
+  .copy-toast { font-size: 10px; padding: 8px 16px; }
+
+  /* ── Rule cards ── */
+  .rule-card { padding: 16px; }
+  .rule-do, .rule-dont { padding: 12px; font-size: 11px; }
+}
+
+/* ── Esconder cursor custom e nav dots em dispositivos touch ── */
+@media (hover: none), (pointer: coarse) {
+  #cd, #cr, .trail, .ripple { display: none !important; }
+  body, a, .chip, .tag, .btn, .tc, .b-pulse { cursor: auto !important; }
+  #pcanvas { opacity: .35; }
+  .nav-idx { display: none !important; }
 }
 
 /* ── Extra small (≤ 390px) ── */
@@ -1689,6 +2168,29 @@ body::after {
 </style>
 </head>
 <body>
+
+<!-- skip to content -->
+<a href="#hero" class="skip-link">Pular para o conteudo</a>
+
+<!-- theme toggle -->
+<button class="theme-toggle" id="themeToggle" aria-label="Alternar tema claro/escuro">
+  <svg class="icon-moon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+  <svg class="icon-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+</button>
+
+<!-- section filter bar -->
+<div class="filter-bar" id="filterBar">
+  <button class="filter-chip active" data-filter="hero">Todos</button>
+  <button class="filter-chip" data-filter="s01">Cores</button>
+  <button class="filter-chip" data-filter="s02">Tipo</button>
+  <button class="filter-chip" data-filter="s03">Botoes</button>
+  <button class="filter-chip" data-filter="s04">Componentes</button>
+  <button class="filter-chip" data-filter="s06">Motion</button>
+  <button class="filter-chip" data-filter="s18">Mobile</button>
+  <button class="filter-chip" data-filter="s28">UI</button>
+  <button class="filter-chip" data-filter="section-33">Typo</button>
+  <button class="filter-chip" data-filter="section-38">System</button>
+</div>
 
 <!-- nav dots -->
 <nav class="nav-idx" id="navIdx">
@@ -1707,9 +2209,33 @@ body::after {
   <div class="nv" data-s="s12" title="Mesh"></div>
   <div class="nv" data-s="s13" title="Vórtex"></div>
   <div class="nv" data-s="s14" title="Cortina"></div>
-  <div class="nv" data-s="s15" title="Fly-In"></div>
+  <div class="nv" data-s="s15" title="Drag"></div>
   <div class="nv" data-s="s16" title="Stagger"></div>
   <div class="nv" data-s="s17" title="Pin Zoom"></div>
+  <div class="nv" data-s="s18" title="Touch Ripple"></div>
+  <div class="nv" data-s="s19" title="Swipe Cards"></div>
+  <div class="nv" data-s="s20" title="Pull Refresh"></div>
+  <div class="nv" data-s="s21" title="Bottom Sheet"></div>
+  <div class="nv" data-s="s22" title="Long Press"></div>
+  <div class="nv" data-s="sec23" title="Parallax"></div>
+  <div class="nv" data-s="sec24" title="Contadores"></div>
+  <div class="nv" data-s="sec25" title="Color Shift"></div>
+  <div class="nv" data-s="sec26" title="Marquee"></div>
+  <div class="nv" data-s="sec27" title="Journey"></div>
+  <div class="nv" data-s="s28" title="Modal"></div>
+  <div class="nv" data-s="s29" title="Skeleton"></div>
+  <div class="nv" data-s="s30" title="Toast"></div>
+  <div class="nv" data-s="s31" title="Accordion"></div>
+  <div class="nv" data-s="s32" title="Formulario"></div>
+  <div class="nv" data-s="section-33" title="Typewriter"></div>
+  <div class="nv" data-s="section-34" title="Split 3D"></div>
+  <div class="nv" data-s="section-35" title="Scramble"></div>
+  <div class="nv" data-s="section-36" title="Kinetic"></div>
+  <div class="nv" data-s="section-37" title="VarFont"></div>
+  <div class="nv" data-s="section-38" title="Spacing"></div>
+  <div class="nv" data-s="section-39" title="Grid"></div>
+  <div class="nv" data-s="section-40" title="Elevation"></div>
+  <div class="nv" data-s="section-41" title="Icones"></div>
 </nav>
 
 <!-- particle canvas -->
@@ -1765,24 +2291,24 @@ body::after {
 
   <div class="rev-up d3">
     <div class="chips">
-      <div class="chip" style="background:#050D0B;border:1px solid rgba(29,92,84,.2)"><div class="cn">BG</div><div class="ch">#050D0B</div></div>
-      <div class="chip" style="background:#091612"><div class="cn">BG 2</div><div class="ch">#091612</div></div>
-      <div class="chip" style="background:#0F2420"><div class="cn">BG 3</div><div class="ch">#0F2420</div></div>
+      <div class="chip" data-copy="#050D0B" style="background:#050D0B;border:1px solid rgba(29,92,84,.2)"><div class="cn">BG</div><div class="chx">#050D0B</div></div>
+      <div class="chip" data-copy="#091612" style="background:#091612"><div class="cn">BG 2</div><div class="chx">#091612</div></div>
+      <div class="chip" data-copy="#0F2420" style="background:#0F2420"><div class="cn">BG 3</div><div class="chx">#0F2420</div></div>
     </div>
     <div class="chips">
-      <div class="chip gp" style="background:#1D5C54"><div class="cn">Petróleo</div><div class="ch">#1D5C54</div></div>
-      <div class="chip gp" style="background:#2B7E74"><div class="cn">Petróleo L</div><div class="ch">#2B7E74</div></div>
-      <div class="chip gp" style="background:#3DA898"><div class="cn">Petróleo XL</div><div class="ch">#3DA898</div></div>
+      <div class="chip gp" data-copy="#1D5C54" style="background:#1D5C54"><div class="cn">Petroleo</div><div class="chx">#1D5C54</div></div>
+      <div class="chip gp" data-copy="#2B7E74" style="background:#2B7E74"><div class="cn">Petroleo L</div><div class="chx">#2B7E74</div></div>
+      <div class="chip gp" data-copy="#3DA898" style="background:#3DA898"><div class="cn">Petroleo XL</div><div class="chx">#3DA898</div></div>
     </div>
     <div class="chips">
-      <div class="chip gr" style="background:#C4532A"><div class="cn">Ferrugem</div><div class="ch">#C4532A</div></div>
-      <div class="chip gr" style="background:#D4683E"><div class="cn">Ferrugem L</div><div class="ch">#D4683E</div></div>
-      <div class="chip gr" style="background:#E07E5A"><div class="cn">Ferrugem XL</div><div class="ch">#E07E5A</div></div>
+      <div class="chip gr" data-copy="#C4532A" style="background:#C4532A"><div class="cn">Ferrugem</div><div class="chx">#C4532A</div></div>
+      <div class="chip gr" data-copy="#D4683E" style="background:#D4683E"><div class="cn">Ferrugem L</div><div class="chx">#D4683E</div></div>
+      <div class="chip gr" data-copy="#E07E5A" style="background:#E07E5A"><div class="cn">Ferrugem XL</div><div class="chx">#E07E5A</div></div>
     </div>
     <div class="chips">
-      <div class="chip" style="background:#DDD8CC"><div class="cn" style="color:#222">Texto</div><div class="ch" style="color:#555">#DDD8CC</div></div>
-      <div class="chip" style="background:#A09A90"><div class="cn" style="color:#222">Texto 2</div><div class="ch" style="color:#444">#A09A90</div></div>
-      <div class="chip" style="background:#5A5550"><div class="cn">Mudo</div><div class="ch">#5A5550</div></div>
+      <div class="chip" data-copy="#DDD8CC" style="background:#DDD8CC"><div class="cn" style="color:#222">Texto</div><div class="chx" style="color:#555">#DDD8CC</div></div>
+      <div class="chip" data-copy="#A09A90" style="background:#A09A90"><div class="cn" style="color:#222">Texto 2</div><div class="chx" style="color:#444">#A09A90</div></div>
+      <div class="chip" data-copy="#5A5550" style="background:#5A5550"><div class="cn">Mudo</div><div class="chx">#5A5550</div></div>
     </div>
   </div>
 
@@ -1802,6 +2328,17 @@ body::after {
     <div class="combo-card">
       <p style="font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:14px">Outline petróleo</p>
       <p style="font-size:clamp(26px,3.5vw,42px);font-weight:800;letter-spacing:-.025em;color:transparent;-webkit-text-stroke:1.5px var(--pl);filter:drop-shadow(0 0 14px rgba(43,126,116,.5))">SALLES</p>
+    </div>
+  </div>
+
+  <button class="rules-toggle" onclick="this.nextElementSibling.classList.toggle('open');this.classList.toggle('active')">Exibir regras <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></button>
+  <div class="rules-wrap">
+    <div class="rule-card">
+      <h4>Regra de Cor</h4>
+      <div class="rule-row">
+        <div class="rule-do">Usar petroleo para superficies e ferrugem para acentos/CTAs. Separar com neutro entre eles.</div>
+        <div class="rule-dont">Colocar texto petroleo sobre fundo ferrugem ou vice-versa. Contraste minimo 4.5:1 sempre.</div>
+      </div>
     </div>
   </div>
 </section>
@@ -1826,7 +2363,7 @@ body::after {
 <!-- ══ 03 · BOTÕES ════════════════════════════════════════════ -->
 <section class="sec" data-reveal>
   <p class="sec-lbl" id="s03">03 · Botões</p>
-  <h2 class="sec-title rev-left">8 estilos — todos com hover</h2>
+  <h2 class="sec-title rev-left">13 estilos — todos com hover</h2>
   <p class="sec-desc rev-left d1">Cada botão tem uma personalidade. Passa o mouse.</p>
   <div class="btn-grid rev-up d2">
     <div class="bdc">
@@ -1871,6 +2408,138 @@ body::after {
       <div class="bdl">08 · Liquid Blob</div>
       <button class="btn b-blob"><span>Ver Mais</span></button>
       <p class="bdd">Blob petróleo sobe de dentro. Overflow hidden + border-radius.</p>
+    </div>
+  </div>
+
+  <!-- Extra button variants -->
+  <h3 class="sec-title rev-left" style="margin-top:48px;font-size:clamp(20px,3vw,28px)">+ 5 variantes extras</h3>
+  <p class="sec-desc rev-left d1">Outline, ghost, pill, icon e tamanhos.</p>
+  <div class="btn-grid rev-up d2">
+    <div class="bdc">
+      <div class="bdl">09 · Outline Rust</div>
+      <button class="btn b-out-r">Agendar</button>
+      <p class="bdd">Borda ferrugem. Fill no hover.</p>
+    </div>
+    <div class="bdc">
+      <div class="bdl">10 · Outline Petrol</div>
+      <button class="btn b-out-p">Saiba Mais</button>
+      <p class="bdd">Borda petroleo. Fill no hover.</p>
+    </div>
+    <div class="bdc">
+      <div class="bdl">11 · Ghost</div>
+      <button class="btn b-ghost">Descubra</button>
+      <p class="bdd">Sem borda. Underline animado no hover.</p>
+    </div>
+    <div class="bdc">
+      <div class="bdl">12 · Pill</div>
+      <button class="btn b-pill">Badge</button>
+      <p class="bdd">Border-radius 999px. Glow sutil.</p>
+    </div>
+    <div class="bdc">
+      <div class="bdl">13 · Icon</div>
+      <button class="btn b-icon" aria-label="Pesquisar"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></button>
+      <p class="bdd">Quadrado com icone SVG.</p>
+    </div>
+    <div class="bdc">
+      <div class="bdl">Tamanhos</div>
+      <div style="display:flex;flex-direction:column;gap:10px;align-items:flex-start">
+        <button class="btn b-out-r btn-sm">Small</button>
+        <button class="btn b-out-r">Default</button>
+        <button class="btn b-out-r btn-lg">Large</button>
+      </div>
+      <p class="bdd">sm / default / lg via classe auxiliar.</p>
+    </div>
+    <div class="bdc">
+      <div class="bdl">Cards</div>
+      <div style="display:grid;gap:8px">
+        <div class="card-glass" style="padding:14px"><span style="font-size:11px;color:var(--pxl)">Glass</span></div>
+        <div class="card-bordered" style="padding:14px"><span style="font-size:11px">Bordered</span></div>
+      </div>
+      <p class="bdd">Glassmorphism + borda sutil.</p>
+    </div>
+    <div class="bdc">
+      <div class="bdl">Tags</div>
+      <div style="display:flex;flex-wrap:wrap;gap:6px">
+        <span class="tag-base tag-success">Ativo</span>
+        <span class="tag-base tag-warning">Pendente</span>
+        <span class="tag-base tag-danger">Erro</span>
+        <span class="tag-base tag-info">Info</span>
+        <span class="tag-base tag-petrol">Petrol</span>
+        <span class="tag-base tag-rust">Rust</span>
+        <span class="tag-base tag-outline tag-petrol">Outline</span>
+        <span class="tag-base tag-dot tag-success">Com dot</span>
+      </div>
+      <p class="bdd">Semanticas + outline + dot.</p>
+    </div>
+  </div>
+
+  <!-- Card variants showcase -->
+  <h3 class="sec-title rev-left" style="margin-top:48px;font-size:clamp(20px,3vw,28px)">Variacoes de Card</h3>
+  <div class="combo-row rev-up d2" style="margin-top:24px">
+    <div class="card-glass">
+      <div class="bdl" style="margin-bottom:12px">Glass Card</div>
+      <p style="font-size:13px;color:var(--txt2);line-height:1.6">Backdrop blur + borda translucida. Ideal para overlays e modais.</p>
+    </div>
+    <div class="card-gradient">
+      <div class="bdl" style="margin-bottom:12px">Gradient Card</div>
+      <p style="font-size:13px;color:var(--txt2);line-height:1.6">Gradiente sutil petroleo. Hover com lift. Boa para features.</p>
+    </div>
+    <div class="card-elevated">
+      <div class="bdl" style="margin-bottom:12px">Elevated Card</div>
+      <p style="font-size:13px;color:var(--txt2);line-height:1.6">Sombra pronunciada. Melhor efeito no light mode. Para destaques.</p>
+    </div>
+  </div>
+
+  <!-- Input variants -->
+  <h3 class="sec-title rev-left" style="margin-top:48px;font-size:clamp(20px,3vw,28px)">Inputs</h3>
+  <div class="combo-row rev-up d2" style="margin-top:24px">
+    <div style="display:flex;flex-direction:column;gap:12px;padding:24px;background:var(--bg2)">
+      <div class="bdl">Default + Focus</div>
+      <input class="input-demo" type="text" placeholder="Clique para ver o focus...">
+    </div>
+    <div style="display:flex;flex-direction:column;gap:12px;padding:24px;background:var(--bg2)">
+      <div class="bdl">Error + Disabled</div>
+      <input class="input-demo input-error" type="text" value="email-invalido">
+      <input class="input-demo" type="text" placeholder="Desabilitado" disabled>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:12px;padding:24px;background:var(--bg2)">
+      <div class="bdl">Com icone</div>
+      <div class="input-wrap">
+        <svg class="input-icon" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input class="input-demo" type="text" placeholder="Pesquisar...">
+      </div>
+    </div>
+  </div>
+
+  <button class="rules-toggle" onclick="this.nextElementSibling.classList.toggle('open');this.classList.toggle('active')">Exibir regras <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></button>
+  <div class="rules-wrap">
+    <div class="rule-card">
+      <h4>Regra de Botoes</h4>
+      <div class="rule-row">
+        <div class="rule-do">Touch target minimo de 44px. Usar Fill Up ou Magnetic para CTAs primarios. Ghost para acoes secundarias.</div>
+        <div class="rule-dont">Usar mais de 2 estilos de botao na mesma secao. Misturar pill com angular na mesma interface.</div>
+      </div>
+    </div>
+    <div class="rule-card">
+      <h4>Regra de Spacing</h4>
+      <div class="rule-row">
+        <div class="rule-do">Sempre usar multiplos de 4px. Padding interno minimo de 16px em cards. Gaps consistentes.</div>
+        <div class="rule-dont">Usar valores arbitrarios como 13px, 37px, 51px. Espacamento visual inconsistente entre componentes.</div>
+      </div>
+    </div>
+    <div class="rule-card">
+      <h4>Regra de Tipografia</h4>
+      <div class="rule-row">
+        <div class="rule-do">Max 3 pesos por secao (ex: 300 body + 600 label + 800 display). Usar a escala definida.</div>
+        <div class="rule-dont">Misturar 5+ pesos na mesma secao. Usar font-weight que nao esta na escala (350, 450, etc).</div>
+      </div>
+    </div>
+    <div class="rule-card">
+      <h4>Regra de Tema</h4>
+      <div class="rule-row">
+        <div class="rule-do">Todo componente deve funcionar em dark E light mode. Usar var() para todas as cores.</div>
+        <div class="rule-dont">Hardcodar cores hex em componentes. Esquecer de testar no tema oposto.</div>
+      </div>
     </div>
   </div>
 </section>
@@ -2546,7 +3215,7 @@ body::after {
 <section class="sec in scroll-section" id="sec23">
   <p class="sec-lbl">23 · Parallax Depth</p>
   <h2 class="sec-title">Parallax<br><em>Depth</em></h2>
-  <div style="position:relative;width:100%;height:400px;overflow:hidden;border-radius:12px;border:1px solid var(--bdr);" id="parallaxContainer">
+  <div style="position:relative;width:100%;height:500px;overflow:hidden;border-radius:12px;border:1px solid var(--bdr);" id="parallaxContainer">
     <div class="parallax-layer-3" id="parallaxLayer3" aria-hidden="true"></div>
     <div class="parallax-layer-2" id="parallaxLayer2" aria-hidden="true">
       <div class="orb orb-1"></div>
@@ -2866,6 +3535,171 @@ body::after {
     </div>
   </div>
 </section>
+
+<!-- ══ 38 · SPACING SCALE ═══════════════════════════════════════ -->
+<section class="sec typo-section" id="section-38" data-reveal style="background:var(--bg2)">
+  <div class="section-title-chip"><span class="chip-num">38</span> Spacing Scale</div>
+  <p style="font-size:13px;color:var(--muted);margin-bottom:32px;max-width:480px">Escala de espacamento baseada em multiplos de 4px. Consistencia em todos os componentes.</p>
+  <div class="spacing-scale" style="display:flex;flex-direction:column;gap:8px">
+    <div class="sp-row" style="display:flex;align-items:center;gap:16px"><span style="font-size:10px;color:var(--muted);width:60px;text-align:right;font-variant-numeric:tabular-nums">4px</span><div style="height:12px;width:4px;background:var(--p);border-radius:1px;transition:width .4s"></div><span style="font-size:9px;color:var(--txt2)">--sp-1</span></div>
+    <div class="sp-row" style="display:flex;align-items:center;gap:16px"><span style="font-size:10px;color:var(--muted);width:60px;text-align:right;font-variant-numeric:tabular-nums">8px</span><div style="height:12px;width:8px;background:var(--p);border-radius:1px"></div><span style="font-size:9px;color:var(--txt2)">--sp-2</span></div>
+    <div class="sp-row" style="display:flex;align-items:center;gap:16px"><span style="font-size:10px;color:var(--muted);width:60px;text-align:right;font-variant-numeric:tabular-nums">12px</span><div style="height:12px;width:12px;background:var(--p);border-radius:1px"></div><span style="font-size:9px;color:var(--txt2)">--sp-3</span></div>
+    <div class="sp-row" style="display:flex;align-items:center;gap:16px"><span style="font-size:10px;color:var(--muted);width:60px;text-align:right;font-variant-numeric:tabular-nums">16px</span><div style="height:12px;width:16px;background:var(--pl);border-radius:1px"></div><span style="font-size:9px;color:var(--txt2)">--sp-4</span></div>
+    <div class="sp-row" style="display:flex;align-items:center;gap:16px"><span style="font-size:10px;color:var(--muted);width:60px;text-align:right;font-variant-numeric:tabular-nums">20px</span><div style="height:12px;width:20px;background:var(--pl);border-radius:1px"></div><span style="font-size:9px;color:var(--txt2)">--sp-5</span></div>
+    <div class="sp-row" style="display:flex;align-items:center;gap:16px"><span style="font-size:10px;color:var(--muted);width:60px;text-align:right;font-variant-numeric:tabular-nums">24px</span><div style="height:12px;width:24px;background:var(--pl);border-radius:1px"></div><span style="font-size:9px;color:var(--txt2)">--sp-6</span></div>
+    <div class="sp-row" style="display:flex;align-items:center;gap:16px"><span style="font-size:10px;color:var(--muted);width:60px;text-align:right;font-variant-numeric:tabular-nums">32px</span><div style="height:12px;width:32px;background:var(--pxl);border-radius:1px"></div><span style="font-size:9px;color:var(--txt2)">--sp-7</span></div>
+    <div class="sp-row" style="display:flex;align-items:center;gap:16px"><span style="font-size:10px;color:var(--muted);width:60px;text-align:right;font-variant-numeric:tabular-nums">40px</span><div style="height:12px;width:40px;background:var(--pxl);border-radius:1px"></div><span style="font-size:9px;color:var(--txt2)">--sp-8</span></div>
+    <div class="sp-row" style="display:flex;align-items:center;gap:16px"><span style="font-size:10px;color:var(--muted);width:60px;text-align:right;font-variant-numeric:tabular-nums">48px</span><div style="height:12px;width:48px;background:var(--r);border-radius:1px"></div><span style="font-size:9px;color:var(--txt2)">--sp-9</span></div>
+    <div class="sp-row" style="display:flex;align-items:center;gap:16px"><span style="font-size:10px;color:var(--muted);width:60px;text-align:right;font-variant-numeric:tabular-nums">56px</span><div style="height:12px;width:56px;background:var(--r);border-radius:1px"></div><span style="font-size:9px;color:var(--txt2)">--sp-10</span></div>
+    <div class="sp-row" style="display:flex;align-items:center;gap:16px"><span style="font-size:10px;color:var(--muted);width:60px;text-align:right;font-variant-numeric:tabular-nums">64px</span><div style="height:12px;width:64px;background:var(--rl);border-radius:1px"></div><span style="font-size:9px;color:var(--txt2)">--sp-11</span></div>
+    <div class="sp-row" style="display:flex;align-items:center;gap:16px"><span style="font-size:10px;color:var(--muted);width:60px;text-align:right;font-variant-numeric:tabular-nums">80px</span><div style="height:12px;width:80px;background:var(--rxl);border-radius:1px"></div><span style="font-size:9px;color:var(--txt2)">--sp-12</span></div>
+  </div>
+</section>
+
+<!-- ══ 39 · GRID SYSTEM ═════════════════════════════════════════ -->
+<section class="sec typo-section" id="section-39" data-reveal style="background:var(--bg)">
+  <div class="section-title-chip"><span class="chip-num">39</span> Grid System</div>
+  <p style="font-size:13px;color:var(--muted);margin-bottom:32px;max-width:480px">12 colunas com gap de 16px. Usado em todos os layouts do sistema.</p>
+  <div style="display:flex;flex-direction:column;gap:16px">
+    <!-- 12 cols -->
+    <div style="display:grid;grid-template-columns:repeat(12,1fr);gap:4px">
+      <div style="background:var(--p);padding:8px 0;text-align:center;font-size:9px;color:var(--txt);opacity:.6">1</div>
+      <div style="background:var(--p);padding:8px 0;text-align:center;font-size:9px;color:var(--txt);opacity:.6">2</div>
+      <div style="background:var(--p);padding:8px 0;text-align:center;font-size:9px;color:var(--txt);opacity:.6">3</div>
+      <div style="background:var(--p);padding:8px 0;text-align:center;font-size:9px;color:var(--txt);opacity:.6">4</div>
+      <div style="background:var(--p);padding:8px 0;text-align:center;font-size:9px;color:var(--txt);opacity:.6">5</div>
+      <div style="background:var(--p);padding:8px 0;text-align:center;font-size:9px;color:var(--txt);opacity:.6">6</div>
+      <div style="background:var(--p);padding:8px 0;text-align:center;font-size:9px;color:var(--txt);opacity:.6">7</div>
+      <div style="background:var(--p);padding:8px 0;text-align:center;font-size:9px;color:var(--txt);opacity:.6">8</div>
+      <div style="background:var(--p);padding:8px 0;text-align:center;font-size:9px;color:var(--txt);opacity:.6">9</div>
+      <div style="background:var(--p);padding:8px 0;text-align:center;font-size:9px;color:var(--txt);opacity:.6">10</div>
+      <div style="background:var(--p);padding:8px 0;text-align:center;font-size:9px;color:var(--txt);opacity:.6">11</div>
+      <div style="background:var(--p);padding:8px 0;text-align:center;font-size:9px;color:var(--txt);opacity:.6">12</div>
+    </div>
+    <!-- 6 cols -->
+    <div style="display:grid;grid-template-columns:repeat(6,1fr);gap:4px">
+      <div style="background:var(--pl);padding:12px 0;text-align:center;font-size:9px;color:var(--txt)">span 2</div>
+      <div style="background:var(--pl);padding:12px 0;text-align:center;font-size:9px;color:var(--txt)">span 2</div>
+      <div style="background:var(--pl);padding:12px 0;text-align:center;font-size:9px;color:var(--txt)">span 2</div>
+      <div style="background:var(--pl);padding:12px 0;text-align:center;font-size:9px;color:var(--txt)">span 2</div>
+      <div style="background:var(--pl);padding:12px 0;text-align:center;font-size:9px;color:var(--txt)">span 2</div>
+      <div style="background:var(--pl);padding:12px 0;text-align:center;font-size:9px;color:var(--txt)">span 2</div>
+    </div>
+    <!-- 4 cols -->
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:4px">
+      <div style="background:var(--r);padding:14px 0;text-align:center;font-size:9px;color:#fff">span 3</div>
+      <div style="background:var(--r);padding:14px 0;text-align:center;font-size:9px;color:#fff">span 3</div>
+      <div style="background:var(--r);padding:14px 0;text-align:center;font-size:9px;color:#fff">span 3</div>
+      <div style="background:var(--r);padding:14px 0;text-align:center;font-size:9px;color:#fff">span 3</div>
+    </div>
+    <!-- 3 cols -->
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:4px">
+      <div style="background:var(--rl);padding:16px 0;text-align:center;font-size:9px;color:#fff">span 4</div>
+      <div style="background:var(--rl);padding:16px 0;text-align:center;font-size:9px;color:#fff">span 4</div>
+      <div style="background:var(--rl);padding:16px 0;text-align:center;font-size:9px;color:#fff">span 4</div>
+    </div>
+    <!-- 2 cols -->
+    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:4px">
+      <div style="background:var(--pxl);padding:18px 0;text-align:center;font-size:9px;color:var(--bg)">span 6</div>
+      <div style="background:var(--pxl);padding:18px 0;text-align:center;font-size:9px;color:var(--bg)">span 6</div>
+    </div>
+    <!-- full -->
+    <div style="background:var(--rxl);padding:20px 0;text-align:center;font-size:9px;color:var(--bg)">span 12</div>
+  </div>
+</section>
+
+<!-- ══ 40 · ELEVATION / DEPTH ═══════════════════════════════════ -->
+<section class="sec typo-section" id="section-40" data-reveal style="background:var(--bg2)">
+  <div class="section-title-chip"><span class="chip-num">40</span> Elevation / Depth</div>
+  <p style="font-size:13px;color:var(--muted);margin-bottom:32px;max-width:480px">5 niveis de sombra. No dark mode usa glow sutil. No light mode sombras reais.</p>
+  <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:20px" class="elev-grid">
+    <div style="background:var(--bg);padding:28px 16px;text-align:center;box-shadow:0 1px 2px rgba(0,0,0,.15);transition:transform .3s">
+      <div style="font-size:10px;color:var(--muted);letter-spacing:.1em;margin-bottom:8px">LEVEL 1</div>
+      <div style="font-size:9px;color:var(--txt2)">0 1px 2px</div>
+    </div>
+    <div style="background:var(--bg);padding:28px 16px;text-align:center;box-shadow:0 2px 6px rgba(0,0,0,.2);transition:transform .3s">
+      <div style="font-size:10px;color:var(--muted);letter-spacing:.1em;margin-bottom:8px">LEVEL 2</div>
+      <div style="font-size:9px;color:var(--txt2)">0 2px 6px</div>
+    </div>
+    <div style="background:var(--bg);padding:28px 16px;text-align:center;box-shadow:0 4px 12px rgba(0,0,0,.25);transition:transform .3s">
+      <div style="font-size:10px;color:var(--muted);letter-spacing:.1em;margin-bottom:8px">LEVEL 3</div>
+      <div style="font-size:9px;color:var(--txt2)">0 4px 12px</div>
+    </div>
+    <div style="background:var(--bg);padding:28px 16px;text-align:center;box-shadow:0 8px 24px rgba(0,0,0,.3);transition:transform .3s">
+      <div style="font-size:10px;color:var(--muted);letter-spacing:.1em;margin-bottom:8px">LEVEL 4</div>
+      <div style="font-size:9px;color:var(--txt2)">0 8px 24px</div>
+    </div>
+    <div style="background:var(--bg);padding:28px 16px;text-align:center;box-shadow:0 12px 36px rgba(0,0,0,.35);transition:transform .3s">
+      <div style="font-size:10px;color:var(--muted);letter-spacing:.1em;margin-bottom:8px">LEVEL 5</div>
+      <div style="font-size:9px;color:var(--txt2)">0 12px 36px</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ 41 · ICONOGRAFIA ═════════════════════════════════════════ -->
+<section class="sec typo-section" id="section-41" data-reveal style="background:var(--bg)">
+  <div class="section-title-chip"><span class="chip-num">41</span> Iconografia</div>
+  <p style="font-size:13px;color:var(--muted);margin-bottom:32px;max-width:480px">Icones SVG inline. 3 tamanhos, 3 estilos: outline, fill, duotone.</p>
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:2px" class="icon-grid">
+    <div style="background:var(--bg2);padding:24px;display:flex;flex-direction:column;align-items:center;gap:12px">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--txt)" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      <span style="font-size:9px;color:var(--muted)">Arrow</span>
+    </div>
+    <div style="background:var(--bg2);padding:24px;display:flex;flex-direction:column;align-items:center;gap:12px">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--txt)" stroke-width="2" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+      <span style="font-size:9px;color:var(--muted)">Check</span>
+    </div>
+    <div style="background:var(--bg2);padding:24px;display:flex;flex-direction:column;align-items:center;gap:12px">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--txt)" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      <span style="font-size:9px;color:var(--muted)">Close</span>
+    </div>
+    <div style="background:var(--bg2);padding:24px;display:flex;flex-direction:column;align-items:center;gap:12px">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--txt)" stroke-width="2" stroke-linecap="round"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      <span style="font-size:9px;color:var(--muted)">Menu</span>
+    </div>
+    <div style="background:var(--bg2);padding:24px;display:flex;flex-direction:column;align-items:center;gap:12px">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--txt)" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <span style="font-size:9px;color:var(--muted)">Search</span>
+    </div>
+    <div style="background:var(--bg2);padding:24px;display:flex;flex-direction:column;align-items:center;gap:12px">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--txt)" stroke-width="2" stroke-linecap="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      <span style="font-size:9px;color:var(--muted)">User</span>
+    </div>
+    <div style="background:var(--bg2);padding:24px;display:flex;flex-direction:column;align-items:center;gap:12px">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--txt)" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+      <span style="font-size:9px;color:var(--muted)">Settings</span>
+    </div>
+    <div style="background:var(--bg2);padding:24px;display:flex;flex-direction:column;align-items:center;gap:12px">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--txt)" stroke-width="2" stroke-linecap="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+      <span style="font-size:9px;color:var(--muted)">Heart</span>
+    </div>
+  </div>
+  <!-- Sizes demo -->
+  <div style="display:flex;align-items:end;gap:24px;margin-top:24px;padding:24px;background:var(--bg2)">
+    <div style="text-align:center">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--pxl)" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <div style="font-size:9px;color:var(--muted);margin-top:6px">16px</div>
+    </div>
+    <div style="text-align:center">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--pxl)" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <div style="font-size:9px;color:var(--muted);margin-top:6px">20px</div>
+    </div>
+    <div style="text-align:center">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--pxl)" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <div style="font-size:9px;color:var(--muted);margin-top:6px">24px</div>
+    </div>
+    <div style="border-left:1px solid var(--bdr);height:40px;margin:0 8px"></div>
+    <!-- Duotone example -->
+    <div style="text-align:center">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="rgba(29,92,84,.2)" stroke="var(--r)" stroke-width="2" stroke-linecap="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+      <div style="font-size:9px;color:var(--muted);margin-top:6px">duotone</div>
+    </div>
+    <div style="text-align:center">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="var(--r)" stroke="var(--r)" stroke-width="2" stroke-linecap="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+      <div style="font-size:9px;color:var(--muted);margin-top:6px">fill</div>
+    </div>
+  </div>
+</section>
 </div>
 
 <!-- ══ SUMMARY ════════════════════════════════════════════════ -->
@@ -2878,24 +3712,25 @@ body::after {
           <div class="sum-l">Paleta</div>
           <div class="sum-v">
             <span class="ds" style="background:#050D0B;border:1px solid #1D5C54"></span><strong>#050D0B</strong> fundo<br>
-            <span class="ds" style="background:#1D5C54"></span><strong>#1D5C54</strong> petróleo<br>
+            <span class="ds" style="background:#1D5C54"></span><strong>#1D5C54</strong> petroleo<br>
             <span class="ds" style="background:#C4532A"></span><strong>#C4532A</strong> ferrugem<br>
-            <span class="ds" style="background:#DDD8CC"></span><strong>#DDD8CC</strong> texto
+            <span class="ds" style="background:#DDD8CC"></span><strong>#DDD8CC</strong> texto<br>
+            <span class="ds" style="background:#F5F0E8;border:1px solid #ccc"></span><strong>#F5F0E8</strong> light bg
           </div>
         </div>
         <div>
           <div class="sum-l">Tipografia</div>
-          <div class="sum-v"><strong>Plus Jakarta Sans</strong><br>Display 800 · −3.5%<br>Body 300 · 1.75 line-height<br>Label 600 · uppercase</div>
+          <div class="sum-v"><strong>Plus Jakarta Sans</strong><br>Display 800 · -3.5%<br>Body 300 · 1.75 line-height<br>Label 600 · uppercase</div>
         </div>
         <div>
-          <div class="sum-l">Motion Stack</div>
+          <div class="sum-l">Motion + Features</div>
           <div class="sum-v">
             Cipher · Glitch · 3D Tilt<br>
             Magnetic · Fill · Split · Blob<br>
-            Char Stagger · Word Reveal<br>
-            Particles · Trail · Parallax<br>
-            Wipe · Curtain · Scale Rise<br>
-            Rotating Border · Count Up
+            13 botoes · 4 cards · 8 tags<br>
+            Light/Dark mode toggle<br>
+            Spacing · Grid · Elevation<br>
+            41 secoes interativas
           </div>
         </div>
       </div>
@@ -2904,6 +3739,34 @@ body::after {
 </div>
 
 <script>
+// ═══════════════════════════════════════════════════════════════
+//  DEVICE DETECTION
+// ═══════════════════════════════════════════════════════════════
+const IS_TOUCH = matchMedia('(hover: none)').matches || matchMedia('(pointer: coarse)').matches;
+const REDUCED_MOTION = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+// ═══════════════════════════════════════════════════════════════
+//  THEME TOGGLE
+// ═══════════════════════════════════════════════════════════════
+const THEME_KEY = 'ds-theme';
+function getTheme() { return localStorage.getItem(THEME_KEY) || 'dark'; }
+function setTheme(t) {
+  document.documentElement.setAttribute('data-theme', t);
+  localStorage.setItem(THEME_KEY, t);
+}
+setTheme(getTheme());
+const themeBtn = document.getElementById('themeToggle');
+if (themeBtn) {
+  themeBtn.addEventListener('click', function() {
+    var next = getTheme() === 'dark' ? 'light' : 'dark';
+    setTheme(next);
+    // Update particle colors for new theme
+    if (typeof PARTS !== 'undefined') {
+      PARTS.forEach(function(p) { p.resetColor(); });
+    }
+  });
+}
+
 // ═══════════════════════════════════════════════════════════════
 //  CANVAS PARTICLE SYSTEM
 // ═══════════════════════════════════════════════════════════════
@@ -2925,9 +3788,16 @@ class Particle {
     this.vy = (Math.random() - .5) * .35;
     this.sz = Math.random() * 1.4 + .4;
     this.op = Math.random() * .4 + .08;
-    this.col = Math.random() > .85
-      ? `rgba(196,83,42,${this.op})`  // occasional rust
-      : `rgba(29,92,84,${this.op})`;  // mostly petrol
+    this._isRust = Math.random() > .85;
+    this.resetColor();
+  }
+  resetColor() {
+    var light = getTheme() === 'light';
+    if (this._isRust) {
+      this.col = light ? `rgba(140,50,15,${this.op})` : `rgba(196,83,42,${this.op})`;
+    } else {
+      this.col = light ? `rgba(15,60,52,${this.op})` : `rgba(29,92,84,${this.op})`;
+    }
   }
   update() {
     const dx = MOUSE.x - this.x, dy = MOUSE.y - this.y;
@@ -2945,7 +3815,7 @@ class Particle {
   }
 }
 
-const PARTS = Array.from({length:100}, () => new Particle());
+const PARTS = Array.from({length: IS_TOUCH ? 30 : 100}, () => new Particle());
 
 function drawConnections() {
   for (let i = 0; i < PARTS.length; i++) {
@@ -2956,7 +3826,7 @@ function drawConnections() {
         CTX.beginPath();
         CTX.moveTo(PARTS[i].x, PARTS[i].y);
         CTX.lineTo(PARTS[j].x, PARTS[j].y);
-        CTX.strokeStyle = `rgba(29,92,84,${(1-d/90)*.12})`;
+        CTX.strokeStyle = getTheme()==='light' ? `rgba(15,60,52,${(1-d/90)*.18})` : `rgba(29,92,84,${(1-d/90)*.12})`;
         CTX.lineWidth = .5;
         CTX.stroke();
       }
@@ -2972,8 +3842,9 @@ function drawConnections() {
 })();
 
 // ═══════════════════════════════════════════════════════════════
-//  SPRING CURSOR
+//  SPRING CURSOR (desktop only)
 // ═══════════════════════════════════════════════════════════════
+if (IS_TOUCH) { /* skip cursor effects on touch devices */ } else {
 const DOT = document.getElementById('cd'), RING = document.getElementById('cr');
 let mx=0, my=0, rx=0, ry=0, rvx=0, rvy=0;
 let lastMx=0, lastMy=0, speed=0;
@@ -3032,10 +3903,12 @@ document.addEventListener('click', e => {
   document.body.appendChild(r);
   setTimeout(() => r.remove(), 700);
 });
+} // end if (!IS_TOUCH)
 
 // ═══════════════════════════════════════════════════════════════
-//  PARALLAX ORBS
+//  PARALLAX ORBS (desktop only)
 // ═══════════════════════════════════════════════════════════════
+if (!IS_TOUCH) {
 let ptx=0,pty=0,pcx=0,pcy=0;
 document.addEventListener('mousemove', e => { ptx=(e.clientX/window.innerWidth-.5); pty=(e.clientY/window.innerHeight-.5); });
 const O1=document.getElementById('o1'),O2=document.getElementById('o2'),O3=document.getElementById('o3');
@@ -3046,6 +3919,7 @@ const O1=document.getElementById('o1'),O2=document.getElementById('o2'),O3=docum
   O3.style.transform = `translate(${pcx*100}px,${pcy*80}px)`;
   requestAnimationFrame(orbLoop);
 })();
+} // end if (!IS_TOUCH)
 
 // ═══════════════════════════════════════════════════════════════
 //  SCROLL PROGRESS (JS fallback)
@@ -3135,7 +4009,6 @@ function playWords() {
     document.querySelectorAll('#wrp1 .wr-w').forEach(s=>{s.style.opacity='1';s.style.transform='none';});
   }));
 }
-buildWords(document.getElementById('wrp1'));
 setTimeout(playWords, 500);
 
 // ═══════════════════════════════════════════════════════════════
@@ -3149,10 +4022,12 @@ function playWipe() {
 function playCurtain() {
   const el = document.getElementById('cb1');
   el.classList.remove('playing'); void el.offsetWidth; el.classList.add('playing');
+  setTimeout(()=>el.classList.remove('playing'),1200);
 }
 function playScale() {
   const el = document.getElementById('sb1');
   el.classList.remove('playing'); void el.offsetWidth; el.classList.add('playing');
+  setTimeout(()=>el.classList.remove('playing'),1200);
 }
 setTimeout(playWipe,600);
 setTimeout(playCurtain,900);
@@ -3178,9 +4053,9 @@ function rotator(id) {
 ['rs1','rs2','pvr'].forEach(rotator);
 
 // ═══════════════════════════════════════════════════════════════
-//  MAGNETIC BUTTONS
+//  MAGNETIC BUTTONS (desktop only)
 // ═══════════════════════════════════════════════════════════════
-document.querySelectorAll('.mag').forEach(btn => {
+if (!IS_TOUCH) document.querySelectorAll('.mag').forEach(btn => {
   const inner = btn.querySelector('span');
   btn.addEventListener('mousemove', e => {
     const r = btn.getBoundingClientRect();
@@ -3204,9 +4079,9 @@ document.querySelectorAll('.b-pulse').forEach(btn => {
 });
 
 // ═══════════════════════════════════════════════════════════════
-//  3D TILT
+//  3D TILT (desktop only)
 // ═══════════════════════════════════════════════════════════════
-document.querySelectorAll('.tc').forEach(card => {
+if (!IS_TOUCH) document.querySelectorAll('.tc').forEach(card => {
   const inner = card.querySelector('.ti');
   const glow  = card.querySelector('.ti-glow');
   card.addEventListener('mousemove', e => {
@@ -3276,20 +4151,12 @@ const GLS = ['hn1','hn2','pvn1','pvn2','glEl'];
 })();
 
 // ═══════════════════════════════════════════════════════════════
-//  HERO CIPHER ON LOAD
-// ═══════════════════════════════════════════════════════════════
-window.addEventListener('load', () => {
-  cipher(document.getElementById('hn1'),'DESIGN',500);
-  cipher(document.getElementById('hn2'),'SYSTEM',900);
-});
-
-// ═══════════════════════════════════════════════════════════════
 //  07 · MAGNETIC FIELD
 // ═══════════════════════════════════════════════════════════════
 (function() {
   const field = document.getElementById('magfield');
   if (!field) return;
-  const N = 296;
+  const N = IS_TOUCH ? 80 : 296;
   const dots = [];
   for (let i = 0; i < N; i++) {
     const d = document.createElement('div');
@@ -3422,7 +4289,7 @@ window.addEventListener('load', () => {
 // ═══════════════════════════════════════════════════════════════
 (function() {
   const nvs = document.querySelectorAll('.nv');
-  const IDS = ['hero','s01','s02','s03','s04','s05','s06','s07','s08','s09','s10','s11','s12','s13','s14','s15','s16','s17'];
+  const IDS = Array.from(nvs).map(n => n.dataset.s);
 
   nvs.forEach((nv, i) => {
     nv.addEventListener('click', () => {
@@ -3439,7 +4306,7 @@ window.addEventListener('load', () => {
       if (idx < 0) return;
       nvs.forEach((n,i) => n.classList.toggle('active', i===idx));
     });
-  }, {threshold:0.5});
+  }, {threshold:0.3});
 
   IDS.forEach(id => {
     const el = document.getElementById(id);
@@ -3670,7 +4537,7 @@ window.addEventListener('load', () => {
     t++;
     ctx.clearRect(0,0,cw,ch);
     // bg
-    ctx.fillStyle = '#050D0B';
+    ctx.fillStyle = getTheme()==='light' ? '#F5F0E8' : '#050D0B';
     ctx.fillRect(0,0,cw,ch);
 
     ORBS.forEach(o => {
@@ -3765,7 +4632,7 @@ window.addEventListener('load', () => {
     }
   }
 
-  const PARTS = Array.from({length: 250}, () => new VParticle());
+  const PARTS = Array.from({length: IS_TOUCH ? 80 : 250}, () => new VParticle());
 
   // Accretion disk glow
   function drawDisk() {
@@ -3899,19 +4766,31 @@ function replayStagger() {
 // ═══════════════════════════════════════════════════════════════
 (function() {
   const outer = document.getElementById('pinOuter');
+  const sticky = document.getElementById('pinSticky');
   const word  = document.getElementById('pinWord');
-  if (!outer || !word) return;
+  if (!outer || !sticky || !word) return;
 
   function onScroll() {
     const r = outer.getBoundingClientRect();
     const total = outer.offsetHeight - window.innerHeight;
     if (total <= 0) return;
-    // Progress 0 → 1 as section scrolls through viewport
     const scrolled = -r.top;
-    const progress = Math.max(0, Math.min(1, scrolled / total));
+    const raw = Math.max(0, Math.min(1, scrolled / total));
 
-    const sc = 0.15 + progress * 0.85;
-    const op = Math.min(1, progress * 2.5);
+    // Mostrar/esconder o painel fixo
+    if (raw > 0 && raw < 1) {
+      sticky.style.opacity = '1';
+      sticky.style.pointerEvents = 'auto';
+    } else {
+      sticky.style.opacity = '0';
+      sticky.style.pointerEvents = 'none';
+    }
+
+    // Ease-out para a palavra crescer rapido no inicio
+    const progress = 1 - Math.pow(1 - raw, 2.5);
+
+    const sc = 0.10 + progress * 0.90;
+    const op = Math.min(1, progress * 1.8);
     word.style.transform = `scale(${sc})`;
     word.style.opacity = op;
 
@@ -3968,7 +4847,7 @@ function replayStagger() {
     });
   }
 
-  zone.addEventListener('pointerdown', e => { e.preventDefault(); const touches = e.changedTouches||[e]; Array.from(touches).forEach(t=>spawnRipple(t.clientX||t.pageX,t.clientY||t.pageY)); }, {passive:false});
+  zone.addEventListener('pointerdown', e => { e.preventDefault(); spawnRipple(e.clientX, e.clientY); }, {passive:false});
   zone.addEventListener('keydown', e => { if(e.key==='Enter'||e.key===' '){ const r=zone.getBoundingClientRect(); spawnRipple(r.left+r.width/2,r.top+r.height/2); } });
 })();
 
@@ -4215,11 +5094,14 @@ function replayStagger() {
     var ticking = false;
     function update() {
       var rect = container.getBoundingClientRect();
-      if (rect.bottom < 0 || rect.top > window.innerHeight) return;
-      var relY = -rect.top;
-      if (l1) l1.style.transform = 'translateY('+(relY*0.12)+'px)';
-      if (l2) l2.style.transform = 'translateY('+(relY*0.28)+'px)';
-      if (l3) l3.style.transform = 'translateY('+(relY*0.55)+'px)';
+      if (rect.bottom < 0 || rect.top > window.innerHeight) { ticking = false; return; }
+      // Centrar o efeito: 0 quando o container esta no meio da tela
+      var center = rect.top + rect.height / 2;
+      var viewCenter = window.innerHeight / 2;
+      var offset = center - viewCenter;
+      if (l1) l1.style.transform = 'translateY('+(-offset*0.05)+'px)';
+      if (l2) l2.style.transform = 'translateY('+(-offset*0.15)+'px)';
+      if (l3) l3.style.transform = 'translateY('+(-offset*0.30)+'px)';
       ticking = false;
     }
     window.addEventListener('scroll', function() { if(!ticking){requestAnimationFrame(update);ticking=true;} }, {passive:true});
@@ -4623,6 +5505,90 @@ function replayStagger() {
       rafScale();
     }
   })();
+
+})();
+
+/* ============================================================
+   MICRO-INTERACTIONS — Copy, Filter, Code Toggle
+   ============================================================ */
+(function() {
+  'use strict';
+
+  /* Copy-to-clipboard on chips */
+  var copyToast = document.createElement('div');
+  copyToast.className = 'copy-toast';
+  copyToast.textContent = 'Copiado!';
+  document.body.appendChild(copyToast);
+  var toastTimer;
+
+  document.querySelectorAll('[data-copy]').forEach(function(el) {
+    el.addEventListener('click', function() {
+      var val = el.getAttribute('data-copy');
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(val).catch(function(){});
+      } else {
+        var ta = document.createElement('textarea');
+        ta.value = val; ta.style.position = 'fixed'; ta.style.opacity = '0';
+        document.body.appendChild(ta); ta.select();
+        try { document.execCommand('copy'); } catch(e) {}
+        document.body.removeChild(ta);
+      }
+      copyToast.textContent = 'Copiado: ' + val;
+      copyToast.classList.add('show');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(function() { copyToast.classList.remove('show'); }, 1500);
+    });
+  });
+
+  /* Filter bar — show after 100vh scroll */
+  var filterBar = document.getElementById('filterBar');
+  if (filterBar) {
+    window.addEventListener('scroll', function() {
+      if (window.scrollY > window.innerHeight) {
+        filterBar.classList.add('visible');
+      } else {
+        filterBar.classList.remove('visible');
+      }
+    }, { passive: true });
+
+    filterBar.querySelectorAll('.filter-chip').forEach(function(chip) {
+      chip.addEventListener('click', function() {
+        filterBar.querySelectorAll('.filter-chip').forEach(function(c) { c.classList.remove('active'); });
+        chip.classList.add('active');
+        var target = document.getElementById(chip.getAttribute('data-filter'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+  }
+
+  /* Code toggle buttons */
+  document.querySelectorAll('.code-toggle').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var block = btn.nextElementSibling;
+      if (block && block.classList.contains('code-block')) {
+        block.classList.toggle('open');
+        btn.textContent = block.classList.contains('open') ? 'Esconder codigo' : 'Ver codigo';
+      }
+    });
+  });
+
+  /* 3D tilt on card variants (desktop only) */
+  if (!IS_TOUCH) {
+    document.querySelectorAll('.card-glass, .card-gradient, .card-elevated, .card-bordered').forEach(function(card) {
+      card.style.transition = (card.style.transition || '') + ', transform .15s ease-out';
+      card.addEventListener('mousemove', function(e) {
+        var rect = card.getBoundingClientRect();
+        var x = (e.clientX - rect.left) / rect.width - 0.5;
+        var y = (e.clientY - rect.top) / rect.height - 0.5;
+        card.style.transform = 'perspective(800px) rotateY(' + (x * 6) + 'deg) rotateX(' + (-y * 6) + 'deg)';
+      });
+      card.addEventListener('mouseleave', function() {
+        card.style.transform = '';
+      });
+    });
+  }
 
 })();
 
