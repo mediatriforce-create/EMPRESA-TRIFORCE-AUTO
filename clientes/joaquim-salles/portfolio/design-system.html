@@ -1759,7 +1759,7 @@ body::after {
    SECTION FILTER BAR
 ════════════════════════════════════════════════════════════ */
 .filter-bar {
-  position:fixed; top:2px; left:0; right:0; z-index:9995;
+  position:fixed; top:2px; left:0; width:100%; z-index:9995;
   display:flex; justify-content:center; gap:4px; padding:6px 16px;
   background:rgba(5,13,11,.85); backdrop-filter:blur(8px);
   -webkit-backdrop-filter:blur(8px);
@@ -1767,7 +1767,7 @@ body::after {
   opacity:0; transform:translateY(-100%);
   transition:opacity .3s, transform .3s;
   pointer-events:none;
-  -webkit-overflow-scrolling:touch;
+  overflow:hidden;
 }
 .filter-bar.visible { opacity:1; transform:translateY(0); pointer-events:auto; }
 [data-theme="light"] .filter-bar { background:rgba(245,240,232,.9); }
@@ -1779,7 +1779,7 @@ body::after {
 }
 .filter-chip:hover, .filter-chip.active { color:var(--pxl); border-color:var(--pl); }
 @media (max-width: 640px) {
-  .filter-bar { gap:2px; padding:4px 8px; overflow-x:auto; justify-content:flex-start; padding-right:52px; }
+  .filter-bar { display:none !important; }
   .filter-chip { font-size:8px; padding:4px 8px; cursor:auto; }
 }
 
