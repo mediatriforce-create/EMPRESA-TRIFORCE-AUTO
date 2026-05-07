@@ -33,10 +33,10 @@
 
 | Item | Valor | Fonte |
 |------|-------|-------|
-| Versao estavel | 1.17.4 (releases ate 1.25.0) | npm |
-| v2 status | Pre-alpha em desenvolvimento | GitHub releases |
-| Projetos dependentes | 11.484+ | npm |
-| Standard Schema | Zod v4, Valibot, ArkType | GitHub README |
+| Versao estavel | **1.29.0** | npm (confirmado Socket.dev/Snyk/NewReleases) |
+| v2 status | **2.0.0-alpha.2** (sub-pacotes: /server, /client, /node, /express, /hono) | GitHub releases |
+| Projetos dependentes | 12.399+ | npm |
+| Schema v1.x | **Zod v3** (raw shapes). Standard Schema (Zod v4, Valibot, ArkType) **apenas em v2 alpha** | Issues #925, #555 |
 | Runtimes | Node.js, Bun, Deno | Docs |
 | Middleware | Express, Hono, Node.js HTTP | GitHub |
 | Docs | ts.sdk.modelcontextprotocol.io | Oficial |
@@ -45,7 +45,7 @@
 
 | Item | Valor | Fonte |
 |------|-------|-------|
-| Versao npm | 3.13.0 (fastmcp) | npm |
+| Versao npm | **4.0.1** (breaking: OAuthProxy.authorize valida redirect_uri) | npm/JSR |
 | JSR | @punkpeye/fastmcp (@glama/fastmcp) | JSR |
 | Stars GitHub | 3.100+ | GitHub |
 | Projetos dependentes | 331 | npm |
@@ -70,8 +70,9 @@
 | Deployments | 100/dia | Maior | Vercel docs |
 | Concurrent builds | 1 | 3 | Vercel docs |
 
-**@vercel/mcp-adapter:**
-- Versao: 0.2.4
+**mcp-handler (antigo @vercel/mcp-adapter, renomeado):**
+- Versao: **1.1.0** (`npm i mcp-handler`). @vercel/mcp-adapter@1.0.0 e stub que re-exporta mcp-handler.
+- Requer @modelcontextprotocol/sdk >= 1.26.0
 - Streamable HTTP com cold start handling
 - OAuth 2.1 built-in
 - Template oficial: vercel.com/templates/next.js/model-context-protocol-mcp-with-next-js

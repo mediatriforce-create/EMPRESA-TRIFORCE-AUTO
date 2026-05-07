@@ -7,8 +7,8 @@ description: >
   integracao MCP com stack, rate limiting via MCP, schemas Zod para tools, debugging MCP,
   "MCP para [servico]", "criar tools MCP", "build MCP server".
 version: 1.0.0
-last_updated: 2026-05-06
-sources_version: "MCP Spec 2025-11-25 | @modelcontextprotocol/sdk 1.17+ | FastMCP 3.x"
+last_updated: 2026-05-06  # onboarding validation applied
+sources_version: "MCP Spec 2025-11-25 | @modelcontextprotocol/sdk 1.29.0 | FastMCP 4.x (TS) | mcp-handler 1.1.0"
 next_review: 2026-11-06
 review_reason: "MCP SDK v2 release, FastMCP updates, novas integracoes"
 ---
@@ -36,14 +36,15 @@ Limites criticos que afetam decisoes de arquitetura de MCP servers. Detalhes em 
 ### SDK Oficial (@modelcontextprotocol/sdk)
 | Item | Valor |
 |------|-------|
-| Versao estavel | 1.17+ (v2 em pre-alpha) |
-| Standard Schema | Zod v4, Valibot, ArkType |
+| Versao estavel | **1.29.0** |
+| Schema (v1.x) | **Zod v3** (raw shapes). Standard Schema (Zod v4, Valibot, ArkType) apenas em v2.0.0-alpha |
+| v2 status | 2.0.0-alpha.2 (sub-pacotes: @modelcontextprotocol/server, /client, /node, /express, /hono) |
 | Runtimes | Node.js, Bun, Deno |
 
-### FastMCP (punkpeye/fastmcp)
+### FastMCP (punkpeye/fastmcp) — NAO confundir com PrefectHQ/fastmcp (Python)
 | Item | Valor |
 |------|-------|
-| Versao npm | 3.x (3.13.0 atual) |
+| Versao npm | **4.x (4.0.1)** — v4.0.0 breaking: OAuthProxy.authorize valida redirect_uri |
 | EdgeFastMCP | Cloudflare Workers / Deno Deploy |
 | Zod | Nativo — `z.object({...})` direto em `addTool` |
 
@@ -52,7 +53,7 @@ Limites criticos que afetam decisoes de arquitetura de MCP servers. Detalhes em 
 |--------|-------|
 | Request/response body | **4.5 MB** |
 | Serverless max duration | 300s (Pro) / 60s (Hobby) |
-| @vercel/mcp-adapter | v0.2.x — Streamable HTTP + OAuth 2.1 |
+| mcp-handler (antigo @vercel/mcp-adapter) | **v1.1.0** — Streamable HTTP + OAuth 2.1. `npm i mcp-handler` |
 
 ### Cloudflare Workers (deploy de MCP)
 | Limite | Valor |
@@ -95,7 +96,7 @@ Como CONECTAR e OPERAR. Comandos e patterns detalhados em `references/operaciona
 | Plataforma | Transport | Comando |
 |-----------|-----------|---------|
 | Local/CLI | stdio | `node dist/stdio.js` |
-| Vercel | Streamable HTTP | `vercel deploy` + @vercel/mcp-adapter |
+| Vercel | Streamable HTTP | `vercel deploy` + mcp-handler (antigo @vercel/mcp-adapter) |
 | Cloudflare | Streamable HTTP | `wrangler deploy` |
 | Supabase Edge | Streamable HTTP | `supabase functions deploy` |
 

@@ -251,11 +251,11 @@ export async function executeRequest<T>(
 
 ## 5. Deploy — Comandos por Plataforma
 
-### Vercel (Next.js + @vercel/mcp-adapter)
+### Vercel (Next.js + mcp-handler)
 
 ```typescript
 // app/api/mcp/route.ts
-import { createMcpHandler } from '@vercel/mcp-adapter';
+import { createMcpHandler } from 'mcp-handler';
 import { z } from 'zod';
 
 const handler = createMcpHandler(
