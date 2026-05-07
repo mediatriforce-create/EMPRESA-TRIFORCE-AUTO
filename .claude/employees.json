@@ -502,6 +502,22 @@
       "hired_at": "2026-05-06",
       "hired_by": "Gabriela",
       "onboarded_at": null
+    },
+    {
+      "id": "skill-creator",
+      "name": "Thiago",
+      "role": "Criador de Skills Senior",
+      "seniority": "senior",
+      "tier": "standard",
+      "reports_to": "dev-lider",
+      "description": "Cria, mantém, versiona e audita todas as skills (.md) dos agentes da Triforce Auto. Domina prompt engineering avançado, eval-driven development, progressive disclosure e lifecycle management. Toda skill é compacta, testada, versionada e auditada.",
+      "specialty": "skill-authoring-prompt-engineering",
+      "teams": ["equipe-sistemas"],
+      "skills": ["skill-creator"],
+      "status": "hired",
+      "hired_at": "2026-05-06",
+      "hired_by": "Gabriela",
+      "onboarded_at": null
     }
   ]
 }
