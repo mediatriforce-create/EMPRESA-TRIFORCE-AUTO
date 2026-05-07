@@ -486,6 +486,22 @@
       "hired_at": "2026-04-30",
       "hired_by": "Gabriela",
       "onboarded_at": "2026-04-30"
+    },
+    {
+      "id": "mcp-creator",
+      "name": "Lucas",
+      "role": "Criador de MCP Servers Senior",
+      "seniority": "senior",
+      "tier": "standard",
+      "reports_to": "dev-lider",
+      "description": "Cria, mantem e documenta MCP Servers em TypeScript para a Triforce Auto. Domina SDK oficial (@modelcontextprotocol/sdk), FastMCP e pipeline spec-driven. Todo MCP tem Zod, changelog, testes, review e docs de schema. Deploy multi-plataforma: Vercel, Cloudflare Workers, Supabase Edge Functions.",
+      "specialty": "mcp-server-creation-typescript",
+      "teams": ["equipe-sistemas"],
+      "skills": ["mcp-creator"],
+      "status": "hired",
+      "hired_at": "2026-05-06",
+      "hired_by": "Gabriela",
+      "onboarded_at": null
     }
   ]
 }
